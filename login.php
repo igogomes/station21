@@ -1,3 +1,9 @@
+<?php
+
+    session_start();
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -23,7 +29,7 @@
         <div class="brand">
             <img class="main-top-logo" src="./assets/img/logos/logo-station-21-horizontal.png"/>
         </div>
-        <form id="login-form" action="javascript:;" method="post">
+        <form id="login-form" action="validate-login" method="post">
             <h2 class="login-title">Acesse sua conta</h2>
             <div class="form-group">
                 <div class="input-group-icon right">
@@ -41,6 +47,24 @@
             <div class="form-group">
                 <button class="btn btn-info btn-block" type="submit">Entrar</button>
             </div>
+
+            <?php 
+
+                if(isset($_SESSION["aviso"])) {
+
+                    echo "<br><br>";
+                    echo "<center>";
+                    echo "<span class = \"alert alert-danger\">";
+                    echo $_SESSION["aviso"];
+                    echo "</span>";
+                    echo "</center>";
+                    echo "<br><br>";
+                    unset($_SESSION["aviso"]);
+                    
+                }
+
+            ?>
+
         </form>
     </div>
     <!-- BEGIN PAGA BACKDROPS-->
