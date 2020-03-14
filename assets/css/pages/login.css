@@ -1,0 +1,34 @@
+.main-top-logo {
+    width: 250px;
+    height: auto;
+}
+
+.forgot-password-login-box {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.background-body-login {
+    background: url("../../img/backgrounds/background-image-login-station21.jpg");
+}
+
+.login-title {
+    color: #333;
+}
+
+body:not(.fixed-layout).sidebar-mini .brand {
+    display: block !important;
+}
+
+@media screen and (max-width: 992px) {
+
+    .content form {
+        margin: auto 20px;
+    }
+
+    .content {
+        margin: 50% auto;
+    }
+
+}
