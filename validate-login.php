@@ -5,25 +5,20 @@
 
     include_once "Autoload.inc";
 
-    $login = $_POST["user"];
-    $senha = $_POST["password"];
-
-    $login = preg_replace('/[^[:alnum:]_]/', '',$login);
-    $senha = preg_replace('/[^[:alnum:]_]/', '',$senha);
-
-    $registrar_login = new AutenticarUsuario();
-    $registrar_login = $registrar_login -> removerCaracteresEspeciais($login);
+    $email = $_POST["email"];
+    $senha = $_POST["senha"];
 
     $localizar_usuario = new AutenticarUsuario();
-    $localizar_usuario = $localizar_usuario -> localizarUsuario($registrar_login);
+    $localizar_usuario = $localizar_usuario -> localizarUsuario($email);
 
     $validar_acesso = new AutenticarUsuario();
-    $validar_acesso = $validar_acesso -> validarAcesso($registrar_login, $senha);
+    $validar_acesso = $validar_acesso -> validarAcesso($email, $senha);
 
-    if($login == "" || $senha == "") {
+    if($email == "" || $senha == "") {
 
-        $_SESSION["aviso"] = "Os campos são obrigatórios";
+        $_SESSION["aviso"] = "Os campos são obrigatórios.";
         header("Location: login");
+        close();
 
     }
 
@@ -31,6 +26,7 @@
 
         $_SESSION["aviso"] = "Usuário não encontrado.";
         header("Location: login");
+        close();
 
     }
 
@@ -38,6 +34,7 @@
 
         $_SESSION["aviso"] = "Erro! Informe o administrador.";
         header("Location: login");
+        close();
 
     }
 
@@ -47,6 +44,7 @@
 
             $_SESSION["aviso"] = "Usuário ou senha inválido.";
             header("Location: login");
+            close();
 
         }
 
@@ -54,13 +52,14 @@
 
             $_SESSION["aviso"] = "Erro! Informe o administrador.";
             header("Location: login");
+            close();
 
         }
 
         else {
 
-            $_SESSION['user'] = $registrar_login;
-            $_SESSION['password'] = $senha;
+            $_SESSION['email'] = $email;
+            $_SESSION['senha'] = $senha;
             header("Location: index");
 
         }
