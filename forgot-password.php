@@ -12,10 +12,11 @@
     <link href="assets/css/main.css" rel="stylesheet" />
     <!-- PAGE LEVEL STYLES-->
     <link href="./assets/css/pages/auth-light.css" rel="stylesheet" />
+    <link href="./assets/css/pages/forgot-password.css" rel="stylesheet" />
     <link rel="shortcut icon" href="./assets/img/favicon/logo-station-21-transparent.png" />
 </head>
 
-<body class="bg-silver-300">
+<body>
     <div class="content">
         <div class="brand">
             <a href="login">
@@ -23,13 +24,16 @@
             </a>
         </div>
         <form id="forgot-form" action="javascript:;" method="post">
-            <h3 class="m-t-10 m-b-10">Forgot password</h3>
-            <p class="m-b-20">Enter your email address below and we'll send you password reset instructions.</p>
+            <h3 class="m-t-10 m-b-10 forgot-password-title">Esqueci minha senha</h3>
+            <p class="m-b-20 forgot-password-description">Digite abaixo no campo abaixo para solicitar a recuperação de sua senha:</p>
             <div class="form-group">
                 <input class="form-control" type="email" name="email" placeholder="Email" autocomplete="off">
             </div>
             <div class="form-group">
-                <button class="btn btn-info btn-block" type="submit">Submit</button>
+                <button class="btn btn-info btn-block" type="submit">Enviar</button>
+            </div>
+            <div class="form-group forgot-password-login-box">
+                <a href="login">Voltar</a>
             </div>
         </form>
     </div>

@@ -9,16 +9,16 @@
     margin-bottom: 15px;
 }
 
-.background-body-login {
-    background: url("../../img/backgrounds/background-image-login-station21.jpg");
-}
-
 .login-title {
     color: #333;
 }
 
 body:not(.fixed-layout).sidebar-mini .brand {
     display: block !important;
+}
+
+body {
+    background: #F8F8F8;
 }
 
 @media screen and (max-width: 992px) {

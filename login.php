@@ -24,7 +24,7 @@
     <link rel="shortcut icon" href="./assets/img/favicon/logo-station-21-transparent.png" />
 </head>
 
-<body class="background-body-login">
+<body>
     <div class="content">
         <div class="brand">
             <img class="main-top-logo" src="./assets/img/logos/logo-station-21-horizontal.png"/>
@@ -33,12 +33,12 @@
             <h2 class="login-title">Acesse sua conta</h2>
             <div class="form-group">
                 <div class="input-group-icon right">
-                    <input class="form-control" type="email" name="email" placeholder="Digite o e-mail">
+                    <input class="form-control" type="email" name="email" placeholder="Digite o e-mail" required>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group-icon right">
-                    <input class="form-control" type="password" name="senha" placeholder="Digite a senha">
+                    <input class="form-control" type="password" name="senha" placeholder="Digite a senha" required>
                 </div>
             </div>
             <div class="form-group forgot-password-login-box">
