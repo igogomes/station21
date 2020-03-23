@@ -1,3 +1,14 @@
+<?php 
+
+    include "validate-session.inc";
+    include_once "Autoload.inc";
+
+    $email = $_SESSION['email'];
+    $senha = $_SESSION['senha'];
+    $permissao = $_SESSION['permissao'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -169,7 +180,7 @@
                             <a class="dropdown-item" href="profile.html"><i class="fa fa-cog"></i>Settings</a>
                             <a class="dropdown-item" href="javascript:;"><i class="fa fa-support"></i>Support</a>
                             <li class="dropdown-divider"></li>
-                            <a class="dropdown-item" href="login.html"><i class="fa fa-power-off"></i>Logout</a>
+                            <a class="dropdown-item" href="logout"><i class="fa fa-power-off"></i>Sair</a>
                         </ul>
                     </li>
                 </ul>
@@ -1054,7 +1065,7 @@
     <!-- BEGIN PAGA BACKDROPS-->
     <div class="sidenav-backdrop backdrop"></div>
     <div class="preloader-backdrop">
-        <div class="page-preloader">Loading</div>
+        <div class="page-preloader">Carregando...</div>
     </div>
     <!-- END PAGA BACKDROPS-->
     <!-- CORE PLUGINS-->

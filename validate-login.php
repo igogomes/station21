@@ -58,8 +58,15 @@
 
         else {
 
+            $permissao = new AutenticarUsuario();
+            $permissao = $permissao -> getPermissao($email);
+
+            $atualizar_ultimo_acesso = new GerenciarUsuario();
+            $atualizar_ultimo_acesso = $atualizar_ultimo_acesso -> AtualizarUltimoAcesso($email);
+
             $_SESSION['email'] = $email;
             $_SESSION['senha'] = $senha;
+            $_SESSION['permissao'] = $permissao;
             header("Location: index");
 
         }

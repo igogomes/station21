@@ -8,8 +8,8 @@
     class AutenticarUsuario {
         
         //Método localizarUsuario
-        //Localiza o usuário disponibilizado no formulário de login
-        //@param $email - e-mail do usuário sobre o qual a validação será realizada
+        //Localiza o usuário na base de dados de dados de acordo com o e-mail fornecido
+        //@param $email - e-mail do usuário sobre o qual a localização será realizada
         public function localizarUsuario($email) {
             
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
@@ -53,7 +53,7 @@
         }
 
         //Método getNomeUsuario
-        //Retorna o nome do usuário de acordo com o login disponibilizado
+        //Retorna o nome do usuário de acordo com o e-mail do mesmo
         //@param $email - e-mail do usuário do qual se deseja recuperar o nome
         public function getNomeUsuario($email) {
 
@@ -83,7 +83,7 @@
         }
 
         //Método getSenha
-        //Retorna a senha do usuário mediante a disponibilização do mesmo
+        //Retorna a senha do usuário mediante o e-mail do mesmo
         //@param $email - e-mail do usuário do qual se deseja recuperar a senha
         public function getSenha($email) {
 
@@ -112,8 +112,8 @@
         }
 
         //Método getEmail
-        //Retorna o e-mail do usuário mediante disponibilização do mesmo
-        //@param $email - e-mail do usuário do qual se deseja recuperar o e-mail
+        //Retorna um e-mail de usuário da base de dados caso o mesmo exista
+        //@param $email - e-mail do usuário para o qual se deseja realizar a confirmação e recuperação
         public function getEmail($email) {
 
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
@@ -142,7 +142,7 @@
 
         //Método getCodigoUsuario
         //Retorna o código do usuário de acordo com o e-mail
-        //@param $email - e-mail do usuário do qual se deseja o setor
+        //@param $email - e-mail do usuário do qual se deseja recuperar o código
         public function getCodigoUsuario($email) {
 
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
@@ -198,40 +198,6 @@
 
         }
         
-        //Método recuperarNomeUsuario
-        //Localiza e retorna o nome do usuário de acordo com os dados fornecidos pelo mesmo para acesso ao sistema
-        //@param $email - e-mail do usuário sobre a qual a recuperação será realizada
-        public function recuperarNomeUsuario($email, $senha) {
-            
-            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
-            
-            $sql_usuario = new SqlSelect();
-            $sql_usuario -> adicionarColuna("nome, senha, email");
-            $sql_usuario -> setEntidade("Usuario");
-            $criterio_usuario_1 = new Criterio();
-            $criterio_usuario_1 -> adicionar(new Filtro("email", "=", "'{$email}'"));
-            $criterio_usuario_2 = new Criterio();
-            $criterio_usuario_2 -> adicionar(new Filtro("senha", "=", "'{$senha}'"));
-            $criterio_usuario = new Criterio();
-            $criterio_usuario -> adicionar($criterio_usuario_1, Expressao::OPERADOR_AND);
-            $criterio_usuario -> adicionar($criterio_usuario_2, Expressao::OPERADOR_AND);
-            
-            $sql_usuario -> setCriterio($criterio_usuario);
-            
-            $selecionar_nome_usuario = $conexao_sql_station21 -> query($sql_usuario -> getInstrucao());
-            
-            while($linhas_usuario = $selecionar_nome_usuario -> fetch(PDO::FETCH_ASSOC)) {
-                
-                $nome_usuario = $linhas_usuario["nome"];
-                
-            }
-            
-            return $nome_usuario;
-            
-            $conexao_sql_station21 = NULL;
-            
-        }
-
         //Método validarAcesso
         //Verificar a compatibilidade entre o usuário e a senha para permitir o acesso ao sistema
         //@param $email - e-mail do usuário sobre o qual a verificação será realizada
@@ -281,35 +247,6 @@
             }
 
             $conexao_sql_informador = NULL;
-
-        }
-
-        //Método recuperarEmailUsuario
-        //Retorna o e-mail do usuário de acordo com o nome do mesmo
-        //@param $email - e-mail do usuário do qual se deseja recuperar a informação
-        public function recuperarEmailUsuario($email) {
-
-            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
-            $email_usuario = "";
-
-            $sql_email_usuario = new SqlSelect();
-            $sql_email_usuario -> adicionarColuna("email");
-            $sql_email_usuario -> setEntidade("Usuario");
-            $criterio_email_usuario = new Criterio();
-            $criterio_email_usuario -> adicionar(new Filtro("email", "=", "'{$email}'")); 
-            $sql_email_usuario -> setCriterio($criterio_email_usuario);
-
-            $localizar_email_usuario = $conexao_sql_station21 -> query($sql_email_usuario -> getInstrucao());
-
-            while($linhas_email_usuario = $localizar_email_usuario -> fetch(PDO::FETCH_ASSOC)) {
-
-                $email_usuario = $linhas_email_usuario["email"];
-
-            }
-
-            return $email_usuario;
-
-            $conexao_sql_station21 = NULL;
 
         }
         
