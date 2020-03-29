@@ -10,6 +10,9 @@
     $nome = new AutenticarUsuario();
     $nome = $nome -> getNomeUsuario($email); 
 
+    $grafico_quantidade_cadastrados = new GerenciarUsuario();
+    $grafico_quantidade_cadastrados = $grafico_quantidade_cadastrados -> gerarGraficoQuantidadeCadastrados();
+
 ?>
 
 <!DOCTYPE html>
@@ -109,7 +112,11 @@
     <!-- CORE SCRIPTS-->
     <script src="assets/js/app.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
-    <script src="./assets/js/scripts/dashboard_1_demo.js" type="text/javascript"></script>
+    <?php 
+    
+        echo $grafico_quantidade_cadastrados;
+        
+    ?>
 </body>
 
 </html>

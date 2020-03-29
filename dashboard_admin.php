@@ -5,8 +5,37 @@
             <div class="col-lg-4 col-md-6">
                 <div class="ibox bg-success color-white widget-stat">
                     <div class="ibox-body">
-                        <h2 class="m-b-5 font-strong">201</h2>
-                        <div class="m-b-5">USUÁRIOS</div><i class="fa fa-users widget-stat-icon"></i>
+                        <h2 class="m-b-5 font-strong">
+                        
+                            <?php 
+                            
+                                $quantidade_usuarios = new GerenciarUsuario();
+                                $quantidade_usuarios = $quantidade_usuarios -> getQuantidadeUsuarios();
+
+                                echo $quantidade_usuarios;
+                            
+                            ?>
+
+                        </h2>
+                        <div class="m-b-5">
+                        
+                            <?php 
+                            
+                                if($quantidade_usuarios == 1 || $quantidade_usuarios == 0) {
+
+                                    echo "USUÁRIO";
+
+                                }
+
+                                else {
+
+                                    echo "USUÁRIOS";
+
+                                }
+                            
+                            ?>
+
+                        </div><i class="fa fa-users widget-stat-icon"></i>
                     </div>
                 </div>
             </div>
@@ -47,86 +76,17 @@
                     <div class="ibox-head">
                         <div class="ibox-title">Últimos Acessos</div>
                     </div>
-                    <div class="ibox-body">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Order ID</th>
-                                    <th>Customer</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                    <th width="91px">Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <a href="invoice.html">AT2584</a>
-                                    </td>
-                                    <td>@Jack</td>
-                                    <td>$564.00</td>
-                                    <td>
-                                        <span class="badge badge-success">Shipped</span>
-                                    </td>
-                                    <td>10/07/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="invoice.html">AT2575</a>
-                                    </td>
-                                    <td>@Amalia</td>
-                                    <td>$220.60</td>
-                                    <td>
-                                        <span class="badge badge-success">Shipped</span>
-                                    </td>
-                                    <td>10/07/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="invoice.html">AT1204</a>
-                                    </td>
-                                    <td>@Emma</td>
-                                    <td>$760.00</td>
-                                    <td>
-                                        <span class="badge badge-default">Pending</span>
-                                    </td>
-                                    <td>10/07/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="invoice.html">AT7578</a>
-                                    </td>
-                                    <td>@James</td>
-                                    <td>$87.60</td>
-                                    <td>
-                                        <span class="badge badge-warning">Expired</span>
-                                    </td>
-                                    <td>10/07/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="invoice.html">AT0158</a>
-                                    </td>
-                                    <td>@Ava</td>
-                                    <td>$430.50</td>
-                                    <td>
-                                        <span class="badge badge-default">Pending</span>
-                                    </td>
-                                    <td>10/07/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="invoice.html">AT0127</a>
-                                    </td>
-                                    <td>@Noah</td>
-                                    <td>$64.00</td>
-                                    <td>
-                                        <span class="badge badge-success">Shipped</span>
-                                    </td>
-                                    <td>10/07/2017</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="ibox-body" style="height: 350px;">
+                        
+                        <?php 
+                        
+                            $tabela_ultimos_acessos = new GerenciarUsuario();
+                            $tabela_ultimos_acessos = $tabela_ultimos_acessos -> gerarTabelaUltimosAcessos();
+
+                            echo $tabela_ultimos_acessos;
+
+                        ?>
+
                     </div>
                 </div>
             </div>
@@ -135,85 +95,36 @@
         <div class="col-lg-12">
                 <div class="ibox">
                     <div class="ibox-head">
-                        <div class="ibox-title">Últimos Acessos</div>
+                        <div class="ibox-title">Aprovações</div>
                     </div>
                     <div class="ibox-body">
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>Order ID</th>
-                                    <th>Customer</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                    <th width="91px">Date</th>
+                                    <th>Usuários</th>
+                                    <th>Cursos</th>
+                                    <th>Data de Aprovação</th>
+                                    <th>Aproveitamento</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <a href="invoice.html">AT2584</a>
-                                    </td>
-                                    <td>@Jack</td>
-                                    <td>$564.00</td>
-                                    <td>
-                                        <span class="badge badge-success">Shipped</span>
-                                    </td>
+                                    <td>Rodrigo Pereira</td>
+                                    <td>Atendimento ao Cliente</td>
                                     <td>10/07/2017</td>
+                                    <td>95%</td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <a href="invoice.html">AT2575</a>
-                                    </td>
-                                    <td>@Amalia</td>
-                                    <td>$220.60</td>
-                                    <td>
-                                        <span class="badge badge-success">Shipped</span>
-                                    </td>
+                                    <td>Maria Carvalho</td>
+                                    <td>Inbound Marketing</td>
                                     <td>10/07/2017</td>
+                                    <td>78%</td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <a href="invoice.html">AT1204</a>
-                                    </td>
-                                    <td>@Emma</td>
-                                    <td>$760.00</td>
-                                    <td>
-                                        <span class="badge badge-default">Pending</span>
-                                    </td>
+                                    <td>Rose Rodrigues</td>
+                                    <td>Técnicas de Comunicação</td>
                                     <td>10/07/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="invoice.html">AT7578</a>
-                                    </td>
-                                    <td>@James</td>
-                                    <td>$87.60</td>
-                                    <td>
-                                        <span class="badge badge-warning">Expired</span>
-                                    </td>
-                                    <td>10/07/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="invoice.html">AT0158</a>
-                                    </td>
-                                    <td>@Ava</td>
-                                    <td>$430.50</td>
-                                    <td>
-                                        <span class="badge badge-default">Pending</span>
-                                    </td>
-                                    <td>10/07/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="invoice.html">AT0127</a>
-                                    </td>
-                                    <td>@Noah</td>
-                                    <td>$64.00</td>
-                                    <td>
-                                        <span class="badge badge-success">Shipped</span>
-                                    </td>
-                                    <td>10/07/2017</td>
+                                    <td>89%</td>
                                 </tr>
                             </tbody>
                         </table>
