@@ -78,9 +78,9 @@
         
             if($permissao == 1) {
 
-                include_once "navbar_admin.php";
+                include_once "navbar-admin.php";
 
-                include_once "data_base_users.php";
+                include_once "data-base-users.php";
 
                 include_once "footer.php";
 

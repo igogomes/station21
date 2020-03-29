@@ -81,9 +81,9 @@
         
             if($permissao == 1) {
 
-                include_once "navbar_admin.php";
+                include_once "navbar-admin.php";
 
-                include_once "dashboard_admin.php";
+                include_once "dashboard-admin.php";
 
                 include_once "footer.php";
 
@@ -91,9 +91,9 @@
 
             else if($permissao == 2) {
 
-                include_once "navbar_instrutor.php";
+                include_once "navbar-instrutor.php";
 
-                include_once "dashboard_instrutor.php";
+                include_once "dashboard-instrutor.php";
 
                 include_once "footer.php";
 
@@ -101,9 +101,9 @@
 
             else if($permissao == 3) {
 
-                include_once "navbar_usuario.php";
+                include_once "navbar-usuario.php";
 
-                include_once "dashboard_usuario.php";
+                include_once "dashboard-usuario.php";
 
                 include_once "footer.php";
 

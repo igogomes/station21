@@ -257,6 +257,7 @@
         public function gerarTabelaUsuarios() {
 
             $tabela_usuarios = "";
+            $cod_usuario = "";
             $nome = "";
             $email = "";
             $data_cadastro = "";
@@ -277,6 +278,7 @@
 
             while($linhas_usuarios = $localizar_usuarios -> fetch(PDO::FETCH_ASSOC)) {
 
+                $cod_usuario = $linhas_usuarios["cod_usuario"];
                 $nome = utf8_encode($linhas_usuarios["nome"]);
                 $email = $linhas_usuarios["email"];
                 $data_cadastro = $linhas_usuarios["data_cadastro"];
@@ -293,12 +295,16 @@
                                         <td>" . $data_hora_cadastro_br . "</td> 
                                         <td>" . $descricao_permissao . "</td> 
                                         <td> 
-                                            <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
-                                                <i class=\"fa fa-pencil font-14\"></i>
-                                            </button>
-                                            <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
-                                                <i class=\"fa fa-trash font-14\"></i>
-                                            </button> 
+                                            <a href=\"edit-user?cod-user=$cod_usuario\">
+                                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
+                                                    <i class=\"fa fa-pencil font-14\"></i>
+                                                </button>
+                                            </a>
+                                            <a href=\"delete-user?cod-user=$cod_usuario\">
+                                                <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
+                                                    <i class=\"fa fa-trash font-14\"></i>
+                                                </button> 
+                                            </a>
                                         </td>
                                     </tr>";
 
