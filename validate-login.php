@@ -62,7 +62,7 @@
             $permissao = $permissao -> getPermissao($email);
 
             $atualizar_ultimo_acesso = new GerenciarUsuario();
-            $atualizar_ultimo_acesso = $atualizar_ultimo_acesso -> AtualizarUltimoAcesso($email);
+            $atualizar_ultimo_acesso = $atualizar_ultimo_acesso -> atualizarUltimoAcesso($email);
 
             $_SESSION['email'] = $email;
             $_SESSION['senha'] = $senha;

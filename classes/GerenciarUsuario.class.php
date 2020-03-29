@@ -7,10 +7,10 @@
 
     class GerenciarUsuario {
 
-        //Método AtualizarUltimoAcesso
+        //Método atualizarUltimoAcesso
         //Realiza a atualização do último acesso do usuário através do e-mail do mesmo
         //@param $email - e-mail do usuário para o qual a atualização será realizada
-        public function AtualizarUltimoAcesso($email) {
+        public function atualizarUltimoAcesso($email) {
 
             date_default_timezone_set('America/Sao_Paulo');
             
