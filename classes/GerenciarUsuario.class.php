@@ -152,7 +152,7 @@
 
             while($linhas_ultimos_acessos = $localizar_ultimos_acessos -> fetch(PDO::FETCH_ASSOC)) {
 
-                $nome_usuario = $linhas_ultimos_acessos["nome"];
+                $nome_usuario = utf8_encode($linhas_ultimos_acessos["nome"]);
                 $ultimo_acesso = $linhas_ultimos_acessos["ultimo_acesso"];
 
                 $ultimo_acesso_data_hora_br = new GerenciarData();

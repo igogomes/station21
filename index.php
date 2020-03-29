@@ -64,7 +64,7 @@
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
                             <img src="./assets/img/admin-avatar.png" />
-                            <span></span><?php echo $nome; ?><i class="fa fa-angle-down m-l-5"></i></a>
+                            <span></span><?php echo utf8_encode($nome); ?><i class="fa fa-angle-down m-l-5"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="profile"><i class="fa fa-user"></i>Meu Perfil</a>
                             <li class="dropdown-divider"></li>
@@ -86,6 +86,37 @@
                 include_once "dashboard_admin.php";
 
                 include_once "footer.php";
+
+            }
+
+            else if($permissao == 2) {
+
+                include_once "navbar_instrutor.php";
+
+                include_once "dashboard_instrutor.php";
+
+                include_once "footer.php";
+
+            }
+
+            else if($permissao == 3) {
+
+                include_once "navbar_usuario.php";
+
+                include_once "dashboard_usuario.php";
+
+                include_once "footer.php";
+
+            }
+
+            else {
+
+                session_start();
+                ob_start();
+                $_SESSION = array();
+                session_destroy();
+                
+                header("Location: login");
 
             }
         
