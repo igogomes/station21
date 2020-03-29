@@ -8,7 +8,7 @@
                 </a>
             </li>
             <li>
-                <a class="active" href="index"><i class="sidebar-item-icon fa fa-users"></i>
+                <a class="active" href="users"><i class="sidebar-item-icon fa fa-users"></i>
                     <span class="nav-label">Usuários</span>
                 </a>
             </li>

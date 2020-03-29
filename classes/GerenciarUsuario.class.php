@@ -252,6 +252,98 @@
 
         }
 
+        //Método gerarTabelaUsuarios()
+        //Método para geração de tabela simples contendo todos os usuários cadastrados
+        public function gerarTabelaUsuarios() {
+
+            $tabela_usuarios = "";
+            $nome = "";
+            $email = "";
+            $data_cadastro = "";
+            $permissao = "";
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_gerar_tabela_usuarios = new SqlSelect();
+            $sql_gerar_tabela_usuarios -> adicionarColuna("*");
+            $sql_gerar_tabela_usuarios -> setEntidade("Usuario");
+
+            $criterio_gerar_tabela_usuarios = new Criterio();
+            $criterio_gerar_tabela_usuarios -> setPropriedade("ORDER", "usuario.nome ASC");
+    
+            $sql_gerar_tabela_usuarios -> setCriterio($criterio_gerar_tabela_usuarios);
+
+            $localizar_usuarios = $conexao_sql_station21 -> query($sql_gerar_tabela_usuarios -> getInstrucao());
+
+            while($linhas_usuarios = $localizar_usuarios -> fetch(PDO::FETCH_ASSOC)) {
+
+                $nome = utf8_encode($linhas_usuarios["nome"]);
+                $email = $linhas_usuarios["email"];
+                $data_cadastro = $linhas_usuarios["data_cadastro"];
+                $permissao = $linhas_usuarios["cod_permissao"];
+
+                $data_hora_cadastro_br = new GerenciarData();
+                $data_hora_cadastro_br = $data_hora_cadastro_br -> gerarDataHoraBr($data_cadastro);
+
+                $descricao_permissao = $this -> getPermissao($permissao);
+
+                $tabela_usuarios .= "<tr> 
+                                        <td>" . $nome . "</td> 
+                                        <td>" . $email . "</td> 
+                                        <td>" . $data_hora_cadastro_br . "</td> 
+                                        <td>" . $descricao_permissao . "</td> 
+                                        <td> 
+                                            <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
+                                                <i class=\"fa fa-pencil font-14\"></i>
+                                            </button>
+                                            <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
+                                                <i class=\"fa fa-trash font-14\"></i>
+                                            </button> 
+                                        </td>
+                                    </tr>";
+
+            }
+
+            return $tabela_usuarios;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getPermissao()
+        //Método para obtenção da descrição do tipo de permissão concedida ao usuário de acordo com o código
+        //da mesma
+        //@param $cod_permissao - código da permissão da qual se deseja obter a descrição
+        public function getPermissao($cod_permissao) {
+
+            $permissao = "";
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_permissao = new SqlSelect();
+            $sql_permissao -> adicionarColuna("permissao");
+            $sql_permissao -> setEntidade("Permissao");
+
+            $criterio_permissao = new Criterio();
+            $criterio_permissao -> adicionar(new Filtro("cod_permissao", "=", "'{$cod_permissao}'"));
+
+            $sql_permissao -> setCriterio($criterio_permissao);
+
+            $localizar_permissao = $conexao_sql_station21 -> query($sql_permissao -> getInstrucao());
+
+            while($linhas_permissao = $localizar_permissao -> fetch(PDO::FETCH_ASSOC)) {
+
+                $permissao = utf8_encode($linhas_permissao["permissao"]);
+
+            }
+
+            return $permissao;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+
     }
 
 ?>
