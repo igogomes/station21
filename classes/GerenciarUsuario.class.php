@@ -133,7 +133,7 @@
             $sql_gerar_tabela_ultimos_acessos -> setEntidade("Usuario");
 
             $criterio_gerar_tabela_ultimos_acessos = new Criterio();
-            $criterio_gerar_tabela_ultimos_acessos -> setPropriedade("ORDER", "usuario.data_cadastro DESC");
+            $criterio_gerar_tabela_ultimos_acessos -> setPropriedade("ORDER", "usuario.ultimo_acesso DESC");
             $criterio_gerar_tabela_ultimos_acessos -> setPropriedade("LIMIT", 5);
     
             $sql_gerar_tabela_ultimos_acessos -> setCriterio($criterio_gerar_tabela_ultimos_acessos);
@@ -193,6 +193,60 @@
             }
             
             return $quantidade_usuarios;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método gerarTabelaUltimosCadastros()
+        //Método para geração de tabela simples contendo os últimos usuários cadastrados
+        public function gerarTabelaUltimosCadastros() {
+
+            $tabela_ultimos_cadastros = "";
+            $nome_usuario = "";
+            $data_cadastro = "";
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_gerar_tabela_ultimos_cadastros = new SqlSelect();
+            $sql_gerar_tabela_ultimos_cadastros -> adicionarColuna("*");
+            $sql_gerar_tabela_ultimos_cadastros -> setEntidade("Usuario");
+
+            $criterio_gerar_tabela_ultimos_cadastros = new Criterio();
+            $criterio_gerar_tabela_ultimos_cadastros -> setPropriedade("ORDER", "usuario.data_cadastro DESC");
+            $criterio_gerar_tabela_ultimos_cadastros -> setPropriedade("LIMIT", 5);
+    
+            $sql_gerar_tabela_ultimos_cadastros -> setCriterio($criterio_gerar_tabela_ultimos_cadastros);
+
+            $localizar_ultimos_cadastros = $conexao_sql_station21 -> query($sql_gerar_tabela_ultimos_cadastros -> getInstrucao());
+
+            $tabela_ultimos_cadastros = 
+                "<table class=\"table table-striped table-hover\">
+                    <thead>
+                        <tr>
+                            <th>Usuários</th>
+                            <th>Data do Cadastro</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+            while($linhas_ultimos_cadastros = $localizar_ultimos_cadastros -> fetch(PDO::FETCH_ASSOC)) {
+
+                $nome_usuario = utf8_encode($linhas_ultimos_cadastros["nome"]);
+                $data_cadastro = $linhas_ultimos_cadastros["data_cadastro"];
+
+                $data_hora_cadastro_br = new GerenciarData();
+                $data_hora_cadastro_br = $data_hora_cadastro_br -> gerarDataHoraBr($data_cadastro);
+
+                $tabela_ultimos_cadastros .= "<tr> <td>" . $nome_usuario . "</td> <td>" . $data_hora_cadastro_br . "</td> </tr>";
+
+            }
+
+            $tabela_ultimos_cadastros .= 
+                    "</tbody>
+                </table>";
+
+            return $tabela_ultimos_cadastros;
 
             $conexao_sql_station21 = NULL;
 

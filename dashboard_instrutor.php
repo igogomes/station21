@@ -2,7 +2,15 @@
     <!-- START PAGE CONTENT-->
     <div class="page-content fade-in-up">
         <div class="row">
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-6 col-md-6">
+                <div class="ibox bg-info color-white widget-stat">
+                    <div class="ibox-body">
+                        <h2 class="m-b-5 font-strong">1250</h2>
+                        <div class="m-b-5">CURSOS</div><i class="fa fa-play-circle widget-stat-icon"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
                 <div class="ibox bg-success color-white widget-stat">
                     <div class="ibox-body">
                         <h2 class="m-b-5 font-strong">
@@ -39,22 +47,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ibox bg-info color-white widget-stat">
-                    <div class="ibox-body">
-                        <h2 class="m-b-5 font-strong">1250</h2>
-                        <div class="m-b-5">CURSOS</div><i class="fa fa-play-circle widget-stat-icon"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="ibox bg-warning color-white widget-stat">
-                    <div class="ibox-body">
-                        <h2 class="m-b-5 font-strong">52</h2>
-                        <div class="m-b-5">APROVADOS</div><i class="fa fa-trophy money widget-stat-icon"></i>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="row">
             <div class="col-lg-6">
@@ -74,16 +66,16 @@
             <div class="col-lg-6">
                 <div class="ibox">
                     <div class="ibox-head">
-                        <div class="ibox-title">Últimos Acessos</div>
+                        <div class="ibox-title">Últimos Inscritos</div>
                     </div>
                     <div class="ibox-body" style="height: 350px;">
                         
                         <?php 
                         
-                            $tabela_ultimos_acessos = new GerenciarUsuario();
-                            $tabela_ultimos_acessos = $tabela_ultimos_acessos -> gerarTabelaUltimosAcessos();
+                            $tabela_ultimos_cadastros = new GerenciarUsuario();
+                            $tabela_ultimos_cadastros = $tabela_ultimos_cadastros -> gerarTabelaUltimosCadastros();
 
-                            echo $tabela_ultimos_acessos;
+                            echo $tabela_ultimos_cadastros;
 
                         ?>
 
@@ -95,36 +87,32 @@
         <div class="col-lg-12">
                 <div class="ibox">
                     <div class="ibox-head">
-                        <div class="ibox-title">Aprovações</div>
+                        <div class="ibox-title">Cursos</div>
                     </div>
                     <div class="ibox-body">
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>Usuários</th>
                                     <th>Cursos</th>
-                                    <th>Data de Aprovação</th>
-                                    <th>Aproveitamento</th>
+                                    <th>Última Atualização</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Rodrigo Pereira</td>
                                     <td>Atendimento ao Cliente</td>
-                                    <td>10/07/2017</td>
-                                    <td>95%</td>
+                                    <td>01/02/2019</td>
+                                    <td>Publicado</td>
                                 </tr>
                                 <tr>
-                                    <td>Maria Carvalho</td>
                                     <td>Inbound Marketing</td>
-                                    <td>10/07/2017</td>
-                                    <td>78%</td>
+                                    <td>05/07/2019</td>
+                                    <td>Não Publicado</td>
                                 </tr>
                                 <tr>
-                                    <td>Rose Rodrigues</td>
                                     <td>Técnicas de Comunicação</td>
-                                    <td>10/07/2017</td>
-                                    <td>89%</td>
+                                    <td>19/05/2019</td>
+                                    <td>Publicado</td>
                                 </tr>
                             </tbody>
                         </table>
