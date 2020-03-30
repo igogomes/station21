@@ -27,7 +27,7 @@
             <h3 class="m-t-10 m-b-10 forgot-password-title">Esqueci minha senha</h3>
             <p class="m-b-20 forgot-password-description">Digite abaixo no campo abaixo para solicitar a recuperação de sua senha:</p>
             <div class="form-group">
-                <input class="form-control" type="email" name="email" placeholder="Email" autocomplete="off">
+                <input class="form-control" type="email" name="email" placeholder="Email" maxlength="100" autocomplete="off">
             </div>
             <div class="form-group">
                 <button class="btn btn-info btn-block" type="submit">Enviar</button>

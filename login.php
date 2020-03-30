@@ -33,12 +33,12 @@
             <h2 class="login-title">Acesse sua conta</h2>
             <div class="form-group">
                 <div class="input-group-icon right">
-                    <input class="form-control" type="email" name="email" placeholder="Digite o e-mail" required>
+                    <input class="form-control" type="email" name="email" placeholder="Digite o e-mail" maxlength="100" required>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group-icon right">
-                    <input class="form-control" type="password" name="senha" placeholder="Digite a senha" required>
+                    <input class="form-control" type="password" name="senha" placeholder="Digite a senha" maxlength="10" required>
                 </div>
             </div>
             <div class="form-group forgot-password-login-box">

@@ -349,6 +349,204 @@
 
         }
 
+        //Método gerarListaPermissoes
+        //Método para geração de lista de permissões cadastradas no sistema
+        public function gerarListaPermissoes() {
+
+            $cod_permissao = "";
+            $permissao = "";
+            $lista_permissao = "";
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_lista_permissao = new SqlSelect();
+            $sql_lista_permissao -> adicionarColuna("*");
+            $sql_lista_permissao -> setEntidade("Permissao");
+
+            $criterio_lista_permissao = new Criterio();
+            $criterio_lista_permissao -> setPropriedade("ORDER", "permissao.cod_permissao ASC");
+
+            $sql_lista_permissao -> setCriterio($criterio_lista_permissao);
+
+            $localizar_lista_permissao = $conexao_sql_station21 -> query($sql_lista_permissao -> getInstrucao());
+
+            while($linhas_lista_permissao = $localizar_lista_permissao -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_permissao = $linhas_lista_permissao["cod_permissao"];
+                $permissao = utf8_encode($linhas_lista_permissao["permissao"]);
+
+                $lista_permissao .= "<option value=\"" . $cod_permissao . "\">" . $permissao . "</option>";
+
+            }
+
+            return $lista_permissao;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método gerarListaPermissoesComSelecao
+        //Método para geração de lista de permissões cadastradas no sistema com seleção de permissão específica
+        public function gerarListaPermissoesComSelecao($cod_permissao) {
+
+            $cod_permissao_base = "";
+            $permissao = "";
+            $lista_permissao = "";
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_lista_permissao = new SqlSelect();
+            $sql_lista_permissao -> adicionarColuna("*");
+            $sql_lista_permissao -> setEntidade("Permissao");
+
+            $criterio_lista_permissao = new Criterio();
+            $criterio_lista_permissao -> setPropriedade("ORDER", "permissao.cod_permissao ASC");
+
+            $sql_lista_permissao -> setCriterio($criterio_lista_permissao);
+
+            $localizar_lista_permissao = $conexao_sql_station21 -> query($sql_lista_permissao -> getInstrucao());
+
+            while($linhas_lista_permissao = $localizar_lista_permissao -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_permissao_base = $linhas_lista_permissao["cod_permissao"];
+                $permissao = utf8_encode($linhas_lista_permissao["permissao"]);
+
+                if($cod_permissao == $cod_permissao_base) {
+
+                    $lista_permissao .= "<option value=\"" . $cod_permissao . "\" selected>" . $permissao . "</option>";
+
+                }
+
+                else {
+
+                    $lista_permissao .= "<option value=\"" . $cod_permissao . "\">" . $permissao . "</option>";
+
+                }
+
+            }
+
+            return $lista_permissao;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método setUsuario
+        //Método para o cadastro de usuário na base de dados
+        //@param $nome - nome do usuário a ser cadastrado
+        //@param $email - e-mail do usuário a ser cadastrado
+        //@param $permissao - permissão do usuário a ser cadastrado
+        public function setUsuario($nome, $email, $permissao) {
+
+            $nome = utf8_decode($nome);
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_cadastrar_usuario = new SqlInsert();
+            $sql_cadastrar_usuario -> setEntidade("Usuario");
+            $sql_cadastrar_usuario -> setValorLinha("nome", $nome);
+            $sql_cadastrar_usuario -> setValorLinha("email", $email);
+            $sql_cadastrar_usuario -> setValorLinha("cod_permissao", $permissao);
+            $sql_cadastrar_usuario -> setValorLinha("senha", "station21");
+
+            $cadastrar_usuario = $conexao_sql_station21 -> query($sql_cadastrar_usuario -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getNomePorCodigoUsuario
+        //Retorna o nome do usuário a partir do código do mesmo
+        //@param $cod_usuario - código do usuário do qual o nome será recuperado
+        public function getNomePorCodigoUsuario($cod_usuario) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $nome = "";
+
+            $sql_nome_usuario = new SqlSelect();
+            $sql_nome_usuario -> adicionarColuna("nome");
+            $sql_nome_usuario -> setEntidade("Usuario");
+
+            $criterio_nome_usuario = new Criterio();
+            $criterio_nome_usuario -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
+
+            $sql_nome_usuario -> setCriterio($criterio_nome_usuario);
+
+            $localizar_nome_usuario = $conexao_sql_station21 -> query($sql_nome_usuario -> getInstrucao());
+
+            while($linhas_nome_usuario = $localizar_nome_usuario -> fetch(PDO::FETCH_ASSOC)) {
+
+                $nome = $linhas_nome_usuario["nome"];
+
+            }
+
+            return $nome;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getEmailPorCodigoUsuario
+        //Retorna o e-mail do usuário a partir do código do mesmo
+        //@param $cod_usuario - código do usuário do qual o e-mail será recuperado
+        public function getEmailPorCodigoUsuario($cod_usuario) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $email = "";
+
+            $sql_email_usuario = new SqlSelect();
+            $sql_email_usuario -> adicionarColuna("email");
+            $sql_email_usuario -> setEntidade("Usuario");
+
+            $criterio_email_usuario = new Criterio();
+            $criterio_email_usuario -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
+
+            $sql_email_usuario -> setCriterio($criterio_email_usuario);
+
+            $localizar_email_usuario = $conexao_sql_station21 -> query($sql_email_usuario -> getInstrucao());
+
+            while($linhas_email_usuario = $localizar_email_usuario -> fetch(PDO::FETCH_ASSOC)) {
+
+                $email = $linhas_email_usuario["email"];
+
+            }
+
+            return $email;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getPermissaoPorCodigoUsuario
+        //Retorna a permissão do usuário a partir do código do mesmo
+        //@param $cod_usuario - código do usuário do qual a permissão será recuperada
+        public function getPermissaoPorCodigoUsuario($cod_usuario) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $permissao = "";
+
+            $sql_permissao_usuario = new SqlSelect();
+            $sql_permissao_usuario -> adicionarColuna("cod_permissao");
+            $sql_permissao_usuario -> setEntidade("Usuario");
+
+            $criterio_permissao_usuario = new Criterio();
+            $criterio_permissao_usuario -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
+
+            $sql_permissao_usuario -> setCriterio($criterio_permissao_usuario);
+
+            $localizar_permissao_usuario = $conexao_sql_station21 -> query($sql_permissao_usuario -> getInstrucao());
+
+            while($linhas_permissao_usuario = $localizar_permissao_usuario -> fetch(PDO::FETCH_ASSOC)) {
+
+                $permissao = $linhas_permissao_usuario["cod_permissao"];
+
+            }
+
+            return $permissao;
+
+            $conexao_sql_station21 = NULL;
+
+        }
 
     }
 

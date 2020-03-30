@@ -8,19 +8,41 @@
     $permissao = $_SESSION['permissao'];
 
     $nome = new AutenticarUsuario();
-    $nome = $nome -> getNomeUsuario($email); 
+    $nome = $nome -> getNomeUsuario($email);
 
-    $nome_usuario = (isset($_POST["nome"])) ? $_POST["nome"] : "";
-    $email_usuario = (isset($_POST["email"])) ? $_POST["email"] : "";
-    $permissao_usuario = (isset($_POST["permissao"])) ? $_POST["permissao"] : "";
-    $sucesso_cadastro_usuario = 0;
+    /* Recuperação dos dados do usuário para preenchimento do formulário de edição a partir do código do mesmo */
 
-    if($nome_usuario != "" && $email_usuario != "" && $permissao_usuario != "") {
+    $cod_usuario = (isset($_GET["cod-user"])) ? $_GET["cod-user"] : "";
 
-        $cadastrar_usuario = new GerenciarUsuario();
-        $cadastrar_usuario = $cadastrar_usuario -> setUsuario($nome_usuario, $email_usuario, $permissao_usuario);
+    $nome_usuario = new GerenciarUsuario();
+    $nome_usuario = utf8_encode($nome_usuario -> getNomePorCodigoUsuario($cod_usuario));
 
-        $sucesso_cadastro_usuario = 1;
+    $email_usuario = new GerenciarUsuario();
+    $email_usuario = $email_usuario -> getEmailPorCodigoUsuario($cod_usuario);
+
+    $permissao_usuario = new GerenciarUsuario();
+    $permissao_usuario = $permissao_usuario -> getPermissaoPorCodigoUsuario($cod_usuario);
+
+    /* Alteração dos dados do usuário a partir dos dados cadastrados no formulário */
+
+    $nome_edicao_usuario = utf8_encode((isset($_POST["nome-edicao-usuario"]))) ? $_POST["nome-edicao-usuario"] : "";
+    $email_edicao_usuario = (isset($_POST["email-edicao-usuario"])) ? $_POST["email-edicao-usuario"] : "";
+    $permissao_edicao_usuario = (isset($_POST["permissao-edicao-usuario"])) ? $_POST["permissao-edicao-usuario"] : "";
+    
+    if($permissao_edicao_usuario != "") {
+
+        $permissao_usuario = "";
+
+    }
+
+    $sucesso_edicao_usuario = 0;
+
+    if($nome_edicao_usuario != "" && $email_edicao_usuario != "" && $permissao_edicao_usuario != "") {
+
+        /*$editar_usuario = new GerenciarUsuario();
+        $editar_usuario = $editar_usuario -> setUsuario($nome_usuario, $email_usuario, $permissao_usuario);*/
+
+        $sucesso_edicao_usuario = 1;
 
     }
 
@@ -33,7 +55,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
-    <title>Cadastrar Usuário | Station21</title>
+    <title>Editar Usuário | Station21</title>
     <!-- GLOBAL MAINLY STYLES-->
     <link href="./assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="./assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -93,7 +115,7 @@
 
                 include_once "navbar-admin.php";
 
-                include_once "form-create-user.php";
+                include_once "form-edit-user.php";
 
                 include_once "footer.php";
 
