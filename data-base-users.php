@@ -3,6 +3,48 @@
     <div class="page-heading">
         <h1 class="page-title">Usuários</h1>
         <div class="row">
+            <div class="col-md-12">
+
+                <?php 
+
+                    if($excluir_usuario == 1) {
+
+                ?>
+
+                <div class="alert alert-danger alert-dismissable fade show">
+                    <a href="users" class="close" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </a>
+                    <h4>Atenção!</h4>
+                    <p>Você realmente deseja excluir o usuário <?php echo utf8_encode($nome_excluir_usuario); ?>?</p>
+                    <p>
+                        <a href="delete-user?cod-user=<?php echo $cod_excluir_usuario; ?>" class="btn btn-danger" style="color:#fff;">Sim</a>
+                        <a href="users" class="btn btn-default" style="color:#000;">Não</a>
+                    </p>
+                </div>
+
+                <?php
+
+                    }
+
+                    if($excluir_usuario == 2) {
+                        
+                ?>
+
+                    <div class="alert alert-success alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        Os dados do usuário foram excluídos com <strong>sucesso</strong>.
+                    </div>
+
+                <?php
+
+                    }
+
+                ?>
+
+            </div>
+        </div>
+        <div class="row">
             <div class="col-lg-6 col-md-6">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -44,7 +86,7 @@
                             <?php 
                                         
                                 $tabela_usuarios = new GerenciarUsuario();
-                                $tabela_usuarios = $tabela_usuarios -> gerarTabelaUsuarios();
+                                $tabela_usuarios = $tabela_usuarios -> gerarTabelaUsuarios($codigo_usuario_autenticado);
 
                                 echo $tabela_usuarios;
                                         

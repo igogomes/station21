@@ -9,10 +9,9 @@
 
     $nome = new AutenticarUsuario();
     $nome = $nome -> getNomeUsuario($email);
-
-    /* Recuperação dos dados do usuário para preenchimento do formulário de edição a partir do código do mesmo */
-
+    
     $cod_usuario = (isset($_GET["cod-user"])) ? $_GET["cod-user"] : "";
+    $sucesso_edicao_usuario = (isset($_GET["sucesso-edicao"])) ? $_GET["sucesso-edicao"] : "";
 
     $nome_usuario = new GerenciarUsuario();
     $nome_usuario = utf8_encode($nome_usuario -> getNomePorCodigoUsuario($cod_usuario));
@@ -22,29 +21,6 @@
 
     $permissao_usuario = new GerenciarUsuario();
     $permissao_usuario = $permissao_usuario -> getPermissaoPorCodigoUsuario($cod_usuario);
-
-    /* Alteração dos dados do usuário a partir dos dados cadastrados no formulário */
-
-    $nome_edicao_usuario = utf8_encode((isset($_POST["nome-edicao-usuario"]))) ? $_POST["nome-edicao-usuario"] : "";
-    $email_edicao_usuario = (isset($_POST["email-edicao-usuario"])) ? $_POST["email-edicao-usuario"] : "";
-    $permissao_edicao_usuario = (isset($_POST["permissao-edicao-usuario"])) ? $_POST["permissao-edicao-usuario"] : "";
-    
-    if($permissao_edicao_usuario != "") {
-
-        $permissao_usuario = "";
-
-    }
-
-    $sucesso_edicao_usuario = 0;
-
-    if($nome_edicao_usuario != "" && $email_edicao_usuario != "" && $permissao_edicao_usuario != "") {
-
-        /*$editar_usuario = new GerenciarUsuario();
-        $editar_usuario = $editar_usuario -> setUsuario($nome_usuario, $email_usuario, $permissao_usuario);*/
-
-        $sucesso_edicao_usuario = 1;
-
-    }
 
 ?>
 

@@ -254,7 +254,9 @@
 
         //Método gerarTabelaUsuarios()
         //Método para geração de tabela simples contendo todos os usuários cadastrados
-        public function gerarTabelaUsuarios() {
+        //@param $cod_usuario_autenticado - Código do usuário autenticado que não será exibido na relação de usuários 
+        //cadastrados
+        public function gerarTabelaUsuarios($cod_usuario_autenticado) {
 
             $tabela_usuarios = "";
             $cod_usuario = "";
@@ -289,24 +291,28 @@
 
                 $descricao_permissao = $this -> getPermissao($permissao);
 
-                $tabela_usuarios .= "<tr> 
-                                        <td>" . $nome . "</td> 
-                                        <td>" . $email . "</td> 
-                                        <td>" . $data_hora_cadastro_br . "</td> 
-                                        <td>" . $descricao_permissao . "</td> 
-                                        <td> 
-                                            <a href=\"edit-user?cod-user=$cod_usuario\">
-                                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
-                                                    <i class=\"fa fa-pencil font-14\"></i>
-                                                </button>
-                                            </a>
-                                            <a href=\"delete-user?cod-user=$cod_usuario\">
-                                                <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
-                                                    <i class=\"fa fa-trash font-14\"></i>
-                                                </button> 
-                                            </a>
-                                        </td>
-                                    </tr>";
+                if($cod_usuario != $cod_usuario_autenticado) {
+
+                    $tabela_usuarios .= "<tr> 
+                                            <td>" . $nome . "</td> 
+                                            <td>" . $email . "</td> 
+                                            <td>" . $data_hora_cadastro_br . "</td> 
+                                            <td>" . $descricao_permissao . "</td> 
+                                            <td> 
+                                                <a href=\"edit-user?cod-user=$cod_usuario\">
+                                                    <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
+                                                        <i class=\"fa fa-pencil font-14\"></i>
+                                                    </button>
+                                                </a>
+                                                <a href=\"users?cod-delete-user=$cod_usuario&delete-user=1\">
+                                                    <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
+                                                        <i class=\"fa fa-trash font-14\"></i>
+                                                    </button> 
+                                                </a>
+                                            </td>
+                                        </tr>";
+
+                }
 
             }
 
@@ -543,6 +549,55 @@
             }
 
             return $permissao;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método atualizarDadosUsuario()
+        //Método para atualização dos dados de usuários na base de dados
+        //@param $cod_usuario - código do usuário do qual os dados serão alterados
+        //@param $nome - nome do usuário para atualização na base de dados
+        //@param $email - e-mail do usuário para atualização na base de dados
+        //@param $permissao - código de permissão para atualização na base de dados
+        public function atualizarDadosUsuario($cod_usuario, $nome, $email, $permissao) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_atualizar_dados_usuario = new SqlUpdate();
+            $sql_atualizar_dados_usuario -> setEntidade("Usuario");
+            $sql_atualizar_dados_usuario -> setValorLinha("nome", "{$nome}");
+            $sql_atualizar_dados_usuario -> setValorLinha("email", "{$email}");
+            $sql_atualizar_dados_usuario -> setValorLinha("cod_permissao", "$permissao");
+
+            $criterio_atualizar_dados_usuario = new Criterio();
+            $criterio_atualizar_dados_usuario -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
+
+            $sql_atualizar_dados_usuario -> setCriterio($criterio_atualizar_dados_usuario);
+
+            $atualizar_dados_usuario = $conexao_sql_station21 -> query($sql_atualizar_dados_usuario -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método excluirUsuario() 
+        //Método para exclusão de usuário da base de dados
+        //@param $cod_usuario - código do usuário do qual os dados serão excluidos da base de dados
+        public function excluirUsuario($cod_usuario) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_usuario = new SqlDelete();
+
+            $sql_excluir_usuario -> setEntidade("Usuario");
+
+            $criterio_excluir_usuario = new Criterio();
+            $criterio_excluir_usuario -> adicionar(new Filtro("cod_usuario", "=", "'$cod_usuario'"));
+
+            $sql_excluir_usuario -> setCriterio($criterio_excluir_usuario);
+
+            $excluir_usuario = $conexao_sql_station21 -> query($sql_excluir_usuario -> getInstrucao());
 
             $conexao_sql_station21 = NULL;
 

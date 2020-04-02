@@ -39,52 +39,70 @@
             <div class="col-md-12">
                 <div class="ibox">
                     <div class="ibox-body">
-                        <form class="form-horizontal" action="edit-user" method="post">
+                        <form class="form-horizontal" action="edit-user-database" method="post">
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Nome</label>
                                 <div class="col-sm-10">
-                                    <input name="nome-edicao-usuario" class="form-control" type="text" placeholder="Digite o nome do usuário" maxlength="100" value="<?php if($nome_edicao_usuario != "") { echo $nome_edicao_usuario; } else { echo $nome_usuario; } ?>" required>
+                                    <input name="nome-edicao-usuario" class="form-control" type="text" placeholder="Digite o nome do usuário" maxlength="100" value="<?php echo $nome_usuario; ?>" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">E-mail</label>
                                 <div class="col-sm-10">
-                                    <input name="email-edicao-usuario" class="form-control" type="email" placeholder="Digite o e-mail do usuário" maxlength="100" value="<?php if($email_edicao_usuario != "") { echo $email_edicao_usuario; } else { echo $email_usuario; } ?>" required>
+                                    <input name="email-edicao-usuario" class="form-control" type="email" placeholder="Digite o e-mail do usuário" maxlength="100" value="<?php echo $email_usuario; ?>" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Permissão</label>
                                 <div class="col-sm-10">
                                         
-                                    <?php 
+                                    <select name="permissao-edicao-usuario" class="form-control" size=1 required>
 
-                                        if($permissao_edicao_usuario != "" && $permissao_usuario == "") {
+                                        
 
-                                            echo "<select name=\"permissao-edicao-usuario\" class=\"form-control\" size=\"1\" required>";
-                                                echo "<option selected value=\"0\">Selecione uma permissão edição</option>";
+                                        <?php
 
-                                                $lista_permissoes_edicao_usuario = new GerenciarUsuario();
-                                                $lista_permissoes_edicao_usuario = $lista_permissoes_edicao_usuario -> gerarListaPermissoesComSelecao($permissao_edicao_usuario);
-                                                echo $lista_permissoes_edicao_usuario;
+                                            if($permissao_usuario == 1) {
 
-                                            echo "</select>";
+                                                echo "<option value=\"1\" selected>Administrador</option>";
 
-                                        }
+                                            }
 
-                                        else if($permissao_usuario != "" && $permissao_edicao_usuario == "") {
+                                            else {
 
-                                            echo "<select name=\"permissao-usuario\" class=\"form-control\" size=\"1\" required>";
-                                                echo "<option selected value=\"0\">Selecione uma permissão comum</option>";
+                                                echo "<option value=\"1\">Administrador</option>";
 
-                                                $lista_permissoes_usuario = new GerenciarUsuario();
-                                                $lista_permissoes_usuario = $lista_permissoes_usuario -> gerarListaPermissoesComSelecao($permissao_usuario);
-                                                echo $lista_permissoes_usuario;
+                                            }
 
-                                            echo "</select>";
+                                            if($permissao_usuario == 2) {
 
-                                        }
-                                            
-                                    ?>
+                                                echo "<option value=\"2\" selected>Instrutor</option>";
+
+                                            }  
+
+                                            else {
+
+                                                echo "<option value=\"2\">Instrutor</option>";
+
+                                            }
+
+                                            if($permissao_usuario == 3) {
+
+                                                echo "<option value=\"3\" selected>Usuário</option>";
+
+                                            }
+
+                                            else {
+
+                                                echo "<option value=\"3\">Usuário</option>";
+
+                                            }
+        
+                                        ?>
+
+                                    </select>
+
+                                    <input type="hidden" name="cod-edicao-usuario" value="<?php echo $cod_usuario; ?>">
 
                                 </div>
                             </div>

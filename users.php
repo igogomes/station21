@@ -8,7 +8,20 @@
     $permissao = $_SESSION['permissao'];
 
     $nome = new AutenticarUsuario();
-    $nome = $nome -> getNomeUsuario($email); 
+    $nome = $nome -> getNomeUsuario($email);  
+
+    $codigo_usuario_autenticado = new AutenticarUsuario();
+    $codigo_usuario_autenticado = $codigo_usuario_autenticado -> getCodigoUsuario($email);
+
+    $cod_excluir_usuario = (isset($_GET["cod-delete-user"])) ? $_GET["cod-delete-user"] : "";
+    $excluir_usuario = (isset($_GET["delete-user"])) ? $_GET["delete-user"] : "";
+
+    if($excluir_usuario != "") {
+
+        $nome_excluir_usuario = new GerenciarUsuario();
+        $nome_excluir_usuario = $nome_excluir_usuario -> getNomePorCodigoUsuario($cod_excluir_usuario);
+
+    }
 
 ?>
 
