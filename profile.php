@@ -8,19 +8,93 @@
     $permissao = $_SESSION['permissao'];
 
     $nome = new AutenticarUsuario();
-    $nome = $nome -> getNomeUsuario($email);
-    
-    $cod_usuario = (isset($_GET["cod-user"])) ? $_GET["cod-user"] : "";
-    $sucesso_edicao_usuario = (isset($_GET["sucesso-edicao"])) ? $_GET["sucesso-edicao"] : "";
+    $nome = utf8_encode($nome -> getNomeUsuario($email));
 
-    $nome_usuario = new GerenciarUsuario();
-    $nome_usuario = utf8_encode($nome_usuario -> getNomePorCodigoUsuario($cod_usuario));
+    $cod_usuario = new AutenticarUsuario();
+    $cod_usuario = $cod_usuario -> getCodigoUsuario($email);
 
-    $email_usuario = new GerenciarUsuario();
-    $email_usuario = $email_usuario -> getEmailPorCodigoUsuario($cod_usuario);
+    $nome_usuario_perfil = (isset($_POST["nome"])) ? $_POST["nome"] : "";
+    $email_usuario_perfil = (isset($_POST["email"])) ? $_POST["email"] : "";
+    $senha_usuario_perfil = (isset($_POST["senha"])) ? $_POST["senha"] : "";
+    $nova_senha_usuario_perfil = (isset($_POST["nova-senha"])) ? $_POST["nova-senha"] : "";
+    $confirmar_senha_usuario_perfil = (isset($_POST["confirmar-senha"])) ? $_POST["confirmar-senha"] : "";
+    $erro_senha_atual = 0;
+    $erro_nova_senha = 0;
+    $atualizar_perfil = 0;
 
-    $permissao_usuario = new GerenciarUsuario();
-    $permissao_usuario = $permissao_usuario -> getPermissaoPorCodigoUsuario($cod_usuario);
+    if($nome_usuario_perfil != "" && ($nome_usuario_perfil != $nome)) {
+
+        if($senha_usuario_perfil == $senha) {
+
+            $atualizar_nome_usuario = new GerenciarUsuario();
+            $atualizar_nome_usuario = $atualizar_nome_usuario -> atualizarNomeUsuario($cod_usuario, $nome_usuario_perfil);
+            $atualizar_perfil = 1;
+
+        }
+
+        else {
+
+            $erro_senha_atual = 1;
+
+        }
+
+    }
+
+    if($email_usuario_perfil != "" && ($email_usuario_perfil != $email)) {
+
+        if($senha_usuario_perfil == $senha) {
+
+            $atualizar_email_usuario = new GerenciarUsuario();
+            $atualizar_email_usuario = $atualizar_email_usuario -> atualizarEmailUsuario($cod_usuario, $email_usuario_perfil);
+            $atualizar_perfil = 1;
+
+            session_start();
+            ob_start();
+            $_SESSION = array();
+            session_destroy();
+            
+            header("Location: login");
+
+        }
+
+        else {
+
+            $erro_senha_atual = 1;
+
+        }
+
+    }
+
+    if($nova_senha_usuario_perfil != "" || $confirmar_senha_usuario_perfil != "") {
+
+        if($senha_usuario_perfil != $senha) {
+
+            $erro_senha_atual = 1;
+
+        }
+
+        else if($nova_senha_usuario_perfil != $confirmar_senha_usuario_perfil) {
+
+            $erro_nova_senha = 1;
+
+        }
+
+        else {
+
+            $atualizar_email_usuario = new GerenciarUsuario();
+            $atualizar_email_usuario = $atualizar_email_usuario -> atualizarSenhaUsuario($cod_usuario, $nova_senha_usuario_perfil);
+            $atualizar_perfil = 1;
+
+            session_start();
+            ob_start();
+            $_SESSION = array();
+            session_destroy();
+            
+            header("Location: login");
+
+        }
+
+    }
 
 ?>
 
@@ -31,7 +105,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
-    <title>Editar Usuário | Station21</title>
+    <title>Meu Perfil | Station21</title>
     <!-- GLOBAL MAINLY STYLES-->
     <link href="./assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="./assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -91,7 +165,23 @@
 
                 include_once "navbar-admin.php";
 
-                include_once "form-edit-user.php";
+            }
+
+            else if($permissao == 2) {
+
+                include_once "navbar-instrutor.php";
+
+            }
+
+            else if($permissao == 3) {
+
+                include_once "navbar-usuario.php";
+
+            }
+
+            if($permissao == 1 || $permissao == 2 || $permissao == 3) {
+
+                include_once "form-edit-profile.php";
 
                 include_once "footer.php";
 

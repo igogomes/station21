@@ -603,6 +603,75 @@
 
         }
 
+        //Método atualizarNomeUsuario()
+        //Método para atualização do nome do usuário na base de dados
+        //@param $cod_usuario - código do usuário do qual o nome será atualizado
+        //@param $nome - nome do usuário que será atualizado
+        public function atualizarNomeUsuario($cod_usuario, $nome) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_atualizar_perfil_usuario = new SqlUpdate();
+            $sql_atualizar_perfil_usuario -> setEntidade("Usuario");
+            $sql_atualizar_perfil_usuario -> setValorLinha("nome", "{$nome}");
+
+            $criterio_atualizar_perfil_usuario = new Criterio();
+            $criterio_atualizar_perfil_usuario -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
+
+            $sql_atualizar_perfil_usuario -> setCriterio($criterio_atualizar_perfil_usuario);
+
+            $atualizar_perfil_usuario = $conexao_sql_station21 -> query($sql_atualizar_perfil_usuario -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método atualizarEmailUsuario()
+        //Método para atualização do e-mail do usuário na base de dados
+        //@param $cod_usuario - código do usuário do qual o e-mail será atualizado
+        //@param $email - e-mail do usuário que será atualizado
+        public function atualizarEmailUsuario($cod_usuario, $email) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_atualizar_perfil_usuario = new SqlUpdate();
+            $sql_atualizar_perfil_usuario -> setEntidade("Usuario");
+            $sql_atualizar_perfil_usuario -> setValorLinha("email", "{$email}");
+
+            $criterio_atualizar_perfil_usuario = new Criterio();
+            $criterio_atualizar_perfil_usuario -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
+
+            $sql_atualizar_perfil_usuario -> setCriterio($criterio_atualizar_perfil_usuario);
+
+            $atualizar_perfil_usuario = $conexao_sql_station21 -> query($sql_atualizar_perfil_usuario -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método atualizarSenhaUsuario()
+        //Método para atualização da senha do usuário na base de dados
+        //@param $cod_usuario - código do usuário do qual a senha será atualizada
+        //@param $senha - senha do usuário que será atualizada
+        public function atualizarSenhaUsuario($cod_usuario, $senha) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_atualizar_perfil_usuario = new SqlUpdate();
+            $sql_atualizar_perfil_usuario -> setEntidade("Usuario");
+            $sql_atualizar_perfil_usuario -> setValorLinha("senha", "{$senha}");
+
+            $criterio_atualizar_perfil_usuario = new Criterio();
+            $criterio_atualizar_perfil_usuario -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
+
+            $sql_atualizar_perfil_usuario -> setCriterio($criterio_atualizar_perfil_usuario);
+
+            $atualizar_perfil_usuario = $conexao_sql_station21 -> query($sql_atualizar_perfil_usuario -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>
