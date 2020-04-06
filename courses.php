@@ -32,7 +32,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
-    <title>Usuários | Station21</title>
+    <title>Cursos | Station21</title>
     <!-- GLOBAL MAINLY STYLES-->
     <link href="./assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="./assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -58,7 +58,31 @@
 
                 include_once "navbar-admin.php";
 
-                include_once "data-base-users.php";
+                include_once "data-base-courses.php";
+
+                include_once "footer.php";
+
+            }
+
+            else if($permissao == 2) {
+
+                include_once "header-instrutor.php";
+
+                include_once "navbar-instrutor.php";
+
+                include_once "data-base-courses.php";
+
+                include_once "footer.php";
+
+            }
+
+            else if($permissao == 3) {
+
+                include_once "header-usuario.php";
+
+                include_once "navbar-usuario.php";
+
+                include_once "meus-cursos.php";
 
                 include_once "footer.php";
 

@@ -3,41 +3,43 @@
     <div class="page-content fade-in-up">
         <div class="row">
             <div class="col-lg-4 col-md-6">
-                <div class="ibox bg-success color-white widget-stat">
-                    <div class="ibox-body">
-                        <h2 class="m-b-5 font-strong">
-                        
-                            <?php 
+                <a href="users">
+                    <div class="ibox bg-success color-white widget-stat">
+                        <div class="ibox-body">
+                            <h2 class="m-b-5 font-strong">
                             
-                                $quantidade_usuarios = new GerenciarUsuario();
-                                $quantidade_usuarios = $quantidade_usuarios -> getQuantidadeUsuarios();
+                                <?php 
+                                
+                                    $quantidade_usuarios = new GerenciarUsuario();
+                                    $quantidade_usuarios = $quantidade_usuarios -> getQuantidadeUsuarios();
 
-                                echo $quantidade_usuarios;
+                                    echo $quantidade_usuarios;
+                                
+                                ?>
+
+                            </h2>
+                            <div class="m-b-5">
                             
-                            ?>
+                                <?php 
+                                
+                                    if($quantidade_usuarios == 1 || $quantidade_usuarios == 0) {
 
-                        </h2>
-                        <div class="m-b-5">
-                        
-                            <?php 
-                            
-                                if($quantidade_usuarios == 1 || $quantidade_usuarios == 0) {
+                                        echo "USUÁRIO";
 
-                                    echo "USUÁRIO";
+                                    }
 
-                                }
+                                    else {
 
-                                else {
+                                        echo "USUÁRIOS";
 
-                                    echo "USUÁRIOS";
+                                    }
+                                
+                                ?>
 
-                                }
-                            
-                            ?>
-
-                        </div><i class="fa fa-users widget-stat-icon"></i>
+                            </div><i class="fa fa-users widget-stat-icon"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="ibox bg-info color-white widget-stat">

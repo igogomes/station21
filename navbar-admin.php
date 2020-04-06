@@ -13,7 +13,7 @@
                 </a>
             </li>
             <li>
-                <a class="active" href="index"><i class="sidebar-item-icon fa fa-play-circle"></i>
+                <a class="active" href="courses"><i class="sidebar-item-icon fa fa-play-circle"></i>
                     <span class="nav-label">Cursos</span>
                 </a>
             </li>

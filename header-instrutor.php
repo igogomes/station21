@@ -1,6 +1,6 @@
 <header class="header">
     <div class="page-brand">
-        <a class="link" href="index.html">
+        <a class="link" href="index">
             <span class="brand">
                 <img class="main-logo-dashboard" src="./assets/img/logos/logo-station-21-horizontal.png"/>
             </span>

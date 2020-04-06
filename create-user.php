@@ -8,7 +8,7 @@
     $permissao = $_SESSION['permissao'];
 
     $nome = new AutenticarUsuario();
-    $nome = $nome -> getNomeUsuario($email); 
+    $nome = utf8_encode($nome -> getNomeUsuario($email)); 
 
     $nome_usuario = (isset($_POST["nome"])) ? $_POST["nome"] : "";
     $email_usuario = (isset($_POST["email"])) ? $_POST["email"] : "";
