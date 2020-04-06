@@ -611,9 +611,12 @@
 
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
 
+            $nome_usuario = "";
+            $nome_usuario = utf8_decode($nome);
+
             $sql_atualizar_perfil_usuario = new SqlUpdate();
             $sql_atualizar_perfil_usuario -> setEntidade("Usuario");
-            $sql_atualizar_perfil_usuario -> setValorLinha("nome", "{$nome}");
+            $sql_atualizar_perfil_usuario -> setValorLinha("nome", "{$nome_usuario}");
 
             $criterio_atualizar_perfil_usuario = new Criterio();
             $criterio_atualizar_perfil_usuario -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));

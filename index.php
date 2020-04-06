@@ -8,7 +8,7 @@
     $permissao = $_SESSION['permissao'];
 
     $nome = new AutenticarUsuario();
-    $nome = $nome -> getNomeUsuario($email); 
+    $nome = utf8_encode($nome -> getNomeUsuario($email)); 
 
     $grafico_quantidade_cadastrados = new GerenciarUsuario();
     $grafico_quantidade_cadastrados = $grafico_quantidade_cadastrados -> gerarGraficoQuantidadeCadastrados();
@@ -39,47 +39,12 @@
 
 <body class="fixed-navbar">
     <div class="page-wrapper">
-        <!-- START HEADER-->
-        <header class="header">
-            <div class="page-brand">
-                <a class="link" href="index.html">
-                    <span class="brand">
-                        <img class="main-logo-dashboard" src="./assets/img/logos/logo-station-21-horizontal.png"/>
-                    </span>
-                    <span class="brand-mini">
-                        <img src="./assets/img/favicon/logo-station-21-transparent.png" />
-                    </span>
-                </a>
-            </div>
-            <div class="flexbox flex-1">
-                <!-- START TOP-LEFT TOOLBAR-->
-                <ul class="nav navbar-toolbar">
-                    <li>
-                        <a class="nav-link sidebar-toggler js-sidebar-toggler"><i class="ti-menu"></i></a>
-                    </li>
-                </ul>
-                <!-- END TOP-LEFT TOOLBAR-->
-                <!-- START TOP-RIGHT TOOLBAR-->
-                <ul class="nav navbar-toolbar">
-                    <li class="dropdown dropdown-user">
-                        <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
-                            <img src="./assets/img/admin-avatar.png" />
-                            <span></span><?php echo $nome; ?><i class="fa fa-angle-down m-l-5"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="profile"><i class="fa fa-user"></i>Meu Perfil</a>
-                            <li class="dropdown-divider"></li>
-                            <a class="dropdown-item" href="logout"><i class="fa fa-power-off"></i>Sair</a>
-                        </ul>
-                    </li>
-                </ul>
-                <!-- END TOP-RIGHT TOOLBAR-->
-            </div>
-        </header>
-        <!-- END HEADER-->
         
         <?php 
         
             if($permissao == 1) {
+
+                include_once "header-admin.php";
 
                 include_once "navbar-admin.php";
 
@@ -91,6 +56,8 @@
 
             else if($permissao == 2) {
 
+                include_once "header-instrutor.php";
+
                 include_once "navbar-instrutor.php";
 
                 include_once "dashboard-instrutor.php";
@@ -100,6 +67,8 @@
             }
 
             else if($permissao == 3) {
+
+                include_once "header-usuario.php";
 
                 include_once "navbar-usuario.php";
 

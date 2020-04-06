@@ -80,7 +80,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Nome</label>
                                 <div class="col-sm-10">
-                                    <input name="nome" class="form-control" type="text" placeholder="Digite seu nome" maxlength="100" value="<?php if($atualizar_perfil == 1) { echo $nome_usuario_perfil; } else { echo utf8_decode($nome); } ?>" required>
+                                    <input name="nome" class="form-control" type="text" placeholder="Digite seu nome" maxlength="100" value="<?php if($atualizar_perfil == 1) { echo $nome_usuario_perfil; } else { echo $nome; } ?>" required>
                                 </div>
                             </div>
                             <div class="form-group row">
