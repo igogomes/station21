@@ -8,17 +8,7 @@
     $permissao = $_SESSION['permissao'];
 
     $nome = new AutenticarUsuario();
-    $nome = utf8_encode($nome -> getNomeUsuario($email));  
-
-    $cod_excluir_curso = (isset($_GET["cod-delete-course"])) ? $_GET["cod-delete-course"] : "";
-    $excluir_curso = (isset($_GET["delete-course"])) ? $_GET["delete-course"] : "";
-
-    if($excluir_curso != "") {
-
-        $titulo_curso_excluir = new GerenciarCurso();
-        $titulo_curso_excluir = $titulo_curso_excluir -> getTituloCurso($cod_excluir_curso);
-
-    }
+    $nome = utf8_encode($nome -> getNomeUsuario($email));
 
 ?>
 
@@ -29,13 +19,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
-    <title>Cursos | Station21</title>
+    <title>Cadastrar Curso | Station21</title>
     <!-- GLOBAL MAINLY STYLES-->
     <link href="./assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="./assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="./assets/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
     <!-- PLUGINS STYLES-->
-    <link href="./assets/vendors/DataTables/datatables.min.css" rel="stylesheet" />
     <!-- THEME STYLES-->
     <link href="assets/css/main.min.css" rel="stylesheet" />
     <!-- PAGE LEVEL STYLES-->
@@ -49,37 +38,13 @@
         
         <?php 
         
-            if($permissao == 1) {
+            if($permissao == 1 || $permissao == 2) {
 
                 include_once "header-admin.php";
 
                 include_once "navbar-admin.php";
 
-                include_once "data-base-courses.php";
-
-                include_once "footer.php";
-
-            }
-
-            else if($permissao == 2) {
-
-                include_once "header-instrutor.php";
-
-                include_once "navbar-instrutor.php";
-
-                include_once "data-base-courses.php";
-
-                include_once "footer.php";
-
-            }
-
-            else if($permissao == 3) {
-
-                include_once "header-usuario.php";
-
-                include_once "navbar-usuario.php";
-
-                include_once "meus-cursos.php";
+                include_once "form-create-course.php";
 
                 include_once "footer.php";
 
@@ -87,7 +52,12 @@
 
             else {
 
-                include_once "logout.php";
+                session_start();
+                ob_start();
+                $_SESSION = array();
+                session_destroy();
+                
+                header("Location: login");
 
             }
         
@@ -107,25 +77,9 @@
     <script src="./assets/vendors/metisMenu/dist/metisMenu.min.js" type="text/javascript"></script>
     <script src="./assets/vendors/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL PLUGINS-->
-    <script src="./assets/vendors/DataTables/datatables.min.js" type="text/javascript"></script>
     <!-- CORE SCRIPTS-->
     <script src="assets/js/app.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
-    <script type="text/javascript">
-        $(function() {
-            $('#example-table').DataTable({
-                pageLength: 10,
-                //"ajax": './assets/demo/data/table_data.json',
-                /*"columns": [
-                    { "data": "nome" },
-                    { "data": "email" },
-                    { "data": "data_cadastro" },
-                    { "data": "permissao" },
-                    { "data": "acoes" }
-                ]*/
-            });
-        })
-    </script>
 </body>
 
 </html>

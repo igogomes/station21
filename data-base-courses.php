@@ -7,7 +7,7 @@
 
                 <?php 
 
-                    if($excluir_usuario == 1) {
+                    if($excluir_curso == 1) {
 
                 ?>
 
@@ -16,10 +16,10 @@
                         <span aria-hidden="true">×</span>
                     </a>
                     <h4>Atenção!</h4>
-                    <p>Você realmente deseja excluir o curso <?php echo utf8_encode($nome_excluir_usuario); ?>?</p>
+                    <p>Você realmente deseja excluir o curso <?php echo utf8_encode($titulo_curso_excluir); ?>?</p>
                     <p>
-                        <a href="delete-user?cod-user=<?php echo $cod_excluir_usuario; ?>" class="btn btn-danger" style="color:#fff;">Sim</a>
-                        <a href="users" class="btn btn-default" style="color:#000;">Não</a>
+                        <a href="delete-course?cod-delete-course=<?php echo $cod_excluir_curso; ?>" class="btn btn-danger" style="color:#fff;">Sim</a>
+                        <a href="courses" class="btn btn-default" style="color:#000;">Não</a>
                     </p>
                 </div>
 
@@ -27,13 +27,13 @@
 
                     }
 
-                    if($excluir_usuario == 2) {
+                    if($excluir_curso == 2) {
                         
                 ?>
 
                     <div class="alert alert-success alert-dismissable fade show">
                         <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        Os dados do usuário foram excluídos com <strong>sucesso</strong>.
+                        Os dados do curso foram excluídos com <strong>sucesso</strong>.
                     </div>
 
                 <?php
@@ -54,7 +54,7 @@
                 </ol>
             </div>
             <div class="col-lg-6 col-md-6" style="text-align:right">
-                <a href="create-user">
+                <a href="create-course">
                     <button class="btn btn-success">Cadastrar</button>
                 </a>
             </div>
@@ -85,10 +85,10 @@
                                 
                             <?php 
                                         
-                                $tabela_usuarios = new GerenciarUsuario();
-                                $tabela_usuarios = $tabela_usuarios -> gerarTabelaUsuarios($codigo_usuario_autenticado);
+                                $tabela_cursos = new GerenciarCurso();
+                                $tabela_cursos = $tabela_cursos -> gerarTabelaCursos();
 
-                                echo $tabela_usuarios;
+                                echo $tabela_cursos; 
                                         
                             ?>
 
