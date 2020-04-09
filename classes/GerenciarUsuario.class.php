@@ -715,6 +715,44 @@
 
         }
 
+        //Método verificarEmailExistente
+        //Avalia se e-mail já se encontra cadastrado no sistema
+        //@param $email - e-mail para o qual a verificação será realizada
+        public function verificarEmailExistente($email) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $email_base_dados = "";
+            $quantidade = 0;
+
+            $sql_verificar_email = new SqlSelect();
+            $sql_verificar_email -> adicionarColuna("email");
+            $sql_verificar_email -> setEntidade("Usuario");
+
+            $criterio_verificar_email = new Criterio();
+            $criterio_verificar_email -> adicionar(new Filtro("email", "=", "'{$email}'"));
+
+            $sql_verificar_email -> setCriterio($criterio_verificar_email);
+
+            $localizar_email = $conexao_sql_station21 -> query($sql_verificar_email -> getInstrucao());
+
+            while($linhas_verificar_email = $localizar_email -> fetch(PDO::FETCH_ASSOC)) {
+
+                $email_base_dados = $linhas_verificar_email["email"];
+
+                if($email == $email_base_dados) {
+
+                    $quantidade++;
+
+                }
+
+            }
+
+            return $quantidade;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

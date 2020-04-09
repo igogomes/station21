@@ -15,6 +15,19 @@
 
                 <?php 
 
+                    if($erro_email_existente != 0) {
+
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        O e-mail <strong><?php echo $email_usuario_perfil; ?></strong> já se encontra na base de dados.
+                    </div>
+
+                <?php 
+
+                    }   
+
                     if($erro_senha_atual == 1) {
 
                 ?>

@@ -18,9 +18,23 @@
     $senha_usuario_perfil = (isset($_POST["senha"])) ? $_POST["senha"] : "";
     $nova_senha_usuario_perfil = (isset($_POST["nova-senha"])) ? $_POST["nova-senha"] : "";
     $confirmar_senha_usuario_perfil = (isset($_POST["confirmar-senha"])) ? $_POST["confirmar-senha"] : "";
+    $erro_email_existente = 0;
     $erro_senha_atual = 0;
     $erro_nova_senha = 0;
     $atualizar_perfil = 0;
+
+    if($email_usuario_perfil != "") {
+
+        $verificar_email_existente = new GerenciarUsuario();
+        $verificar_email_existente = $verificar_email_existente -> verificarEmailExistente($email_usuario_perfil);
+
+        if($verificar_email_existente != 0) {
+
+            $erro_email_existente = 1;
+
+        }
+
+    }
 
     if($nome_usuario_perfil != "" && ($nome_usuario_perfil != $nome)) {
 
@@ -40,7 +54,7 @@
 
     }
 
-    if($email_usuario_perfil != "" && ($email_usuario_perfil != $email)) {
+    if(($email_usuario_perfil != "") && ($email_usuario_perfil != $email) && ($verificar_email_existente == 0)) {
 
         if($senha_usuario_perfil == $senha) {
 
