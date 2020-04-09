@@ -10,3 +10,7 @@
 ul.side-menu.metismenu {
     padding-top: 20px;
 }
+
+.side-menu>li a {
+    color: #fff;
+}

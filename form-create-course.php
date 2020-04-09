@@ -52,7 +52,19 @@
                                 </div>
                                 <label class="col-sm-1 col-form-label">Categoria</label>
                                 <div class="col-sm-5">
-                                    <input name="email" class="form-control" type="email" placeholder="Digite o e-mail do usuário" maxlength="100" required>
+                                    <select name="permissao" class="form-control" size="1" required>
+                                        <option selected value="0">Selecione uma categoria</option>
+
+                                        <?php 
+                                        
+                                            $lista_categorias = new GerenciarCategoria();
+                                            $lista_categorias = $lista_categorias -> gerarListaCategorias();
+
+                                            echo $lista_categorias;
+                                        
+                                        ?>
+
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
