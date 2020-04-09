@@ -18,6 +18,19 @@
 
                 <?php 
 
+                    if($erro_email_existente == 1) {
+
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        O e-mail <strong><?php echo $email_usuario; ?></strong> já está cadastrado.
+                    </div>
+
+                <?php 
+
+                    }
+
                     if($sucesso_cadastro_usuario == 1) {
 
                 ?>

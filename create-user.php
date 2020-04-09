@@ -14,8 +14,22 @@
     $email_usuario = (isset($_POST["email"])) ? $_POST["email"] : "";
     $permissao_usuario = (isset($_POST["permissao"])) ? $_POST["permissao"] : "";
     $sucesso_cadastro_usuario = 0;
+    $erro_email_existente = 0;
 
-    if($nome_usuario != "" && $email_usuario != "" && $permissao_usuario != "") {
+    if($email_usuario != "") {
+
+        $verificar_email_existente = new GerenciarUsuario();
+        $verificar_email_existente = $verificar_email_existente -> verificarEmailExistente($email_usuario);
+
+        if($verificar_email_existente != 0) {
+
+            $erro_email_existente = 1;
+
+        }
+
+    }
+
+    if($nome_usuario != "" && $email_usuario != "" && $permissao_usuario != "" && $erro_email_existente == 0) {
 
         $cadastrar_usuario = new GerenciarUsuario();
         $cadastrar_usuario = $cadastrar_usuario -> setUsuario($nome_usuario, $email_usuario, $permissao_usuario);

@@ -18,6 +18,19 @@
 
                 <?php 
 
+                    if($erro_edicao == 1) { 
+
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        O e-mail <strong><?php echo $erro_email; ?></strong> já está cadastrado.
+                    </div>
+
+                <?php 
+
+                    }
+
                     if($sucesso_edicao_usuario == 1) {
 
                 ?>
@@ -103,6 +116,7 @@
                                     </select>
 
                                     <input type="hidden" name="cod-edicao-usuario" value="<?php echo $cod_usuario; ?>">
+                                    <input type="hidden" name="email-usuario" value="<?php echo $email_usuario; ?>">
 
                                 </div>
                             </div>

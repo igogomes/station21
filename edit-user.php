@@ -12,6 +12,8 @@
     
     $cod_usuario = (isset($_GET["cod-user"])) ? $_GET["cod-user"] : "";
     $sucesso_edicao_usuario = (isset($_GET["sucesso-edicao"])) ? $_GET["sucesso-edicao"] : "";
+    $erro_edicao = (isset($_GET["erro-edicao"])) ? $_GET["erro-edicao"] : "";
+    $erro_email = (isset($_GET["erro-email"])) ? $_GET["erro-email"] : "";
 
     $nome_usuario = new GerenciarUsuario();
     $nome_usuario = utf8_encode($nome_usuario -> getNomePorCodigoUsuario($cod_usuario));
