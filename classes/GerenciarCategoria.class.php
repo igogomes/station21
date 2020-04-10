@@ -93,6 +93,64 @@
 
         }
 
+        //Método verificarCategoriaExistente
+        //Avalia se categoria já se encontra cadastrada no sistema
+        //@param $titulo - título da categoria para a qual a verificação será realizada
+        public function verificarCategoriaExistente($titulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $categoria_base_dados = "";
+            $quantidade = 0;
+            $titulo = utf8_decode($titulo);
+
+            $sql_verificar_categoria = new SqlSelect();
+            $sql_verificar_categoria -> adicionarColuna("*");
+            $sql_verificar_categoria -> setEntidade("Categoria");
+
+            $criterio_verificar_categoria = new Criterio();
+            $criterio_verificar_categoria -> adicionar(new Filtro("categoria", "=", "'{$titulo}'"));
+
+            $sql_verificar_categoria -> setCriterio($criterio_verificar_categoria);
+
+            $localizar_categoria = $conexao_sql_station21 -> query($sql_verificar_categoria -> getInstrucao());
+
+            while($linhas_verificar_categoria = $localizar_categoria -> fetch(PDO::FETCH_ASSOC)) {
+
+                $categoria_base_dados = $linhas_verificar_categoria["categoria"];
+
+                if($titulo == $categoria_base_dados) {
+                    
+                    $quantidade++;
+
+                }
+
+            }
+
+            return $quantidade;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método setCategoria
+        //Método para o cadastro de categoria na base de dados
+        //@param $titulo - título da categoria a ser cadastrada
+        public function setCategoria($titulo) {
+
+            $titulo = utf8_decode($titulo);
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_cadastrar_categoria = new SqlInsert();
+            $sql_cadastrar_categoria -> setEntidade("Categoria");
+            $sql_cadastrar_categoria -> setValorLinha("categoria", $titulo);
+
+            $cadastrar_categoria = $conexao_sql_station21 -> query($sql_cadastrar_categoria -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+        
     }
 
 ?>

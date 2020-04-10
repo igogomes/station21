@@ -18,10 +18,10 @@
                 </a>
                 <ul class="nav-2-level collapse" aria-expanded="false" style="height: 0px;">
                     <li>
-                        <a href="courses"><i class="sidebar-item-icon fa fa-edit"></i>Gerenciar Cursos</a>
+                        <a href="courses">Gerenciar Cursos</a>
                     </li>
                     <li>
-                        <a href="categories"><i class="sidebar-item-icon fa fa-list-ul"></i>Gerenciar Categorias</a>
+                        <a href="categories">Gerenciar Categorias</a>
                     </li>
                 </ul>
             </li>
