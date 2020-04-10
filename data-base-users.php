@@ -16,7 +16,7 @@
                         <span aria-hidden="true">×</span>
                     </a>
                     <h4>Atenção!</h4>
-                    <p>Você realmente deseja excluir o usuário <?php echo utf8_encode($nome_excluir_usuario); ?>?</p>
+                    <p>Você realmente deseja excluir o usuário <strong><?php echo utf8_encode($nome_excluir_usuario); ?></strong>?</p>
                     <p>
                         <a href="delete-user?cod-user=<?php echo $cod_excluir_usuario; ?>" class="btn btn-danger" style="color:#fff;">Sim</a>
                         <a href="users" class="btn btn-default" style="color:#000;">Não</a>

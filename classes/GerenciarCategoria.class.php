@@ -150,6 +150,115 @@
             $conexao_sql_station21 = NULL;
 
         }
+
+        //Método getCategoriaPorCodigo
+        //Retorna a categoria da base de dados a partir do código da mesma
+        //@param $cod_categoria - código da categoria que será recuperada
+        public function getCategoriaPorCodigo($cod_categoria) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $categoria = "";
+
+            $sql_categoria = new SqlSelect();
+            $sql_categoria -> adicionarColuna("*");
+            $sql_categoria -> setEntidade("Categoria");
+
+            $criterio_categoria = new Criterio();
+            $criterio_categoria -> adicionar(new Filtro("cod_categoria", "=", "'{$cod_categoria}'"));
+
+            $sql_categoria -> setCriterio($criterio_categoria);
+
+            $localizar_categoria = $conexao_sql_station21 -> query($sql_categoria -> getInstrucao());
+
+            while($linhas_categoria = $localizar_categoria -> fetch(PDO::FETCH_ASSOC)) {
+
+                $categoria = $linhas_categoria["categoria"];
+
+            }
+
+            return $categoria;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método atualizarDadosCategoria()
+        //Método para atualização dos dados de categorias na base de dados
+        //@param $cod_categoria - código da categoria para qual os dados serão alteradas
+        //@param $categoria - título da categoria para atualização na base de dados
+        public function atualizarDadosCategoria($cod_categoria, $categoria) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $categoria = utf8_decode($categoria);
+
+            $sql_atualizar_dados_categoria = new SqlUpdate();
+            $sql_atualizar_dados_categoria -> setEntidade("Categoria");
+            $sql_atualizar_dados_categoria -> setValorLinha("categoria", "{$categoria}");
+
+            $criterio_atualizar_dados_categoria = new Criterio();
+            $criterio_atualizar_dados_categoria -> adicionar(new Filtro("cod_categoria", "=", "'{$cod_categoria}'"));
+
+            $sql_atualizar_dados_categoria -> setCriterio($criterio_atualizar_dados_categoria);
+
+            $atualizar_dados_categoria = $conexao_sql_station21 -> query($sql_atualizar_dados_categoria -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getTituloCategoria
+        //Retorna o título da categoria a partir do código da mesma
+        //@param $cod_categoria - código da categoria da qual o título será recuperado
+        public function getTituloCategoria($cod_categoria) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $categoria = "";
+
+            $sql_titulo_categoria = new SqlSelect();
+            $sql_titulo_categoria -> adicionarColuna("*");
+            $sql_titulo_categoria -> setEntidade("Categoria");
+
+            $criterio_titulo_categoria = new Criterio();
+            $criterio_titulo_categoria -> adicionar(new Filtro("cod_categoria", "=", "'{$cod_categoria}'"));
+
+            $sql_titulo_categoria -> setCriterio($criterio_titulo_categoria);
+
+            $localizar_titulo_categoria = $conexao_sql_station21 -> query($sql_titulo_categoria -> getInstrucao());
+
+            while($linhas_titulo_categoria = $localizar_titulo_categoria -> fetch(PDO::FETCH_ASSOC)) {
+
+                $categoria = $linhas_titulo_categoria["categoria"];
+
+            }
+
+            return $categoria;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método excluirCategoria() 
+        //Método para exclusão de categoria da base de dados
+        //@param $cod_categoria - código da categoria da qual os dados serão excluidos da base de dados
+        public function excluirCategoria($cod_categoria) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_categoria = new SqlDelete();
+
+            $sql_excluir_categoria -> setEntidade("Categoria");
+
+            $criterio_excluir_categoria = new Criterio();
+            $criterio_excluir_categoria -> adicionar(new Filtro("cod_categoria", "=", "'$cod_categoria'"));
+
+            $sql_excluir_categoria -> setCriterio($criterio_excluir_categoria);
+
+            $excluir_categoria = $conexao_sql_station21 -> query($sql_excluir_categoria -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
         
     }
 

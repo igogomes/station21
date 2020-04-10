@@ -1,15 +1,15 @@
 <div class="content-wrapper">
     <!-- START PAGE CONTENT-->
     <div class="page-heading">
-        <h1 class="page-title">Cadastrar Categoria</h1>
+        <h1 class="page-title">Editar Categoria</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="index">Dashboard</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="categories">Categoria</a>
+                <a href="categories">Categorias</a>
             </li>
-            <li class="breadcrumb-item">Cadastrar Categoria</li>
+            <li class="breadcrumb-item">Editar Categoria</li>
         </ol>
     </div>
     <div class="page-content fade-in-up">
@@ -18,26 +18,26 @@
 
                 <?php 
 
-                    if($erro_categoria == 1) {
+                    if($erro_edicao == 1) { 
 
                 ?>
 
                     <div class="alert alert-danger alert-dismissable fade show">
                         <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        A categoria <strong><?php echo $titulo_categoria; ?></strong> já está cadastrada.
+                        A categoria <strong><?php echo $erro_categoria; ?></strong> já está cadastrada.
                     </div>
 
                 <?php 
 
                     }
 
-                    if($sucesso_cadastro_categoria == 1) {
+                    if($sucesso_edicao_categoria == 1) {
 
                 ?>
 
                     <div class="alert alert-success alert-dismissable fade show">
                         <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        O cadastro foi realizado com <strong>sucesso</strong>.
+                        Os dados da categoria foram alterados com <strong>sucesso</strong>.
                     </div>
 
                 <?php
@@ -46,18 +46,26 @@
 
                 ?>
 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <div class="ibox">
                     <div class="ibox-body">
-                        <form class="form-horizontal" action="create-category" method="post">
+                        <form class="form-horizontal" action="edit-category-database" method="post">
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Título</label>
+                                <label class="col-sm-2 col-form-label">Categoria</label>
                                 <div class="col-sm-10">
-                                    <input name="titulo" class="form-control" type="text" placeholder="Digite o título da categoria" maxlength="100" autofocus required>
-                                </div>
+                                    <input name="titulo-edicao-categoria" class="form-control" type="text" placeholder="Digite o título da categoria" maxlength="100" value="<?php echo utf8_encode($titulo); ?>" required>
+                                </div> 
+
+                                <input type="hidden" name="cod-edicao-categoria" value="<?php echo $cod_categoria; ?>">
+                                <input type="hidden" name="titulo-categoria" value="<?php echo $titulo; ?>">
+
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-10 ml-sm-auto">
-                                    <button class="btn btn-info" type="submit">Cadastrar</button>
+                                    <button class="btn btn-info" type="submit">Salvar</button>
                                 </div> 
                             </div>
                         </form>

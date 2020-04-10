@@ -11,17 +11,17 @@
 
                 ?>
 
-                <div class="alert alert-danger alert-dismissable fade show">
-                    <a href="users" class="close" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </a>
-                    <h4>Atenção!</h4>
-                    <p>Você realmente deseja excluir a categoria <?php echo utf8_encode($titulo_categoria_excluir); ?>?</p>
-                    <p>
-                        <a href="delete-category?cod-delete-category=<?php echo $cod_excluir_categoria; ?>" class="btn btn-danger" style="color:#fff;">Sim</a>
-                        <a href="categories" class="btn btn-default" style="color:#000;">Não</a>
-                    </p>
-                </div>
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <a href="categories" class="close" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </a>
+                        <h4>Atenção!</h4>
+                        <p>Você realmente deseja excluir a categoria <strong><?php echo utf8_encode($titulo_categoria_excluir); ?></strong>?</p>
+                        <p>
+                            <a href="delete-category?cod-delete-category=<?php echo $cod_excluir_categoria; ?>" class="btn btn-danger" style="color:#fff;">Sim</a>
+                            <a href="categories" class="btn btn-default" style="color:#000;">Não</a>
+                        </p>
+                    </div>
 
                 <?php
 

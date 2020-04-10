@@ -21,7 +21,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Título</label>
                                 <div class="col-sm-10">
-                                    <input name="titulo" class="form-control" type="text" placeholder="Digite o título do curso" maxlength="100" required>
+                                    <input name="titulo" class="form-control" type="text" placeholder="Digite o título do curso" maxlength="100" autofocus required>
                                 </div>
                             </div>
                             <div class="form-group row">
