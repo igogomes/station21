@@ -16,9 +16,9 @@ export default class ImagePopover {
     this.options = context.options;
 
     this.events = {
-      'summernote.disable': () => {
+      'summernote.disable summernote.blur': () => {
         this.hide();
-      }
+      },
     };
   }
 
@@ -28,24 +28,36 @@ export default class ImagePopover {
 
   initialize() {
     this.$popover = this.ui.popover({
-      className: 'note-image-popover'
+      className: 'note-image-popover',
     }).render().appendTo(this.options.container);
     const $content = this.$popover.find('.popover-content,.note-popover-content');
     this.context.invoke('buttons.build', $content, this.options.popover.image);
+
+    this.$popover.on('mousedown', (e) => { e.preventDefault(); });
   }
 
   destroy() {
     this.$popover.remove();
   }
 
-  update(target) {
+  update(target, event) {
     if (dom.isImg(target)) {
-      const pos = dom.posFromPlaceholder(target);
-      const posEditor = dom.posFromPlaceholder(this.editable);
+      const position = $(target).offset();
+      const containerOffset = $(this.options.container).offset();
+      let pos = {};
+      if (this.options.popatmouse) {
+        pos.left = event.pageX - 20;
+        pos.top = event.pageY;
+      } else {
+        pos = position;
+      }
+      pos.top -= containerOffset.top;
+      pos.left -= containerOffset.left;
+
       this.$popover.css({
         display: 'block',
-        left: this.options.popatmouse ? event.pageX - 20 : pos.left,
-        top: this.options.popatmouse ? event.pageY : Math.min(pos.top, posEditor.top)
+        left: pos.left,
+        top: pos.top,
       });
     } else {
       this.hide();

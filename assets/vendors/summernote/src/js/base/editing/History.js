@@ -1,20 +1,21 @@
 import range from '../core/range';
 
 export default class History {
-  constructor($editable) {
+  constructor(context) {
     this.stack = [];
     this.stackOffset = -1;
-    this.$editable = $editable;
-    this.editable = $editable[0];
+    this.context = context;
+    this.$editable = context.layoutInfo.editable;
+    this.editable = this.$editable[0];
   }
 
   makeSnapshot() {
     const rng = range.create(this.editable);
-    const emptyBookmark = {s: {path: [], offset: 0}, e: {path: [], offset: 0}};
+    const emptyBookmark = { s: { path: [], offset: 0 }, e: { path: [], offset: 0 } };
 
     return {
       contents: this.$editable.html(),
-      bookmark: (rng ? rng.bookmark(this.editable) : emptyBookmark)
+      bookmark: ((rng && rng.isOnEditable()) ? rng.bookmark(this.editable) : emptyBookmark),
     };
   }
 
@@ -43,6 +44,21 @@ export default class History {
 
     // Apply that snapshot.
     this.applySnapshot(this.stack[this.stackOffset]);
+  }
+
+  /**
+  *  @method commit
+  *  Resets history stack, but keeps current editor's content.
+  */
+  commit() {
+    // Clear the stack.
+    this.stack = [];
+
+    // Restore stackOffset to its original value.
+    this.stackOffset = -1;
+
+    // Record our first snapshot (of nothing).
+    this.recordUndo();
   }
 
   /**
@@ -101,5 +117,11 @@ export default class History {
 
     // Create new snapshot and push it to the end
     this.stack.push(this.makeSnapshot());
+
+    // If the stack size reachs to the limit, then slice it
+    if (this.stack.length > this.context.options.historyLimit) {
+      this.stack.shift();
+      this.stackOffset -= 1;
+    }
   }
 }

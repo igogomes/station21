@@ -10,8 +10,11 @@ export default class Toolbar {
     this.$note = context.layoutInfo.note;
     this.$editor = context.layoutInfo.editor;
     this.$toolbar = context.layoutInfo.toolbar;
+    this.$editable = context.layoutInfo.editable;
+    this.$statusbar = context.layoutInfo.statusbar;
     this.options = context.options;
 
+    this.isFollowing = false;
     this.followScroll = this.followScroll.bind(this);
   }
 
@@ -57,14 +60,10 @@ export default class Toolbar {
       return false;
     }
 
-    const $toolbarWrapper = this.$toolbar.parent('.note-toolbar-wrapper');
     const editorHeight = this.$editor.outerHeight();
     const editorWidth = this.$editor.width();
-
     const toolbarHeight = this.$toolbar.height();
-    $toolbarWrapper.css({
-      height: toolbarHeight
-    });
+    const statusbarHeight = this.$statusbar.height();
 
     // check if the web app is currently using another static bar
     let otherBarHeight = 0;
@@ -76,19 +75,31 @@ export default class Toolbar {
     const editorOffsetTop = this.$editor.offset().top;
     const editorOffsetBottom = editorOffsetTop + editorHeight;
     const activateOffset = editorOffsetTop - otherBarHeight;
-    const deactivateOffsetBottom = editorOffsetBottom - otherBarHeight - toolbarHeight;
+    const deactivateOffsetBottom = editorOffsetBottom - otherBarHeight - toolbarHeight - statusbarHeight;
 
-    if ((currentOffset > activateOffset) && (currentOffset < deactivateOffsetBottom)) {
+    if (!this.isFollowing &&
+      (currentOffset > activateOffset) && (currentOffset < deactivateOffsetBottom - toolbarHeight)) {
+      this.isFollowing = true;
+      this.$editable.css({
+        marginTop: this.$toolbar.outerHeight(),
+      });
       this.$toolbar.css({
         position: 'fixed',
         top: otherBarHeight,
-        width: editorWidth
+        width: editorWidth,
+        zIndex: 1000,
       });
-    } else {
+    } else if (this.isFollowing &&
+      ((currentOffset < activateOffset) || (currentOffset > deactivateOffsetBottom))) {
+      this.isFollowing = false;
       this.$toolbar.css({
         position: 'relative',
         top: 0,
-        width: '100%'
+        width: '100%',
+        zIndex: 'auto',
+      });
+      this.$editable.css({
+        marginTop: '',
       });
     }
   }
@@ -100,6 +111,9 @@ export default class Toolbar {
       if (this.options.toolbarContainer) {
         this.$toolbar.appendTo(this.options.toolbarContainer);
       }
+    }
+    if (this.options.followingToolbar) {
+      this.followScroll();
     }
   }
 
@@ -121,7 +135,7 @@ export default class Toolbar {
   activate(isIncludeCodeview) {
     let $btn = this.$toolbar.find('button');
     if (!isIncludeCodeview) {
-      $btn = $btn.not('.btn-codeview');
+      $btn = $btn.not('.btn-codeview').not('.btn-fullscreen');
     }
     this.ui.toggleBtn($btn, true);
   }
@@ -129,7 +143,7 @@ export default class Toolbar {
   deactivate(isIncludeCodeview) {
     let $btn = this.$toolbar.find('button');
     if (!isIncludeCodeview) {
-      $btn = $btn.not('.btn-codeview');
+      $btn = $btn.not('.btn-codeview').not('.btn-fullscreen');
     }
     this.ui.toggleBtn($btn, false);
   }

@@ -68,7 +68,22 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-10 ml-sm-auto">
+                                <label class="col-sm-2 col-form-label">Palavras Chave</label>
+                                <div class="col-sm-10">
+                                    <input name="palavras-chave" class="form-control" type="text" placeholder="Digite as palavras chave" maxlength="100" data-role="tagsinput" required> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-form-label">Apresentação</label>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <div id="summernote" data-plugin="summernote" data-air-mode="true" name="apresentacao" required>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12 ml-sm-auto">
                                     <button class="btn btn-info" type="submit">Cadastrar</button>
                                 </div> 
                             </div>

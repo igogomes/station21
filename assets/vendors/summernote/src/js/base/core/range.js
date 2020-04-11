@@ -62,7 +62,7 @@ function textRangeToPoint(textRange, isStart) {
 
   return {
     cont: container,
-    offset: offset
+    offset: offset,
   };
 }
 
@@ -94,7 +94,7 @@ function pointToTextRange(point) {
     return {
       node: node,
       collapseToStart: isCollapseToStart,
-      offset: offset
+      offset: offset,
     };
   };
 
@@ -139,19 +139,19 @@ class WrappedRange {
   nativeRange() {
     if (env.isW3CRangeSupport) {
       const w3cRange = document.createRange();
-      w3cRange.setStart(this.sc, this.so);
-      w3cRange.setEnd(this.ec, this.eo);
+      w3cRange.setStart(this.sc, this.sc.data && this.so > this.sc.data.length ? 0 : this.so);
+      w3cRange.setEnd(this.ec, this.sc.data ? Math.min(this.eo, this.sc.data.length) : this.eo);
 
       return w3cRange;
     } else {
       const textRange = pointToTextRange({
         node: this.sc,
-        offset: this.so
+        offset: this.so,
       });
 
       textRange.setEndPoint('EndToEnd', pointToTextRange({
         node: this.ec,
-        offset: this.eo
+        offset: this.eo,
       }));
 
       return textRange;
@@ -163,21 +163,21 @@ class WrappedRange {
       sc: this.sc,
       so: this.so,
       ec: this.ec,
-      eo: this.eo
+      eo: this.eo,
     };
   }
 
   getStartPoint() {
     return {
       node: this.sc,
-      offset: this.so
+      offset: this.so,
     };
   }
 
   getEndPoint() {
     return {
       node: this.ec,
-      offset: this.eo
+      offset: this.eo,
     };
   }
 
@@ -219,21 +219,49 @@ class WrappedRange {
   normalize() {
     /**
      * @param {BoundaryPoint} point
-     * @param {Boolean} isLeftToRight
+     * @param {Boolean} isLeftToRight - true: prefer to choose right node
+     *                                - false: prefer to choose left node
      * @return {BoundaryPoint}
      */
     const getVisiblePoint = function(point, isLeftToRight) {
-      if ((dom.isVisiblePoint(point) && !dom.isEdgePoint(point)) ||
-          (dom.isVisiblePoint(point) && dom.isRightEdgePoint(point) && !isLeftToRight) ||
-          (dom.isVisiblePoint(point) && dom.isLeftEdgePoint(point) && isLeftToRight) ||
-          (dom.isVisiblePoint(point) && dom.isBlock(point.node) && dom.isEmpty(point.node))) {
+      if (!point) {
         return point;
+      }
+
+      // Just use the given point [XXX:Adhoc]
+      //  - case 01. if the point is on the middle of the node
+      //  - case 02. if the point is on the right edge and prefer to choose left node
+      //  - case 03. if the point is on the left edge and prefer to choose right node
+      //  - case 04. if the point is on the right edge and prefer to choose right node but the node is void
+      //  - case 05. if the point is on the left edge and prefer to choose left node but the node is void
+      //  - case 06. if the point is on the block node and there is no children
+      if (dom.isVisiblePoint(point)) {
+        if (!dom.isEdgePoint(point) ||
+            (dom.isRightEdgePoint(point) && !isLeftToRight) ||
+            (dom.isLeftEdgePoint(point) && isLeftToRight) ||
+            (dom.isRightEdgePoint(point) && isLeftToRight && dom.isVoid(point.node.nextSibling)) ||
+            (dom.isLeftEdgePoint(point) && !isLeftToRight && dom.isVoid(point.node.previousSibling)) ||
+            (dom.isBlock(point.node) && dom.isEmpty(point.node))) {
+          return point;
+        }
       }
 
       // point on block's edge
       const block = dom.ancestor(point.node, dom.isBlock);
-      if (((dom.isLeftEdgePointOf(point, block) || dom.isVoid(dom.prevPoint(point).node)) && !isLeftToRight) ||
-          ((dom.isRightEdgePointOf(point, block) || dom.isVoid(dom.nextPoint(point).node)) && isLeftToRight)) {
+      let hasRightNode = false;
+
+      if (!hasRightNode) {
+        const prevPoint = dom.prevPoint(point) || { node: null };
+        hasRightNode = (dom.isLeftEdgePointOf(point, block) || dom.isVoid(prevPoint.node)) && !isLeftToRight;
+      }
+
+      let hasLeftNode = false;
+      if (!hasLeftNode) {
+        const nextPoint = dom.nextPoint(point) || { node: null };
+        hasLeftNode = (dom.isRightEdgePointOf(point, block) || dom.isVoid(nextPoint.node)) && isLeftToRight;
+      }
+
+      if (hasRightNode || hasLeftNode) {
         // returns point already on visible point
         if (dom.isVisiblePoint(point)) {
           return point;
@@ -401,7 +429,7 @@ class WrappedRange {
 
     const rng = this.splitText();
     const nodes = rng.nodes(null, {
-      fullyContains: true
+      fullyContains: true,
     });
 
     // find new cursor point
@@ -495,14 +523,16 @@ class WrappedRange {
       topAncestor = rng.sc.childNodes[rng.so > 0 ? rng.so - 1 : 0];
     }
 
-    // siblings not in paragraph
-    let inlineSiblings = dom.listPrev(topAncestor, dom.isParaInline).reverse();
-    inlineSiblings = inlineSiblings.concat(dom.listNext(topAncestor.nextSibling, dom.isParaInline));
+    if (topAncestor) {
+      // siblings not in paragraph
+      let inlineSiblings = dom.listPrev(topAncestor, dom.isParaInline).reverse();
+      inlineSiblings = inlineSiblings.concat(dom.listNext(topAncestor.nextSibling, dom.isParaInline));
 
-    // wrap with paragraph
-    if (inlineSiblings.length) {
-      const para = dom.wrap(lists.head(inlineSiblings), 'p');
-      dom.appendChildNodes(para, lists.tail(inlineSiblings));
+      // wrap with paragraph
+      if (inlineSiblings.length) {
+        const para = dom.wrap(lists.head(inlineSiblings), 'p');
+        dom.appendChildNodes(para, lists.tail(inlineSiblings));
+      }
     }
 
     return this.normalize();
@@ -515,9 +545,13 @@ class WrappedRange {
    * @return {Node}
    */
   insertNode(node) {
-    const rng = this.wrapBodyInlineWithPara().deleteContents();
-    const info = dom.splitPoint(rng.getStartPoint(), dom.isInline(node));
+    let rng = this;
 
+    if (dom.isText(node) || dom.isInline(node)) {
+      rng = this.wrapBodyInlineWithPara().deleteContents();
+    }
+
+    const info = dom.splitPoint(rng.getStartPoint(), dom.isInline(node));
     if (info.rightNode) {
       info.rightNode.parentNode.insertBefore(node, info.rightNode);
     } else {
@@ -531,14 +565,24 @@ class WrappedRange {
    * insert html at current cursor
    */
   pasteHTML(markup) {
+    markup = $.trim(markup);
+
     const contentsContainer = $('<div></div>').html(markup)[0];
-    const childNodes = lists.from(contentsContainer.childNodes);
+    let childNodes = lists.from(contentsContainer.childNodes);
 
-    const rng = this.wrapBodyInlineWithPara().deleteContents();
+    // const rng = this.wrapBodyInlineWithPara().deleteContents();
+    const rng = this;
 
-    return childNodes.reverse().map(function(childNode) {
+    if (rng.so >= 0) {
+      childNodes = childNodes.reverse();
+    }
+    childNodes = childNodes.map(function(childNode) {
       return rng.insertNode(childNode);
-    }).reverse();
+    });
+    if (rng.so > 0) {
+      childNodes = childNodes.reverse();
+    }
+    return childNodes;
   }
 
   /**
@@ -583,6 +627,82 @@ class WrappedRange {
   }
 
   /**
+   * returns range for words before cursor
+   *
+   * @param {Boolean} [findAfter] - find after cursor, default: false
+   * @return {WrappedRange}
+   */
+  getWordsRange(findAfter) {
+    var endPoint = this.getEndPoint();
+
+    var isNotTextPoint = function(point) {
+      return !dom.isCharPoint(point) && !dom.isSpacePoint(point);
+    };
+
+    if (isNotTextPoint(endPoint)) {
+      return this;
+    }
+
+    var startPoint = dom.prevPointUntil(endPoint, isNotTextPoint);
+
+    if (findAfter) {
+      endPoint = dom.nextPointUntil(endPoint, isNotTextPoint);
+    }
+
+    return new WrappedRange(
+      startPoint.node,
+      startPoint.offset,
+      endPoint.node,
+      endPoint.offset
+    );
+  }
+
+  /**
+   * returns range for words before cursor that match with a Regex
+   *
+   * example:
+   *  range: 'hi @Peter Pan'
+   *  regex: '/@[a-z ]+/i'
+   *  return range: '@Peter Pan'
+   *
+   * @param {RegExp} [regex]
+   * @return {WrappedRange|null}
+   */
+  getWordsMatchRange(regex) {
+    var endPoint = this.getEndPoint();
+
+    var startPoint = dom.prevPointUntil(endPoint, function(point) {
+      if (!dom.isCharPoint(point) && !dom.isSpacePoint(point)) {
+        return true;
+      }
+      var rng = new WrappedRange(
+        point.node,
+        point.offset,
+        endPoint.node,
+        endPoint.offset
+      );
+      var result = regex.exec(rng.toString());
+      return result && result.index === 0;
+    });
+
+    var rng = new WrappedRange(
+      startPoint.node,
+      startPoint.offset,
+      endPoint.node,
+      endPoint.offset
+    );
+
+    var text = rng.toString();
+    var result = regex.exec(text);
+
+    if (result && result[0].length === text.length) {
+      return rng;
+    } else {
+      return null;
+    }
+  }
+
+  /**
    * create offsetPath bookmark
    *
    * @param {Node} editable
@@ -591,12 +711,12 @@ class WrappedRange {
     return {
       s: {
         path: dom.makeOffsetPath(editable, this.sc),
-        offset: this.so
+        offset: this.so,
       },
       e: {
         path: dom.makeOffsetPath(editable, this.ec),
-        offset: this.eo
-      }
+        offset: this.eo,
+      },
     };
   }
 
@@ -609,12 +729,12 @@ class WrappedRange {
     return {
       s: {
         path: lists.tail(dom.makeOffsetPath(lists.head(paras), this.sc)),
-        offset: this.so
+        offset: this.so,
       },
       e: {
         path: lists.tail(dom.makeOffsetPath(lists.last(paras), this.ec)),
-        offset: this.eo
-      }
+        offset: this.eo,
+      },
     };
   }
 
@@ -654,12 +774,21 @@ export default {
       return new WrappedRange(sc, so, ec, eo);
     } else {
       let wrappedRange = this.createFromSelection();
+
       if (!wrappedRange && arguments.length === 1) {
-        wrappedRange = this.createFromNode(arguments[0]);
-        return wrappedRange.collapse(dom.emptyPara === arguments[0].innerHTML);
+        let bodyElement = arguments[0];
+        if (dom.isEditable(bodyElement)) {
+          bodyElement = bodyElement.lastChild;
+        }
+        return this.createFromBodyElement(bodyElement, dom.emptyPara === arguments[0].innerHTML);
       }
       return wrappedRange;
     }
+  },
+
+  createFromBodyElement: function(bodyElement, isCollapseToStart = false) {
+    var wrappedRange = this.createFromNode(bodyElement);
+    return wrappedRange.collapse(isCollapseToStart);
   },
 
   createFromSelection: function() {
@@ -691,8 +820,8 @@ export default {
 
       // same visible point case: range was collapsed.
       if (dom.isText(startPoint.node) && dom.isLeftEdgePoint(startPoint) &&
-          dom.isTextNode(endPoint.node) && dom.isRightEdgePoint(endPoint) &&
-          endPoint.node.nextSibling === startPoint.node) {
+        dom.isTextNode(endPoint.node) && dom.isRightEdgePoint(endPoint) &&
+        endPoint.node.nextSibling === startPoint.node) {
         startPoint = endPoint;
       }
 
@@ -788,5 +917,5 @@ export default {
     const ec = dom.fromOffsetPath(lists.last(paras), bookmark.e.path);
 
     return new WrappedRange(sc, so, ec, eo);
-  }
+  },
 };

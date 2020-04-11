@@ -1,14 +1,19 @@
+import $ from 'jquery';
+
 class DropdownUI {
   constructor($node, options) {
     this.$button = $node;
     this.options = $.extend({}, {
-      target: options.container
+      target: options.container,
     }, options);
     this.setEvent();
   }
 
   setEvent() {
-    this.$button.on('click', this.toggle.bind(this));
+    this.$button.on('click', (e) => {
+      this.toggle();
+      e.stopImmediatePropagation();
+    });
   }
 
   clear() {
@@ -55,11 +60,13 @@ class DropdownUI {
 $(document).on('click', function(e) {
   if (!$(e.target).closest('.note-btn-group').length) {
     $('.note-btn-group.open').removeClass('open');
+    $('.note-btn-group .note-btn.active').removeClass('active');
   }
 });
 
 $(document).on('click.note-dropdown-menu', function(e) {
   $(e.target).closest('.note-dropdown-menu').parent().removeClass('open');
+  $(e.target).closest('.note-dropdown-menu').parent().find('.note-btn.active').removeClass('active');
 });
 
 export default DropdownUI;

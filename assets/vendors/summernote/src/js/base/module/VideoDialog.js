@@ -14,22 +14,21 @@ export default class VideoDialog {
   }
 
   initialize() {
-    const $container = this.options.dialogsInBody ? this.$body : this.$editor;
-
+    const $container = this.options.dialogsInBody ? this.$body : this.options.container;
     const body = [
       '<div class="form-group note-form-group row-fluid">',
-      `<label class="note-form-label">${this.lang.video.url} <small class="text-muted">${this.lang.video.providers}</small></label>`,
-      '<input class="note-video-url form-control note-form-control note-input" type="text" />',
-      '</div>'
+        `<label for="note-dialog-video-url-${this.options.id}" class="note-form-label">${this.lang.video.url} <small class="text-muted">${this.lang.video.providers}</small></label>`,
+        `<input id="note-dialog-video-url-${this.options.id}" class="note-video-url form-control note-form-control note-input" type="text"/>`,
+      '</div>',
     ].join('');
     const buttonClass = 'btn btn-primary note-btn note-btn-primary note-video-btn';
-    const footer = `<button type="submit" href="#" class="${buttonClass}" disabled>${this.lang.video.insert}</button>`;
+    const footer = `<input type="button" href="#" class="${buttonClass}" value="${this.lang.video.insert}" disabled>`;
 
     this.$dialog = this.ui.dialog({
       title: this.lang.video.insert,
       fade: this.options.dialogsFade,
       body: body,
-      footer: footer
+      footer: footer,
     }).render().appendTo($container);
   }
 
@@ -49,7 +48,8 @@ export default class VideoDialog {
 
   createVideoNode(url) {
     // video url patterns(youtube, instagram, vimeo, dailymotion, youku, mp4, ogg, webm)
-    const ytRegExp = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+    const ytRegExp = /\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w|-]{11})(?:(?:[\?&]t=)(\S+))?$/;
+    const ytRegExpForStart = /^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/;
     const ytMatch = url.match(ytRegExp);
 
     const igRegExp = /(?:www\.|\/\/)instagram\.com\/p\/(.[a-zA-Z0-9_-]*)/;
@@ -82,12 +82,24 @@ export default class VideoDialog {
     const webmRegExp = /^.+.(webm)$/;
     const webmMatch = url.match(webmRegExp);
 
+    const fbRegExp = /(?:www\.|\/\/)facebook\.com\/([^\/]+)\/videos\/([0-9]+)/;
+    const fbMatch = url.match(fbRegExp);
+
     let $video;
     if (ytMatch && ytMatch[1].length === 11) {
       const youtubeId = ytMatch[1];
+      var start = 0;
+      if (typeof ytMatch[2] !== 'undefined') {
+        const ytMatchForStart = ytMatch[2].match(ytRegExpForStart);
+        if (ytMatchForStart) {
+          for (var n = [3600, 60, 1], i = 0, r = n.length; i < r; i++) {
+            start += (typeof ytMatchForStart[i + 1] !== 'undefined' ? n[i] * parseInt(ytMatchForStart[i + 1], 10) : 0);
+          }
+        }
+      }
       $video = $('<iframe>')
         .attr('frameborder', 0)
-        .attr('src', '//www.youtube.com/embed/' + youtubeId)
+        .attr('src', '//www.youtube.com/embed/' + youtubeId + (start > 0 ? '?start=' + start : ''))
         .attr('width', '640').attr('height', '360');
     } else if (igMatch && igMatch[0].length) {
       $video = $('<iframe>')
@@ -124,11 +136,18 @@ export default class VideoDialog {
         .attr('frameborder', 0)
         .attr('height', '310')
         .attr('width', '500')
-        .attr('src', 'http://v.qq.com/iframe/player.html?vid=' + vid + '&amp;auto=0');
+        .attr('src', 'https://v.qq.com/iframe/player.html?vid=' + vid + '&amp;auto=0');
     } else if (mp4Match || oggMatch || webmMatch) {
       $video = $('<video controls>')
         .attr('src', url)
         .attr('width', '640').attr('height', '360');
+    } else if (fbMatch && fbMatch[0].length) {
+      $video = $('<iframe>')
+        .attr('frameborder', 0)
+        .attr('src', 'https://www.facebook.com/plugins/video.php?href=' + encodeURIComponent(fbMatch[0]) + '&show_text=0&width=560')
+        .attr('width', '560').attr('height', '301')
+        .attr('scrolling', 'no')
+        .attr('allowtransparency', 'true');
     } else {
       // this is not a known video link. Now what, Cat? Now what?
       return false;
@@ -160,12 +179,12 @@ export default class VideoDialog {
   }
 
   /**
-   * show image dialog
+   * show video dialog
    *
    * @param {jQuery} $dialog
    * @return {Promise}
    */
-  showVideoDialog(text) {
+  showVideoDialog(/* text */) {
     return $.Deferred((deferred) => {
       const $videoUrl = this.$dialog.find('.note-video-url');
       const $videoBtn = this.$dialog.find('.note-video-btn');
@@ -173,7 +192,7 @@ export default class VideoDialog {
       this.ui.onDialogShown(this.$dialog, () => {
         this.context.triggerEvent('dialog.shown');
 
-        $videoUrl.val(text).on('input', () => {
+        $videoUrl.on('input paste propertychange', () => {
           this.ui.toggleBtn($videoBtn, $videoUrl.val());
         });
 
@@ -183,7 +202,6 @@ export default class VideoDialog {
 
         $videoBtn.click((event) => {
           event.preventDefault();
-
           deferred.resolve($videoUrl.val());
         });
 
@@ -191,8 +209,8 @@ export default class VideoDialog {
       });
 
       this.ui.onDialogHidden(this.$dialog, () => {
-        $videoUrl.off('input');
-        $videoBtn.off('click');
+        $videoUrl.off();
+        $videoBtn.off();
 
         if (deferred.state() === 'pending') {
           deferred.reject();

@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 class TooltipUI {
   constructor($node, options) {
     this.$node = $node;
@@ -5,15 +7,15 @@ class TooltipUI {
       title: '',
       target: options.container,
       trigger: 'hover focus',
-      placement: 'bottom'
+      placement: 'bottom',
     }, options);
 
     // create tooltip node
     this.$tooltip = $([
-      '<div class="note-tooltip in">',
-      '  <div class="note-tooltip-arrow"/>',
-      '  <div class="note-tooltip-content"/>',
-      '</div>'
+      '<div class="note-tooltip">',
+        '<div class="note-tooltip-arrow"/>',
+        '<div class="note-tooltip-content"/>',
+      '</div>',
     ].join(''));
 
     // define event
@@ -38,13 +40,15 @@ class TooltipUI {
   show() {
     const $node = this.$node;
     const offset = $node.offset();
+    const targetOffset = $(this.options.target).offset();
+    offset.top -= targetOffset.top;
+    offset.left -= targetOffset.left;
 
     const $tooltip = this.$tooltip;
     const title = this.options.title || $node.attr('title') || $node.data('title');
     const placement = this.options.placement || $node.data('placement');
 
     $tooltip.addClass(placement);
-    $tooltip.addClass('in');
     $tooltip.find('.note-tooltip-content').text(title);
     $tooltip.appendTo(this.options.target);
 
@@ -56,29 +60,33 @@ class TooltipUI {
     if (placement === 'bottom') {
       $tooltip.css({
         top: offset.top + nodeHeight,
-        left: offset.left + (nodeWidth / 2 - tooltipWidth / 2)
+        left: offset.left + (nodeWidth / 2 - tooltipWidth / 2),
       });
     } else if (placement === 'top') {
       $tooltip.css({
         top: offset.top - tooltipHeight,
-        left: offset.left + (nodeWidth / 2 - tooltipWidth / 2)
+        left: offset.left + (nodeWidth / 2 - tooltipWidth / 2),
       });
     } else if (placement === 'left') {
       $tooltip.css({
         top: offset.top + (nodeHeight / 2 - tooltipHeight / 2),
-        left: offset.left - tooltipWidth
+        left: offset.left - tooltipWidth,
       });
     } else if (placement === 'right') {
       $tooltip.css({
         top: offset.top + (nodeHeight / 2 - tooltipHeight / 2),
-        left: offset.left + nodeWidth
+        left: offset.left + nodeWidth,
       });
     }
+
+    $tooltip.addClass('in');
   }
 
   hide() {
     this.$tooltip.removeClass('in');
-    this.$tooltip.remove();
+    setTimeout(() => {
+      this.$tooltip.remove();
+    }, 200);
   }
 
   toggle() {

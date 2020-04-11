@@ -24,9 +24,11 @@
     <link href="./assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="./assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="./assets/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
+    <link href="./assets/vendors/summernote/dist/summernote.css" rel="stylesheet" />
     <!-- PLUGINS STYLES-->
     <!-- THEME STYLES-->
     <link href="assets/css/main.min.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap-tagsinput.css" rel="stylesheet" />
     <!-- PAGE LEVEL STYLES-->
     <link href="./assets/css/pages/main.css" rel="stylesheet" />
     <link href="./assets/css/pages/dashboard.css" rel="stylesheet" />
@@ -77,9 +79,19 @@
     <script src="./assets/vendors/metisMenu/dist/metisMenu.min.js" type="text/javascript"></script>
     <script src="./assets/vendors/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL PLUGINS-->
+    <script src="./assets/vendors/summernote/dist/summernote.min.js" type="text/javascript"></script>
     <!-- CORE SCRIPTS-->
     <script src="assets/js/app.min.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap-tagsinput.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
+    <script type="text/javascript">
+        $(function() {
+            $('#summernote').summernote();
+            $('#summernote_air').summernote({
+                airMode: true
+            });
+        });
+    </script>
 </body>
 
 </html>

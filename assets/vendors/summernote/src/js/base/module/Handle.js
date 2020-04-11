@@ -11,36 +11,36 @@ export default class Handle {
 
     this.events = {
       'summernote.mousedown': (we, e) => {
-        if (this.update(e.target)) {
+        if (this.update(e.target, e)) {
           e.preventDefault();
         }
       },
       'summernote.keyup summernote.scroll summernote.change summernote.dialog.shown': () => {
         this.update();
       },
-      'summernote.disable': () => {
+      'summernote.disable summernote.blur': () => {
         this.hide();
       },
       'summernote.codeview.toggled': () => {
         this.update();
-      }
+      },
     };
   }
 
   initialize() {
     this.$handle = $([
       '<div class="note-handle">',
-      '<div class="note-control-selection">',
-      '<div class="note-control-selection-bg"></div>',
-      '<div class="note-control-holder note-control-nw"></div>',
-      '<div class="note-control-holder note-control-ne"></div>',
-      '<div class="note-control-holder note-control-sw"></div>',
-      '<div class="',
-      (this.options.disableResizeImage ? 'note-control-holder' : 'note-control-sizing'),
-      ' note-control-se"></div>',
-      (this.options.disableResizeImage ? '' : '<div class="note-control-selection-info"></div>'),
+        '<div class="note-control-selection">',
+          '<div class="note-control-selection-bg"></div>',
+          '<div class="note-control-holder note-control-nw"></div>',
+          '<div class="note-control-holder note-control-ne"></div>',
+          '<div class="note-control-holder note-control-sw"></div>',
+          '<div class="',
+            (this.options.disableResizeImage ? 'note-control-holder' : 'note-control-sizing'),
+          ' note-control-se"></div>',
+          (this.options.disableResizeImage ? '' : '<div class="note-control-selection-info"></div>'),
+        '</div>',
       '</div>',
-      '</div>'
     ].join('')).prependTo(this.$editingArea);
 
     this.$handle.on('mousedown', (event) => {
@@ -55,10 +55,10 @@ export default class Handle {
         const onMouseMove = (event) => {
           this.context.invoke('editor.resizeTo', {
             x: event.clientX - posStart.left,
-            y: event.clientY - (posStart.top - scrollTop)
+            y: event.clientY - (posStart.top - scrollTop),
           }, $target, !event.shiftKey);
 
-          this.update($target[0]);
+          this.update($target[0], event);
         };
 
         this.$document
@@ -86,7 +86,7 @@ export default class Handle {
     this.$handle.remove();
   }
 
-  update(target) {
+  update(target, event) {
     if (this.context.isDisabled()) {
       return false;
     }
@@ -94,20 +94,20 @@ export default class Handle {
     const isImage = dom.isImg(target);
     const $selection = this.$handle.find('.note-control-selection');
 
-    this.context.invoke('imagePopover.update', target);
+    this.context.invoke('imagePopover.update', target, event);
 
     if (isImage) {
       const $image = $(target);
       const position = $image.position();
       const pos = {
         left: position.left + parseInt($image.css('marginLeft'), 10),
-        top: position.top + parseInt($image.css('marginTop'), 10)
+        top: position.top + parseInt($image.css('marginTop'), 10),
       };
 
       // exclude margin
       const imageSize = {
         w: $image.outerWidth(false),
-        h: $image.outerHeight(false)
+        h: $image.outerHeight(false),
       };
 
       $selection.css({
@@ -115,7 +115,7 @@ export default class Handle {
         left: pos.left,
         top: pos.top,
         width: imageSize.w,
-        height: imageSize.h
+        height: imageSize.h,
       }).data('target', $image); // save current image element.
 
       const origImageObj = new Image();

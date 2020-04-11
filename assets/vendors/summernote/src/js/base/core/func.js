@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 /**
  * @class core.func
  *
@@ -31,7 +33,7 @@ function fail() {
 }
 
 function not(f) {
-  return () => {
+  return function() {
     return !f.apply(f, arguments);
   };
 }
@@ -47,12 +49,20 @@ function self(a) {
 }
 
 function invoke(obj, method) {
-  return () => {
+  return function() {
     return obj[method].apply(obj, arguments);
   };
 }
 
 let idCounter = 0;
+
+/**
+ * reset globally-unique id
+ *
+ */
+function resetUniqueId() {
+  idCounter = 0;
+}
 
 /**
  * generate a globally-unique id
@@ -83,7 +93,7 @@ function rect2bnd(rect) {
     top: rect.top + $document.scrollTop(),
     left: rect.left + $document.scrollLeft(),
     width: rect.right - rect.left,
-    height: rect.bottom - rect.top
+    height: rect.bottom - rect.top,
   };
 }
 
@@ -95,7 +105,7 @@ function rect2bnd(rect) {
 function invertObject(obj) {
   const inverted = {};
   for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
       inverted[obj[key]] = key;
     }
   }
@@ -126,7 +136,7 @@ function namespaceToCamel(namespace, prefix) {
  */
 function debounce(func, wait, immediate) {
   let timeout;
-  return () => {
+  return function() {
     const context = this;
     const args = arguments;
     const later = () => {
@@ -144,6 +154,16 @@ function debounce(func, wait, immediate) {
   };
 }
 
+/**
+ *
+ * @param {String} url
+ * @return {Boolean}
+ */
+function isValidUrl(url) {
+  const expression = /[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
+  return expression.test(url);
+}
+
 export default {
   eq,
   eq2,
@@ -154,9 +174,11 @@ export default {
   not,
   and,
   invoke,
+  resetUniqueId,
   uniqueId,
   rect2bnd,
   invertObject,
   namespaceToCamel,
-  debounce
+  debounce,
+  isValidUrl,
 };

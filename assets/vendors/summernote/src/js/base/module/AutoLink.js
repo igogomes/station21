@@ -3,7 +3,7 @@ import lists from '../core/lists';
 import key from '../core/key';
 
 const defaultScheme = 'http://';
-const linkPattern = /^([A-Za-z][A-Za-z0-9+-.]*\:[\/\/]?|mailto:[A-Z0-9._%+-]+@)?(www\.)?(.+)$/i;
+const linkPattern = /^([A-Za-z][A-Za-z0-9+-.]*\:[\/]{2}|tel:|mailto:[A-Z0-9._%+-]+@)?(www\.)?(.+)$/i;
 
 export default class AutoLink {
   constructor(context) {
@@ -16,7 +16,7 @@ export default class AutoLink {
       },
       'summernote.keydown': (we, e) => {
         this.handleKeydown(e);
-      }
+      },
     };
   }
 
@@ -38,7 +38,11 @@ export default class AutoLink {
 
     if (match && (match[1] || match[2])) {
       const link = match[1] ? keyword : defaultScheme + keyword;
-      const node = $('<a />').html(keyword).attr('href', link)[0];
+      const urlText = keyword.replace(/^(?:https?:\/\/)?(?:tel?:?)?(?:mailto?:?)?(?:www\.)?/i, '').split('/')[0];
+      const node = $('<a />').html(urlText).attr('href', link)[0];
+      if (this.context.options.linkTargetBlank) {
+        $(node).attr('target', '_blank');
+      }
 
       this.lastWordRange.insertNode(node);
       this.lastWordRange = null;
