@@ -10,12 +10,50 @@
     $nome = new AutenticarUsuario();
     $nome = utf8_encode($nome -> getNomeUsuario($email));
 
-    $titulo = $_POST["titulo"];
-    $instrutor = $_POST["instrutor"];
-    $status = $_POST["status"];
-    $categoria = $_POST["categoria"];
-    $palavras_chave = $_POST["palavras-chave"];
-    $apresentacao = $_POST["apresentacao"];
+    $titulo = (isset($_POST["titulo"])) ? $_POST["titulo"] : "";
+    $instrutor = (isset($_POST["instrutor"])) ? $_POST["instrutor"] : "";
+    $status = (isset($_POST["status"])) ? $_POST["status"] : "";
+    $categoria = (isset($_POST["categoria"])) ? $_POST["categoria"] : "";
+    $palavras_chave = (isset($_POST["palavras-chave"])) ? $_POST["palavras-chave"] : "";
+    $apresentacao = (isset($_POST["apresentacao"])) ? $_POST["apresentacao"] : "";
+
+    if($titulo != "") {
+
+        $verificar_curso_existente = new GerenciarCurso();
+        $verificar_curso_existente = $verificar_curso_existente -> verificarCursoExistente($titulo);
+
+        if($verificar_curso_existente == 0) {
+
+            $cadastrar_curso = new GerenciarCurso();
+            $cadastrar_curso = $cadastrar_curso -> setCurso($titulo, $instrutor, $status, $categoria, $palavras_chave, $apresentacao);
+
+            $cod_curso = new GerenciarCurso();
+            $cod_curso = $cod_curso -> getCodigoCursoPorTitulo($titulo);
+
+            $cadastrar_modulo_01 = new GerenciarModulo();
+            $cadastrar_modulo_01 = $cadastrar_modulo_01 -> setModulo($cod_curso, "Módulo 01");
+
+            $cadastrar_modulo_02 = new GerenciarModulo();
+            $cadastrar_modulo_02 = $cadastrar_modulo_02 -> setModulo($cod_curso, "Módulo 02");
+
+            $cadastrar_modulo_03 = new GerenciarModulo();
+            $cadastrar_modulo_03 = $cadastrar_modulo_03 -> setModulo($cod_curso, "Módulo 03");
+
+            $cadastrar_modulo_04 = new GerenciarModulo();
+            $cadastrar_modulo_04 = $cadastrar_modulo_04 -> setModulo($cod_curso, "Módulo 04");
+
+        }
+
+        else {
+
+            $cod_curso = new GerenciarCurso();
+            $cod_curso = $cod_curso -> getCodigoCursoPorTitulo($titulo);
+
+            header("Location: courses?erro-cadastro-curso=1&erro-cadastro-cod-curso=$cod_curso"); 
+
+        }
+
+    }
 
 ?>
 
@@ -26,7 +64,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
-    <title>Cadastrar Curso | Station21</title>
+    <title>Cadastrar Conteúdo | Station21</title>
     <!-- GLOBAL MAINLY STYLES-->
     <link href="./assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="./assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -38,6 +76,7 @@
     <!-- PAGE LEVEL STYLES-->
     <link href="./assets/css/pages/main.css" rel="stylesheet" />
     <link href="./assets/css/pages/dashboard.css" rel="stylesheet" />
+    <link href="./assets/css/pages/content.css" rel="stylesheet" />
     <link rel="shortcut icon" href="./assets/img/favicon/logo-station-21-transparent.png" />
 </head>
 

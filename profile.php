@@ -62,12 +62,7 @@
             $atualizar_email_usuario = $atualizar_email_usuario -> atualizarEmailUsuario($cod_usuario, $email_usuario_perfil);
             $atualizar_perfil = 1;
 
-            session_start();
-            ob_start();
-            $_SESSION = array();
-            session_destroy();
-            
-            header("Location: login");
+            include_once "logout.php";
 
         }
 
@@ -99,10 +94,7 @@
             $atualizar_email_usuario = $atualizar_email_usuario -> atualizarSenhaUsuario($cod_usuario, $nova_senha_usuario_perfil);
             $atualizar_perfil = 1;
 
-            session_start();
-            ob_start();
-            $_SESSION = array();
-            session_destroy();
+            include_once "logout.php";
             
             header("Location: login");
 

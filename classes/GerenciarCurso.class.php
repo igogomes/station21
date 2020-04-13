@@ -41,7 +41,7 @@
                 $cod_instrutor = $linhas_cursos["cod_instrutor"];
 
                 $nome_instrutor = new GerenciarUsuario();
-                $nome_instrutor = $nome_instrutor -> getNomePorCodigoUsuario($cod_instrutor);
+                $nome_instrutor = utf8_encode($nome_instrutor -> getNomePorCodigoUsuario($cod_instrutor));
 
                 $ultima_atualizacao = $linhas_cursos["ultima_atualizacao"];
 
@@ -51,7 +51,7 @@
                 $cod_status = $linhas_cursos["cod_status"];
 
                 $status = new GerenciarStatus();
-                $status = $status -> getStatusPorCodigo($cod_status);
+                $status = utf8_encode($status -> getStatusPorCodigo($cod_status));
 
                 $tabela_cursos .= "<tr> 
                                         <td>" . $titulo . "</td> 
@@ -80,25 +80,138 @@
 
         }
 
-        //Método setUsuario
-        //Método para o cadastro de usuário na base de dados
-        //@param $nome - nome do usuário a ser cadastrado
-        //@param $email - e-mail do usuário a ser cadastrado
-        //@param $permissao - permissão do usuário a ser cadastrado
-        public function setUsuario($nome, $email, $permissao) {
+        //Método setCurso
+        //Método para o cadastro de curso na base de dados
+        //@param $titulo - título do curso a ser cadastrado
+        //@param $instrutor - código do instrutor responsável pelo curso a ser cadastrado
+        //@param $status - status do curso a ser cadastrado
+        //@param $categoria - categoria do curso a ser cadastrado
+        //@param $palavras_chave - relação de palavras-chave relacionadas ao curso a ser cadastrado
+        //@param $apresentacao - apresentação sobre o curso a ser cadastrado
+        public function setCurso($titulo, $instrutor, $status, $categoria, $palavras_chave, $apresentacao) {
 
-            $nome = utf8_decode($nome);
+            date_default_timezone_set('America/Sao_Paulo');
+
+            $titulo = utf8_decode($titulo);
+            $palavras_chave = utf8_decode($palavras_chave);
+            $apresentacao = utf8_decode($apresentacao);
+            $ultima_atualizacao = date('Y-m-d H:i:s', time());
 
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
 
-            $sql_cadastrar_usuario = new SqlInsert();
-            $sql_cadastrar_usuario -> setEntidade("Usuario");
-            $sql_cadastrar_usuario -> setValorLinha("nome", $nome);
-            $sql_cadastrar_usuario -> setValorLinha("email", $email);
-            $sql_cadastrar_usuario -> setValorLinha("cod_permissao", $permissao);
-            $sql_cadastrar_usuario -> setValorLinha("senha", "station21");
+            $sql_cadastrar_curso = new SqlInsert();
+            $sql_cadastrar_curso -> setEntidade("Curso");
+            $sql_cadastrar_curso -> setValorLinha("titulo", "$titulo");
+            $sql_cadastrar_curso -> setValorLinha("cod_instrutor", $instrutor);
+            $sql_cadastrar_curso -> setValorLinha("cod_status", $status);
+            $sql_cadastrar_curso -> setValorLinha("cod_categoria", $categoria);
+            $sql_cadastrar_curso -> setValorLinha("palavras_chave", "$palavras_chave");
+            $sql_cadastrar_curso -> setValorLinha("apresentacao", "$apresentacao");
+            $sql_cadastrar_curso -> setValorLinha("ultima_atualizacao", "$ultima_atualizacao");
 
-            $cadastrar_usuario = $conexao_sql_station21 -> query($sql_cadastrar_usuario -> getInstrucao());
+            $cadastrar_curso = $conexao_sql_station21 -> query($sql_cadastrar_curso -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getCodigoCursoPorTitulo
+        //Retorna o código do curso através do título do mesmo
+        //@param $titulo - título do curso do qual o código será recuperado
+        public function getCodigoCursoPorTitulo($titulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $cod_curso = "";
+            $titulo = utf8_decode($titulo);
+
+            $sql_cod_curso = new SqlSelect();
+            $sql_cod_curso -> adicionarColuna("cod_curso, titulo");
+            $sql_cod_curso -> setEntidade("Curso");
+
+            $criterio_cod_curso = new Criterio();
+            $criterio_cod_curso -> adicionar(new Filtro("titulo", "=", "'{$titulo}'"));
+
+            $sql_cod_curso -> setCriterio($criterio_cod_curso);
+
+            $localizar_cod_curso = $conexao_sql_station21 -> query($sql_cod_curso -> getInstrucao());
+
+            while($linhas_cod_curso = $localizar_cod_curso -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_curso = $linhas_cod_curso["cod_curso"];
+
+            }
+
+            return $cod_curso;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método verificarCursoExistente
+        //Avalia se curso já se encontra cadastrado no sistema
+        //@param $titulo - título do curso para o qual a verificação será realizada
+        public function verificarCursoExistente($titulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $titulo_base_dados = "";
+            $quantidade = 0;
+            $titulo = utf8_decode($titulo);
+
+            $sql_verificar_curso = new SqlSelect();
+            $sql_verificar_curso -> adicionarColuna("titulo");
+            $sql_verificar_curso -> setEntidade("Curso");
+
+            $criterio_verificar_curso = new Criterio();
+            $criterio_verificar_curso -> adicionar(new Filtro("titulo", "=", "'{$titulo}'"));
+
+            $sql_verificar_curso -> setCriterio($criterio_verificar_curso);
+
+            $localizar_curso = $conexao_sql_station21 -> query($sql_verificar_curso -> getInstrucao());
+
+            while($linhas_verificar_curso = $localizar_curso -> fetch(PDO::FETCH_ASSOC)) {
+
+                $titulo_base_dados = $linhas_verificar_curso["titulo"];
+
+                if($titulo == $titulo_base_dados) {
+
+                    $quantidade++;
+
+                }
+
+            }
+
+            return $quantidade;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getTituloCursoPorCodigo
+        //Retorna o título do curso através do código do mesmo
+        //@param $cod_curso - código do curso do qual o título será recuperado
+        public function getTituloCursoPorCodigo($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $titulo = "";
+
+            $sql_titulo_curso = new SqlSelect();
+            $sql_titulo_curso -> adicionarColuna("cod_curso, titulo");
+            $sql_titulo_curso -> setEntidade("Curso");
+
+            $criterio_titulo_curso = new Criterio();
+            $criterio_titulo_curso -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $sql_titulo_curso -> setCriterio($criterio_titulo_curso);
+
+            $localizar_titulo_curso = $conexao_sql_station21 -> query($sql_titulo_curso -> getInstrucao());
+
+            while($linhas_titulo_curso = $localizar_titulo_curso -> fetch(PDO::FETCH_ASSOC)) {
+
+                $titulo_curso = utf8_encode($linhas_titulo_curso["titulo"]);
+
+            }
+
+            return $titulo_curso;
 
             $conexao_sql_station21 = NULL;
 

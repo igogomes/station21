@@ -12,11 +12,20 @@
 
     $cod_excluir_curso = (isset($_GET["cod-delete-course"])) ? $_GET["cod-delete-course"] : "";
     $excluir_curso = (isset($_GET["delete-course"])) ? $_GET["delete-course"] : "";
+    $erro_cadastro_curso = (isset($_GET["erro-cadastro-curso"])) ? $_GET["erro-cadastro-curso"] : "";
+    $cod_curso_erro_cadastro = (isset($_GET["erro-cadastro-cod-curso"])) ? $_GET["erro-cadastro-cod-curso"] : "";
 
     if($excluir_curso != "") {
 
         $titulo_curso_excluir = new GerenciarCurso();
         $titulo_curso_excluir = $titulo_curso_excluir -> getTituloCurso($cod_excluir_curso);
+
+    }
+
+    if($cod_curso_erro_cadastro != "") {
+
+        $titulo_curso_cadastrado = new GerenciarCurso();
+        $titulo_curso_cadastrado = $titulo_curso_cadastrado -> getTituloCursoPorCodigo($cod_curso_erro_cadastro);
 
     }
 

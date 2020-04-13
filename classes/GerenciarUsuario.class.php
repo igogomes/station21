@@ -680,6 +680,7 @@
         public function gerarListaInstrutores() {
 
             $cod_permissao = "";
+            $cod_usuario = "";
             $nome = "";
             $lista_instrutores = "";
 
@@ -699,11 +700,12 @@
             while($linhas_lista_instrutores = $localizar_lista_instrutores -> fetch(PDO::FETCH_ASSOC)) {
 
                 $cod_permissao = $linhas_lista_instrutores["cod_permissao"];
+                $cod_usuario = $linhas_lista_instrutores["cod_usuario"];
                 $nome = utf8_encode($linhas_lista_instrutores["nome"]);
 
                 if($cod_permissao == 2) {
 
-                    $lista_instrutores .= "<option value=\"" . $cod_permissao . "\">" . $nome . "</option>";
+                    $lista_instrutores .= "<option value=\"" . $cod_usuario . "\">" . $nome . "</option>";
 
                 }
 

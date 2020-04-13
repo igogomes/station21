@@ -40,6 +40,19 @@
 
                     }
 
+                    if($erro_cadastro_curso == 1) {
+
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        O curso <strong><?php echo $titulo_curso_cadastrado; ?></strong> já está cadastrado.
+                    </div>        
+
+                <?php 
+                
+                    }
+
                 ?>
 
             </div>

@@ -9,9 +9,6 @@
             <li class="breadcrumb-item">
                 <a href="courses">Cursos</a>
             </li>
-            <li class="breadcrumb-item">
-                <a href="courses">Cursos</a>
-            </li>
             <li class="breadcrumb-item">Cadastrar Conteúdo</li>
         </ol>
     </div>
@@ -22,73 +19,52 @@
                     <div class="ibox-body">
                         <form class="form-horizontal" action="create-content" method="post"> 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Título</label>
+                                <label class="col-sm-2 col-form-label">Curso</label>
                                 <div class="col-sm-10">
-                                    <input name="titulo" class="form-control" type="text" placeholder="Digite o título do curso" maxlength="100" autofocus required>
+                                    <?php echo $titulo; ?>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Instrutor</label>
-                                <div class="col-sm-10">
-                                    <select name="instrutor" class="form-control" size="1" required>
-                                        <option selected value="0">Selecione o instrutor responsável</option>
-                                        
-                                        <?php 
-                                        
-                                            $lista_instrutores = new GerenciarUsuario();
-                                            $lista_instrutores = $lista_instrutores -> gerarListaInstrutores();
-
-                                            echo $lista_instrutores;
-                                        
-                                        ?>
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Status</label>
-                                <div class="col-sm-4">
-                                    <select name="status" class="form-control" size="1" required>
-                                        <option value="1">Publicado</option>
-                                        <option selected value="2">Não Publicado</option>
-                                    </select>
-                                </div>
-                                <label class="col-sm-1 col-form-label">Categoria</label>
-                                <div class="col-sm-5">
-                                    <select name="categoria" class="form-control" size="1" required>
-                                        <option selected value="0">Selecione uma categoria</option>
-
-                                        <?php 
-                                        
-                                            $lista_categorias = new GerenciarCategoria();
-                                            $lista_categorias = $lista_categorias -> gerarListaCategorias();
-
-                                            echo $lista_categorias;
-                                        
-                                        ?>
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Palavras Chave</label>
-                                <div class="col-sm-10">
-                                    <input name="palavras-chave" class="form-control" type="text" placeholder="Digite as palavras chave" maxlength="100" data-role="tagsinput" required> 
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-12 col-form-label">Apresentação</label>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <textarea id="summernote" data-plugin="summernote" data-air-mode="true" name="apresentacao" required>
-                                    </textarea>
+                                    <br>
+                                    <h4>Qual conteúdo deseja cadastrar?</h4>
+                                    <br>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-12 ml-sm-auto">
-                                    <button class="btn btn-info" type="submit">Cadastrar</button>
-                                </div> 
+                                <div class="col-sm-12">
+                                    <br>
+                                    <div class="create-content-buttons">
+                                        <div class="content-button">
+                                            <a href="create-video-content?cod-course=<?php echo $cod_curso; ?>" class="btn btn-primary btn-fix">Vídeo</a>
+                                        </div>
+                                        <div class="content-button">
+                                            <a href="create-text-content?cod-course=<?php echo $cod_curso; ?>" class="btn btn-success btn-fix">Texto</a>
+                                        </div>
+                                        <div class="content-button">
+                                            <a href="create-file-content?cod-course=<?php echo $cod_curso; ?>" class="btn btn-info btn-fix">Arquivo</a>
+                                        </div>
+                                        <div class="content-button">
+                                            <a href="create-link-content?cod-course=<?php echo $cod_curso; ?>" class="btn btn-warning btn-fix">Link</a>
+                                        </div>
+                                        <div class="content-button">
+                                            <a href="create-evaluation-content?cod-course=<?php echo $cod_curso; ?>" class="btn btn-danger btn-fix">Avaliação</a>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <br>
+                                    <br>
+                                    <div class="create-content-buttons">
+                                        <div class="create-after">
+                                            <a href="courses" class="btn btn-info btn-fix">Cadastrar Depois</a>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
                             </div>
                         </form>
                     </div>

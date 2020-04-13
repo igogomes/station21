@@ -1,0 +1,14 @@
+.create-content-buttons {
+    display: inline-flex;
+    width: 100%;
+}
+
+.create-content-buttons .content-button {
+    width: 20%;
+    text-align: center;
+}
+
+.create-content-buttons .create-after {
+    width: 100%;
+    text-align: center;
+}
