@@ -80,6 +80,30 @@
 
         }
 
+        //Método setUsuario
+        //Método para o cadastro de usuário na base de dados
+        //@param $nome - nome do usuário a ser cadastrado
+        //@param $email - e-mail do usuário a ser cadastrado
+        //@param $permissao - permissão do usuário a ser cadastrado
+        public function setUsuario($nome, $email, $permissao) {
+
+            $nome = utf8_decode($nome);
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_cadastrar_usuario = new SqlInsert();
+            $sql_cadastrar_usuario -> setEntidade("Usuario");
+            $sql_cadastrar_usuario -> setValorLinha("nome", $nome);
+            $sql_cadastrar_usuario -> setValorLinha("email", $email);
+            $sql_cadastrar_usuario -> setValorLinha("cod_permissao", $permissao);
+            $sql_cadastrar_usuario -> setValorLinha("senha", "station21");
+
+            $cadastrar_usuario = $conexao_sql_station21 -> query($sql_cadastrar_usuario -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>
