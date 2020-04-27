@@ -12,11 +12,11 @@
                 ?>
 
                 <div class="alert alert-danger alert-dismissable fade show">
-                    <a href="users" class="close" aria-label="Close">
+                    <a href="courses" class="close" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </a>
                     <h4>Atenção!</h4>
-                    <p>Você realmente deseja excluir o curso <?php echo utf8_encode($titulo_curso_excluir); ?>?</p>
+                    <p>Você realmente deseja excluir o curso <?php echo $titulo_curso_excluir; ?>?</p>
                     <p>
                         <a href="delete-course?cod-delete-course=<?php echo $cod_excluir_curso; ?>" class="btn btn-danger" style="color:#fff;">Sim</a>
                         <a href="courses" class="btn btn-default" style="color:#000;">Não</a>

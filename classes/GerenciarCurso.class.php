@@ -93,6 +93,7 @@
             date_default_timezone_set('America/Sao_Paulo');
 
             $titulo = utf8_decode($titulo);
+            $titulo = ucwords($titulo);
             $palavras_chave = utf8_decode($palavras_chave);
             $apresentacao = utf8_decode($apresentacao);
             $ultima_atualizacao = date('Y-m-d H:i:s', time());
@@ -192,7 +193,7 @@
         public function getTituloCursoPorCodigo($cod_curso) {
 
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
-            $titulo = "";
+            $titulo_curso = "";
 
             $sql_titulo_curso = new SqlSelect();
             $sql_titulo_curso -> adicionarColuna("cod_curso, titulo");
@@ -212,6 +213,51 @@
             }
 
             return $titulo_curso;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método atualizarStatusCurso()
+        //Método para atualização do status do curso, para determinar se o mesmo está publicado ou não
+        //@param $cod_curso - código da curso para o qual o status será alterado
+        //@param $status - código do status para alteração
+        public function atualizarStatusCurso($cod_curso, $status) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_atualizar_status_curso = new SqlUpdate();
+            $sql_atualizar_status_curso -> setEntidade("Curso");
+            $sql_atualizar_status_curso -> setValorLinha("cod_status", "{$status}");
+
+            $criterio_atualizar_status_curso = new Criterio();
+            $criterio_atualizar_status_curso -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $sql_atualizar_status_curso -> setCriterio($criterio_atualizar_status_curso);
+
+            $atualizar_status_curso = $conexao_sql_station21 -> query($sql_atualizar_status_curso -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método excluirCurso() 
+        //Método para exclusão de curso da base de dados
+        //@param $cod_curso - código do curso do qual os dados serão excluidos da base de dados
+        public function excluirCurso($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_curso = new SqlDelete();
+
+            $sql_excluir_curso -> setEntidade("Curso");
+
+            $criterio_excluir_curso = new Criterio();
+            $criterio_excluir_curso -> adicionar(new Filtro("cod_curso", "=", "'$cod_curso'"));
+
+            $sql_excluir_curso -> setCriterio($criterio_excluir_curso);
+
+            $excluir_curso = $conexao_sql_station21 -> query($sql_excluir_curso -> getInstrucao());
 
             $conexao_sql_station21 = NULL;
 

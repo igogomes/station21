@@ -14,11 +14,13 @@
     $excluir_curso = (isset($_GET["delete-course"])) ? $_GET["delete-course"] : "";
     $erro_cadastro_curso = (isset($_GET["erro-cadastro-curso"])) ? $_GET["erro-cadastro-curso"] : "";
     $cod_curso_erro_cadastro = (isset($_GET["erro-cadastro-cod-curso"])) ? $_GET["erro-cadastro-cod-curso"] : "";
+    $cod_modificar_status = (isset($_GET["cod-course-modify-status"])) ? $_GET["cod-course-modify-status"] : "";
+    $modificar_status = (isset($_GET["modify-status"])) ? $_GET["modify-status"] : "";
 
     if($excluir_curso != "") {
 
         $titulo_curso_excluir = new GerenciarCurso();
-        $titulo_curso_excluir = $titulo_curso_excluir -> getTituloCurso($cod_excluir_curso);
+        $titulo_curso_excluir = $titulo_curso_excluir -> getTituloCursoPorCodigo($cod_excluir_curso);
 
     }
 
@@ -26,6 +28,23 @@
 
         $titulo_curso_cadastrado = new GerenciarCurso();
         $titulo_curso_cadastrado = $titulo_curso_cadastrado -> getTituloCursoPorCodigo($cod_curso_erro_cadastro);
+
+    }
+
+    if(($cod_modificar_status != "") && ($modificar_status != "")) {
+
+        $atualizar_status_curso = new GerenciarCurso();
+        $atualizar_status_curso = $atualizar_status_curso -> atualizarStatusCurso($cod_modificar_status, $modificar_status);
+
+    }
+
+    $cod_excluir_curso = (isset($_GET["cod-delete-course"])) ? $_GET["cod-delete-course"] : "";
+    $excluir_curso = (isset($_GET["delete-course"])) ? $_GET["delete-course"] : "";
+
+    if($excluir_curso != "") {
+
+        $titulo_curso_excluir = new GerenciarCurso();
+        $titulo_curso_excluir = $titulo_curso_excluir -> getTituloCursoPorCodigo($cod_excluir_curso);
 
     }
 

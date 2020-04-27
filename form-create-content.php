@@ -21,7 +21,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Curso</label>
                                 <div class="col-sm-10">
-                                    <?php echo $titulo; ?>
+                                    <?php echo ucwords($titulo); ?>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -60,7 +60,7 @@
                                     <br>
                                     <div class="create-content-buttons">
                                         <div class="create-after">
-                                            <a href="courses" class="btn btn-info btn-fix">Cadastrar Depois</a>
+                                            <a href="courses?cod-course-modify-status=<?php echo $cod_curso; ?>&modify-status=2" class="btn btn-info btn-fix">Cadastrar Depois</a>
                                         </div>
                                     </div>
                                     <br>
