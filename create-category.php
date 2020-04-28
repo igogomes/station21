@@ -64,11 +64,23 @@
         
         <?php 
         
-            if($permissao == 1 || $permissao == 2) {
+            if($permissao == 1) {
 
                 include_once "header-admin.php";
 
                 include_once "navbar-admin.php";
+
+                include_once "form-create-category.php";
+
+                include_once "footer.php";
+
+            }
+
+            else if($permissao == 2) {
+
+                include_once "header-instrutor.php";
+
+                include_once "navbar-instrutor.php";
 
                 include_once "form-create-category.php";
 
