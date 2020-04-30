@@ -43,6 +43,19 @@
                 <?php 
                 
                     }
+
+                    if($erro_cadastro_video == 3) {
+                
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        Para cadastrar um link é necessário disponibilizar o endereço URL completo. Exemplo: https://www.link.com.br.
+                    </div>
+
+                <?php 
+                
+                    }
                 
                 ?>
 

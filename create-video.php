@@ -6,7 +6,7 @@
     $cod_curso = $_POST["cod-course"];
     $titulo_video = $_POST["titulo-video"];
     $cod_modulo = $_POST["modulo"];
-    $arquivo_upload = (isset($_FILES["send-file-upload"])) ? $_FILES["send-file-upload"] : "";
+    $arquivo_upload = $_FILES["send-file-upload"];
     $video_link = (isset($_POST["send-video-link"])) ? $_POST["send-video-link"] : "";
     $cadastrar_diretorio = "";
     $extensao_arquivo_upload = "";
@@ -14,8 +14,10 @@
     $diretorio_arquivo_upload = "";
     $diretorio_completo_arquivo_upload = "";
     $cod_tipo = 1;
+    $titulo_arquivo = "";
+    $verificar_arquivo = $_FILES["send-file-upload"]["size"];
 
-    if(($arquivo_upload != "") && ($video_link != "")) {
+    if(($verificar_arquivo != 0) && ($video_link != "")) {
 
         header("Location: create-video-content?cod-course=$cod_curso&erro-video=1");
 
@@ -27,7 +29,9 @@
 
     }
 
-    else if(($arquivo_upload != "") && ($video_link == "")) {
+    else if(($verificar_arquivo != 0) && ($video_link == "")) {
+
+        $titulo_arquivo = strtolower( preg_replace("/[^a-zA-Z0-9-]/", "-", strtr(utf8_decode(trim($titulo_video)), utf8_decode("áàãâéêíóôõúüñçÁÀÃÂÉÊÍÓÔÕÚÜÑÇ"),"aaaaeeiooouuncAAAAEEIOOOUUNC-")) );
 
         $diretorio_arquivo_upload = "content/$cod_curso/$cod_modulo/videos/";
 
@@ -41,7 +45,7 @@
         $nome_arquivo_upload = $_FILES["send-file-upload"]["name"];
 
         $extensao_arquivo_upload = strtolower(substr($nome_arquivo_upload, -4));
-        $nome_arquivo_upload = $titulo_video . $extensao_arquivo_upload;
+        $nome_arquivo_upload = $titulo_arquivo . $extensao_arquivo_upload;
 
         move_uploaded_file($_FILES['send-file-upload']['tmp_name'], $diretorio_arquivo_upload . $nome_arquivo_upload);
         
@@ -54,12 +58,22 @@
 
     }
 
-    else if(($arquivo_upload == "") && ($video_link != "")) {
+    else if(($verificar_arquivo == 0) && ($video_link != "")) {
 
-        $cadastrar_link_video = new GerenciarConteudo();
-        $cadastrar_link_video = $cadastrar_link_video -> setConteudo($cod_modulo, $cod_tipo, $video_link, '', '', $titulo_video);
+        if(strstr($video_link, "http") && strstr($video_link, ":")) {
 
-        header("Location: create-content?cod-curso=$cod_curso&content-type=1&create-content=1");
+            $cadastrar_link_video = new GerenciarConteudo();
+            $cadastrar_link_video = $cadastrar_link_video -> setConteudo($cod_modulo, $cod_tipo, $video_link, '', '', $titulo_video);
+
+            header("Location: create-content?cod-curso=$cod_curso&content-type=1&create-content=1");
+
+        }
+
+        else {
+
+            header("Location: create-video-content?cod-course=$cod_curso&erro-video=3");
+
+        }
 
     }
 
