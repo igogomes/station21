@@ -70,7 +70,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Palavras Chave</label>
                                 <div class="col-sm-10">
-                                    <input name="palavras-chave" class="form-control" type="text" placeholder="Digite as palavras chave" maxlength="100" data-role="tagsinput" required> 
+                                    <input name="palavras-chave" class="form-control" type="text" placeholder="Digite as palavras chave separadas por vírgula" maxlength="100" data-role="tagsinput" required> 
                                 </div>
                             </div>
                             <div class="form-group row">
