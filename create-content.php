@@ -17,6 +17,18 @@
     $palavras_chave = (isset($_POST["palavras-chave"])) ? $_POST["palavras-chave"] : "";
     $apresentacao = (isset($_POST["apresentacao"])) ? $_POST["apresentacao"] : "";
 
+    $cod_curso = (isset($_GET["cod-curso"])) ? $_GET["cod-curso"] : "";
+    $tipo_conteudo = (isset($_GET["content-type"])) ? $_GET["content-type"] : "";
+    $sucesso_criacao_conteudo = (isset($_GET["create-content"])) ? $_GET["create-content"] : "";
+    $titulo_criacao_conteudo = "";
+
+    if($cod_curso != "") {
+
+        $titulo_criacao_conteudo = new GerenciarCurso();
+        $titulo_criacao_conteudo = $titulo_criacao_conteudo -> getTituloCursoPorCodigo($cod_curso);
+
+    }
+
     if($titulo != "") {
 
         $verificar_curso_existente = new GerenciarCurso();

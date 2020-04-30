@@ -19,9 +19,54 @@
                     <div class="ibox-body">
                         <form class="form-horizontal" action="create-content" method="post"> 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Curso</label>
-                                <div class="col-sm-10">
-                                    <?php echo ucwords($titulo); ?>
+
+                                <?php if($titulo_criacao_conteudo != "") { ?>
+
+                                    <label class="col-sm-2 col-form-label">Curso</label>
+                                    <div class="col-sm-10">
+                                        <?php echo ucwords($titulo_criacao_conteudo); ?> 
+                                    </div>
+
+                                <?php 
+                            
+                                    }
+
+                                    else { 
+                                    
+                                ?>
+
+                                    <label class="col-sm-2 col-form-label">Curso</label>
+                                        <div class="col-sm-10">
+                                            <?php echo ucwords($titulo); ?> 
+                                        </div>
+
+                                    <?php 
+                                
+                                    }
+                                
+                                ?>
+
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+
+                                    <?php 
+
+                                        if($tipo_conteudo == 1 && $sucesso_criacao_conteudo == 1) {
+
+                                    ?>
+
+                                        <div class="alert alert-success alert-dismissable fade show">
+                                            <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                                            O vídeo foi cadastrado com <strong>sucesso</strong>.
+                                        </div>
+
+                                    <?php
+
+                                        }
+
+                                    ?>
+
                                 </div>
                             </div>
                             <div class="form-group row">

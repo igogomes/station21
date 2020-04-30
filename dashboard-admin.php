@@ -42,12 +42,43 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="ibox bg-info color-white widget-stat">
-                    <div class="ibox-body">
-                        <h2 class="m-b-5 font-strong">1250</h2>
-                        <div class="m-b-5">CURSOS</div><i class="fa fa-play-circle widget-stat-icon"></i>
+                <a href="courses"> 
+                    <div class="ibox bg-info color-white widget-stat">
+                        <div class="ibox-body">
+                            <h2 class="m-b-5 font-strong">
+                            
+                                <?php 
+                                    
+                                    $quantidade_cursos = new GerenciarCurso();
+                                    $quantidade_cursos = $quantidade_cursos -> getQuantidadeCursos();
+
+                                    echo $quantidade_cursos;
+                                
+                                ?>
+
+                            </h2>
+                            <div class="m-b-5">
+                            
+                                <?php 
+                                    
+                                    if($quantidade_cursos == 1 || $quantidade_cursos == 0) {
+
+                                        echo "CURSO";
+
+                                    }
+
+                                    else {
+
+                                        echo "CURSOS";
+
+                                    }
+                                
+                                ?>
+
+                            </div><i class="fa fa-play-circle widget-stat-icon"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="ibox bg-warning color-white widget-stat">

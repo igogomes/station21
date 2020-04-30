@@ -263,6 +263,31 @@
 
         }
 
+        //Método getQuantidadeCursos
+        //Retorna a quantidade de cursos cadastrados na base de dados
+        public function getQuantidadeCursos() {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $quantidade_cursos = "";
+
+            $sql_quantidade_cursos = new SqlSelect();
+            $sql_quantidade_cursos -> adicionarColuna("cod_curso");
+            $sql_quantidade_cursos -> setEntidade("Curso");
+
+            $localizar_cursos = $conexao_sql_station21 -> query($sql_quantidade_cursos -> getInstrucao());
+
+            while($linhas_quantidade_cursos = $localizar_cursos -> fetch(PDO::FETCH_ASSOC)) {
+
+                $quantidade_cursos++;
+
+            }
+
+            return $quantidade_cursos;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>
