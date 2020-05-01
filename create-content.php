@@ -16,11 +16,15 @@
     $categoria = (isset($_POST["categoria"])) ? $_POST["categoria"] : "";
     $palavras_chave = (isset($_POST["palavras-chave"])) ? $_POST["palavras-chave"] : "";
     $apresentacao = (isset($_POST["apresentacao"])) ? $_POST["apresentacao"] : "";
+    $apresentacao_edicao_curso = (isset($_POST["apresentacao-edicao-curso"])) ? $_POST["apresentacao-edicao-curso"] : "";
 
     $cod_curso = (isset($_GET["cod-curso"])) ? $_GET["cod-curso"] : "";
     $tipo_conteudo = (isset($_GET["content-type"])) ? $_GET["content-type"] : "";
     $sucesso_criacao_conteudo = (isset($_GET["create-content"])) ? $_GET["create-content"] : "";
     $titulo_criacao_conteudo = "";
+
+    $cod_curso_edicao = (isset($_POST["cod-edit-course"])) ? $_POST["cod-edit-course"] : "";
+    $edicao_curso = (isset($_POST["edit-course"])) ? $_POST["edit-course"] : "";
 
     if($cod_curso != "") {
 
@@ -29,7 +33,7 @@
 
     }
 
-    if($titulo != "") {
+    if($titulo != "" && $edicao_curso == "") {
 
         $verificar_curso_existente = new GerenciarCurso();
         $verificar_curso_existente = $verificar_curso_existente -> verificarCursoExistente($titulo);
@@ -54,7 +58,7 @@
             $cadastrar_modulo_04 = new GerenciarModulo();
             $cadastrar_modulo_04 = $cadastrar_modulo_04 -> setModulo($cod_curso, "Módulo 04");
 
-        }
+        } 
 
         else {
 
@@ -64,6 +68,13 @@
             header("Location: courses?erro-cadastro-curso=1&erro-cadastro-cod-curso=$cod_curso"); 
 
         }
+
+    }
+
+    if($edicao_curso == 1) {
+
+        $atualizar_dados_curso = new GerenciarCurso();
+        $atualizar_dados_curso = $atualizar_dados_curso -> atualizarDadosUsuario($cod_curso_edicao, $titulo, $instrutor, $status, $categoria, $palavras_chave, $apresentacao_edicao_curso);
 
     }
 

@@ -218,6 +218,161 @@
 
         }
 
+        //Método getInstrutorCursoPorCodigo
+        //Retorna o instrutor do curso através do código do mesmo
+        //@param $cod_curso - código do curso do qual o instrutor será recuperado
+        public function getInstrutorCursoPorCodigo($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $cod_instrutor = "";
+
+            $sql_instrutor_curso = new SqlSelect();
+            $sql_instrutor_curso -> adicionarColuna("cod_curso, cod_instrutor");
+            $sql_instrutor_curso -> setEntidade("Curso");
+
+            $criterio_instrutor_curso = new Criterio();
+            $criterio_instrutor_curso -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $sql_instrutor_curso -> setCriterio($criterio_instrutor_curso);
+
+            $localizar_instrutor_curso = $conexao_sql_station21 -> query($sql_instrutor_curso -> getInstrucao());
+
+            while($linhas_instrutor_curso = $localizar_instrutor_curso -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_instrutor = utf8_encode($linhas_instrutor_curso["cod_instrutor"]);
+
+            }
+
+            return $cod_instrutor;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getStatusCursoPorCodigo
+        //Retorna o status do curso através do código do mesmo
+        //@param $cod_curso - código do curso do qual o status será recuperado
+        public function getStatusCursoPorCodigo($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $cod_status = "";
+
+            $sql_status_curso = new SqlSelect();
+            $sql_status_curso -> adicionarColuna("cod_curso, cod_status");
+            $sql_status_curso -> setEntidade("Curso");
+
+            $criterio_status_curso = new Criterio();
+            $criterio_status_curso -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $sql_status_curso -> setCriterio($criterio_status_curso);
+
+            $localizar_status_curso = $conexao_sql_station21 -> query($sql_status_curso -> getInstrucao());
+
+            while($linhas_status_curso = $localizar_status_curso -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_status = utf8_encode($linhas_status_curso["cod_status"]);
+
+            }
+
+            return $cod_status;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getCategoriaCursoPorCodigo
+        //Retorna a categoria do curso através do código do mesmo
+        //@param $cod_curso - código do curso do qual a categoria será recuperada
+        public function getCategoriaCursoPorCodigo($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $cod_categoria = "";
+
+            $sql_categoria_curso = new SqlSelect();
+            $sql_categoria_curso -> adicionarColuna("cod_curso, cod_categoria");
+            $sql_categoria_curso -> setEntidade("Curso");
+
+            $criterio_categoria_curso = new Criterio();
+            $criterio_categoria_curso -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $sql_categoria_curso -> setCriterio($criterio_categoria_curso);
+
+            $localizar_categoria_curso = $conexao_sql_station21 -> query($sql_categoria_curso -> getInstrucao());
+
+            while($linhas_categoria_curso = $localizar_categoria_curso -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_categoria = utf8_encode($linhas_categoria_curso["cod_categoria"]);
+
+            }
+
+            return $cod_categoria;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getPalavrasChaveCursoPorCodigo
+        //Retorna a palavras chave do curso através do código do mesmo
+        //@param $cod_curso - código do curso do qual as palavras chave serão recuperadas
+        public function getPalavrasChaveCursoPorCodigo($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $palavras_chave = "";
+
+            $sql_palavras_chave_curso = new SqlSelect();
+            $sql_palavras_chave_curso -> adicionarColuna("cod_curso, palavras_chave");
+            $sql_palavras_chave_curso -> setEntidade("Curso");
+
+            $criterio_palavras_chave_curso = new Criterio();
+            $criterio_palavras_chave_curso -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $sql_palavras_chave_curso -> setCriterio($criterio_palavras_chave_curso);
+
+            $localizar_palavras_chave_curso = $conexao_sql_station21 -> query($sql_palavras_chave_curso -> getInstrucao());
+
+            while($linhas_palavras_chave_curso = $localizar_palavras_chave_curso -> fetch(PDO::FETCH_ASSOC)) {
+
+                $palavras_chave = utf8_encode($linhas_palavras_chave_curso["palavras_chave"]);
+
+            }
+
+            return $palavras_chave;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getApresentacaoCursoPorCodigo
+        //Retorna a apresentação do curso através do código do mesmo
+        //@param $cod_curso - código do curso do qual a apresentação será recuperadas
+        public function getApresentacaoCursoPorCodigo($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $apresentacao = "";
+
+            $sql_apresentacao_curso = new SqlSelect();
+            $sql_apresentacao_curso -> adicionarColuna("cod_curso, apresentacao");
+            $sql_apresentacao_curso -> setEntidade("Curso");
+
+            $criterio_apresentacao_curso = new Criterio();
+            $criterio_apresentacao_curso -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $sql_apresentacao_curso -> setCriterio($criterio_apresentacao_curso);
+
+            $localizar_apresentacao_curso = $conexao_sql_station21 -> query($sql_apresentacao_curso -> getInstrucao());
+
+            while($linhas_apresentacao_curso = $localizar_apresentacao_curso -> fetch(PDO::FETCH_ASSOC)) {
+
+                $apresentacao = utf8_encode($linhas_apresentacao_curso["apresentacao"]);
+
+            }
+
+            return $apresentacao;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
         //Método atualizarStatusCurso()
         //Método para atualização do status do curso, para determinar se o mesmo está publicado ou não
         //@param $cod_curso - código da curso para o qual o status será alterado
@@ -241,9 +396,48 @@
 
         }
 
+        //Método atualizarDadosCurso()
+        //Método para atualização dos dados de cursos na base de dados
+        //@param $cod_curso - código do curso do qual os dados serão alterados
+        //@param $titulo - título do curso para atualização na base de dados
+        //@param $cod_instrutor - código do instrutor do curso para atualização na base de dados
+        //@param $cod_status - código do status do curso para atualização na base de dados
+        //@param $cod_categoria - código da categoria do curso para atualização na base de dados
+        //@param $palavras_chave - palavras chave do curso para atualização na base de dados
+        //@param $apresentacao - apresentação do curso para atualização na base de dados
+        public function atualizarDadosUsuario($cod_curso, $titulo, $cod_instrutor, $cod_status, $cod_categoria, $palavras_chave, $apresentacao) {
+
+            $titulo = utf8_decode($titulo);
+            $palavras_chave = utf8_decode($palavras_chave);
+            $apresentacao = utf8_decode($apresentacao);
+            $ultima_atualizacao = date("Y-m-d H:i:s");
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_atualizar_dados_curso = new SqlUpdate();
+            $sql_atualizar_dados_curso -> setEntidade("Curso");
+            $sql_atualizar_dados_curso -> setValorLinha("titulo", "{$titulo}");
+            $sql_atualizar_dados_curso -> setValorLinha("cod_instrutor", "{$cod_instrutor}");
+            $sql_atualizar_dados_curso -> setValorLinha("cod_status", "$cod_status");
+            $sql_atualizar_dados_curso -> setValorLinha("cod_categoria", "$cod_categoria");
+            $sql_atualizar_dados_curso -> setValorLinha("palavras_chave", "$palavras_chave");
+            $sql_atualizar_dados_curso -> setValorLinha("apresentacao", "$apresentacao");
+            $sql_atualizar_dados_curso -> setValorLinha("ultima_atualizacao", "$ultima_atualizacao");
+
+            $criterio_atualizar_dados_curso = new Criterio();
+            $criterio_atualizar_dados_curso -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $sql_atualizar_dados_curso -> setCriterio($criterio_atualizar_dados_curso);
+
+            $atualizar_dados_curso = $conexao_sql_station21 -> query($sql_atualizar_dados_curso -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
         //Método excluirCurso() 
         //Método para exclusão de curso da base de dados
-        //@param $cod_curso - código do curso do qual os dados serão excluidos da base de dados
+        //@param $cod_curso - código do curso do qual os dados serão excluídos da base de dados
         public function excluirCurso($cod_curso) {
 
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");

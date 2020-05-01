@@ -717,6 +717,60 @@
 
         }
 
+        //Método gerarListaInstrutoresPorCodigo
+        //Método para geração de lista de instrutores cadastrados no sistema com seleção a partir 
+        //do código do instrutor
+        //@param $cod_instrutor - código do instrutor que será selecionado na lista
+        public function gerarListaInstrutoresPorCodigo($cod_instrutor) {
+
+            $cod_permissao = "";
+            $cod_usuario = "";
+            $nome = "";
+            $lista_instrutores = "";
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_lista_instrutores = new SqlSelect();
+            $sql_lista_instrutores -> adicionarColuna("*");
+            $sql_lista_instrutores -> setEntidade("Usuario");
+
+            $criterio_lista_instrutores = new Criterio();
+            $criterio_lista_instrutores -> setPropriedade("ORDER", "Usuario.nome ASC");
+
+            $sql_lista_instrutores -> setCriterio($criterio_lista_instrutores);
+
+            $localizar_lista_instrutores = $conexao_sql_station21 -> query($sql_lista_instrutores -> getInstrucao());
+
+            while($linhas_lista_instrutores = $localizar_lista_instrutores -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_permissao = $linhas_lista_instrutores["cod_permissao"];
+                $cod_usuario = $linhas_lista_instrutores["cod_usuario"];
+                $nome = utf8_encode($linhas_lista_instrutores["nome"]);
+
+                if($cod_permissao == 2) {
+
+                    if($cod_usuario == $cod_instrutor) {
+
+                        $lista_instrutores .= "<option value=\"" . $cod_usuario . "\" selected>" . $nome . "</option>";
+
+                    }
+
+                    else {
+
+                        $lista_instrutores .= "<option value=\"" . $cod_usuario . "\">" . $nome . "</option>";
+
+                    }
+
+                }
+
+            }
+
+            return $lista_instrutores;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
         //Método verificarEmailExistente
         //Avalia se e-mail já se encontra cadastrado no sistema
         //@param $email - e-mail para o qual a verificação será realizada

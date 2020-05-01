@@ -81,19 +81,19 @@
                                     <br>
                                     <div class="create-content-buttons">
                                         <div class="content-button">
-                                            <a href="create-video-content?cod-course=<?php echo $cod_curso; ?>" class="btn btn-primary btn-fix">Vídeo</a>
+                                            <a href="create-video-content?cod-course=<?php if($cod_curso !="") { echo $cod_curso; } else if($cod_curso_edicao !="") { echo $cod_curso_edicao; } ?>" class="btn btn-primary btn-fix">Vídeo</a>
                                         </div>
                                         <div class="content-button">
-                                            <a href="create-text-content?cod-course=<?php echo $cod_curso; ?>" class="btn btn-success btn-fix">Texto</a>
+                                            <a href="create-text-content?cod-course=<?php if($cod_curso !="") { echo $cod_curso; } else if($cod_curso_edicao !="") { echo $cod_curso_edicao; } ?>" class="btn btn-success btn-fix">Texto</a>
                                         </div>
                                         <div class="content-button">
-                                            <a href="create-file-content?cod-course=<?php echo $cod_curso; ?>" class="btn btn-info btn-fix">Arquivo</a>
+                                            <a href="create-file-content?cod-course=<?php if($cod_curso !="") { echo $cod_curso; } else if($cod_curso_edicao !="") { echo $cod_curso_edicao; } ?>" class="btn btn-info btn-fix">Arquivo</a>
                                         </div>
                                         <div class="content-button">
-                                            <a href="create-link-content?cod-course=<?php echo $cod_curso; ?>" class="btn btn-warning btn-fix">Link</a>
+                                            <a href="create-link-content?cod-course=<?php if($cod_curso !="") { echo $cod_curso; } else if($cod_curso_edicao !="") { echo $cod_curso_edicao; } ?>" class="btn btn-warning btn-fix">Link</a>
                                         </div>
                                         <div class="content-button">
-                                            <a href="create-evaluation-content?cod-course=<?php echo $cod_curso; ?>" class="btn btn-danger btn-fix">Avaliação</a>
+                                            <a href="create-evaluation-content?cod-course=<?php if($cod_curso !="") { echo $cod_curso; } else if($cod_curso_edicao !="") { echo $cod_curso_edicao; } ?>" class="btn btn-danger btn-fix">Avaliação</a>
                                         </div>
                                     </div>
                                     <br>

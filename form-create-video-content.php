@@ -82,14 +82,14 @@
                                 <label class="col-sm-2 col-form-label">Módulo</label>
                                 <div class="col-sm-10">
                                     <select name="modulo" class="form-control" size="1" required>
-                                        <option selected value="0">Selecione um módulo</option>
+                                        <option value="0" selected>Selecione um módulo</option>
 
                                         <?php 
                                         
                                             $lista_modulos = new GerenciarModulo();
                                             $lista_modulos = $lista_modulos -> gerarListaModulosPorCodigoCurso($cod_curso);
 
-                                            echo $lista_modulos;
+                                            echo $lista_modulos; 
                                         
                                         ?>
 

@@ -93,6 +93,54 @@
 
         }
 
+        //Método gerarListaCategoriaPorCodigo
+        //Método para geração de lista de categorias de cursos cadastrados no sistema com seleção a partir 
+        //do código da categoria
+        //@param $cod_categoria - código da categoria que será selecionada na lista
+        public function gerarListaCategoriaPorCodigo($cod_categoria) {
+
+            $cod_categoria_base = "";
+            $categoria = "";
+            $lista_categoria = "";
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_lista_categoria = new SqlSelect();
+            $sql_lista_categoria -> adicionarColuna("*");
+            $sql_lista_categoria -> setEntidade("Categoria");
+
+            $criterio_lista_categoria = new Criterio();
+            $criterio_lista_categoria -> setPropriedade("ORDER", "Categoria.cod_categoria ASC");
+
+            $sql_lista_categoria -> setCriterio($criterio_lista_categoria);
+
+            $localizar_lista_categoria = $conexao_sql_station21 -> query($sql_lista_categoria -> getInstrucao());
+
+            while($linhas_lista_categoria = $localizar_lista_categoria -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_categoria_base = $linhas_lista_categoria["cod_categoria"];
+                $categoria = utf8_encode($linhas_lista_categoria["categoria"]);
+
+                if($cod_categoria_base == $cod_categoria) {
+
+                    $lista_categoria .= "<option value=\"" . $cod_categoria_base . "\" selected>" . $categoria . "</option>";
+
+                }
+
+                else {
+
+                    $lista_categoria .= "<option value=\"" . $cod_categoria_base . "\">" . $categoria . "</option>";
+
+                }
+
+            }
+
+            return $lista_categoria;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
         //Método verificarCategoriaExistente
         //Avalia se categoria já se encontra cadastrada no sistema
         //@param $titulo - título da categoria para a qual a verificação será realizada

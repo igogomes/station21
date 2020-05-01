@@ -61,6 +61,12 @@
 
                 if($cod_curso_base == $cod_curso) {
 
+                    $lista_modulos .= "<option value=\"" . $cod_modulo . "\" selected>" . utf8_encode($modulo) . "</option>";
+
+                }
+
+                else {
+
                     $lista_modulos .= "<option value=\"" . $cod_modulo . "\">" . utf8_encode($modulo) . "</option>";
 
                 }
@@ -72,6 +78,28 @@
             $conexao_sql_station21 = NULL;
 
         } 
+
+        //Método excluirModulo() 
+        //Método para exclusão de módulos da base de dados
+        //@param $cod_curso - código do curso do qual os módulos serão excluídos da base de dados
+        public function excluirModulo($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_modulo = new SqlDelete();
+
+            $sql_excluir_modulo -> setEntidade("Modulo");
+
+            $criterio_excluir_modulo = new Criterio();
+            $criterio_excluir_modulo -> adicionar(new Filtro("cod_curso", "=", "'$cod_curso'"));
+
+            $sql_excluir_modulo -> setCriterio($criterio_excluir_modulo);
+
+            $excluir_modulo = $conexao_sql_station21 -> query($sql_excluir_modulo -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
 
     }   
 
