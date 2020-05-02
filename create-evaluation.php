@@ -17,13 +17,13 @@
 
         if($cod_avaliacao == 1) {
 
-            header("Location: create-exercise?cod-course=$cod_curso&module=$cod_modulo&cod_evaluation=$cod_avaliacao");
+            header("Location: create-exercise-content?cod-course=$cod_curso&module=$cod_modulo");
 
         }
 
         else if($cod_avaliacao == 2) {
 
-            header("Location: create-test?cod-course=$cod_curso&module=$cod_modulo&cod_evaluation=$cod_avaliacao");
+            header("Location: create-test-content?cod-course=$cod_curso&module=$cod_modulo");
 
         }
 

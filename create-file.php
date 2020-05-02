@@ -65,13 +65,13 @@ else if(($verificar_arquivo != 0) && ($cod_modulo != "") && ($cod_modulo != 0)) 
 
     else if(strstr($tipo_arquivo, "video")) {
 
-        header("Location: create-file-content?cod-curso=$cod_curso&erro-file=3");
+        header("Location: create-file-content?cod-course=$cod_curso&erro-file=3");
 
     }
 
     else {
 
-        header("Location: create-file-content?cod-curso=$cod_curso&erro-file=4");
+        header("Location: create-file-content?cod-course=$cod_curso&erro-file=4");
 
     }
 

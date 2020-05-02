@@ -95,6 +95,37 @@
 
         }
 
+        //Método getTituloModuloPorCodigo
+        //Retorna o título do módulo através do código do mesmo
+        //@param $cod_modulo - código do módulo do qual o título será recuperado
+        public function getTituloModuloPorCodigo($cod_modulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $titulo_modulo = "";
+
+            $sql_titulo_modulo = new SqlSelect();
+            $sql_titulo_modulo -> adicionarColuna("cod_modulo, modulo");
+            $sql_titulo_modulo -> setEntidade("Modulo");
+
+            $criterio_titulo_modulo = new Criterio();
+            $criterio_titulo_modulo -> adicionar(new Filtro("cod_modulo", "=", "'{$cod_modulo}'"));
+
+            $sql_titulo_modulo -> setCriterio($criterio_titulo_modulo);
+
+            $localizar_titulo_modulo = $conexao_sql_station21 -> query($sql_titulo_modulo -> getInstrucao());
+
+            while($linhas_titulo_modulo = $localizar_titulo_modulo -> fetch(PDO::FETCH_ASSOC)) {
+
+                $titulo_modulo = utf8_encode($linhas_titulo_modulo["modulo"]);
+
+            }
+
+            return $titulo_modulo;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }   
 
 ?>
