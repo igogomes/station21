@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <!-- START PAGE CONTENT-->
     <div class="page-heading">
-        <h1 class="page-title">Cadastrar Vídeo</h1>
+        <h1 class="page-title">Cadastrar Avaliação</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="./">Dashboard</a>
@@ -9,7 +9,7 @@
             <li class="breadcrumb-item">
                 <a href="courses">Cursos</a>
             </li>
-            <li class="breadcrumb-item">Cadastrar Vídeo</li> 
+            <li class="breadcrumb-item">Cadastrar Avaliação</li> 
         </ol>
     </div>
     <div class="page-content fade-in-up">
@@ -18,39 +18,13 @@
 
                 <?php 
 
-                    if($erro_cadastro_video == 1) { 
+                    if($erro_cadastro_avaliacao == 1) {
 
                 ?>
 
                     <div class="alert alert-danger alert-dismissable fade show">
                         <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        Apenas um dos campos direcionados ao cadastro do vídeo deve ser preenchido.
-                    </div>
-
-                <?php
-
-                    }
-
-                    if($erro_cadastro_video == 2) {
-
-                ?>
-
-                    <div class="alert alert-danger alert-dismissable fade show">
-                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        É necessário selecionar um módulo para cadastrar um vídeo.
-                    </div>
-
-                <?php 
-                
-                    }
-
-                    if($erro_cadastro_video == 3) {
-                
-                ?>
-
-                    <div class="alert alert-danger alert-dismissable fade show">
-                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        Para cadastrar um link é necessário disponibilizar o endereço URL completo. Exemplo: https://www.link.com.br.
+                        É necessário selecionar um módulo para cadastrar uma avaliação.
                     </div>
 
                 <?php 
@@ -65,17 +39,11 @@
             <div class="col-md-12">
                 <div class="ibox">
                     <div class="ibox-body">
-                        <form class="form-horizontal" action="create-video" enctype="multipart/form-data" method="post"> 
+                        <form class="form-horizontal" action="create-evaluation" enctype="multipart/form-data" method="post"> 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Curso</label>
                                 <div class="col-sm-10">
                                     <?php echo ucwords($titulo); ?>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Título do Vídeo</label>
-                                <div class="col-sm-10">
-                                    <input name="titulo-video" class="form-control" type="text" placeholder="Digite o título do vídeo" maxlength="100" required>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -97,23 +65,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Enviar Arquivo</label>
+                                <label class="col-sm-2 col-form-label">Tipo</label>
                                 <div class="col-sm-10">
-                                    <input type="file" id="send-file-upload" name="send-file-upload" accept="video/*">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-12 col-form-label">Ou</label>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Link do Vídeo</label>
-                                <div class="col-sm-10">
-                                    <input name="send-video-link" class="form-control" type="text" placeholder="Insira o link do vídeo. Exemplo: https://www.link.com.br" maxlength="2000">
+                                    <input type="radio" id="exercicio" name="evaluation" value="1">
+                                    <label for="exercicio">Exercício</label>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <input type="radio" id="prova" name="evaluation" value="2">
+                                    <label for="prova">Prova</label>
                                 </div>
                             </div>
                             <input type="hidden" name="cod-course" value="<?php echo $cod_curso; ?>">
                             <div class="form-group row">
-                                <div class="col-sm-10 ml-sm-auto">
+                                <div class="col-sm-12 ml-sm-auto">
                                     <button class="btn btn-info" type="submit">Cadastrar</button>
                                 </div> 
                             </div>

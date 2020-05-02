@@ -48,7 +48,7 @@
             <div class="col-lg-6 col-md-6">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="index">Dashboard</a>
+                        <a href="./">Dashboard</a>
                     </li>
                     <li class="breadcrumb-item">Categorias</li> 
                 </ol>

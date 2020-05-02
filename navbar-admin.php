@@ -3,7 +3,7 @@
     <div id="sidebar-collapse">
         <ul class="side-menu metismenu">
             <li>
-                <a class="active" href="index"><i class="sidebar-item-icon fa fa-th-large"></i>
+                <a class="active" href="./"><i class="sidebar-item-icon fa fa-th-large"></i>
                     <span class="nav-label">Dashboard</span>
                 </a>
             </li>
@@ -26,7 +26,7 @@
                 </ul>
             </li>
             <li>
-                <a class="active" href="index"><i class="sidebar-item-icon fa fa-file-text"></i>
+                <a class="active" href="./"><i class="sidebar-item-icon fa fa-file-text"></i>
                     <span class="nav-label">Relatórios</span>
                 </a>
             </li>

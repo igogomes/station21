@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <!-- START PAGE CONTENT-->
     <div class="page-heading">
-        <h1 class="page-title">Cadastrar Vídeo</h1>
+        <h1 class="page-title">Cadastrar Link</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="./">Dashboard</a>
@@ -9,7 +9,7 @@
             <li class="breadcrumb-item">
                 <a href="courses">Cursos</a>
             </li>
-            <li class="breadcrumb-item">Cadastrar Vídeo</li> 
+            <li class="breadcrumb-item">Cadastrar Link</li> 
         </ol>
     </div>
     <div class="page-content fade-in-up">
@@ -18,33 +18,20 @@
 
                 <?php 
 
-                    if($erro_cadastro_video == 1) { 
+                    if($erro_cadastro_link == 1) {
 
                 ?>
 
                     <div class="alert alert-danger alert-dismissable fade show">
                         <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        Apenas um dos campos direcionados ao cadastro do vídeo deve ser preenchido.
-                    </div>
-
-                <?php
-
-                    }
-
-                    if($erro_cadastro_video == 2) {
-
-                ?>
-
-                    <div class="alert alert-danger alert-dismissable fade show">
-                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        É necessário selecionar um módulo para cadastrar um vídeo.
+                        É necessário selecionar um módulo para cadastrar um link.
                     </div>
 
                 <?php 
                 
                     }
 
-                    if($erro_cadastro_video == 3) {
+                    else if($erro_cadastro_link == 2) {
                 
                 ?>
 
@@ -65,7 +52,7 @@
             <div class="col-md-12">
                 <div class="ibox">
                     <div class="ibox-body">
-                        <form class="form-horizontal" action="create-video" enctype="multipart/form-data" method="post"> 
+                        <form class="form-horizontal" action="create-link" enctype="multipart/form-data" method="post"> 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Curso</label>
                                 <div class="col-sm-10">
@@ -73,9 +60,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Título do Vídeo</label>
+                                <label class="col-sm-2 col-form-label">Título do Link</label>
                                 <div class="col-sm-10">
-                                    <input name="titulo-video" class="form-control" type="text" placeholder="Digite o título do vídeo" maxlength="100" required>
+                                    <input name="titulo-link" class="form-control" type="text" placeholder="Digite o título do link" maxlength="100" required>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -97,23 +84,14 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Enviar Arquivo</label>
+                                <label class="col-sm-2 col-form-label">Link</label>
                                 <div class="col-sm-10">
-                                    <input type="file" id="send-file-upload" name="send-file-upload" accept="video/*">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-12 col-form-label">Ou</label>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Link do Vídeo</label>
-                                <div class="col-sm-10">
-                                    <input name="send-video-link" class="form-control" type="text" placeholder="Insira o link do vídeo. Exemplo: https://www.link.com.br" maxlength="2000">
+                                    <input name="link" class="form-control" type="text" placeholder="Insira o link do vídeo. Exemplo: https://www.link.com.br" maxlength="2000" required>
                                 </div>
                             </div>
                             <input type="hidden" name="cod-course" value="<?php echo $cod_curso; ?>">
                             <div class="form-group row">
-                                <div class="col-sm-10 ml-sm-auto">
+                                <div class="col-sm-12 ml-sm-auto">
                                     <button class="btn btn-info" type="submit">Cadastrar</button>
                                 </div> 
                             </div>

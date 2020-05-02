@@ -4,7 +4,7 @@
         <h1 class="page-title">Cadastrar Conteúdo</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index">Dashboard</a>
+                <a href="./">Dashboard</a>
             </li>
             <li class="breadcrumb-item">
                 <a href="courses">Cursos</a>
@@ -77,6 +77,32 @@
                                     <?php 
                                     
                                         }
+
+                                        else if($tipo_conteudo == 3 && $sucesso_criacao_conteudo == 1) {
+                                    
+                                    ?>
+
+                                        <div class="alert alert-success alert-dismissable fade show">
+                                            <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                                            O arquivo foi cadastrado com <strong>sucesso</strong>.
+                                        </div>
+
+                                    <?php 
+
+                                        }
+
+                                        else if($tipo_conteudo == 4 && $sucesso_criacao_conteudo == 1) {
+
+                                    ?>
+
+                                        <div class="alert alert-success alert-dismissable fade show">
+                                            <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                                            O link foi cadastrado com <strong>sucesso</strong>.
+                                        </div>
+
+                                    <?php 
+                                    
+                                        }
                                     
                                     ?>
 
@@ -121,7 +147,7 @@
 
                                             <?php 
                                             
-                                                if($sucesso_criacao_conteudo == 1) {
+                                                if($sucesso_criacao_conteudo == 1 || $edicao_curso == 1) {
                                             
                                             ?>
 

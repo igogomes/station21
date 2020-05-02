@@ -4,7 +4,7 @@
         <h1 class="page-title">Cadastrar Curso</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index">Dashboard</a>
+                <a href="./">Dashboard</a>
             </li>
             <li class="breadcrumb-item">
                 <a href="courses">Cursos</a>

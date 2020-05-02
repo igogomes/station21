@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <!-- START PAGE CONTENT-->
     <div class="page-heading">
-        <h1 class="page-title">Cadastrar Vídeo</h1>
+        <h1 class="page-title">Cadastrar Arquivo</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="./">Dashboard</a>
@@ -9,7 +9,7 @@
             <li class="breadcrumb-item">
                 <a href="courses">Cursos</a>
             </li>
-            <li class="breadcrumb-item">Cadastrar Vídeo</li> 
+            <li class="breadcrumb-item">Cadastrar Arquivo</li> 
         </ol>
     </div>
     <div class="page-content fade-in-up">
@@ -18,45 +18,58 @@
 
                 <?php 
 
-                    if($erro_cadastro_video == 1) { 
+                    if($erro_cadastro_arquivo == 1) {
 
                 ?>
 
                     <div class="alert alert-danger alert-dismissable fade show">
                         <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        Apenas um dos campos direcionados ao cadastro do vídeo deve ser preenchido.
-                    </div>
-
-                <?php
-
-                    }
-
-                    if($erro_cadastro_video == 2) {
-
-                ?>
-
-                    <div class="alert alert-danger alert-dismissable fade show">
-                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        É necessário selecionar um módulo para cadastrar um vídeo.
+                        É necessário enviar um arquivo válido para realizar o cadastro.
                     </div>
 
                 <?php 
                 
                     }
 
-                    if($erro_cadastro_video == 3) {
+                    if($erro_cadastro_arquivo == 2) {
                 
                 ?>
 
                     <div class="alert alert-danger alert-dismissable fade show">
                         <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        Para cadastrar um link é necessário disponibilizar o endereço URL completo. Exemplo: https://www.link.com.br.
-                    </div>
+                        É necessário selecionar um módulo para cadastrar um arquivo.
+                    </div>  
 
                 <?php 
                 
                     }
+
+                    if($erro_cadastro_arquivo == 3) {
                 
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        Para cadastrar vídeos, <a href="create-video-content?cod-course=<?php echo $cod_curso; ?>">clique aqui</a>.
+                    </div>  
+
+                <?php 
+                
+                    }
+
+                    if($erro_cadastro_arquivo == 4) {
+                
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        O formato do arquivo não é adequado para upload.
+                    </div>  
+
+                <?php 
+            
+                    } 
+                    
                 ?>
 
             </div>
@@ -65,7 +78,7 @@
             <div class="col-md-12">
                 <div class="ibox">
                     <div class="ibox-body">
-                        <form class="form-horizontal" action="create-video" enctype="multipart/form-data" method="post"> 
+                        <form class="form-horizontal" action="create-file" enctype="multipart/form-data" method="post"> 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Curso</label>
                                 <div class="col-sm-10">
@@ -73,9 +86,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Título do Vídeo</label>
+                                <label class="col-sm-2 col-form-label">Título do Arquivo</label>
                                 <div class="col-sm-10">
-                                    <input name="titulo-video" class="form-control" type="text" placeholder="Digite o título do vídeo" maxlength="100" required>
+                                    <input name="titulo-arquivo" class="form-control" type="text" placeholder="Digite o título do arquivo" maxlength="100" required>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -99,16 +112,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Enviar Arquivo</label>
                                 <div class="col-sm-10">
-                                    <input type="file" id="send-file-upload" name="send-file-upload" accept="video/*">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-12 col-form-label">Ou</label>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Link do Vídeo</label>
-                                <div class="col-sm-10">
-                                    <input name="send-video-link" class="form-control" type="text" placeholder="Insira o link do vídeo. Exemplo: https://www.link.com.br" maxlength="2000">
+                                    <input type="file" id="send-file-upload" name="send-file-upload">
                                 </div>
                             </div>
                             <input type="hidden" name="cod-course" value="<?php echo $cod_curso; ?>">
