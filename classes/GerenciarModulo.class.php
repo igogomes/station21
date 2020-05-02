@@ -61,12 +61,6 @@
 
                 if($cod_curso_base == $cod_curso) {
 
-                    $lista_modulos .= "<option value=\"" . $cod_modulo . "\" selected>" . utf8_encode($modulo) . "</option>";
-
-                }
-
-                else {
-
                     $lista_modulos .= "<option value=\"" . $cod_modulo . "\">" . utf8_encode($modulo) . "</option>";
 
                 }
