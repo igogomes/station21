@@ -65,6 +65,19 @@
 
                                         }
 
+                                        else if($tipo_conteudo == 2 && $sucesso_criacao_conteudo == 1) {
+
+                                    ?>
+
+                                        <div class="alert alert-success alert-dismissable fade show">
+                                            <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                                            O texto foi cadastrado com <strong>sucesso</strong>.
+                                        </div>
+
+                                    <?php 
+                                    
+                                        }
+                                    
                                     ?>
 
                                 </div>
@@ -105,7 +118,31 @@
                                     <br>
                                     <div class="create-content-buttons">
                                         <div class="create-after">
-                                            <a href="courses?cod-course-modify-status=<?php echo $cod_curso; ?>&modify-status=2" class="btn btn-info btn-fix">Cadastrar Depois</a>
+
+                                            <?php 
+                                            
+                                                if($sucesso_criacao_conteudo == 1) {
+                                            
+                                            ?>
+
+                                                <a href="courses" class="btn btn-info btn-fix">Cadastrar Depois</a>
+                                        
+                                            <?php 
+                                            
+                                                }
+
+                                                else {
+                                            
+                                            ?>
+
+                                                <a href="courses?cod-course-modify-status=<?php echo $cod_curso; ?>&modify-status=2" class="btn btn-info btn-fix">Cadastrar Depois</a>
+
+                                            <?php 
+                                            
+                                                }
+                                            
+                                            ?>
+
                                         </div>
                                     </div>
                                     <br>
