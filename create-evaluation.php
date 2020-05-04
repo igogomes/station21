@@ -5,13 +5,19 @@
 
     $cod_curso = $_POST["cod-course"];
     $cod_modulo = $_POST["modulo"];
-    $cod_avaliacao = $_POST["evaluation"];
+    $cod_avaliacao = (isset($_POST["evaluation"])) ? $_POST["evaluation"] : "";
 
     if ($cod_modulo == 0 || $cod_modulo == "") {
 
         header("Location: create-evaluation-content?cod-course=$cod_curso&erro-evaluation=1");
 
     }
+
+    else if($cod_avaliacao == "") {
+
+        header("Location: create-evaluation-content?cod-course=$cod_curso&erro-evaluation=2");
+
+    } 
 
     else {
 

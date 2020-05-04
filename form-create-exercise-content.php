@@ -62,6 +62,8 @@
                                 </div>
                             </div> 
                             <input type="hidden" name="cod-course" value="<?php echo $cod_curso; ?>">
+                            <input type="hidden" name="module" value="<?php echo $modulo; ?>">
+                            <input type="hidden" name="exercise-number" value="<?php echo $numero_exercicio = $numero_exercicio + 1; ?>">
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-4">

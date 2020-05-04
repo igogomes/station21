@@ -30,6 +30,19 @@
                 <?php 
                 
                     }
+
+                    if($erro_cadastro_avaliacao == 2) {
+                
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        É necessário selecionar um tipo de avaliação.
+                    </div>
+
+                <?php 
+                
+                    }
                 
                 ?>
 

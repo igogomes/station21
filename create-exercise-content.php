@@ -13,6 +13,19 @@
     $cod_curso = (isset($_GET["cod-course"])) ? $_GET["cod-course"] : "";
     $modulo = (isset($_GET["module"])) ? $_GET["module"] : "";
     $numero_exercicio = (isset($_POST["exercise-number"])) ? $_POST["exercise-number"] : 1;
+    $cod_exercicio = (isset($_POST["cod-exercise"])) ? $_POST["cod-exercise"] : "";
+
+    if($cod_curso == "") {
+
+        $cod_curso = (isset($_POST["cod-course"])) ? $_POST["cod-course"] : "";
+
+    }
+
+    if($modulo == "") {
+
+        $modulo = (isset($_POST["module"])) ? $_POST["module"] : "";
+
+    }
 
     $enunciado_exercicio = (isset($_POST["enunciado-exercicio"])) ? $_POST["enunciado-exercicio"] : "";
     $primeira_alternativa_exercicio = (isset($_POST["primeira-alternativa-exercicio"])) ? $_POST["primeira-alternativa-exercicio"] : "";
@@ -25,7 +38,21 @@
     $titulo = $titulo -> getTituloCursoPorCodigo($cod_curso); 
 
     $titulo_modulo = new GerenciarModulo();
-    $titulo_modulo = $titulo_modulo -> getTituloModuloPorCodigo($modulo); 
+    $titulo_modulo = $titulo_modulo -> getTituloModuloPorCodigo($modulo);
+
+    if($enunciado_exercicio != "" && $primeira_alternativa_exercicio != "" && $segunda_alternativa_exercicio != "" && $terceira_alternativa_exercicio != "" && $quarta_alternativa_exercicio != "" && $e_resposta_exercicio != "" && $numero_exercicio == 2) {
+
+        $cadastrar_exercicio = new GerenciarExercicio();
+        $cadastrar_exercicio = $cadastrar_exercicio -> setExercicio($modulo);
+
+    }
+
+    if($enunciado_exercicio != "" && $primeira_alternativa_exercicio != "" && $segunda_alternativa_exercicio != "" && $terceira_alternativa_exercicio != "" && $quarta_alternativa_exercicio != "" && $e_resposta_exercicio != "") {
+
+        $cadastrar_questao = new GerenciarQuestao();
+        $cadastrar_questao = $cadastrar_questao -> setQuestao($cod_exercicio, "", $enunciado_exercicio, $primeira_alternativa_exercicio, $segunda_alternativa_exercicio, $terceira_alternativa_exercicio, $quarta_alternativa_exercicio, $e_resposta_exercicio);
+
+    }
 
 ?>
 
