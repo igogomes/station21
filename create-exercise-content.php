@@ -15,6 +15,19 @@
     $numero_exercicio = (isset($_POST["exercise-number"])) ? $_POST["exercise-number"] : 1;
     $cod_exercicio = (isset($_POST["cod-exercise"])) ? $_POST["cod-exercise"] : "";
 
+    if($numero_exercicio == 1 && $modulo != "") {
+
+        $verificar_exercicio_existente = new GerenciarExercicio();
+        $verificar_exercicio_existente = $verificar_exercicio_existente -> verificarExercicioExistente($modulo);
+
+        if($verificar_exercicio_existente > 0) {
+
+            header("Location: create-content?cod-curso=$cod_curso&content-type=5&module=$modulo&erro-create-content=1");
+
+        }
+
+    }
+
     if($cod_curso == "") {
 
         $cod_curso = (isset($_POST["cod-course"])) ? $_POST["cod-course"] : "";
@@ -32,7 +45,10 @@
     $segunda_alternativa_exercicio = (isset($_POST["segunda-alternativa-exercicio"])) ? $_POST["segunda-alternativa-exercicio"] : "";
     $terceira_alternativa_exercicio = (isset($_POST["terceira-alternativa-exercicio"])) ? $_POST["terceira-alternativa-exercicio"] : "";
     $quarta_alternativa_exercicio = (isset($_POST["quarta-alternativa-exercicio"])) ? $_POST["quarta-alternativa-exercicio"] : "";
-    $e_resposta_exercicio = (isset($_POST["e-resposta-exercicio"])) ? $_POST["e-resposta-exercicio"] : "";
+    $e_resposta_exercicio = (isset($_POST["resposta"])) ? $_POST["resposta"] : "";
+
+    $passou_cadastro_exercicio = "";
+    $passou_cadastro_questao = "";
 
     $titulo = new GerenciarCurso();
     $titulo = $titulo -> getTituloCursoPorCodigo($cod_curso); 
@@ -44,6 +60,14 @@
 
         $cadastrar_exercicio = new GerenciarExercicio();
         $cadastrar_exercicio = $cadastrar_exercicio -> setExercicio($modulo);
+        $passou_cadastro_exercicio = 1;
+
+        if($cod_exercicio == "") {
+
+            $cod_exercicio = new GerenciarExercicio();
+            $cod_exercicio = $cod_exercicio -> getCodigoExercicioPorModulo($modulo);
+
+        }
 
     }
 
@@ -51,6 +75,13 @@
 
         $cadastrar_questao = new GerenciarQuestao();
         $cadastrar_questao = $cadastrar_questao -> setQuestao($cod_exercicio, "", $enunciado_exercicio, $primeira_alternativa_exercicio, $segunda_alternativa_exercicio, $terceira_alternativa_exercicio, $quarta_alternativa_exercicio, $e_resposta_exercicio);
+        $passou_cadastro_questao = 1;
+
+    }
+
+    if($numero_exercicio >= 6) {
+
+        header("Location: create-content?cod-curso=$cod_curso&content-type=5&create-content=1");
 
     }
 

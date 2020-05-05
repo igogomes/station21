@@ -103,6 +103,32 @@
                                     <?php 
                                     
                                         }
+
+                                        else if($tipo_conteudo == 5 && $sucesso_criacao_conteudo == 1) {
+                                    
+                                    ?>
+
+                                        <div class="alert alert-success alert-dismissable fade show">
+                                            <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                                            A avaliação foi cadastrada com <strong>sucesso</strong>.
+                                        </div>
+
+                                    <?php 
+                                    
+                                        }
+
+                                        else if($tipo_conteudo == 5 && $modulo_erro_criacao_conteudo != "" && $erro_criacao_conteudo == 1) {
+                                    
+                                    ?>
+
+                                        <div class="alert alert-danger alert-dismissable fade show">
+                                            <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                                            Já existe exercício cadastrado para o <strong><?php echo $titulo_modulo; ?></strong> deste curso.
+                                        </div>
+
+                                    <?php 
+                                    
+                                        }
                                     
                                     ?>
 

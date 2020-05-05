@@ -21,6 +21,8 @@
     $cod_curso = (isset($_GET["cod-curso"])) ? $_GET["cod-curso"] : "";
     $tipo_conteudo = (isset($_GET["content-type"])) ? $_GET["content-type"] : "";
     $sucesso_criacao_conteudo = (isset($_GET["create-content"])) ? $_GET["create-content"] : "";
+    $erro_criacao_conteudo = (isset($_GET["erro-create-content"])) ? $_GET["erro-create-content"] : ""; 
+    $modulo_erro_criacao_conteudo = (isset($_GET["module"])) ? $_GET["module"] : "";
     $titulo_criacao_conteudo = "";
 
     $cod_curso_edicao = (isset($_POST["cod-edit-course"])) ? $_POST["cod-edit-course"] : "";
@@ -30,6 +32,13 @@
 
         $titulo_criacao_conteudo = new GerenciarCurso();
         $titulo_criacao_conteudo = $titulo_criacao_conteudo -> getTituloCursoPorCodigo($cod_curso);
+
+    }
+
+    if($modulo_erro_criacao_conteudo != "") {
+
+        $titulo_modulo = new GerenciarModulo();
+        $titulo_modulo = $titulo_modulo -> getTituloModuloPorCodigo($modulo_erro_criacao_conteudo);
 
     }
 

@@ -56,6 +56,37 @@
 
         }
 
+        //Método verificarExercicioExistente
+        //Verifica se existe exercício associado a um módulo
+        //@param $cod_modulo - código do módulo ao qual o exercício pertence
+        public function verificarExercicioExistente($cod_modulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $exercicios = 0;
+
+            $sql_verificar_exercicio = new SqlSelect();
+            $sql_verificar_exercicio -> adicionarColuna("cod_modulo");
+            $sql_verificar_exercicio -> setEntidade("Exercicio");
+
+            $criterio_verificar_exercicio = new Criterio();
+            $criterio_verificar_exercicio -> adicionar(new Filtro("cod_modulo", "=", "$cod_modulo"));
+
+            $sql_verificar_exercicio -> setCriterio($criterio_verificar_exercicio);
+
+            $localizar_exercicio = $conexao_sql_station21 -> query($sql_verificar_exercicio -> getInstrucao());
+
+            while($linhas_exercicio = $localizar_exercicio -> fetch(PDO::FETCH_ASSOC)) {
+
+                $exercicios++;
+
+            }
+
+            return $exercicios;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

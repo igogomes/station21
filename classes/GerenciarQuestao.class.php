@@ -30,6 +30,7 @@
             $sql_cadastrar_questao -> setValorLinha("segunda_alternativa", "$segunda_alternativa");
             $sql_cadastrar_questao -> setValorLinha("terceira_alternativa", "$terceira_alternativa");
             $sql_cadastrar_questao -> setValorLinha("quarta_alternativa", "$quarta_alternativa");
+            $sql_cadastrar_questao -> setValorLinha("resposta", "$resposta");
 
             $cadastrar_questao = $conexao_sql_station21 -> query($sql_cadastrar_questao -> getInstrucao());
 

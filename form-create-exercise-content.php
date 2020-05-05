@@ -63,6 +63,7 @@
                             </div> 
                             <input type="hidden" name="cod-course" value="<?php echo $cod_curso; ?>">
                             <input type="hidden" name="module" value="<?php echo $modulo; ?>">
+                            <input type="hidden" name="cod-exercise" value="<?php echo $cod_exercicio; ?>">
                             <input type="hidden" name="exercise-number" value="<?php echo $numero_exercicio = $numero_exercicio + 1; ?>">
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
@@ -75,7 +76,7 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-6 ml-sm-auto" style="text-align: right;">
-                                    <button class="btn btn-info" type="submit">Próximo</button>
+                                    <button class="btn btn-info" type="submit"><?php if($numero_exercicio < 6) { echo "Próximo"; } else { echo "Finalizar"; } ?></button>
                                 </div> 
                             </div>
                         </form>
