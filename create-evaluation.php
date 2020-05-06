@@ -7,7 +7,7 @@
     $cod_modulo = $_POST["modulo"];
     $cod_avaliacao = (isset($_POST["evaluation"])) ? $_POST["evaluation"] : "";
 
-    if ($cod_modulo == 0 || $cod_modulo == "") {
+    if (($cod_modulo == 0 || $cod_modulo == "") && $cod_avaliacao == 1) {
 
         header("Location: create-evaluation-content?cod-course=$cod_curso&erro-evaluation=1");
 
@@ -29,7 +29,7 @@
 
         else if($cod_avaliacao == 2) {
 
-            header("Location: create-test-content?cod-course=$cod_curso&module=$cod_modulo");
+            header("Location: create-test-content?cod-course=$cod_curso");
 
         }
 

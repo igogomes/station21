@@ -11,18 +11,17 @@
     $nome = utf8_encode($nome -> getNomeUsuario($email));
 
     $cod_curso = (isset($_GET["cod-course"])) ? $_GET["cod-course"] : "";
-    $modulo = (isset($_GET["module"])) ? $_GET["module"] : "";
-    $numero_exercicio = (isset($_POST["exercise-number"])) ? $_POST["exercise-number"] : 1;
-    $cod_exercicio = (isset($_POST["cod-exercise"])) ? $_POST["cod-exercise"] : "";
+    $numero_exercicio = (isset($_POST["test-number"])) ? $_POST["test-number"] : 1;
+    $cod_prova = (isset($_POST["cod-test"])) ? $_POST["cod-test"] : "";
 
-    if($numero_exercicio == 1 && $modulo != "") {
+    if($numero_exercicio == 1 && $cod_curso != "") {
 
-        $verificar_exercicio_existente = new GerenciarExercicio();
-        $verificar_exercicio_existente = $verificar_exercicio_existente -> verificarExercicioExistente($modulo);
+        $verificar_prova_existente = new GerenciarProva(); 
+        $verificar_prova_existente = $verificar_prova_existente -> verificarProvaExistente($cod_curso);
 
-        if($verificar_exercicio_existente > 0) {
+        if($verificar_prova_existente > 0) {
 
-            header("Location: create-content?cod-curso=$cod_curso&content-type=5&module=$modulo&erro-create-content=1");
+            header("Location: create-content?cod-curso=$cod_curso&content-type=5&erro-create-content=2");
 
         }
 
@@ -31,12 +30,6 @@
     if($cod_curso == "") {
 
         $cod_curso = (isset($_POST["cod-course"])) ? $_POST["cod-course"] : "";
-
-    }
-
-    if($modulo == "") {
-
-        $modulo = (isset($_POST["module"])) ? $_POST["module"] : "";
 
     }
 
@@ -50,18 +43,15 @@
     $titulo = new GerenciarCurso();
     $titulo = $titulo -> getTituloCursoPorCodigo($cod_curso); 
 
-    $titulo_modulo = new GerenciarModulo();
-    $titulo_modulo = $titulo_modulo -> getTituloModuloPorCodigo($modulo);
-
     if($enunciado_exercicio != "" && $primeira_alternativa_exercicio != "" && $segunda_alternativa_exercicio != "" && $terceira_alternativa_exercicio != "" && $quarta_alternativa_exercicio != "" && $e_resposta_exercicio != "" && $numero_exercicio == 2) {
 
-        $cadastrar_exercicio = new GerenciarExercicio();
-        $cadastrar_exercicio = $cadastrar_exercicio -> setExercicio($modulo);
+        $cadastrar_prova = new GerenciarProva();
+        $cadastrar_prova = $cadastrar_prova -> setProva($cod_curso);
 
-        if($cod_exercicio == "") {
+        if($cod_prova == "") { 
 
-            $cod_exercicio = new GerenciarExercicio();
-            $cod_exercicio = $cod_exercicio -> getCodigoExercicioPorModulo($modulo);
+            $cod_prova = new GerenciarProva();
+            $cod_prova = $cod_prova -> getCodigoProvaPorCurso($cod_curso);
 
         }
 
@@ -70,11 +60,11 @@
     if($enunciado_exercicio != "" && $primeira_alternativa_exercicio != "" && $segunda_alternativa_exercicio != "" && $terceira_alternativa_exercicio != "" && $quarta_alternativa_exercicio != "" && $e_resposta_exercicio != "") {
 
         $cadastrar_questao = new GerenciarQuestao();
-        $cadastrar_questao = $cadastrar_questao -> setQuestao($cod_exercicio, "", $enunciado_exercicio, $primeira_alternativa_exercicio, $segunda_alternativa_exercicio, $terceira_alternativa_exercicio, $quarta_alternativa_exercicio, $e_resposta_exercicio);
+        $cadastrar_questao = $cadastrar_questao -> setQuestao("", $cod_prova, $enunciado_exercicio, $primeira_alternativa_exercicio, $segunda_alternativa_exercicio, $terceira_alternativa_exercicio, $quarta_alternativa_exercicio, $e_resposta_exercicio);
 
     }
 
-    if($numero_exercicio >= 6) {
+    if($numero_exercicio >= 11) {
 
         header("Location: create-content?cod-curso=$cod_curso&content-type=5&create-content=1");
 
@@ -117,7 +107,7 @@
 
                 include_once "navbar-admin.php";
 
-                include_once "form-create-exercise-content.php";
+                include_once "form-create-test-content.php";
 
                 include_once "footer.php";
 
@@ -129,7 +119,7 @@
 
                 include_once "navbar-instrutor.php";
 
-                include_once "form-create-exercise-content.php"; 
+                include_once "form-create-test-content.php"; 
 
                 include_once "footer.php";
 

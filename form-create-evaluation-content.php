@@ -24,7 +24,7 @@
 
                     <div class="alert alert-danger alert-dismissable fade show">
                         <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        É necessário selecionar um módulo para cadastrar uma avaliação.
+                        É necessário selecionar um módulo para cadastrar um exercício.
                     </div>
 
                 <?php 

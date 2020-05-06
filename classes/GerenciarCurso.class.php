@@ -37,6 +37,16 @@
             while($linhas_cursos = $localizar_cursos -> fetch(PDO::FETCH_ASSOC)) {
 
                 $cod_curso = $linhas_cursos["cod_curso"];
+
+                $verificar_exercicios = new GerenciarExercicio();
+                $verificar_exercicios = $verificar_exercicios -> verificarExerciciosCursos($cod_curso);
+
+                if($verificar_exercicios < 4) {
+
+                    $atualizar_status = $this::atualizarStatusCurso($cod_curso, 2);
+
+                }
+
                 $titulo = utf8_encode($linhas_cursos["titulo"]);
                 $cod_instrutor = $linhas_cursos["cod_instrutor"];
 

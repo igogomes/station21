@@ -129,7 +129,20 @@
                                     <?php 
                                     
                                         }
+
+                                        else if($tipo_conteudo == 5 && $erro_criacao_conteudo == 2) {
                                     
+                                    ?>
+
+                                        <div class="alert alert-danger alert-dismissable fade show">
+                                            <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                                            Já existe prova cadastrada para este curso.
+                                        </div>
+
+                                    <?php 
+
+                                        }
+
                                     ?>
 
                                 </div>

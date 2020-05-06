@@ -1,7 +1,7 @@
 <?php
 
     //Classe GerenciarExercicio.class.php
-    //Classe para provimento dos métodos destinados ao gerenciamento de exercícios relacionadas 
+    //Classe para provimento dos métodos destinados ao gerenciamento de exercícios relacionados 
     //aos módulos dos cursos
 
     include_once "Autoload.inc";
@@ -76,6 +76,46 @@
             $localizar_exercicio = $conexao_sql_station21 -> query($sql_verificar_exercicio -> getInstrucao());
 
             while($linhas_exercicio = $localizar_exercicio -> fetch(PDO::FETCH_ASSOC)) {
+
+                $exercicios++;
+
+            }
+
+            return $exercicios;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método verificarExerciciosCursos
+        //Verifica se existe um exercício avaliativo para cada módulo associado ao curso
+        //@param $cod_curso - código do curso para o qual a verificação será realizada
+        public function verificarExerciciosCursos($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $exercicios = 0;
+
+            $sql_verificar_exercicios_cursos = new SqlSelect();
+            $sql_verificar_exercicios_cursos -> adicionarColuna("Curso.cod_curso, Modulo.cod_curso, Modulo.cod_modulo, Exercicio.cod_modulo");
+            $sql_verificar_exercicios_cursos -> setEntidade("Curso, Modulo, Exercicio"); 
+
+            $criterio_verificar_exercicios_cursos_1 = new Criterio();
+            $criterio_verificar_exercicios_cursos_1 -> adicionar(new Filtro("Curso.cod_curso", "=", "'{$cod_curso}'"));
+            $criterio_verificar_exercicios_cursos_2 = new Criterio();
+            $criterio_verificar_exercicios_cursos_2 -> adicionar(new Filtro("Curso.cod_curso", "=", "Modulo.cod_curso"));
+            $criterio_verificar_exercicios_cursos_3 = new Criterio();
+            $criterio_verificar_exercicios_cursos_3 -> adicionar(new Filtro("Modulo.cod_modulo", "=", "Exercicio.cod_modulo"));
+            $criterio_verificar_exercicios_cursos = new Criterio();
+            $criterio_verificar_exercicios_cursos -> adicionar($criterio_verificar_exercicios_cursos_1, Expressao::OPERADOR_AND);
+            $criterio_verificar_exercicios_cursos -> adicionar($criterio_verificar_exercicios_cursos_2, Expressao::OPERADOR_AND);
+            $criterio_verificar_exercicios_cursos -> adicionar($criterio_verificar_exercicios_cursos_3, Expressao::OPERADOR_AND);
+
+            $sql_verificar_exercicios_cursos -> setCriterio($criterio_verificar_exercicios_cursos);
+
+            $localizar_exercicios_cursos = $conexao_sql_station21 -> query($sql_verificar_exercicios_cursos -> getInstrucao());
+
+            while($linhas_exercicios_cursos = $localizar_exercicios_cursos -> fetch(PDO::FETCH_ASSOC)) {
 
                 $exercicios++;
 
