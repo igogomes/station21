@@ -69,6 +69,11 @@
                                         <td>" . $data_ultima_atualizacao . "</td> 
                                         <td>" . $status . "</td> 
                                         <td> 
+                                            <a href=\"overview-course?cod-course=$cod_curso\">
+                                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Visualizar\">
+                                                    <i class=\"fa fa-eye font-14\"></i>
+                                                </button>
+                                            </a>
                                             <a href=\"edit-course?cod-course=$cod_curso\">
                                                 <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
                                                     <i class=\"fa fa-pencil font-14\"></i>

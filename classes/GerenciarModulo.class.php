@@ -126,6 +126,43 @@
 
         }
 
+        //Método getCodigoModuloPorCodigoCurso
+        //Retorna o código do módulo através do código do curso ao qual o mesmo é associado
+        //@param $cod_curso - código do curso ao qual o módulo está associado
+        //@param $ordem_modulo - número ordinal para obtenção do código do módulo
+        public function getCodigoModuloPorCodigoCurso($cod_curso, $ordem_modulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $cod_modulo = "";
+            $contador = 0;
+
+            $sql_cod_modulo = new SqlSelect();
+            $sql_cod_modulo -> adicionarColuna("cod_modulo, cod_curso");
+            $sql_cod_modulo -> setEntidade("Modulo");
+
+            $criterio_cod_modulo = new Criterio();
+            $criterio_cod_modulo -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $sql_cod_modulo -> setCriterio($criterio_cod_modulo);
+
+            $localizar_cod_modulo = $conexao_sql_station21 -> query($sql_cod_modulo -> getInstrucao());
+
+            while($linhas_cod_modulo = $localizar_cod_modulo -> fetch(PDO::FETCH_ASSOC)) {
+
+                $contador++;
+
+                if($contador == $ordem_modulo) {
+
+                    $cod_modulo = $linhas_cod_modulo["cod_modulo"];
+
+                }
+
+            }
+
+            return $cod_modulo;
+
+        }
+
     }   
 
 ?>

@@ -39,6 +39,64 @@
 
         }
 
+        //Método gerarListaVideosAdminPorModulo
+        //Método para a geração de lista de vídeos associados a um módulo de um curso
+        //@param $cod_modulo - Código do módulo para o qual a lista será gerada
+        public function gerarListaVideosAdminPorModulo($cod_modulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $lista_videos = "<table style=\"width: 100%;\">";
+            $titulo_video = "";
+            $contador = 0;
+
+            $sql_lista_videos = new SqlSelect();
+            $sql_lista_videos -> adicionarColuna("cod_modulo, cod_tipo, arquivo, titulo");
+            $sql_lista_videos -> setEntidade("Conteudo");
+
+            $criterio_lista_videos = new Criterio();
+            $criterio_lista_videos -> adicionar(new Filtro("cod_modulo", "=", "'{$cod_modulo}'"));
+
+            $sql_lista_videos -> setCriterio($criterio_lista_videos);
+
+            $localizar_videos = $conexao_sql_station21 -> query($sql_lista_videos -> getInstrucao());
+
+            while($linhas_lista_videos = $localizar_videos -> fetch(PDO::FETCH_ASSOC)) {
+
+                $contador++;
+
+                $titulo_video = utf8_encode($linhas_lista_videos["titulo"]);
+
+                $lista_videos .= "<tr style=\"width: 100%;\">";
+                $lista_videos .= "<td style=\"width: 100%;\">
+                                    <div style=\"float: left; width: 50%;\">" . $contador . " - " . $titulo_video . "</div>
+                                    <div style=\"float: right; width: 50%;\">
+                                        <span style=\"text-align: right; float: right;\">
+                                        <a href=\"edit-module?cod-module=$cod_modulo\">
+                                            <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
+                                                <i class=\"fa fa-pencil font-14\"></i>
+                                            </button>
+                                        </a>
+                                        <a href=\"modules?cod-delete-module=$cod_modulo&delete-module=1\">
+                                            <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
+                                                <i class=\"fa fa-trash font-14\"></i>
+                                            </button> 
+                                        </a>
+                                        </span>
+                                    </div>
+                                </td>";
+                $lista_videos .= "</tr>";
+
+            }
+
+            $lista_videos .= "</table>";
+
+            return $lista_videos;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>
