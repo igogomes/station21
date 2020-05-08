@@ -60,7 +60,6 @@
     $lista_videos_modulo_curso_04 = new GerenciarConteudo();
     $lista_videos_modulo_curso_04 = $lista_videos_modulo_curso_04 -> gerarListaVideosAdminPorModulo($cod_modulo_curso_04);
 
-
 ?>
 
 <!DOCTYPE html>

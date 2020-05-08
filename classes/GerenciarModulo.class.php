@@ -29,6 +29,7 @@
 
         //Método gerarListaModulosPorCodigoCurso
         //Método para geração de lista de módulos cadastrados no sistema de acordo com código de curso
+        //@param $cod_curso - código do curso ao qual os módulos estão relacionados
         public function gerarListaModulosPorCodigoCurso($cod_curso) {
 
             $cod_curso_base = "";
@@ -62,6 +63,64 @@
                 if($cod_curso_base == $cod_curso) {
 
                     $lista_modulos .= "<option value=\"" . $cod_modulo . "\">" . utf8_encode($modulo) . "</option>";
+
+                }
+
+            }
+
+            return $lista_modulos;
+
+            $conexao_sql_station21 = NULL;
+
+        } 
+
+        //Método gerarListaModulosComSelecaoPorCodigoCurso
+        //Método para geração de lista de módulos cadastrados no sistema de acordo com código de curso
+        //@param $cod_curso - código do curso ao qual os módulos estão relacionados
+        //@param $cod_modulo - código do módulo para o qual a seleção na lista será realizada
+        public function gerarListaModulosComSelecaoPorCodigoCurso($cod_curso, $cod_modulo_selecao) {
+
+            $cod_curso_base = "";
+            $cod_modulo = "";
+            $modulo = "";
+            $lista_modulos = "";
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_lista_modulo = new SqlSelect();
+            $sql_lista_modulo -> adicionarColuna("*");
+            $sql_lista_modulo -> setEntidade("Modulo");
+
+            $criterio_lista_modulo_1 = new Criterio();
+            $criterio_lista_modulo_1 -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $criterio_lista_modulo = new Criterio();
+            $criterio_lista_modulo -> setPropriedade("ORDER", "cod_modulo ASC");
+            $criterio_lista_modulo -> adicionar($criterio_lista_modulo_1, Expressao::OPERADOR_AND);
+
+            $sql_lista_modulo -> setCriterio($criterio_lista_modulo);
+
+            $localizar_lista_modulo = $conexao_sql_station21 -> query($sql_lista_modulo -> getInstrucao());
+
+            while($linhas_lista_modulo = $localizar_lista_modulo -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_curso_base = $linhas_lista_modulo["cod_curso"];
+                $cod_modulo = $linhas_lista_modulo["cod_modulo"];
+                $modulo = $linhas_lista_modulo["modulo"];
+
+                if($cod_curso_base == $cod_curso) {
+
+                    if($cod_modulo_selecao == $cod_modulo) {
+
+                        $lista_modulos .= "<option value=\"" . $cod_modulo . "\" selected>" . utf8_encode($modulo) . "</option>";
+
+                    }
+
+                    else {
+
+                        $lista_modulos .= "<option value=\"" . $cod_modulo . "\">" . utf8_encode($modulo) . "</option>";
+
+                    }
 
                 }
 
@@ -160,6 +219,35 @@
             }
 
             return $cod_modulo;
+
+        }
+
+        //Método getCodigoCursoPorCodigoModulo
+        //Retorna o código do curso através do código do módulo que é associado ao mesmo
+        //@param $cod_modulo - código do módulo associado ao curso
+        public function getCodigoCursoPorCodigoModulo($cod_modulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $cod_curso = "";
+
+            $sql_cod_curso = new SqlSelect();
+            $sql_cod_curso -> adicionarColuna("cod_modulo, cod_curso");
+            $sql_cod_curso -> setEntidade("Modulo");
+
+            $criterio_cod_curso = new Criterio();
+            $criterio_cod_curso -> adicionar(new Filtro("cod_modulo", "=", "'{$cod_modulo}'"));
+
+            $sql_cod_curso -> setCriterio($criterio_cod_curso);
+
+            $localizar_cod_curso = $conexao_sql_station21 -> query($sql_cod_curso -> getInstrucao());
+
+            while($linhas_cod_curso = $localizar_cod_curso -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_curso = $linhas_cod_curso["cod_curso"];
+
+            }
+
+            return $cod_curso;
 
         }
 
