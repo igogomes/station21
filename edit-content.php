@@ -37,20 +37,14 @@
     $link_conteudo = new GerenciarConteudo();
     $link_conteudo = $link_conteudo -> getLinkPorCodigoConteudo($cod_conteudo);
 
+    $texto_conteudo = new GerenciarConteudo();
+    $texto_conteudo = $texto_conteudo -> getTextoPorCodigoConteudo($cod_conteudo);
+
     $erro_editar_video = (isset($_GET["erro-video"])) ? $_GET["erro-video"] : "";
     $erro_editar_link = (isset($_GET["erro-link"])) ? $_GET["erro-link"] : "";
 
-    if($cod_tipo == 1) {
-    
-        $tipo_conteudo = "Vídeo";
-
-    }
-
-    if($cod_tipo == 4) {
-    
-        $tipo_conteudo = "Link";
-
-    }
+    $tipo_conteudo = new GerenciarTipoConteudo();
+    $tipo_conteudo = $tipo_conteudo -> getTituloTipoConteudoPorCodigo($cod_tipo);
 
 ?>
 
@@ -94,6 +88,12 @@
 
                 }
 
+                if($cod_tipo == 2) {
+
+                    include_once "form-edit-text-content.php";
+
+                }
+
                 if($cod_tipo == 4) {
 
                     include_once "form-edit-link-content.php";
@@ -113,6 +113,12 @@
                 if($cod_tipo == 1) {
 
                     include_once "form-edit-video-content.php";
+
+                }
+
+                if($cod_tipo == 2) {
+
+                    include_once "form-edit-text-content.php";
 
                 }
 
@@ -152,11 +158,23 @@
     <script src="./assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="./assets/vendors/metisMenu/dist/metisMenu.min.js" type="text/javascript"></script>
     <script src="./assets/vendors/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <link href="./assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="./assets/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
+    <link href="./assets/vendors/summernote/dist/summernote.css" rel="stylesheet" />
     <!-- PAGE LEVEL PLUGINS-->
+    <script src="./assets/vendors/summernote/dist/summernote.min.js" type="text/javascript"></script>
     <!-- CORE SCRIPTS-->
     <script src="assets/js/app.min.js" type="text/javascript"></script>
     <script src="assets/js/bootstrap-tagsinput.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
+    <script type="text/javascript">
+        $(function() {
+            $('#summernote').summernote();
+            $('#summernote_air').summernote({
+                airMode: true
+            });
+        });
+    </script>
 </body>
 
 </html>

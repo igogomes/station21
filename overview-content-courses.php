@@ -77,6 +77,12 @@
                                             <?php if($lista_videos_modulo_curso_01 == "<table style=\"width: 100%;\"></table>") { echo "Não existem vídeos cadastrados para este módulo."; } else { echo $lista_videos_modulo_curso_01; }; ?>
                                             <br>
                                             <br>
+                                            <strong>Textos</strong>
+                                            <br>
+                                            <br>
+                                            <?php if($lista_textos_modulo_curso_01 == "<table style=\"width: 100%;\"></table>") { echo "Não existem textos cadastrados para este módulo."; } else { echo $lista_textos_modulo_curso_01; }; ?>
+                                            <br>
+                                            <br>
                                             <strong>Links</strong>
                                             <br>
                                             <br>
@@ -100,6 +106,12 @@
                                             <br>
                                             <br>
                                             <?php if($lista_videos_modulo_curso_02 == "<table style=\"width: 100%;\"></table>") { echo "Não existem vídeos cadastrados para este módulo."; } else { echo $lista_videos_modulo_curso_02; }; ?>
+                                            <br>
+                                            <br>
+                                            <strong>Textos</strong>
+                                            <br>
+                                            <br>
+                                            <?php if($lista_textos_modulo_curso_02 == "<table style=\"width: 100%;\"></table>") { echo "Não existem textos cadastrados para este módulo."; } else { echo $lista_textos_modulo_curso_02; }; ?>
                                             <br>
                                             <br>
                                             <strong>Links</strong>
@@ -127,6 +139,12 @@
                                             <?php if($lista_videos_modulo_curso_03 == "<table style=\"width: 100%;\"></table>") { echo "Não existem vídeos cadastrados para este módulo."; } else { echo $lista_videos_modulo_curso_03; }; ?>
                                             <br>
                                             <br>
+                                            <strong>Textos</strong>
+                                            <br>
+                                            <br>
+                                            <?php if($lista_textos_modulo_curso_03 == "<table style=\"width: 100%;\"></table>") { echo "Não existem textos cadastrados para este módulo."; } else { echo $lista_textos_modulo_curso_03; }; ?>
+                                            <br>
+                                            <br>
                                             <strong>Links</strong>
                                             <br>
                                             <br>
@@ -150,6 +168,12 @@
                                             <br>
                                             <br>
                                             <?php if($lista_videos_modulo_curso_04 == "<table style=\"width: 100%;\"></table>") { echo "Não existem vídeos cadastrados para este módulo."; } else { echo $lista_videos_modulo_curso_04; }; ?>
+                                            <br>
+                                            <br>
+                                            <strong>Textos</strong>
+                                            <br>
+                                            <br>
+                                            <?php if($lista_textos_modulo_curso_04 == "<table style=\"width: 100%;\"></table>") { echo "Não existem textos cadastrados para este módulo."; } else { echo $lista_textos_modulo_curso_04; }; ?>
                                             <br>
                                             <br>
                                             <strong>Links</strong>

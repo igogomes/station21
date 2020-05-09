@@ -65,13 +65,13 @@
 
             while($linhas_lista_videos = $localizar_videos -> fetch(PDO::FETCH_ASSOC)) {
 
-                $contador++;
-
                 $cod_conteudo = $linhas_lista_videos["cod_conteudo"];
                 $cod_tipo = $linhas_lista_videos["cod_tipo"]; 
                 $titulo_video = utf8_encode($linhas_lista_videos["titulo"]);
 
                 if($cod_tipo == 1) {
+
+                    $contador++;
 
                     $lista_videos .= "<tr style=\"width: 100%;\">";
                     $lista_videos .= "<td style=\"width: 100%;\">
@@ -105,6 +105,72 @@
 
         }
 
+        //Método gerarListaTextosAdminPorModulo
+        //Método para a geração de lista de textos associados a um módulo de um curso
+        //@param $cod_modulo - Código do módulo para o qual a lista será gerada
+        public function gerarListaTextosAdminPorModulo($cod_modulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $cod_conteudo = "";
+            $cod_tipo = "";
+            $lista_textos = "<table style=\"width: 100%;\">";
+            $titulo_texto = "";
+            $contador = 0;
+
+            $sql_lista_textos = new SqlSelect();
+            $sql_lista_textos -> adicionarColuna("cod_conteudo, cod_modulo, cod_tipo, texto, titulo");
+            $sql_lista_textos -> setEntidade("Conteudo");
+
+            $criterio_lista_textos = new Criterio();
+            $criterio_lista_textos -> adicionar(new Filtro("cod_modulo", "=", "'{$cod_modulo}'"));
+
+            $sql_lista_textos -> setCriterio($criterio_lista_textos);
+
+            $localizar_textos = $conexao_sql_station21 -> query($sql_lista_textos -> getInstrucao());
+
+            while($linhas_lista_textos = $localizar_textos -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_conteudo = $linhas_lista_textos["cod_conteudo"];
+                $cod_tipo = $linhas_lista_textos["cod_tipo"]; 
+                $titulo_texto = utf8_encode($linhas_lista_textos["titulo"]);
+
+                if($cod_tipo == 2) {
+
+                    $contador++;
+
+                    $lista_textos .= "<tr style=\"width: 100%;\">";
+                    $lista_textos .= "<td style=\"width: 100%;\">
+                                        <div style=\"float: left; width: 50%;\">" . $contador . " - " . $titulo_texto . "</div>
+                                        <div style=\"float: right; width: 50%;\">
+                                            <span style=\"text-align: right; float: right;\">
+                                            <a href=\"edit-content?cod-content=$cod_conteudo\">
+                                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
+                                                    <i class=\"fa fa-pencil font-14\"></i>
+                                                </button>
+                                            </a>
+                                            <a href=\"contents?cod-delete-content=$cod_conteudo&delete-content=1\">
+                                                <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
+                                                    <i class=\"fa fa-trash font-14\"></i>
+                                                </button> 
+                                            </a>
+                                            </span>
+                                        </div>
+                                    </td>";
+                    $lista_textos .= "</tr>";
+
+                }
+
+            }
+
+            $lista_textos .= "</table>";
+
+            return $lista_textos;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
         //Método gerarListaLinksAdminPorModulo
         //Método para a geração de lista de links associados a um módulo de um curso
         //@param $cod_modulo - Código do módulo para o qual a lista será gerada
@@ -131,13 +197,13 @@
 
             while($linhas_lista_links = $localizar_links -> fetch(PDO::FETCH_ASSOC)) {
 
-                $contador++;
-
                 $cod_conteudo = $linhas_lista_links["cod_conteudo"];
                 $cod_tipo = $linhas_lista_links["cod_tipo"]; 
                 $titulo_link = utf8_encode($linhas_lista_links["titulo"]);
 
                 if($cod_tipo == 4) {
+
+                    $contador++;
 
                     $lista_links .= "<tr style=\"width: 100%;\">";
                     $lista_links .= "<td style=\"width: 100%;\">
@@ -326,6 +392,38 @@
             }
 
             return $link;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getTextoPorCodigoConteudo
+        //Retorna o texto do conteúdo através do código do mesmo
+        //@param $cod_conteudo - código do conteúdo do qual o texto será recuperado
+        public function getTextoPorCodigoConteudo($cod_conteudo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            
+            $texto = "";
+
+            $sql_texto_conteudo = new SqlSelect();
+            $sql_texto_conteudo -> adicionarColuna("cod_conteudo, texto");
+            $sql_texto_conteudo -> setEntidade("Conteudo");
+
+            $criterio_texto_conteudo = new Criterio();
+            $criterio_texto_conteudo -> adicionar(new Filtro("cod_conteudo", "=", "'{$cod_conteudo}'"));
+
+            $sql_texto_conteudo -> setCriterio($criterio_texto_conteudo);
+
+            $localizar_texto_conteudo = $conexao_sql_station21 -> query($sql_texto_conteudo -> getInstrucao());
+
+            while($linhas_texto_conteudo = $localizar_texto_conteudo -> fetch(PDO::FETCH_ASSOC)) {
+
+                $texto = $linhas_texto_conteudo["texto"];
+
+            }
+
+            return $texto;
 
             $conexao_sql_station21 = NULL;
 
