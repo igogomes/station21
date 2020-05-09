@@ -251,6 +251,35 @@
 
         }
 
+        //Método verificarModulosPorCodigoCurso
+        //Verifica a existência de módulos para um curso através do código do mesmo
+        //@param $cod_curso - código do curso para o qual a verificação será realizada
+        public function verificarModulosPorCodigoCurso($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $quantidade = 0;
+
+            $sql_verificar_modulos = new SqlSelect();
+            $sql_verificar_modulos -> adicionarColuna("cod_curso");
+            $sql_verificar_modulos -> setEntidade("Modulo");
+
+            $criterio_verificar_modulos = new Criterio();
+            $criterio_verificar_modulos -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $sql_verificar_modulos -> setCriterio($criterio_verificar_modulos);
+
+            $localizar_modulos = $conexao_sql_station21 -> query($sql_verificar_modulos -> getInstrucao());
+
+            while($linhas_verificar_modulos = $localizar_modulos -> fetch(PDO::FETCH_ASSOC)) {
+
+                $quantidade++;
+
+            }
+
+            return $quantidade;
+
+        }
+
     }   
 
 ?>

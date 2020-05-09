@@ -42,7 +42,7 @@
 
     }
 
-    if($titulo != "" && $edicao_curso == "") {
+    if($titulo != "" && $edicao_curso == "") { 
 
         $verificar_curso_existente = new GerenciarCurso();
         $verificar_curso_existente = $verificar_curso_existente -> verificarCursoExistente($titulo);
@@ -74,13 +74,32 @@
             $cod_curso = new GerenciarCurso();
             $cod_curso = $cod_curso -> getCodigoCursoPorTitulo($titulo);
 
-            header("Location: courses?erro-cadastro-curso=1&erro-cadastro-cod-curso=$cod_curso"); 
+            header("Location: courses?erro-cadastro-cod-curso=$cod_curso&erro-cadastro-curso=1"); 
 
         }
 
     }
 
     if($edicao_curso == 1) {
+
+        $verificar_modulos = new GerenciarModulo();
+        $verificar_modulos = $verificar_modulos -> verificarModulosPorCodigoCurso($cod_curso_edicao);
+
+        if($verificar_modulos == 0) {
+
+            $cadastrar_modulo_01 = new GerenciarModulo();
+            $cadastrar_modulo_01 = $cadastrar_modulo_01 -> setModulo($cod_curso_edicao, "Módulo 01");
+
+            $cadastrar_modulo_02 = new GerenciarModulo();
+            $cadastrar_modulo_02 = $cadastrar_modulo_02 -> setModulo($cod_curso_edicao, "Módulo 02");
+
+            $cadastrar_modulo_03 = new GerenciarModulo();
+            $cadastrar_modulo_03 = $cadastrar_modulo_03 -> setModulo($cod_curso_edicao, "Módulo 03");
+
+            $cadastrar_modulo_04 = new GerenciarModulo();
+            $cadastrar_modulo_04 = $cadastrar_modulo_04 -> setModulo($cod_curso_edicao, "Módulo 04");
+
+        }
 
         $atualizar_dados_curso = new GerenciarCurso();
         $atualizar_dados_curso = $atualizar_dados_curso -> atualizarDadosUsuario($cod_curso_edicao, $titulo, $instrutor, $status, $categoria, $palavras_chave, $apresentacao_edicao_curso);
