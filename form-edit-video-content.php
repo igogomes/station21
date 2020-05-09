@@ -50,13 +50,39 @@
 
                     <div class="alert alert-danger alert-dismissable fade show">
                         <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        É necessário selecionar um arquivo ou disponibilizar um endereço URL completo (exemplo: https://www.link.com.br).
+                    </div>
+
+                <?php 
+                
+                    } 
+
+                    if($erro_editar_video == 4) {
+                
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
                         Para cadastrar um link é necessário disponibilizar o endereço URL completo. Exemplo: https://www.link.com.br.
                     </div>
 
                 <?php 
                 
                     }
+
+                    if($tipo_conteudo_edicao == 1 && $edicao_conteudo == 1) {
                 
+                ?>
+
+                    <div class="alert alert-success alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        O vídeo foi cadastrado com <strong>sucesso</strong>.
+                    </div>                    
+
+                <?php
+
+                    }
+
                 ?>
 
             </div>
@@ -81,19 +107,15 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Módulo</label>
                                 <div class="col-sm-10">
-                                    <select name="modulo" class="form-control" size="1" required>
-                                        <option value="0" selected>Selecione um módulo</option>
+                                    <?php 
 
-                                        <?php 
-                                        
-                                            $lista_modulos = new GerenciarModulo();
-                                            $lista_modulos = $lista_modulos -> gerarListaModulosComSelecaoPorCodigoCurso($cod_curso, $cod_modulo); 
+                                        $titulo_modulo = new GerenciarModulo();
+                                        $titulo_modulo = $titulo_modulo -> getTituloModuloPorCodigo($cod_modulo);
 
-                                            echo $lista_modulos; 
-                                        
-                                        ?>
+                                        echo $titulo_modulo;
 
-                                    </select>
+                                    ?>
+                                    <input type="hidden" name="modulo" value="<?php echo $cod_modulo; ?>">
                                 </div>
                             </div>
                             <div class="form-group row">

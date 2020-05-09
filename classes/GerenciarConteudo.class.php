@@ -47,6 +47,7 @@
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
 
             $cod_conteudo = "";
+            $cod_tipo = "";
             $lista_videos = "<table style=\"width: 100%;\">";
             $titulo_video = "";
             $contador = 0;
@@ -67,27 +68,32 @@
                 $contador++;
 
                 $cod_conteudo = $linhas_lista_videos["cod_conteudo"];
+                $cod_tipo = $linhas_lista_videos["cod_tipo"]; 
                 $titulo_video = utf8_encode($linhas_lista_videos["titulo"]);
 
-                $lista_videos .= "<tr style=\"width: 100%;\">";
-                $lista_videos .= "<td style=\"width: 100%;\">
-                                    <div style=\"float: left; width: 50%;\">" . $contador . " - " . $titulo_video . "</div>
-                                    <div style=\"float: right; width: 50%;\">
-                                        <span style=\"text-align: right; float: right;\">
-                                        <a href=\"edit-content?cod-content=$cod_conteudo\">
-                                            <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
-                                                <i class=\"fa fa-pencil font-14\"></i>
-                                            </button>
-                                        </a>
-                                        <a href=\"contents?cod-delete-content=$cod_conteudo&delete-content=1\">
-                                            <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
-                                                <i class=\"fa fa-trash font-14\"></i>
-                                            </button> 
-                                        </a>
-                                        </span>
-                                    </div>
-                                </td>";
-                $lista_videos .= "</tr>";
+                if($cod_tipo == 1) {
+
+                    $lista_videos .= "<tr style=\"width: 100%;\">";
+                    $lista_videos .= "<td style=\"width: 100%;\">
+                                        <div style=\"float: left; width: 50%;\">" . $contador . " - " . $titulo_video . "</div>
+                                        <div style=\"float: right; width: 50%;\">
+                                            <span style=\"text-align: right; float: right;\">
+                                            <a href=\"edit-content?cod-content=$cod_conteudo\">
+                                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
+                                                    <i class=\"fa fa-pencil font-14\"></i>
+                                                </button>
+                                            </a>
+                                            <a href=\"contents?cod-delete-content=$cod_conteudo&delete-content=1\">
+                                                <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
+                                                    <i class=\"fa fa-trash font-14\"></i>
+                                                </button> 
+                                            </a>
+                                            </span>
+                                        </div>
+                                    </td>";
+                    $lista_videos .= "</tr>";
+
+                }
 
             }
 
@@ -222,6 +228,40 @@
             }
 
             return $arquivo;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método atualizarDadosConteudo()
+        //Método para atualização dos dados de conteúdos na base de dados
+        //@param $cod_conteudo - código do conteúdo para o qual os dados serão alterados
+        //@param $cod_modulo - código do módulo do conteúdo para alteração
+        //@param $arquivo - arquivo do conteúdo para alteração
+        //@param $link - link do conteúdo para alteração
+        //@param $texto - texto do conteúdo para altearção
+        //@param $titulo - título do conteúdo para alteração
+        public function atualizarDadosConteudo($cod_conteudo, $cod_modulo, $arquivo, $link, $texto, $titulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $texto = utf8_decode($texto);
+            $titulo = utf8_decode($titulo);
+
+            $sql_atualizar_dados_conteudo = new SqlUpdate();
+            $sql_atualizar_dados_conteudo -> setEntidade("Conteudo");
+            $sql_atualizar_dados_conteudo -> setValorLinha("cod_modulo", "{$cod_modulo}");
+            $sql_atualizar_dados_conteudo -> setValorLinha("arquivo", "{$arquivo}");
+            $sql_atualizar_dados_conteudo -> setValorLinha("link", "{$link}");
+            $sql_atualizar_dados_conteudo -> setValorLinha("texto", "{$texto}");
+            $sql_atualizar_dados_conteudo -> setValorLinha("titulo", "{$titulo}");
+
+            $criterio_atualizar_dados_conteudo = new Criterio();
+            $criterio_atualizar_dados_conteudo -> adicionar(new Filtro("cod_conteudo", "=", "'{$cod_conteudo}'"));
+
+            $sql_atualizar_dados_conteudo -> setCriterio($criterio_atualizar_dados_conteudo);
+
+            $atualizar_dados_conteudo = $conexao_sql_station21 -> query($sql_atualizar_dados_conteudo -> getInstrucao());
 
             $conexao_sql_station21 = NULL;
 

@@ -17,7 +17,7 @@
     $titulo_arquivo = "";
     $verificar_arquivo = $_FILES["send-file-upload"]["size"];
 
-    $cod_curso = new GerenciarModulo()
+    $cod_curso = new GerenciarModulo();
     $cod_curso = $cod_curso -> getCodigoCursoPorCodigoModulo($cod_modulo);
 
     if(($verificar_arquivo != 0) && ($video_link != "")) {
@@ -29,6 +29,12 @@
     else if($cod_modulo == 0 || $cod_modulo == "") {
 
         header("Location: edit-content?cod-content=$cod_conteudo&erro-video=2");
+
+    }
+
+    else if($verificar_arquivo == 0 && $video_link == "") {
+
+        header("Location: edit-content?cod-content=$cod_conteudo&erro-video=3");
 
     }
 
@@ -53,11 +59,11 @@
         move_uploaded_file($_FILES['send-file-upload']['tmp_name'], $diretorio_arquivo_upload . $nome_arquivo_upload);
         
         $diretorio_completo_arquivo_upload = $diretorio_arquivo_upload . $nome_arquivo_upload;
+        
+        $atualizar_video = new GerenciarConteudo();
+        $atualizar_video = $atualizar_video -> atualizarDadosConteudo($cod_conteudo, $cod_modulo, $diretorio_completo_arquivo_upload, "", "", $titulo_video);
 
-        $cadastrar_video = new GerenciarConteudo();
-        $cadastrar_video = $cadastrar_video -> setConteudo($cod_modulo, $cod_tipo, $diretorio_completo_arquivo_upload, '', '', $titulo_video);
-
-        header("Location: create-content?cod-curso=$cod_curso&content-type=1&create-content=1");
+        header("Location: edit-content?cod-content=$cod_conteudo&content-type=1&edit-content=1");
 
     }
 
@@ -65,16 +71,16 @@
 
         if(strstr($video_link, "http") && strstr($video_link, ":")) {
 
-            $cadastrar_link_video = new GerenciarConteudo();
-            $cadastrar_link_video = $cadastrar_link_video -> setConteudo($cod_modulo, $cod_tipo, $video_link, '', '', $titulo_video);
+            $atualizar_video = new GerenciarConteudo();
+            $atualizar_video = $atualizar_video -> atualizarDadosConteudo($cod_conteudo, $cod_modulo, $video_link, "", "", $titulo_video);
 
-            header("Location: create-content?cod-curso=$cod_curso&content-type=1&create-content=1");
+            header("Location: edit-content?cod-content=$cod_conteudo&content-type=1&edit-content=1");
 
         }
 
         else {
 
-            header("Location: create-video-content?cod-course=$cod_curso&erro-video=3");
+            header("Location: edit-content?cod-content=$cod_conteudo&erro-video=4");
 
         }
 

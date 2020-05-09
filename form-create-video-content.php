@@ -50,8 +50,21 @@
 
                     <div class="alert alert-danger alert-dismissable fade show">
                         <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        Para cadastrar um link é necessário disponibilizar o endereço URL completo. Exemplo: https://www.link.com.br.
+                        É necessário selecionar um arquivo ou disponibilizar um endereço URL completo (exemplo: https://www.link.com.br).
                     </div>
+
+                <?php 
+                
+                    }
+
+                    if($erro_cadastro_video == 4) {
+                
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        Para cadastrar um link é necessário disponibilizar o endereço URL completo. Exemplo: https://www.link.com.br.
+                    </div>        
 
                 <?php 
                 

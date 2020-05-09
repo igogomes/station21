@@ -29,6 +29,12 @@
 
     }
 
+    else if($verificar_arquivo == 0 && $video_link == "") {
+
+        header("Location: create-video-content?cod-course=$cod_curso&erro-video=3");
+
+    }
+
     else if(($verificar_arquivo != 0) && ($video_link == "")) {
 
         $titulo_arquivo = strtolower( preg_replace("/[^a-zA-Z0-9-]/", "-", strtr(utf8_decode(trim($titulo_video)), utf8_decode("áàãâéêíóôõúüñçÁÀÃÂÉÊÍÓÔÕÚÜÑÇ"),"aaaaeeiooouuncAAAAEEIOOOUUNC-")) );
@@ -71,7 +77,7 @@
 
         else {
 
-            header("Location: create-video-content?cod-course=$cod_curso&erro-video=3");
+            header("Location: create-video-content?cod-course=$cod_curso&erro-video=4");
 
         }
 

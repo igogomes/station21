@@ -13,6 +13,8 @@
     $tipo_conteudo = "";
 
     $cod_conteudo = (isset($_GET["cod-content"])) ? $_GET["cod-content"] : "";
+    $tipo_conteudo_edicao = (isset($_GET["content-type"])) ? $_GET["content-type"] : "";
+    $edicao_conteudo = (isset($_GET["content-type"])) ? $_GET["edit-content"] : "";
 
     $cod_modulo = new GerenciarConteudo();
     $cod_modulo = $cod_modulo -> getCodigoModuloPorCodigoConteudo($cod_conteudo);
