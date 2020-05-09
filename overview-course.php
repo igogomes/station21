@@ -42,11 +42,17 @@
     $lista_videos_modulo_curso_01 = new GerenciarConteudo();
     $lista_videos_modulo_curso_01 = $lista_videos_modulo_curso_01 -> gerarListaVideosAdminPorModulo($cod_modulo_curso_01);
 
+    $lista_links_modulo_curso_01 = new GerenciarConteudo();
+    $lista_links_modulo_curso_01 = $lista_links_modulo_curso_01 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_01);
+
     $cod_modulo_curso_02 = new GerenciarModulo();
     $cod_modulo_curso_02 = $cod_modulo_curso_02 -> getCodigoModuloPorCodigoCurso($cod_curso, 2);
 
     $lista_videos_modulo_curso_02 = new GerenciarConteudo();
     $lista_videos_modulo_curso_02 = $lista_videos_modulo_curso_02 -> gerarListaVideosAdminPorModulo($cod_modulo_curso_02);
+
+    $lista_links_modulo_curso_02 = new GerenciarConteudo();
+    $lista_links_modulo_curso_02 = $lista_links_modulo_curso_02 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_02);
 
     $cod_modulo_curso_03 = new GerenciarModulo();
     $cod_modulo_curso_03 = $cod_modulo_curso_03 -> getCodigoModuloPorCodigoCurso($cod_curso, 3);
@@ -54,11 +60,17 @@
     $lista_videos_modulo_curso_03 = new GerenciarConteudo();
     $lista_videos_modulo_curso_03 = $lista_videos_modulo_curso_03 -> gerarListaVideosAdminPorModulo($cod_modulo_curso_03);
 
+    $lista_links_modulo_curso_03 = new GerenciarConteudo();
+    $lista_links_modulo_curso_03 = $lista_links_modulo_curso_03 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_03);
+
     $cod_modulo_curso_04 = new GerenciarModulo();
     $cod_modulo_curso_04 = $cod_modulo_curso_04 -> getCodigoModuloPorCodigoCurso($cod_curso, 4);
 
     $lista_videos_modulo_curso_04 = new GerenciarConteudo();
     $lista_videos_modulo_curso_04 = $lista_videos_modulo_curso_04 -> gerarListaVideosAdminPorModulo($cod_modulo_curso_04);
+
+    $lista_links_modulo_curso_04 = new GerenciarConteudo();
+    $lista_links_modulo_curso_04 = $lista_links_modulo_curso_04 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_04);
 
 ?>
 

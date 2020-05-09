@@ -34,11 +34,21 @@
     $arquivo_conteudo = new GerenciarConteudo();
     $arquivo_conteudo = $arquivo_conteudo -> getArquivoPorCodigoConteudo($cod_conteudo);
 
+    $link_conteudo = new GerenciarConteudo();
+    $link_conteudo = $link_conteudo -> getLinkPorCodigoConteudo($cod_conteudo);
+
     $erro_editar_video = (isset($_GET["erro-video"])) ? $_GET["erro-video"] : "";
+    $erro_editar_link = (isset($_GET["erro-link"])) ? $_GET["erro-link"] : "";
 
     if($cod_tipo == 1) {
     
         $tipo_conteudo = "Vídeo";
+
+    }
+
+    if($cod_tipo == 4) {
+    
+        $tipo_conteudo = "Link";
 
     }
 
@@ -84,6 +94,12 @@
 
                 }
 
+                if($cod_tipo == 4) {
+
+                    include_once "form-edit-link-content.php";
+
+                }
+
                 include_once "footer.php";
 
             }
@@ -97,6 +113,12 @@
                 if($cod_tipo == 1) {
 
                     include_once "form-edit-video-content.php";
+
+                }
+
+                if($cod_tipo == 4) {
+
+                    include_once "form-edit-link-content.php";
 
                 }
 

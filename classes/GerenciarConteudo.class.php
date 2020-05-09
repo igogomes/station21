@@ -105,6 +105,72 @@
 
         }
 
+        //Método gerarListaLinksAdminPorModulo
+        //Método para a geração de lista de links associados a um módulo de um curso
+        //@param $cod_modulo - Código do módulo para o qual a lista será gerada
+        public function gerarListaLinksAdminPorModulo($cod_modulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $cod_conteudo = "";
+            $cod_tipo = "";
+            $lista_links = "<table style=\"width: 100%;\">";
+            $titulo_link = "";
+            $contador = 0;
+
+            $sql_lista_links = new SqlSelect();
+            $sql_lista_links -> adicionarColuna("cod_conteudo, cod_modulo, cod_tipo, link, titulo");
+            $sql_lista_links -> setEntidade("Conteudo");
+
+            $criterio_lista_links = new Criterio();
+            $criterio_lista_links -> adicionar(new Filtro("cod_modulo", "=", "'{$cod_modulo}'"));
+
+            $sql_lista_links -> setCriterio($criterio_lista_links);
+
+            $localizar_links = $conexao_sql_station21 -> query($sql_lista_links -> getInstrucao());
+
+            while($linhas_lista_links = $localizar_links -> fetch(PDO::FETCH_ASSOC)) {
+
+                $contador++;
+
+                $cod_conteudo = $linhas_lista_links["cod_conteudo"];
+                $cod_tipo = $linhas_lista_links["cod_tipo"]; 
+                $titulo_link = utf8_encode($linhas_lista_links["titulo"]);
+
+                if($cod_tipo == 4) {
+
+                    $lista_links .= "<tr style=\"width: 100%;\">";
+                    $lista_links .= "<td style=\"width: 100%;\">
+                                        <div style=\"float: left; width: 50%;\">" . $contador . " - " . $titulo_link . "</div>
+                                        <div style=\"float: right; width: 50%;\">
+                                            <span style=\"text-align: right; float: right;\">
+                                            <a href=\"edit-content?cod-content=$cod_conteudo\">
+                                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
+                                                    <i class=\"fa fa-pencil font-14\"></i>
+                                                </button>
+                                            </a>
+                                            <a href=\"contents?cod-delete-content=$cod_conteudo&delete-content=1\">
+                                                <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
+                                                    <i class=\"fa fa-trash font-14\"></i>
+                                                </button> 
+                                            </a>
+                                            </span>
+                                        </div>
+                                    </td>";
+                    $lista_links .= "</tr>";
+
+                }
+
+            }
+
+            $lista_links .= "</table>";
+
+            return $lista_links;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
         //Método getCodigoModuloPorCodigoConteudo
         //Retorna o código do módulo através do código do conteúdo
         //@param $cod_conteudo - código do conteúdo do qual o código do módulo será recuperado
@@ -228,6 +294,38 @@
             }
 
             return $arquivo;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getLinkPorCodigoConteudo
+        //Retorna o link do conteúdo através do código do mesmo
+        //@param $cod_conteudo - código do conteúdo do qual o link será recuperado
+        public function getLinkPorCodigoConteudo($cod_conteudo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            
+            $link = "";
+
+            $sql_link_conteudo = new SqlSelect();
+            $sql_link_conteudo -> adicionarColuna("cod_conteudo, link");
+            $sql_link_conteudo -> setEntidade("Conteudo");
+
+            $criterio_link_conteudo = new Criterio();
+            $criterio_link_conteudo -> adicionar(new Filtro("cod_conteudo", "=", "'{$cod_conteudo}'"));
+
+            $sql_link_conteudo -> setCriterio($criterio_link_conteudo);
+
+            $localizar_link_conteudo = $conexao_sql_station21 -> query($sql_link_conteudo -> getInstrucao());
+
+            while($linhas_link_conteudo = $localizar_link_conteudo -> fetch(PDO::FETCH_ASSOC)) {
+
+                $link = $linhas_link_conteudo["link"];
+
+            }
+
+            return $link;
 
             $conexao_sql_station21 = NULL;
 

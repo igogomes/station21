@@ -75,6 +75,13 @@
                                             <br>
                                             <br>
                                             <?php if($lista_videos_modulo_curso_01 == "<table style=\"width: 100%;\"></table>") { echo "Não existem vídeos cadastrados para este módulo."; } else { echo $lista_videos_modulo_curso_01; }; ?>
+                                            <br>
+                                            <br>
+                                            <strong>Links</strong>
+                                            <br>
+                                            <br>
+                                            <?php if($lista_links_modulo_curso_01 == "<table style=\"width: 100%;\"></table>") { echo "Não existem links cadastrados para este módulo."; } else { echo $lista_links_modulo_curso_01; }; ?>
+                                            <br>
                                         </div>
                                     </div>
                                 </div>
@@ -93,6 +100,13 @@
                                             <br>
                                             <br>
                                             <?php if($lista_videos_modulo_curso_02 == "<table style=\"width: 100%;\"></table>") { echo "Não existem vídeos cadastrados para este módulo."; } else { echo $lista_videos_modulo_curso_02; }; ?>
+                                            <br>
+                                            <br>
+                                            <strong>Links</strong>
+                                            <br>
+                                            <br>
+                                            <?php if($lista_links_modulo_curso_02 == "<table style=\"width: 100%;\"></table>") { echo "Não existem links cadastrados para este módulo."; } else { echo $lista_links_modulo_curso_02; }; ?>
+                                            <br>
                                         </div>
                                     </div>
                                 </div>
@@ -111,6 +125,13 @@
                                             <br>
                                             <br>
                                             <?php if($lista_videos_modulo_curso_03 == "<table style=\"width: 100%;\"></table>") { echo "Não existem vídeos cadastrados para este módulo."; } else { echo $lista_videos_modulo_curso_03; }; ?>
+                                            <br>
+                                            <br>
+                                            <strong>Links</strong>
+                                            <br>
+                                            <br>
+                                            <?php if($lista_links_modulo_curso_03 == "<table style=\"width: 100%;\"></table>") { echo "Não existem links cadastrados para este módulo."; } else { echo $lista_links_modulo_curso_03; }; ?>
+                                            <br>
                                         </div>
                                     </div>
                                 </div>
@@ -129,6 +150,13 @@
                                             <br>
                                             <br>
                                             <?php if($lista_videos_modulo_curso_04 == "<table style=\"width: 100%;\"></table>") { echo "Não existem vídeos cadastrados para este módulo."; } else { echo $lista_videos_modulo_curso_04; }; ?>
+                                            <br>
+                                            <br>
+                                            <strong>Links</strong>
+                                            <br>
+                                            <br>
+                                            <?php if($lista_links_modulo_curso_04 == "<table style=\"width: 100%;\"></table>") { echo "Não existem links cadastrados para este módulo."; } else { echo $lista_links_modulo_curso_04; }; ?>
+                                            <br>
                                         </div>
                                     </div>
                                 </div>
