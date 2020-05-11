@@ -45,8 +45,14 @@
     $lista_textos_modulo_curso_01 = new GerenciarConteudo();
     $lista_textos_modulo_curso_01 = $lista_textos_modulo_curso_01 -> gerarListaTextosAdminPorModulo($cod_modulo_curso_01);
 
+    $lista_arquivos_modulo_curso_01 = new GerenciarConteudo();
+    $lista_arquivos_modulo_curso_01 = $lista_arquivos_modulo_curso_01 -> gerarListaArquivosAdminPorModulo($cod_modulo_curso_01);
+
     $lista_links_modulo_curso_01 = new GerenciarConteudo();
     $lista_links_modulo_curso_01 = $lista_links_modulo_curso_01 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_01);
+
+    $lista_exercicios_modulo_curso_01 = new GerenciarConteudo();
+    $lista_exercicios_modulo_curso_01 = $lista_exercicios_modulo_curso_01 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_01);
 
     $cod_modulo_curso_02 = new GerenciarModulo();
     $cod_modulo_curso_02 = $cod_modulo_curso_02 -> getCodigoModuloPorCodigoCurso($cod_curso, 2);
@@ -57,8 +63,14 @@
     $lista_textos_modulo_curso_02 = new GerenciarConteudo();
     $lista_textos_modulo_curso_02 = $lista_textos_modulo_curso_02 -> gerarListaTextosAdminPorModulo($cod_modulo_curso_02);
 
+    $lista_arquivos_modulo_curso_02 = new GerenciarConteudo();
+    $lista_arquivos_modulo_curso_02 = $lista_arquivos_modulo_curso_02 -> gerarListaArquivosAdminPorModulo($cod_modulo_curso_02);
+
     $lista_links_modulo_curso_02 = new GerenciarConteudo();
     $lista_links_modulo_curso_02 = $lista_links_modulo_curso_02 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_02);
+
+    $lista_exercicios_modulo_curso_02 = new GerenciarConteudo();
+    $lista_exercicios_modulo_curso_02 = $lista_exercicios_modulo_curso_02 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_02);
 
     $cod_modulo_curso_03 = new GerenciarModulo();
     $cod_modulo_curso_03 = $cod_modulo_curso_03 -> getCodigoModuloPorCodigoCurso($cod_curso, 3);
@@ -69,8 +81,14 @@
     $lista_textos_modulo_curso_03 = new GerenciarConteudo();
     $lista_textos_modulo_curso_03 = $lista_textos_modulo_curso_03 -> gerarListaTextosAdminPorModulo($cod_modulo_curso_03);
 
+    $lista_arquivos_modulo_curso_03 = new GerenciarConteudo();
+    $lista_arquivos_modulo_curso_03 = $lista_arquivos_modulo_curso_03 -> gerarListaArquivosAdminPorModulo($cod_modulo_curso_03);
+
     $lista_links_modulo_curso_03 = new GerenciarConteudo();
     $lista_links_modulo_curso_03 = $lista_links_modulo_curso_03 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_03);
+
+    $lista_exercicios_modulo_curso_03 = new GerenciarConteudo();
+    $lista_exercicios_modulo_curso_03 = $lista_exercicios_modulo_curso_03 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_03);
 
     $cod_modulo_curso_04 = new GerenciarModulo();
     $cod_modulo_curso_04 = $cod_modulo_curso_04 -> getCodigoModuloPorCodigoCurso($cod_curso, 4);
@@ -81,8 +99,14 @@
     $lista_textos_modulo_curso_04 = new GerenciarConteudo();
     $lista_textos_modulo_curso_04 = $lista_textos_modulo_curso_04 -> gerarListaTextosAdminPorModulo($cod_modulo_curso_04);
 
+    $lista_arquivos_modulo_curso_04 = new GerenciarConteudo();
+    $lista_arquivos_modulo_curso_04 = $lista_arquivos_modulo_curso_04 -> gerarListaArquivosAdminPorModulo($cod_modulo_curso_04);
+
     $lista_links_modulo_curso_04 = new GerenciarConteudo();
     $lista_links_modulo_curso_04 = $lista_links_modulo_curso_04 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_04);
+
+    $lista_exercicios_modulo_curso_04 = new GerenciarConteudo();
+    $lista_exercicios_modulo_curso_04 = $lista_exercicios_modulo_curso_04 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_04);
 
 ?>
 

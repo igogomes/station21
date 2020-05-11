@@ -75,8 +75,8 @@
 
                     $lista_videos .= "<tr style=\"width: 100%;\">";
                     $lista_videos .= "<td style=\"width: 100%;\">
-                                        <div style=\"float: left; width: 50%;\">" . $contador . " - " . $titulo_video . "</div>
-                                        <div style=\"float: right; width: 50%;\">
+                                        <div style=\"float: left; width: 90%;\">" . $contador . " - " . $titulo_video . "</div>
+                                        <div style=\"float: right; width: 10%;\">
                                             <span style=\"text-align: right; float: right;\">
                                             <a href=\"edit-content?cod-content=$cod_conteudo\">
                                                 <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
@@ -141,8 +141,8 @@
 
                     $lista_textos .= "<tr style=\"width: 100%;\">";
                     $lista_textos .= "<td style=\"width: 100%;\">
-                                        <div style=\"float: left; width: 50%;\">" . $contador . " - " . $titulo_texto . "</div>
-                                        <div style=\"float: right; width: 50%;\">
+                                        <div style=\"float: left; width: 90%;\">" . $contador . " - " . $titulo_texto . "</div>
+                                        <div style=\"float: right; width: 10%;\">
                                             <span style=\"text-align: right; float: right;\">
                                             <a href=\"edit-content?cod-content=$cod_conteudo\">
                                                 <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
@@ -166,6 +166,72 @@
             $lista_textos .= "</table>";
 
             return $lista_textos;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método gerarListaArquivosAdminPorModulo
+        //Método para a geração de lista de arquivos associados a um módulo de um curso
+        //@param $cod_modulo - Código do módulo para o qual a lista será gerada
+        public function gerarListaArquivosAdminPorModulo($cod_modulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $cod_conteudo = "";
+            $cod_tipo = "";
+            $lista_arquivos = "<table style=\"width: 100%;\">";
+            $titulo_arquivo = "";
+            $contador = 0;
+
+            $sql_lista_arquivos = new SqlSelect();
+            $sql_lista_arquivos -> adicionarColuna("cod_conteudo, cod_modulo, cod_tipo, arquivo, titulo");
+            $sql_lista_arquivos -> setEntidade("Conteudo");
+
+            $criterio_lista_arquivos = new Criterio();
+            $criterio_lista_arquivos -> adicionar(new Filtro("cod_modulo", "=", "'{$cod_modulo}'"));
+
+            $sql_lista_arquivos -> setCriterio($criterio_lista_arquivos);
+
+            $localizar_arquivos = $conexao_sql_station21 -> query($sql_lista_arquivos -> getInstrucao());
+
+            while($linhas_lista_arquivos = $localizar_arquivos -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_conteudo = $linhas_lista_arquivos["cod_conteudo"];
+                $cod_tipo = $linhas_lista_arquivos["cod_tipo"]; 
+                $titulo_arquivo = utf8_encode($linhas_lista_arquivos["titulo"]);
+
+                if($cod_tipo == 3) {
+
+                    $contador++;
+
+                    $lista_arquivos .= "<tr style=\"width: 100%;\">";
+                    $lista_arquivos .= "<td style=\"width: 100%;\">
+                                        <div style=\"float: left; width: 90%;\">" . $contador . " - " . $titulo_arquivo . "</div>
+                                        <div style=\"float: right; width: 10%;\">
+                                            <span style=\"text-align: right; float: right;\">
+                                            <a href=\"edit-content?cod-content=$cod_conteudo\">
+                                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
+                                                    <i class=\"fa fa-pencil font-14\"></i>
+                                                </button>
+                                            </a>
+                                            <a href=\"contents?cod-delete-content=$cod_conteudo&delete-content=1\">
+                                                <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
+                                                    <i class=\"fa fa-trash font-14\"></i>
+                                                </button> 
+                                            </a>
+                                            </span>
+                                        </div>
+                                    </td>";
+                    $lista_arquivos .= "</tr>";
+
+                }
+
+            }
+
+            $lista_arquivos .= "</table>";
+
+            return $lista_arquivos;
 
             $conexao_sql_station21 = NULL;
 
@@ -207,8 +273,8 @@
 
                     $lista_links .= "<tr style=\"width: 100%;\">";
                     $lista_links .= "<td style=\"width: 100%;\">
-                                        <div style=\"float: left; width: 50%;\">" . $contador . " - " . $titulo_link . "</div>
-                                        <div style=\"float: right; width: 50%;\">
+                                        <div style=\"float: left; width: 90%;\">" . $contador . " - " . $titulo_link . "</div>
+                                        <div style=\"float: right; width: 10%;\">
                                             <span style=\"text-align: right; float: right;\">
                                             <a href=\"edit-content?cod-content=$cod_conteudo\">
                                                 <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
@@ -232,6 +298,67 @@
             $lista_links .= "</table>";
 
             return $lista_links;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método gerarListaExerciciosAdminPorModulo
+        //Método para a geração de lista de exercicios associados a um módulo de um curso
+        //@param $cod_modulo - Código do módulo para o qual a lista será gerada
+        public function gerarListaExerciciosAdminPorModulo($cod_modulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $lista_exercicios = "<table style=\"width: 100%;\">";
+            $contador = 0;
+            $cod_exercicio = "";
+
+            $sql_lista_exercicios = new SqlSelect();
+            $sql_lista_exercicios -> adicionarColuna("cod_exercicio, cod_modulo");
+            $sql_lista_exercicios -> setEntidade("Exercicio");
+
+            $criterio_lista_exercicios = new Criterio();
+            $criterio_lista_exercicios -> adicionar(new Filtro("cod_modulo", "=", "'{$cod_modulo}'"));
+
+            $sql_lista_exercicios -> setCriterio($criterio_lista_exercicios);
+
+            $localizar_exercicios = $conexao_sql_station21 -> query($sql_lista_exercicios -> getInstrucao());
+
+            while($linhas_lista_exercicios = $localizar_exercicios -> fetch(PDO::FETCH_ASSOC)) {
+
+                $contador++;
+                $cod_exercicio = $linhas_lista_exercicios["cod_exercicio"];
+
+            }
+
+            if($contador > 0) {
+
+                $lista_exercicios .= "<tr style=\"width: 100%;\">";
+                $lista_exercicios .= "<td style=\"width: 100%;\">
+                                        <div style=\"float: left; width: 90%;\">Exercício</div>
+                                        <div style=\"float: right; width: 10%;\">
+                                            <span style=\"text-align: right; float: right;\">
+                                                <a href=\"edit-content?cod-exercise=$cod_exercicio\">
+                                                    <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Editar\">
+                                                        <i class=\"fa fa-pencil font-14\"></i>
+                                                    </button>
+                                                </a>
+                                                <a href=\"contents?cod-delete-exercise=$cod_exercicio&delete-content=1\">
+                                                    <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
+                                                        <i class=\"fa fa-trash font-14\"></i>
+                                                    </button> 
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </td>";
+                $lista_exercicios .= "</tr>";
+
+            }
+
+            $lista_exercicios .= "</table>";
+
+            return $lista_exercicios;
 
             $conexao_sql_station21 = NULL;
 

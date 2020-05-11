@@ -42,6 +42,7 @@
 
     $erro_editar_video = (isset($_GET["erro-video"])) ? $_GET["erro-video"] : "";
     $erro_editar_link = (isset($_GET["erro-link"])) ? $_GET["erro-link"] : "";
+    $erro_editar_arquivo = (isset($_GET["erro-file"])) ? $_GET["erro-file"] : "";
 
     $tipo_conteudo = new GerenciarTipoConteudo();
     $tipo_conteudo = $tipo_conteudo -> getTituloTipoConteudoPorCodigo($cod_tipo);
@@ -94,6 +95,12 @@
 
                 }
 
+                if($cod_tipo == 3) {
+
+                    include_once "form-edit-file-content.php";
+
+                }
+
                 if($cod_tipo == 4) {
 
                     include_once "form-edit-link-content.php";
@@ -119,6 +126,12 @@
                 if($cod_tipo == 2) {
 
                     include_once "form-edit-text-content.php";
+
+                }
+
+                if($cod_tipo == 3) {
+
+                    include_once "form-edit-file-content.php";
 
                 }
 
