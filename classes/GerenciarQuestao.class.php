@@ -38,6 +38,231 @@
 
         }
 
+        //Método getCodigoQuestaoPorCodigoExercicioEPosicao
+        //Retorna o código da questão que compõe um exercício através de sua posição ordinal
+        //@param $cod_exercicio - código do exercício para do qual o código da questão será recuperada
+        //@param $posicao - número da posição da questão
+        public function getCodigoQuestaoPorCodigoExercicioEPosicao($cod_exercicio, $posicao) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $contador = 0;
+            $cod_questao = "";
+
+            $sql_cod_questao = new SqlSelect();
+            $sql_cod_questao -> adicionarColuna("cod_exercicio, cod_questao");
+            $sql_cod_questao -> setEntidade("Questao");
+
+            $criterio_cod_questao = new Criterio();
+            $criterio_cod_questao -> adicionar(new Filtro("cod_exercicio", "=", "$cod_exercicio"));
+
+            $sql_cod_questao -> setCriterio($criterio_cod_questao);
+
+            $localizar_cod_questao = $conexao_sql_station21 -> query($sql_cod_questao -> getInstrucao());
+
+            while($linhas_cod_questao = $localizar_cod_questao -> fetch(PDO::FETCH_ASSOC)) {
+
+                $contador++;
+
+                if($contador == $posicao) {
+
+                    $cod_questao = $linhas_cod_questao["cod_questao"];
+
+                }
+
+            }
+
+            return $cod_questao;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getEnunciadoPorCodigoQuestao
+        //Retorna o enunciado de uma questão de acordo com o código da mesma
+        //@param $cod_questao - código do questão para qual o enunciado será recuperado
+        public function getEnunciadoPorCodigoQuestao($cod_questao) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $enunciado = "";
+
+            $sql_enunciado_questao = new SqlSelect();
+            $sql_enunciado_questao -> adicionarColuna("cod_questao, enunciado");
+            $sql_enunciado_questao -> setEntidade("Questao");
+
+            $criterio_enunciado_questao = new Criterio();
+            $criterio_enunciado_questao -> adicionar(new Filtro("cod_questao", "=", "$cod_questao"));
+
+            $sql_enunciado_questao -> setCriterio($criterio_enunciado_questao);
+
+            $localizar_enunciado_questao = $conexao_sql_station21 -> query($sql_enunciado_questao -> getInstrucao());
+
+            while($linhas_enunciado_questao = $localizar_enunciado_questao -> fetch(PDO::FETCH_ASSOC)) {
+
+               $enunciado = $linhas_enunciado_questao["enunciado"];
+
+            }
+
+            return $enunciado;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getPrimeiraAlternativaPorCodigoQuestao
+        //Retorna a primeira alternativa de uma questão de acordo com o código da mesma
+        //@param $cod_questao - código do questão para qual a primeira alternativa será recuperada
+        public function getPrimeiraAlternativaPorCodigoQuestao($cod_questao) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $primeira_alternativa = "";
+
+            $sql_primeira_alternativa_questao = new SqlSelect();
+            $sql_primeira_alternativa_questao -> adicionarColuna("cod_questao, primeira_alternativa");
+            $sql_primeira_alternativa_questao -> setEntidade("Questao");
+
+            $criterio_primeira_alternativa_questao = new Criterio();
+            $criterio_primeira_alternativa_questao -> adicionar(new Filtro("cod_questao", "=", "$cod_questao"));
+
+            $sql_primeira_alternativa_questao -> setCriterio($criterio_primeira_alternativa_questao);
+
+            $localizar_primeira_alternativa_questao = $conexao_sql_station21 -> query($sql_primeira_alternativa_questao -> getInstrucao());
+
+            while($linhas_primeira_alternativa_questao = $localizar_primeira_alternativa_questao -> fetch(PDO::FETCH_ASSOC)) {
+
+               $primeira_alternativa = $linhas_primeira_alternativa_questao["primeira_alternativa"];
+
+            }
+
+            return $primeira_alternativa;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getSegundaAlternativaPorCodigoQuestao
+        //Retorna a segunda alternativa de uma questão de acordo com o código da mesma
+        //@param $cod_questao - código do questão para qual a primeira alternativa será recuperada
+        public function getSegundaAlternativaPorCodigoQuestao($cod_questao) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $segunda_alternativa = "";
+
+            $sql_segunda_alternativa_questao = new SqlSelect();
+            $sql_segunda_alternativa_questao -> adicionarColuna("cod_questao, segunda_alternativa");
+            $sql_segunda_alternativa_questao -> setEntidade("Questao");
+
+            $criterio_segunda_alternativa_questao = new Criterio();
+            $criterio_segunda_alternativa_questao -> adicionar(new Filtro("cod_questao", "=", "$cod_questao"));
+
+            $sql_segunda_alternativa_questao -> setCriterio($criterio_segunda_alternativa_questao);
+
+            $localizar_segunda_alternativa_questao = $conexao_sql_station21 -> query($sql_segunda_alternativa_questao -> getInstrucao());
+
+            while($linhas_segunda_alternativa_questao = $localizar_segunda_alternativa_questao -> fetch(PDO::FETCH_ASSOC)) {
+
+               $segunda_alternativa = $linhas_segunda_alternativa_questao["segunda_alternativa"];
+
+            }
+
+            return $segunda_alternativa;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getTerceiraAlternativaPorCodigoQuestao
+        //Retorna a terceira alternativa de uma questão de acordo com o código da mesma
+        //@param $cod_questao - código do questão para qual a primeira alternativa será recuperada
+        public function getTerceiraAlternativaPorCodigoQuestao($cod_questao) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $terceira_alternativa = "";
+
+            $sql_terceira_alternativa_questao = new SqlSelect();
+            $sql_terceira_alternativa_questao -> adicionarColuna("cod_questao, terceira_alternativa");
+            $sql_terceira_alternativa_questao -> setEntidade("Questao");
+
+            $criterio_terceira_alternativa_questao = new Criterio();
+            $criterio_terceira_alternativa_questao -> adicionar(new Filtro("cod_questao", "=", "$cod_questao"));
+
+            $sql_terceira_alternativa_questao -> setCriterio($criterio_terceira_alternativa_questao);
+
+            $localizar_terceira_alternativa_questao = $conexao_sql_station21 -> query($sql_terceira_alternativa_questao -> getInstrucao());
+
+            while($linhas_terceira_alternativa_questao = $localizar_terceira_alternativa_questao -> fetch(PDO::FETCH_ASSOC)) {
+
+               $terceira_alternativa = $linhas_terceira_alternativa_questao["terceira_alternativa"];
+
+            }
+
+            return $terceira_alternativa;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getQuartaAlternativaPorCodigoQuestao
+        //Retorna a quarta alternativa de uma questão de acordo com o código da mesma
+        //@param $cod_questao - código do questão para qual a primeira alternativa será recuperada
+        public function getQuartaAlternativaPorCodigoQuestao($cod_questao) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $quarta_alternativa = "";
+
+            $sql_quarta_alternativa_questao = new SqlSelect();
+            $sql_quarta_alternativa_questao -> adicionarColuna("cod_questao, quarta_alternativa");
+            $sql_quarta_alternativa_questao -> setEntidade("Questao");
+
+            $criterio_quarta_alternativa_questao = new Criterio();
+            $criterio_quarta_alternativa_questao -> adicionar(new Filtro("cod_questao", "=", "$cod_questao"));
+
+            $sql_quarta_alternativa_questao -> setCriterio($criterio_quarta_alternativa_questao);
+
+            $localizar_quarta_alternativa_questao = $conexao_sql_station21 -> query($sql_quarta_alternativa_questao -> getInstrucao());
+
+            while($linhas_quarta_alternativa_questao = $localizar_quarta_alternativa_questao -> fetch(PDO::FETCH_ASSOC)) {
+
+               $quarta_alternativa = $linhas_quarta_alternativa_questao["quarta_alternativa"];
+
+            }
+
+            return $quarta_alternativa;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getRespostaPorCodigoQuestao
+        //Retorna a resposta de uma questão de acordo com o código da mesma
+        //@param $cod_questao - código do questão para qual a resposta será recuperada
+        public function getRespostaPorCodigoQuestao($cod_questao) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $resposta = "";
+
+            $sql_resposta_questao = new SqlSelect();
+            $sql_resposta_questao -> adicionarColuna("cod_questao, resposta");
+            $sql_resposta_questao -> setEntidade("Questao");
+
+            $criterio_resposta_questao = new Criterio();
+            $criterio_resposta_questao -> adicionar(new Filtro("cod_questao", "=", "$cod_questao"));
+
+            $sql_resposta_questao -> setCriterio($criterio_resposta_questao);
+
+            $localizar_resposta_questao = $conexao_sql_station21 -> query($sql_resposta_questao -> getInstrucao());
+
+            while($linhas_resposta_questao = $localizar_resposta_questao -> fetch(PDO::FETCH_ASSOC)) {
+
+               $resposta = $linhas_resposta_questao["resposta"];
+
+            }
+
+            return $resposta;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

@@ -15,6 +15,7 @@
     $cod_conteudo = (isset($_GET["cod-content"])) ? $_GET["cod-content"] : "";
     $tipo_conteudo_edicao = (isset($_GET["content-type"])) ? $_GET["content-type"] : "";
     $edicao_conteudo = (isset($_GET["content-type"])) ? $_GET["edit-content"] : "";
+    $cod_exercicio = (isset($_GET["cod-exercise"])) ? $_GET["cod-exercise"] : ""; 
 
     $cod_modulo = new GerenciarConteudo();
     $cod_modulo = $cod_modulo -> getCodigoModuloPorCodigoConteudo($cod_conteudo);
@@ -27,6 +28,48 @@
 
     $cod_tipo = new GerenciarConteudo();
     $cod_tipo = $cod_tipo -> getTipoConteudoPorCodigoConteudo($cod_conteudo); 
+
+    if($cod_exercicio != "") {
+
+        $cod_tipo = 5;
+
+        $cod_modulo = new GerenciarExercicio();
+        $cod_modulo = $cod_modulo -> getCodigoModuloPorCodigoExercicio($cod_exercicio); 
+
+        $cod_curso = new GerenciarModulo();
+        $cod_curso = $cod_curso -> getCodigoCursoPorCodigoModulo($cod_modulo);
+
+        $titulo_curso = new GerenciarCurso();
+        $titulo_curso = $titulo_curso -> getTituloCursoPorCodigo($cod_curso);
+
+        $cod_questao_01 = new GerenciarQuestao();
+        $cod_questao_01 = $cod_questao_01 -> getCodigoQuestaoPorCodigoExercicioEPosicao($cod_exercicio, 1);
+
+        $enunciado_questao_01 = new GerenciarQuestao();
+        $enunciado_questao_01 = $enunciado_questao_01 -> getEnunciadoPorCodigoQuestao($cod_questao_01);
+
+        $primeira_alternativa_01 = new GerenciarQuestao();
+        $primeira_alternativa_01 = $primeira_alternativa_01 -> getPrimeiraAlternativaPorCodigoQuestao($cod_questao_01);
+
+        $segunda_alternativa_01 = new GerenciarQuestao();
+        $segunda_alternativa_01 = $segunda_alternativa_01 -> getSegundaAlternativaPorCodigoQuestao($cod_questao_01);
+
+        $terceira_alternativa_01 = new GerenciarQuestao();
+        $terceira_alternativa_01 = $terceira_alternativa_01 -> getTerceiraAlternativaPorCodigoQuestao($cod_questao_01);
+
+        $quarta_alternativa_01 = new GerenciarQuestao();
+        $quarta_alternativa_01 = $quarta_alternativa_01 -> getQuartaAlternativaPorCodigoQuestao($cod_questao_01);
+
+        $cod_questao_02 = new GerenciarQuestao();
+        $cod_questao_02 = $cod_questao_02 -> getCodigoQuestaoPorCodigoExercicioEPosicao($cod_exercicio, 2);
+
+        $cod_questao_03 = new GerenciarQuestao();
+        $cod_questao_03 = $cod_questao_03 -> getCodigoQuestaoPorCodigoExercicioEPosicao($cod_exercicio, 3);
+
+        $cod_questao_04 = new GerenciarQuestao();
+        $cod_questao_04 = $cod_questao_04 -> getCodigoQuestaoPorCodigoExercicioEPosicao($cod_exercicio, 4);
+
+    }
 
     $titulo_conteudo = new GerenciarConteudo();
     $titulo_conteudo = $titulo_conteudo -> getTituloConteudoPorCodigoConteudo($cod_conteudo);
@@ -107,6 +150,12 @@
 
                 }
 
+                if($cod_tipo == 5) {
+
+                    include_once "form-edit-exercise-content.php"; 
+
+                }
+
                 include_once "footer.php";
 
             }
@@ -138,6 +187,12 @@
                 if($cod_tipo == 4) {
 
                     include_once "form-edit-link-content.php";
+
+                }
+
+                if($cod_tipo == 5) {
+
+                    include_once "form-edit-exercise-content.php";
 
                 }
 

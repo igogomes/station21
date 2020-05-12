@@ -127,6 +127,37 @@
 
         }
 
+        //Método getCodigoModuloPorCodigoExercicio
+        //Retorna o código do módulo ao qual o exercício pertence através do código do mesmo
+        //@param $cod_exercicio - código do exercício para o qual o módulo será verificado
+        public function getCodigoModuloPorCodigoExercicio($cod_exercicio) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $cod_modulo = "";
+
+            $sql_cod_modulo = new SqlSelect();
+            $sql_cod_modulo -> adicionarColuna("cod_exercicio, cod_modulo");
+            $sql_cod_modulo -> setEntidade("Exercicio");
+
+            $criterio_cod_modulo = new Criterio();
+            $criterio_cod_modulo -> adicionar(new Filtro("cod_exercicio", "=", "$cod_exercicio"));
+
+            $sql_cod_modulo -> setCriterio($criterio_cod_modulo);
+
+            $localizar_cod_modulo = $conexao_sql_station21 -> query($sql_cod_modulo -> getInstrucao());
+
+            while($linhas_cod_modulo = $localizar_cod_modulo -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_modulo = $linhas_cod_modulo["cod_modulo"];
+
+            }
+
+            return $cod_modulo;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>
