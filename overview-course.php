@@ -51,7 +51,7 @@
     $lista_links_modulo_curso_01 = new GerenciarConteudo();
     $lista_links_modulo_curso_01 = $lista_links_modulo_curso_01 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_01);
 
-    $lista_exercicios_modulo_curso_01 = new GerenciarConteudo();
+    $lista_exercicios_modulo_curso_01 = new GerenciarExercicio();
     $lista_exercicios_modulo_curso_01 = $lista_exercicios_modulo_curso_01 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_01);
 
     $cod_modulo_curso_02 = new GerenciarModulo();
@@ -69,7 +69,7 @@
     $lista_links_modulo_curso_02 = new GerenciarConteudo();
     $lista_links_modulo_curso_02 = $lista_links_modulo_curso_02 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_02);
 
-    $lista_exercicios_modulo_curso_02 = new GerenciarConteudo();
+    $lista_exercicios_modulo_curso_02 = new GerenciarExercicio();
     $lista_exercicios_modulo_curso_02 = $lista_exercicios_modulo_curso_02 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_02);
 
     $cod_modulo_curso_03 = new GerenciarModulo();
@@ -87,7 +87,7 @@
     $lista_links_modulo_curso_03 = new GerenciarConteudo();
     $lista_links_modulo_curso_03 = $lista_links_modulo_curso_03 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_03);
 
-    $lista_exercicios_modulo_curso_03 = new GerenciarConteudo();
+    $lista_exercicios_modulo_curso_03 = new GerenciarExercicio();
     $lista_exercicios_modulo_curso_03 = $lista_exercicios_modulo_curso_03 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_03);
 
     $cod_modulo_curso_04 = new GerenciarModulo();
@@ -105,8 +105,11 @@
     $lista_links_modulo_curso_04 = new GerenciarConteudo();
     $lista_links_modulo_curso_04 = $lista_links_modulo_curso_04 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_04);
 
-    $lista_exercicios_modulo_curso_04 = new GerenciarConteudo();
+    $lista_exercicios_modulo_curso_04 = new GerenciarExercicio();
     $lista_exercicios_modulo_curso_04 = $lista_exercicios_modulo_curso_04 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_04);
+
+    $lista_prova_curso = new GerenciarProva();
+    $lista_prova_curso = $lista_prova_curso -> gerarListaProvaAdminPorCodigoCurso($cod_curso);
 
 ?>
 
