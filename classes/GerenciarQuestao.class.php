@@ -263,6 +263,45 @@
 
         }
 
+        //Método atualizarDadosQuestao()
+        //Método para atualização dos dados de questões na base de dados
+        //@param $cod_questao - código do questão para a qual os dados serão alterados
+        //@param $enunciado - enunciado da questão que será alterada
+        //@param $primeira_alternativa - primeira alternativa da questão que será alterada
+        //@param $segunda_alternativa - segunda alternativa da questão que será alterada
+        //@param $terceira_alternativa - terceira alternativa da questão que será alterada
+        //@param $quarta_alternativa - quarta alternativa da questão que será alterada
+        //@param $resposta - resposta da questão que será alterada
+        public function atualizarDadosQuestao($cod_questao, $enunciado, $primeira_alternativa, $segunda_alternativa, $terceira_alternativa, $quarta_alternativa, $resposta) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $enunciado = utf8_decode($enunciado);
+            $primeira_alternativa = utf8_decode($primeira_alternativa);
+            $segunda_alternativa = utf8_decode($segunda_alternativa);
+            $terceira_alternativa = utf8_decode($terceira_alternativa);
+            $quarta_alternativa = utf8_decode($quarta_alternativa);
+
+            $sql_atualizar_dados_questao = new SqlUpdate();
+            $sql_atualizar_dados_questao -> setEntidade("Questao");
+            $sql_atualizar_dados_questao -> setValorLinha("enunciado", "{$enunciado}");
+            $sql_atualizar_dados_questao -> setValorLinha("primeira_alternativa", "{$primeira_alternativa}");
+            $sql_atualizar_dados_questao -> setValorLinha("segunda_alternativa", "{$segunda_alternativa}");
+            $sql_atualizar_dados_questao -> setValorLinha("terceira_alternativa", "{$terceira_alternativa}");
+            $sql_atualizar_dados_questao -> setValorLinha("quarta_alternativa", "{$quarta_alternativa}");
+            $sql_atualizar_dados_questao -> setValorLinha("resposta", "{$resposta}");
+
+            $criterio_atualizar_dados_questao = new Criterio();
+            $criterio_atualizar_dados_questao -> adicionar(new Filtro("cod_questao", "=", "'{$cod_questao}'"));
+
+            $sql_atualizar_dados_questao -> setCriterio($criterio_atualizar_dados_questao);
+
+            $atualizar_dados_questao = $conexao_sql_station21 -> query($sql_atualizar_dados_questao -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>
