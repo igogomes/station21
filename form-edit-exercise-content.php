@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <!-- START PAGE CONTENT-->
     <div class="page-heading">
-        <h1 class="page-title">Cadastrar Exercício</h1>
+        <h1 class="page-title">Editar Exercício</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="./">Dashboard</a>
@@ -9,7 +9,7 @@
             <li class="breadcrumb-item">
                 <a href="courses">Cursos</a>
             </li>
-            <li class="breadcrumb-item">Cadastrar Exercício</li> 
+            <li class="breadcrumb-item">Editar Exercício</li> 
         </ol>
     </div>
     <div class="page-content fade-in-up">
@@ -42,7 +42,7 @@
                         <form class="form-horizontal" action="edit-exercise" method="post"> 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Curso</label>
-                                <div class="col-sm-12">
+                                <div class="col-sm-10">
                                     <?php echo ucwords($titulo_curso); ?>
                                 </div>
                             </div>

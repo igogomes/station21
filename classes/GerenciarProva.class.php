@@ -148,6 +148,37 @@
 
         }
 
+        //Método getCodigoCursoPorCodigoProva
+        //Retorna o código da curso através do código da prova associada ao mesmo
+        //@param $cod_prova - código do curso ao qual a prova pertence
+        public function getCodigoCursoPorCodigoProva($cod_prova) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $cod_curso = "";
+
+            $sql_cod_curso = new SqlSelect();
+            $sql_cod_curso -> adicionarColuna("cod_prova, cod_curso");
+            $sql_cod_curso -> setEntidade("Prova");
+
+            $criterio_cod_curso = new Criterio();
+            $criterio_cod_curso -> adicionar(new Filtro("cod_prova", "=", "$cod_prova"));
+
+            $sql_cod_curso -> setCriterio($criterio_cod_curso);
+
+            $localizar_cod_curso = $conexao_sql_station21 -> query($sql_cod_curso -> getInstrucao());
+
+            while($linhas_cod_curso = $localizar_cod_curso -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_curso = $linhas_cod_curso["cod_curso"];
+
+            }
+
+            return $cod_curso;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

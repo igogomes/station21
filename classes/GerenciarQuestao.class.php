@@ -40,7 +40,7 @@
 
         //Método getCodigoQuestaoPorCodigoExercicioEPosicao
         //Retorna o código da questão que compõe um exercício através de sua posição ordinal
-        //@param $cod_exercicio - código do exercício para do qual o código da questão será recuperada
+        //@param $cod_exercicio - código do exercício para o qual o código da questão será recuperado
         //@param $posicao - número da posição da questão
         public function getCodigoQuestaoPorCodigoExercicioEPosicao($cod_exercicio, $posicao) {
 
@@ -297,6 +297,45 @@
             $sql_atualizar_dados_questao -> setCriterio($criterio_atualizar_dados_questao);
 
             $atualizar_dados_questao = $conexao_sql_station21 -> query($sql_atualizar_dados_questao -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método getCodigoQuestaoPorCodigoProvaEPosicao
+        //Retorna o código da questão que compõe uma prova através de sua posição ordinal
+        //@param $cod_prova - código da prova para a qual o código da questão será recuperado
+        //@param $posicao - número da posição da questão
+        public function getCodigoQuestaoPorCodigoProvaEPosicao($cod_prova, $posicao) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $contador = 0;
+            $cod_questao = "";
+
+            $sql_cod_questao = new SqlSelect();
+            $sql_cod_questao -> adicionarColuna("cod_prova, cod_questao");
+            $sql_cod_questao -> setEntidade("Questao");
+
+            $criterio_cod_questao = new Criterio();
+            $criterio_cod_questao -> adicionar(new Filtro("cod_prova", "=", "$cod_prova"));
+
+            $sql_cod_questao -> setCriterio($criterio_cod_questao);
+
+            $localizar_cod_questao = $conexao_sql_station21 -> query($sql_cod_questao -> getInstrucao());
+
+            while($linhas_cod_questao = $localizar_cod_questao -> fetch(PDO::FETCH_ASSOC)) {
+
+                $contador++;
+
+                if($contador == $posicao) {
+
+                    $cod_questao = $linhas_cod_questao["cod_questao"];
+
+                }
+
+            }
+
+            return $cod_questao;
 
             $conexao_sql_station21 = NULL;
 

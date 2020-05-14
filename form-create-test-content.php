@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <!-- START PAGE CONTENT-->
     <div class="page-heading">
-        <h1 class="page-title">Cadastrar Avaliação</h1>
+        <h1 class="page-title">Cadastrar Prova</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="./">Dashboard</a>
@@ -9,7 +9,7 @@
             <li class="breadcrumb-item">
                 <a href="courses">Cursos</a>
             </li>
-            <li class="breadcrumb-item">Cadastrar Avaliação</li> 
+            <li class="breadcrumb-item">Cadastrar Prova</li> 
         </ol>
     </div>
     <div class="page-content fade-in-up">
