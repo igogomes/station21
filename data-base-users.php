@@ -3,6 +3,21 @@
     <div class="page-heading">
         <h1 class="page-title">Usuários</h1>
         <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="./">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item">Usuários</li>
+                </ol>
+            </div>
+            <div class="col-lg-6 col-md-6" style="text-align:right">
+                <a href="create-user">
+                    <button class="btn btn-success">Cadastrar</button>
+                </a>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-12">
 
                 <?php 
@@ -42,21 +57,6 @@
 
                 ?>
 
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="./">Dashboard</a>
-                    </li>
-                    <li class="breadcrumb-item">Usuários</li>
-                </ol>
-            </div>
-            <div class="col-lg-6 col-md-6" style="text-align:right">
-                <a href="create-user">
-                    <button class="btn btn-success">Cadastrar</button>
-                </a>
             </div>
         </div>
         <div class="page-content fade-in-up">

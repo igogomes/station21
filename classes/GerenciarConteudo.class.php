@@ -83,7 +83,7 @@
                                                     <i class=\"fa fa-pencil font-14\"></i>
                                                 </button>
                                             </a>
-                                            <a href=\"contents?cod-delete-content=$cod_conteudo&delete-content=1\">
+                                            <a href=\"contents?cod-delete-content=$cod_conteudo&type-content=$cod_tipo\">
                                                 <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
                                                     <i class=\"fa fa-trash font-14\"></i>
                                                 </button> 
@@ -149,7 +149,7 @@
                                                     <i class=\"fa fa-pencil font-14\"></i>
                                                 </button>
                                             </a>
-                                            <a href=\"contents?cod-delete-content=$cod_conteudo&delete-content=1\">
+                                            <a href=\"contents?cod-delete-content=$cod_conteudo&type-content=$cod_tipo\">
                                                 <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
                                                     <i class=\"fa fa-trash font-14\"></i>
                                                 </button> 
@@ -215,7 +215,7 @@
                                                     <i class=\"fa fa-pencil font-14\"></i>
                                                 </button>
                                             </a>
-                                            <a href=\"contents?cod-delete-content=$cod_conteudo&delete-content=1\">
+                                            <a href=\"contents?cod-delete-content=$cod_conteudo&type-content=$cod_tipo\">
                                                 <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
                                                     <i class=\"fa fa-trash font-14\"></i>
                                                 </button> 
@@ -281,7 +281,7 @@
                                                     <i class=\"fa fa-pencil font-14\"></i>
                                                 </button>
                                             </a>
-                                            <a href=\"contents?cod-delete-content=$cod_conteudo&delete-content=1\">
+                                            <a href=\"contents?cod-delete-content=$cod_conteudo&type-content=$cod_tipo\">
                                                 <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
                                                     <i class=\"fa fa-trash font-14\"></i>
                                                 </button> 
@@ -524,6 +524,28 @@
             $sql_atualizar_dados_conteudo -> setCriterio($criterio_atualizar_dados_conteudo);
 
             $atualizar_dados_conteudo = $conexao_sql_station21 -> query($sql_atualizar_dados_conteudo -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método excluirConteudo() 
+        //Método para exclusão de conteúdo da base de dados
+        //@param $cod_conteudo - código do conteúdo do qual os dados serão excluidos da base de dados
+        public function excluirConteudo($cod_conteudo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_conteudo = new SqlDelete();
+
+            $sql_excluir_conteudo -> setEntidade("Conteudo");
+
+            $criterio_excluir_conteudo = new Criterio();
+            $criterio_excluir_conteudo -> adicionar(new Filtro("cod_conteudo", "=", "'$cod_conteudo'"));
+
+            $sql_excluir_conteudo -> setCriterio($criterio_excluir_conteudo);
+
+            $excluir_conteudo = $conexao_sql_station21 -> query($sql_excluir_conteudo -> getInstrucao());
 
             $conexao_sql_station21 = NULL;
 

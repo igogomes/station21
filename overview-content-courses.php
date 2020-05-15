@@ -15,6 +15,147 @@
     <div class="page-content fade-in-up">
         <div class="row">
             <div class="col-md-12">
+
+                <?php 
+
+                    if($cod_conteudo_excluir != "" && $tipo_conteudo_excluir == 1 && $sucesso_excluir_conteudo == "") {
+
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <a href="overview-course?cod-course=<?php echo $cod_curso; ?>" class="close" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </a>
+                        <h4>Atenção!</h4>
+                        <p>Você realmente deseja excluir o vídeo <strong><?php echo $titulo_conteudo_excluir; ?></strong>?</p>
+                        <p>
+                            <a href="contents?cod-course=<?php echo $cod_curso; ?>&cod-delete-content=<?php echo $cod_conteudo_excluir; ?>&type-content=<?php echo $tipo_conteudo_excluir; ?>&delete-content=1" class="btn btn-danger" style="color:#fff;">Sim</a>
+                            <a href="overview-course?cod-course=<?php echo $cod_curso; ?>" class="btn btn-default" style="color:#000;">Não</a>
+                        </p>
+                    </div>
+
+                <?php
+
+                    } 
+
+                    if($cod_conteudo_excluir != "" && $tipo_conteudo_excluir == 1 && $sucesso_excluir_conteudo == 1) {
+
+                ?>
+
+                    <div class="alert alert-success alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        O vídeo foi excluído com <strong>sucesso</strong>.
+                    </div>
+
+                <?php 
+                
+                    }
+
+                    if($cod_conteudo_excluir != "" && $tipo_conteudo_excluir == 2 && $sucesso_excluir_conteudo == "") {
+                
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <a href="overview-course?cod-course=<?php echo $cod_curso; ?>" class="close" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </a>
+                        <h4>Atenção!</h4>
+                        <p>Você realmente deseja excluir o texto <strong><?php echo $titulo_conteudo_excluir; ?></strong>?</p>
+                        <p>
+                            <a href="contents?cod-course=<?php echo $cod_curso; ?>&cod-delete-content=<?php echo $cod_conteudo_excluir; ?>&type-content=<?php echo $tipo_conteudo_excluir; ?>&delete-content=1" class="btn btn-danger" style="color:#fff;">Sim</a>
+                            <a href="overview-course?cod-course=<?php echo $cod_curso; ?>" class="btn btn-default" style="color:#000;">Não</a>
+                        </p>
+                    </div>
+
+                <?php 
+                
+                    }
+
+                    if($cod_conteudo_excluir != "" && $tipo_conteudo_excluir == 2 && $sucesso_excluir_conteudo == 1) {
+                
+                ?>
+
+                    <div class="alert alert-success alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        O texto foi excluído com <strong>sucesso</strong>.
+                    </div>  
+
+                <?php 
+            
+                    }
+
+                    if($cod_conteudo_excluir != "" && $tipo_conteudo_excluir == 3 && $sucesso_excluir_conteudo == "") {
+                    
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <a href="overview-course?cod-course=<?php echo $cod_curso; ?>" class="close" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </a>
+                        <h4>Atenção!</h4>
+                        <p>Você realmente deseja excluir o arquivo <strong><?php echo $titulo_conteudo_excluir; ?></strong>?</p>
+                        <p>
+                            <a href="contents?cod-course=<?php echo $cod_curso; ?>&cod-delete-content=<?php echo $cod_conteudo_excluir; ?>&type-content=<?php echo $tipo_conteudo_excluir; ?>&delete-content=1" class="btn btn-danger" style="color:#fff;">Sim</a>
+                            <a href="overview-course?cod-course=<?php echo $cod_curso; ?>" class="btn btn-default" style="color:#000;">Não</a>
+                        </p>
+                    </div> 
+
+                <?php 
+            
+                    } 
+                    
+                    if($cod_conteudo_excluir != "" && $tipo_conteudo_excluir == 3 && $sucesso_excluir_conteudo == 1) {
+                    
+                ?>
+
+                    <div class="alert alert-success alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        O arquivo foi excluído com <strong>sucesso</strong>.
+                    </div>                         
+
+                <?php 
+                
+                    }
+                    
+                    if($cod_conteudo_excluir != "" && $tipo_conteudo_excluir == 4 && $sucesso_excluir_conteudo == "") {
+                    
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <a href="overview-course?cod-course=<?php echo $cod_curso; ?>" class="close" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </a>
+                        <h4>Atenção!</h4>
+                        <p>Você realmente deseja excluir o link <strong><?php echo $titulo_conteudo_excluir; ?></strong>?</p>
+                        <p>
+                            <a href="contents?cod-course=<?php echo $cod_curso; ?>&cod-delete-content=<?php echo $cod_conteudo_excluir; ?>&type-content=<?php echo $tipo_conteudo_excluir; ?>&delete-content=1" class="btn btn-danger" style="color:#fff;">Sim</a>
+                            <a href="overview-course?cod-course=<?php echo $cod_curso; ?>" class="btn btn-default" style="color:#000;">Não</a>
+                        </p>
+                    </div>
+
+                <?php 
+                
+                    }
+
+                    if($cod_conteudo_excluir != "" && $tipo_conteudo_excluir == 4 && $sucesso_excluir_conteudo == 1) {
+                    
+                ?>
+
+                    <div class="alert alert-success alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        O link foi excluído com <strong>sucesso</strong>.
+                    </div>        
+
+                <?php 
+            
+                    } 
+                    
+                ?>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <div class="ibox">
                     <div class="ibox-body">
                         <div class="form-group row">

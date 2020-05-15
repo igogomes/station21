@@ -12,6 +12,19 @@
 
     $cod_curso = (isset($_GET["cod-course"])) ? $_GET["cod-course"] : "";
 
+    $cod_conteudo_excluir = (isset($_GET["cod-delete-content"])) ? $_GET["cod-delete-content"] : "";
+    $tipo_conteudo_excluir = (isset($_GET["type-content"])) ? $_GET["type-content"] : "";
+    $cod_exercicio_excluir = (isset($_GET["cod-delete-exercise"])) ? $_GET["cod-delete-exercise"] : "";
+    $cod_prova_excluir = (isset($_GET["cod-delete-test"])) ? $_GET["cod-delete-test"] : "";
+    $sucesso_excluir_conteudo = (isset($_GET["success-delete-content"])) ? $_GET["success-delete-content"] : "";
+
+    if($cod_conteudo_excluir != "") {
+
+        $titulo_conteudo_excluir = new GerenciarConteudo();
+        $titulo_conteudo_excluir = utf8_encode($titulo_conteudo_excluir -> getTituloConteudoPorCodigoConteudo($cod_conteudo_excluir));
+
+    }
+
     $titulo_curso = new GerenciarCurso();
     $titulo_curso = $titulo_curso -> getTituloCursoPorCodigo($cod_curso);
 

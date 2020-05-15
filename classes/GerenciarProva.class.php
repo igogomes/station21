@@ -128,7 +128,7 @@
                                                         <i class=\"fa fa-pencil font-14\"></i>
                                                     </button>
                                                 </a>
-                                                <a href=\"contents?cod-delete-test=$cod_prova&delete-content=1\">
+                                                <a href=\"contents?cod-delete-test=$cod_prova\">
                                                     <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
                                                         <i class=\"fa fa-trash font-14\"></i>
                                                     </button> 

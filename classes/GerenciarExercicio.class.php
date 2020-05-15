@@ -199,7 +199,7 @@
                                                         <i class=\"fa fa-pencil font-14\"></i>
                                                     </button>
                                                 </a>
-                                                <a href=\"contents?cod-delete-exercise=$cod_exercicio&delete-content=1\">
+                                                <a href=\"contents?cod-delete-exercise=$cod_exercicio\">
                                                     <button class=\"btn btn-default btn-xs\" data-toggle=\"tooltip\" data-original-title=\"Excluir\">
                                                         <i class=\"fa fa-trash font-14\"></i>
                                                     </button> 
