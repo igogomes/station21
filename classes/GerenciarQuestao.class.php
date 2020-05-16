@@ -341,6 +341,50 @@
 
         }
 
+        //Método excluirQuestaoCodigoExercicio() 
+        //Método para exclusão de questões na base de dados associadas a exercícios
+        //@param $cod_exercicio - código do exercício do qual as questões serão excluídas
+        public function excluirQuestaoCodigoExercicio($cod_exercicio) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_questoes_exercicio = new SqlDelete();
+
+            $sql_excluir_questoes_exercicio -> setEntidade("Questao");
+
+            $criterio_excluir_questoes_exercicio = new Criterio();
+            $criterio_excluir_questoes_exercicio -> adicionar(new Filtro("cod_exercicio", "=", "'$cod_exercicio'"));
+
+            $sql_excluir_questoes_exercicio -> setCriterio($criterio_excluir_questoes_exercicio);
+
+            $excluir_questoes_exercicio = $conexao_sql_station21 -> query($sql_excluir_questoes_exercicio -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método excluirQuestaoCodigoProva() 
+        //Método para exclusão de questões na base de dados associadas a provas
+        //@param $cod_prova - código da prova da qual as questões serão excluídas
+        public function excluirQuestaoCodigoProva($cod_prova) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_questoes_prova = new SqlDelete();
+
+            $sql_excluir_questoes_prova -> setEntidade("Questao");
+
+            $criterio_excluir_questoes_prova = new Criterio();
+            $criterio_excluir_questoes_prova -> adicionar(new Filtro("cod_prova", "=", "'$cod_prova'"));
+
+            $sql_excluir_questoes_prova -> setCriterio($criterio_excluir_questoes_prova);
+
+            $excluir_questoes_prova = $conexao_sql_station21 -> query($sql_excluir_questoes_prova -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

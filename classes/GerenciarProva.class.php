@@ -179,6 +179,28 @@
 
         }
 
+        //Método excluirProva() 
+        //Método para exclusão de prova na base de dados
+        //@param $cod_prova - código da prova que será excluída
+        public function excluirProva($cod_prova) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_prova = new SqlDelete();
+
+            $sql_excluir_prova -> setEntidade("Prova");
+
+            $criterio_excluir_prova = new Criterio();
+            $criterio_excluir_prova -> adicionar(new Filtro("cod_prova", "=", "'$cod_prova'"));
+
+            $sql_excluir_prova -> setCriterio($criterio_excluir_prova);
+
+            $excluir_prova = $conexao_sql_station21 -> query($sql_excluir_prova -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

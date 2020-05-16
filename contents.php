@@ -117,4 +117,66 @@
 
     }
 
+    if($cod_exercicio != "" && $excluir == "") {
+
+        $tipo_conteudo = 5;
+
+        $codigo_modulo = new GerenciarExercicio();
+        $codigo_modulo = $codigo_modulo -> getCodigoModuloPorCodigoExercicio($cod_exercicio);
+
+        $codigo_curso = new GerenciarModulo();
+        $codigo_curso = $codigo_curso -> getCodigoCursoPorCodigoModulo($codigo_modulo);
+
+        header("Location: overview-course?cod-course=$codigo_curso&cod-delete-exercise=$cod_exercicio&type-content=$tipo_conteudo&type-evaluation=1");
+
+    }
+
+    if($cod_exercicio != "" && $excluir != "") {
+
+        $tipo_conteudo = 5;
+
+        $codigo_modulo = new GerenciarExercicio();
+        $codigo_modulo = $codigo_modulo -> getCodigoModuloPorCodigoExercicio($cod_exercicio);
+
+        $codigo_curso = new GerenciarModulo();
+        $codigo_curso = $codigo_curso -> getCodigoCursoPorCodigoModulo($codigo_modulo);
+
+        $excluir_questoes_exercicio = new GerenciarQuestao();
+        $excluir_questoes_exercicio = $excluir_questoes_exercicio -> excluirQuestaoCodigoExercicio($cod_exercicio);
+
+        $excluir_exercicio = new GerenciarExercicio();
+        $excluir_exercicio = $excluir_exercicio -> excluirExercicio($cod_exercicio);
+
+        header("Location: overview-course?cod-course=$codigo_curso&cod-delete-exercise=$cod_exercicio&type-content=$tipo_conteudo&type-evaluation=1&success-delete-content=1");
+
+    }
+
+    if($cod_prova != "" && $excluir == "") {
+
+        $tipo_conteudo = 5;
+
+        $codigo_curso = new GerenciarProva();
+        $codigo_curso = $codigo_curso -> getCodigoCursoPorCodigoProva($cod_prova);
+
+        header("Location: overview-course?cod-course=$codigo_curso&cod-delete-test=$cod_prova&type-content=$tipo_conteudo&type-evaluation=2");
+
+    }
+
+    if($cod_prova != "" && $excluir != "") {
+
+        $tipo_conteudo = 5;
+
+        $codigo_curso = new GerenciarProva();
+        $codigo_curso = $codigo_curso -> getCodigoCursoPorCodigoProva($cod_prova);
+
+        $excluir_questoes_prova = new GerenciarQuestao();
+        $excluir_questoes_prova = $excluir_questoes_prova -> excluirQuestaoCodigoProva($cod_prova);
+
+        $excluir_prova = new GerenciarProva();
+        $excluir_prova = $excluir_prova -> excluirProva($cod_prova);
+
+        header("Location: overview-course?cod-course=$codigo_curso&cod-delete-test=$cod_prova&type-content=$tipo_conteudo&type-evaluation=2&success-delete-content=1");
+
+    } 
+
 ?>

@@ -219,6 +219,28 @@
 
         }
 
+        //Método excluirExercicio() 
+        //Método para exclusão de exercício na base de dados
+        //@param $cod_exercicio - código do exercício que será excluído
+        public function excluirExercicio($cod_exercicio) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_exercicio = new SqlDelete();
+
+            $sql_excluir_exercicio -> setEntidade("Exercicio");
+
+            $criterio_excluir_exercicio = new Criterio();
+            $criterio_excluir_exercicio -> adicionar(new Filtro("cod_exercicio", "=", "'$cod_exercicio'"));
+
+            $sql_excluir_exercicio -> setCriterio($criterio_excluir_exercicio);
+
+            $excluir_exercicio = $conexao_sql_station21 -> query($sql_excluir_exercicio -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

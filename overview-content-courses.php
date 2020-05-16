@@ -149,6 +149,72 @@
                 <?php 
             
                     } 
+
+                    if($cod_exercicio_excluir != "" && $tipo_conteudo_excluir == 5 && $tipo_avaliacao_excluir == 1 && $sucesso_excluir_conteudo == "") {
+                    
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <a href="overview-course?cod-course=<?php echo $cod_curso; ?>" class="close" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </a>
+                        <h4>Atenção!</h4>
+                        <p>Você realmente deseja excluir o exercício?</p>
+                        <p>
+                            <a href="contents?cod-course=<?php echo $cod_curso; ?>&cod-delete-exercise=<?php echo $cod_exercicio_excluir; ?>&type-evaluation=1&type-content=<?php echo $tipo_conteudo_excluir; ?>&delete-content=1" class="btn btn-danger" style="color:#fff;">Sim</a>
+                            <a href="overview-course?cod-course=<?php echo $cod_curso; ?>" class="btn btn-default" style="color:#000;">Não</a>
+                        </p>
+                    </div>
+
+                <?php 
+                
+                    }
+
+                    if($cod_exercicio_excluir != "" && $tipo_conteudo_excluir == 5 && $tipo_avaliacao_excluir == 1 && $sucesso_excluir_conteudo == 1) {
+                
+                ?>
+
+                    <div class="alert alert-success alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        O exercício foi excluído com <strong>sucesso</strong>.
+                    </div>  
+
+                <?php 
+            
+                    }
+
+                    if($cod_prova_excluir != "" && $tipo_conteudo_excluir == 5 && $tipo_avaliacao_excluir == 2 && $sucesso_excluir_conteudo == "") {
+                    
+                ?>
+
+                    <div class="alert alert-danger alert-dismissable fade show">
+                        <a href="overview-course?cod-course=<?php echo $cod_curso; ?>" class="close" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </a>
+                        <h4>Atenção!</h4>
+                        <p>Você realmente deseja excluir a prova?</p>
+                        <p>
+                            <a href="contents?cod-course=<?php echo $cod_curso; ?>&cod-delete-test=<?php echo $cod_prova_excluir; ?>&type-evaluation=2&type-content=<?php echo $tipo_conteudo_excluir; ?>&delete-content=1" class="btn btn-danger" style="color:#fff;">Sim</a>
+                            <a href="overview-course?cod-course=<?php echo $cod_curso; ?>" class="btn btn-default" style="color:#000;">Não</a>
+                        </p>
+                    </div>
+
+                <?php 
+            
+                    }
+
+                    if($cod_prova_excluir != "" && $tipo_conteudo_excluir == 5 && $tipo_avaliacao_excluir == 2 && $sucesso_excluir_conteudo == 1) {
+                    
+                ?>
+
+                    <div class="alert alert-success alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        A prova foi excluída com <strong>sucesso</strong>.
+                    </div>    
+
+                <?php 
+            
+                    } 
                     
                 ?>
 
