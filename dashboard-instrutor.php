@@ -130,21 +130,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Atendimento ao Cliente</td>
-                                    <td>01/02/2019</td>
-                                    <td>Publicado</td>
-                                </tr>
-                                <tr>
-                                    <td>Inbound Marketing</td>
-                                    <td>05/07/2019</td>
-                                    <td>Não Publicado</td>
-                                </tr>
-                                <tr>
-                                    <td>Técnicas de Comunicação</td>
-                                    <td>19/05/2019</td>
-                                    <td>Publicado</td>
-                                </tr>
+                                
+                                <?php 
+                                
+                                    $tabela_ultimos_cursos_cadastrados = new GerenciarCurso();
+                                    $tabela_ultimos_cursos_cadastrados = $tabela_ultimos_cursos_cadastrados -> gerarTabelaUltimosCursosCadastrados();
+
+                                    if($tabela_ultimos_cursos_cadastrados == "") {
+
+                                        echo "Não existem cursos cadastrados.<br>";
+
+                                    }
+
+                                    else {
+
+                                        echo $tabela_ultimos_cursos_cadastrados;
+
+                                    }
+                                
+                                ?>
+
                             </tbody>
                         </table>
                     </div>

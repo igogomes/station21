@@ -520,18 +520,6 @@
 
             $localizar_ultimos_cursos_cadastrados = $conexao_sql_station21 -> query($sql_gerar_tabela_ultimos_cursos_cadastrados -> getInstrucao());
 
-            $tabela_ultimos_cursos_cadastrados = 
-                "<div class=\"ibox-body\">
-                    <table class=\"table table-striped table-hover\">
-                        <thead>
-                            <tr>
-                                <th>Cursos</th>
-                                <th>Última Atualização</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>";
-
             while($linhas_ultimos_cursos_cadastrados = $localizar_ultimos_cursos_cadastrados -> fetch(PDO::FETCH_ASSOC)) {
 
                 $titulo_curso = utf8_encode($linhas_ultimos_cursos_cadastrados["titulo"]);
@@ -539,22 +527,18 @@
                 $cod_status = $linhas_ultimos_cursos_cadastrados["cod_status"];
 
                 $data_hora_atualizacao_br = new GerenciarData();
-                $data_hora_atualizacao_br = $data_hora_atualizacao_br -> gerarDataHoraBr($ultima_atualizacao);
+                $data_hora_atualizacao_br = $data_hora_atualizacao_br -> gerarDataBR($ultima_atualizacao);
 
-                $status = new GerenciarStatus();
-                $status = $status -> getStatusPorCodigo($cod_status);
+                $status = new GerenciarStatus(); 
+                $status = utf8_encode($status -> getStatusPorCodigo($cod_status));
 
                 $tabela_ultimos_cursos_cadastrados .= "<tr> <td>" . $titulo_curso . "</td> <td>" . $data_hora_atualizacao_br . "</td> <td>" . $status . "</td> </tr>";
 
             }
 
-            $tabela_ultimos_cursos_cadastrados .= 
-                    "</tbody>
-                </table>";
-
             return $tabela_ultimos_cursos_cadastrados;
 
-            $conexao_sql_station21 = NULL;
+            $conexao_sql_station21 = NULL; 
 
         }
 
