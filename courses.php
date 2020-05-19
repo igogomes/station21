@@ -107,7 +107,7 @@
 
                 include_once "navbar-usuario.php";
 
-                include_once "meus-cursos.php";
+                include_once "data-base-my-courses.php"; 
 
                 include_once "footer.php";
 
