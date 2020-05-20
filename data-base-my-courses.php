@@ -3,6 +3,16 @@
     <div class="page-heading">
         <h1 class="page-title">Meus Cursos</h1>
             <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="./">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item">Cursos</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-12 col-md-12" style="text-align:right">
                     <a href="my-courses">
                         <button class="btn btn-success">Ver Mais</button> 
