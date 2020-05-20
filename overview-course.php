@@ -62,80 +62,166 @@
     $apresentacao = new GerenciarCurso();
     $apresentacao = $apresentacao -> getApresentacaoCursoPorCodigo($cod_curso);
 
-    $cod_modulo_curso_01 = new GerenciarModulo();
-    $cod_modulo_curso_01 = $cod_modulo_curso_01 -> getCodigoModuloPorCodigoCurso($cod_curso, 1);
+    if($permissao == 1 || $permissao == 2) {
 
-    $lista_videos_modulo_curso_01 = new GerenciarConteudo();
-    $lista_videos_modulo_curso_01 = $lista_videos_modulo_curso_01 -> gerarListaVideosAdminPorModulo($cod_modulo_curso_01);
+        $cod_modulo_curso_01 = new GerenciarModulo();
+        $cod_modulo_curso_01 = $cod_modulo_curso_01 -> getCodigoModuloPorCodigoCurso($cod_curso, 1);
 
-    $lista_textos_modulo_curso_01 = new GerenciarConteudo();
-    $lista_textos_modulo_curso_01 = $lista_textos_modulo_curso_01 -> gerarListaTextosAdminPorModulo($cod_modulo_curso_01);
+        $lista_videos_modulo_curso_01 = new GerenciarConteudo();
+        $lista_videos_modulo_curso_01 = $lista_videos_modulo_curso_01 -> gerarListaVideosAdminPorModulo($cod_modulo_curso_01);
 
-    $lista_arquivos_modulo_curso_01 = new GerenciarConteudo();
-    $lista_arquivos_modulo_curso_01 = $lista_arquivos_modulo_curso_01 -> gerarListaArquivosAdminPorModulo($cod_modulo_curso_01);
+        $lista_textos_modulo_curso_01 = new GerenciarConteudo();
+        $lista_textos_modulo_curso_01 = $lista_textos_modulo_curso_01 -> gerarListaTextosAdminPorModulo($cod_modulo_curso_01);
 
-    $lista_links_modulo_curso_01 = new GerenciarConteudo();
-    $lista_links_modulo_curso_01 = $lista_links_modulo_curso_01 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_01);
+        $lista_arquivos_modulo_curso_01 = new GerenciarConteudo();
+        $lista_arquivos_modulo_curso_01 = $lista_arquivos_modulo_curso_01 -> gerarListaArquivosAdminPorModulo($cod_modulo_curso_01);
 
-    $lista_exercicios_modulo_curso_01 = new GerenciarExercicio();
-    $lista_exercicios_modulo_curso_01 = $lista_exercicios_modulo_curso_01 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_01);
+        $lista_links_modulo_curso_01 = new GerenciarConteudo();
+        $lista_links_modulo_curso_01 = $lista_links_modulo_curso_01 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_01);
 
-    $cod_modulo_curso_02 = new GerenciarModulo();
-    $cod_modulo_curso_02 = $cod_modulo_curso_02 -> getCodigoModuloPorCodigoCurso($cod_curso, 2);
+        $lista_exercicios_modulo_curso_01 = new GerenciarExercicio();
+        $lista_exercicios_modulo_curso_01 = $lista_exercicios_modulo_curso_01 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_01);
 
-    $lista_videos_modulo_curso_02 = new GerenciarConteudo();
-    $lista_videos_modulo_curso_02 = $lista_videos_modulo_curso_02 -> gerarListaVideosAdminPorModulo($cod_modulo_curso_02);
+        $cod_modulo_curso_02 = new GerenciarModulo();
+        $cod_modulo_curso_02 = $cod_modulo_curso_02 -> getCodigoModuloPorCodigoCurso($cod_curso, 2);
 
-    $lista_textos_modulo_curso_02 = new GerenciarConteudo();
-    $lista_textos_modulo_curso_02 = $lista_textos_modulo_curso_02 -> gerarListaTextosAdminPorModulo($cod_modulo_curso_02);
+        $lista_videos_modulo_curso_02 = new GerenciarConteudo();
+        $lista_videos_modulo_curso_02 = $lista_videos_modulo_curso_02 -> gerarListaVideosAdminPorModulo($cod_modulo_curso_02);
 
-    $lista_arquivos_modulo_curso_02 = new GerenciarConteudo();
-    $lista_arquivos_modulo_curso_02 = $lista_arquivos_modulo_curso_02 -> gerarListaArquivosAdminPorModulo($cod_modulo_curso_02);
+        $lista_textos_modulo_curso_02 = new GerenciarConteudo();
+        $lista_textos_modulo_curso_02 = $lista_textos_modulo_curso_02 -> gerarListaTextosAdminPorModulo($cod_modulo_curso_02);
 
-    $lista_links_modulo_curso_02 = new GerenciarConteudo();
-    $lista_links_modulo_curso_02 = $lista_links_modulo_curso_02 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_02);
+        $lista_arquivos_modulo_curso_02 = new GerenciarConteudo();
+        $lista_arquivos_modulo_curso_02 = $lista_arquivos_modulo_curso_02 -> gerarListaArquivosAdminPorModulo($cod_modulo_curso_02);
 
-    $lista_exercicios_modulo_curso_02 = new GerenciarExercicio();
-    $lista_exercicios_modulo_curso_02 = $lista_exercicios_modulo_curso_02 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_02);
+        $lista_links_modulo_curso_02 = new GerenciarConteudo();
+        $lista_links_modulo_curso_02 = $lista_links_modulo_curso_02 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_02);
 
-    $cod_modulo_curso_03 = new GerenciarModulo();
-    $cod_modulo_curso_03 = $cod_modulo_curso_03 -> getCodigoModuloPorCodigoCurso($cod_curso, 3);
+        $lista_exercicios_modulo_curso_02 = new GerenciarExercicio();
+        $lista_exercicios_modulo_curso_02 = $lista_exercicios_modulo_curso_02 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_02);
 
-    $lista_videos_modulo_curso_03 = new GerenciarConteudo();
-    $lista_videos_modulo_curso_03 = $lista_videos_modulo_curso_03 -> gerarListaVideosAdminPorModulo($cod_modulo_curso_03);
+        $cod_modulo_curso_03 = new GerenciarModulo();
+        $cod_modulo_curso_03 = $cod_modulo_curso_03 -> getCodigoModuloPorCodigoCurso($cod_curso, 3);
 
-    $lista_textos_modulo_curso_03 = new GerenciarConteudo();
-    $lista_textos_modulo_curso_03 = $lista_textos_modulo_curso_03 -> gerarListaTextosAdminPorModulo($cod_modulo_curso_03);
+        $lista_videos_modulo_curso_03 = new GerenciarConteudo();
+        $lista_videos_modulo_curso_03 = $lista_videos_modulo_curso_03 -> gerarListaVideosAdminPorModulo($cod_modulo_curso_03);
 
-    $lista_arquivos_modulo_curso_03 = new GerenciarConteudo();
-    $lista_arquivos_modulo_curso_03 = $lista_arquivos_modulo_curso_03 -> gerarListaArquivosAdminPorModulo($cod_modulo_curso_03);
+        $lista_textos_modulo_curso_03 = new GerenciarConteudo();
+        $lista_textos_modulo_curso_03 = $lista_textos_modulo_curso_03 -> gerarListaTextosAdminPorModulo($cod_modulo_curso_03);
 
-    $lista_links_modulo_curso_03 = new GerenciarConteudo();
-    $lista_links_modulo_curso_03 = $lista_links_modulo_curso_03 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_03);
+        $lista_arquivos_modulo_curso_03 = new GerenciarConteudo();
+        $lista_arquivos_modulo_curso_03 = $lista_arquivos_modulo_curso_03 -> gerarListaArquivosAdminPorModulo($cod_modulo_curso_03);
 
-    $lista_exercicios_modulo_curso_03 = new GerenciarExercicio();
-    $lista_exercicios_modulo_curso_03 = $lista_exercicios_modulo_curso_03 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_03);
+        $lista_links_modulo_curso_03 = new GerenciarConteudo();
+        $lista_links_modulo_curso_03 = $lista_links_modulo_curso_03 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_03);
 
-    $cod_modulo_curso_04 = new GerenciarModulo();
-    $cod_modulo_curso_04 = $cod_modulo_curso_04 -> getCodigoModuloPorCodigoCurso($cod_curso, 4);
+        $lista_exercicios_modulo_curso_03 = new GerenciarExercicio();
+        $lista_exercicios_modulo_curso_03 = $lista_exercicios_modulo_curso_03 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_03);
 
-    $lista_videos_modulo_curso_04 = new GerenciarConteudo();
-    $lista_videos_modulo_curso_04 = $lista_videos_modulo_curso_04 -> gerarListaVideosAdminPorModulo($cod_modulo_curso_04);
+        $cod_modulo_curso_04 = new GerenciarModulo();
+        $cod_modulo_curso_04 = $cod_modulo_curso_04 -> getCodigoModuloPorCodigoCurso($cod_curso, 4);
 
-    $lista_textos_modulo_curso_04 = new GerenciarConteudo();
-    $lista_textos_modulo_curso_04 = $lista_textos_modulo_curso_04 -> gerarListaTextosAdminPorModulo($cod_modulo_curso_04);
+        $lista_videos_modulo_curso_04 = new GerenciarConteudo();
+        $lista_videos_modulo_curso_04 = $lista_videos_modulo_curso_04 -> gerarListaVideosAdminPorModulo($cod_modulo_curso_04);
 
-    $lista_arquivos_modulo_curso_04 = new GerenciarConteudo();
-    $lista_arquivos_modulo_curso_04 = $lista_arquivos_modulo_curso_04 -> gerarListaArquivosAdminPorModulo($cod_modulo_curso_04);
+        $lista_textos_modulo_curso_04 = new GerenciarConteudo();
+        $lista_textos_modulo_curso_04 = $lista_textos_modulo_curso_04 -> gerarListaTextosAdminPorModulo($cod_modulo_curso_04);
 
-    $lista_links_modulo_curso_04 = new GerenciarConteudo();
-    $lista_links_modulo_curso_04 = $lista_links_modulo_curso_04 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_04);
+        $lista_arquivos_modulo_curso_04 = new GerenciarConteudo();
+        $lista_arquivos_modulo_curso_04 = $lista_arquivos_modulo_curso_04 -> gerarListaArquivosAdminPorModulo($cod_modulo_curso_04);
 
-    $lista_exercicios_modulo_curso_04 = new GerenciarExercicio();
-    $lista_exercicios_modulo_curso_04 = $lista_exercicios_modulo_curso_04 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_04);
+        $lista_links_modulo_curso_04 = new GerenciarConteudo();
+        $lista_links_modulo_curso_04 = $lista_links_modulo_curso_04 -> gerarListaLinksAdminPorModulo($cod_modulo_curso_04);
 
-    $lista_prova_curso = new GerenciarProva();
-    $lista_prova_curso = $lista_prova_curso -> gerarListaProvaAdminPorCodigoCurso($cod_curso);
+        $lista_exercicios_modulo_curso_04 = new GerenciarExercicio();
+        $lista_exercicios_modulo_curso_04 = $lista_exercicios_modulo_curso_04 -> gerarListaExerciciosAdminPorModulo($cod_modulo_curso_04);
+
+        $lista_prova_curso = new GerenciarProva();
+        $lista_prova_curso = $lista_prova_curso -> gerarListaProvaAdminPorCodigoCurso($cod_curso);
+
+    }
+
+    if($permissao == 3) {
+
+        $cod_modulo_curso_01 = new GerenciarModulo();
+        $cod_modulo_curso_01 = $cod_modulo_curso_01 -> getCodigoModuloPorCodigoCurso($cod_curso, 1);
+
+        $lista_videos_modulo_curso_01 = new GerenciarConteudo();
+        $lista_videos_modulo_curso_01 = $lista_videos_modulo_curso_01 -> gerarListaVideosPorModulo($cod_modulo_curso_01);
+
+        $lista_textos_modulo_curso_01 = new GerenciarConteudo();
+        $lista_textos_modulo_curso_01 = $lista_textos_modulo_curso_01 -> gerarListaTextosPorModulo($cod_modulo_curso_01);
+
+        $lista_arquivos_modulo_curso_01 = new GerenciarConteudo();
+        $lista_arquivos_modulo_curso_01 = $lista_arquivos_modulo_curso_01 -> gerarListaArquivosPorModulo($cod_modulo_curso_01);
+
+        $lista_links_modulo_curso_01 = new GerenciarConteudo();
+        $lista_links_modulo_curso_01 = $lista_links_modulo_curso_01 -> gerarListaLinksPorModulo($cod_modulo_curso_01);
+
+        $lista_exercicios_modulo_curso_01 = new GerenciarExercicio();
+        $lista_exercicios_modulo_curso_01 = $lista_exercicios_modulo_curso_01 -> gerarListaExerciciosPorModulo($cod_modulo_curso_01);
+
+        $cod_modulo_curso_02 = new GerenciarModulo();
+        $cod_modulo_curso_02 = $cod_modulo_curso_02 -> getCodigoModuloPorCodigoCurso($cod_curso, 2);
+
+        $lista_videos_modulo_curso_02 = new GerenciarConteudo();
+        $lista_videos_modulo_curso_02 = $lista_videos_modulo_curso_02 -> gerarListaVideosPorModulo($cod_modulo_curso_02);
+
+        $lista_textos_modulo_curso_02 = new GerenciarConteudo();
+        $lista_textos_modulo_curso_02 = $lista_textos_modulo_curso_02 -> gerarListaTextosPorModulo($cod_modulo_curso_02);
+
+        $lista_arquivos_modulo_curso_02 = new GerenciarConteudo();
+        $lista_arquivos_modulo_curso_02 = $lista_arquivos_modulo_curso_02 -> gerarListaArquivosPorModulo($cod_modulo_curso_02);
+
+        $lista_links_modulo_curso_02 = new GerenciarConteudo();
+        $lista_links_modulo_curso_02 = $lista_links_modulo_curso_02 -> gerarListaLinksPorModulo($cod_modulo_curso_02);
+
+        $lista_exercicios_modulo_curso_02 = new GerenciarExercicio();
+        $lista_exercicios_modulo_curso_02 = $lista_exercicios_modulo_curso_02 -> gerarListaExerciciosPorModulo($cod_modulo_curso_02);
+
+        $cod_modulo_curso_03 = new GerenciarModulo();
+        $cod_modulo_curso_03 = $cod_modulo_curso_03 -> getCodigoModuloPorCodigoCurso($cod_curso, 3);
+
+        $lista_videos_modulo_curso_03 = new GerenciarConteudo();
+        $lista_videos_modulo_curso_03 = $lista_videos_modulo_curso_03 -> gerarListaVideosPorModulo($cod_modulo_curso_03);
+
+        $lista_textos_modulo_curso_03 = new GerenciarConteudo();
+        $lista_textos_modulo_curso_03 = $lista_textos_modulo_curso_03 -> gerarListaTextosPorModulo($cod_modulo_curso_03);
+
+        $lista_arquivos_modulo_curso_03 = new GerenciarConteudo();
+        $lista_arquivos_modulo_curso_03 = $lista_arquivos_modulo_curso_03 -> gerarListaArquivosPorModulo($cod_modulo_curso_03);
+
+        $lista_links_modulo_curso_03 = new GerenciarConteudo();
+        $lista_links_modulo_curso_03 = $lista_links_modulo_curso_03 -> gerarListaLinksPorModulo($cod_modulo_curso_03);
+
+        $lista_exercicios_modulo_curso_03 = new GerenciarExercicio();
+        $lista_exercicios_modulo_curso_03 = $lista_exercicios_modulo_curso_03 -> gerarListaExerciciosPorModulo($cod_modulo_curso_03);
+
+        $cod_modulo_curso_04 = new GerenciarModulo();
+        $cod_modulo_curso_04 = $cod_modulo_curso_04 -> getCodigoModuloPorCodigoCurso($cod_curso, 4);
+
+        $lista_videos_modulo_curso_04 = new GerenciarConteudo();
+        $lista_videos_modulo_curso_04 = $lista_videos_modulo_curso_04 -> gerarListaVideosPorModulo($cod_modulo_curso_04);
+
+        $lista_textos_modulo_curso_04 = new GerenciarConteudo();
+        $lista_textos_modulo_curso_04 = $lista_textos_modulo_curso_04 -> gerarListaTextosPorModulo($cod_modulo_curso_04);
+
+        $lista_arquivos_modulo_curso_04 = new GerenciarConteudo();
+        $lista_arquivos_modulo_curso_04 = $lista_arquivos_modulo_curso_04 -> gerarListaArquivosPorModulo($cod_modulo_curso_04);
+
+        $lista_links_modulo_curso_04 = new GerenciarConteudo();
+        $lista_links_modulo_curso_04 = $lista_links_modulo_curso_04 -> gerarListaLinksPorModulo($cod_modulo_curso_04);
+
+        $lista_exercicios_modulo_curso_04 = new GerenciarExercicio();
+        $lista_exercicios_modulo_curso_04 = $lista_exercicios_modulo_curso_04 -> gerarListaExerciciosPorModulo($cod_modulo_curso_04);
+
+        $lista_prova_curso = new GerenciarProva();
+        $lista_prova_curso = $lista_prova_curso -> gerarListaProvaPorCodigoCurso($cod_curso);
+
+        $avaliacao_curso = new GerenciarAvaliacao();
+        $avaliacao_curso = $avaliacao_curso -> getAvaliacaoPorCodigoCurso($cod_curso);
+
+    }
 
 ?>
 
@@ -185,6 +271,18 @@
                 include_once "navbar-instrutor.php";
 
                 include_once "overview-content-courses.php";
+
+                include_once "footer.php";
+
+            }
+
+            else if($permissao == 3) {
+
+                include_once "header-instrutor.php";
+
+                include_once "navbar-instrutor.php";
+
+                include_once "overview-content-course.php";
 
                 include_once "footer.php";
 

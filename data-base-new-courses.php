@@ -42,7 +42,19 @@
                                     $tabela_novos_cursos = new GerenciarCurso();
                                     $tabela_novos_cursos = $tabela_novos_cursos -> gerarTabelaCompletaNovosCursos();
 
-                                    echo $tabela_novos_cursos; 
+                                    if($tabela_novos_cursos != "") {
+
+                                        echo $tabela_novos_cursos; 
+
+                                    }
+
+                                    else {
+
+                                        echo "<tr>
+                                                    <td colspan=\"4\">Não existem novos cursos cadastrados.</td>
+                                              </tr>";
+
+                                    }
                                             
                                 ?>
 

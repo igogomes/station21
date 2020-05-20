@@ -583,7 +583,7 @@
                         <td>" . $nome_instrutor . "</td> 
                         <td>" . $avaliacao . "</td> 
                         <td>  
-                            <a href=\"view-course?cod-course=$cod_curso\">
+                            <a href=\"overview-course?cod-course=$cod_curso\">
                                 <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Conferir conteúdo\">
                                     <i class=\"fa fa-eye font-14\"></i>
                                 </button>
@@ -645,7 +645,7 @@
                         <td>" . $nome_instrutor . "</td> 
                         <td>" . $avaliacao . "</td> 
                         <td>  
-                            <a href=\"view-course?cod-course=$cod_curso\">
+                            <a href=\"overview-course?cod-course=$cod_curso\">
                                 <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Conferir conteúdo\">
                                     <i class=\"fa fa-eye font-14\"></i>
                                 </button>
@@ -707,7 +707,7 @@
                         <td>" . $nome_instrutor . "</td> 
                         <td>" . $avaliacao . "</td> 
                         <td>  
-                            <a href=\"view-course?cod-course=$cod_curso\">
+                            <a href=\"overview-course?cod-course=$cod_curso\">
                                 <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Conferir conteúdo\">
                                     <i class=\"fa fa-eye font-14\"></i>
                                 </button>
@@ -769,7 +769,7 @@
                         <td>" . $nome_instrutor . "</td> 
                         <td>" . $avaliacao . "</td> 
                         <td>  
-                            <a href=\"view-course?cod-course=$cod_curso\">
+                            <a href=\"overview-course?cod-course=$cod_curso\">
                                 <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Conferir conteúdo\">
                                     <i class=\"fa fa-eye font-14\"></i>
                                 </button>

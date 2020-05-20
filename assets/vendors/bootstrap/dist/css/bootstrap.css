@@ -668,6 +668,8 @@ pre code {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
+  padding-top: calc(.5rem - 1px * 2);
+  padding-bottom: calc(.5rem - 1px * 2);
 }
 
 .col {

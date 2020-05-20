@@ -42,8 +42,20 @@
                                     $tabela_outros_cursos = new GerenciarCurso();
                                     $tabela_outros_cursos = $tabela_outros_cursos -> gerarTabelaCompletaOutrosCursos();
 
-                                    echo $tabela_outros_cursos; 
-                                            
+                                    if($tabela_outros_cursos != "") {
+
+                                        echo $tabela_outros_cursos; 
+
+                                    }
+
+                                    else {
+
+                                        echo "<tr>
+                                                    <td colspan=\"4\">Não existem outros cursos cadastrados.</td>
+                                              </tr>";
+
+                                    }
+
                                 ?>
 
                             </tbody>
