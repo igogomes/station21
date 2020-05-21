@@ -7,6 +7,9 @@
     $senha = $_SESSION['senha'];
     $permissao = $_SESSION['permissao'];
 
+    $cod_usuario = new GerenciarUsuario();
+    $cod_usuario = $cod_usuario -> getCodigoUsuarioPorEmail($email);
+
     $nome = new AutenticarUsuario();
     $nome = utf8_encode($nome -> getNomeUsuario($email));  
 
@@ -16,6 +19,17 @@
     $cod_curso_erro_cadastro = (isset($_GET["erro-cadastro-cod-curso"])) ? $_GET["erro-cadastro-cod-curso"] : "";
     $cod_modificar_status = (isset($_GET["cod-course-modify-status"])) ? $_GET["cod-course-modify-status"] : "";
     $modificar_status = (isset($_GET["modify-status"])) ? $_GET["modify-status"] : "";
+
+    $inscricao_curso = (isset($_GET["subscribe-course"])) ? $_GET["subscribe-course"] : "";
+    $resultado_inscricao_curso = (isset($_GET["success-subscribe"])) ? $_GET["success-subscribe"] : "";
+    $codigo_curso_inscricao = (isset($_GET["cod-subscribe-course"])) ? $_GET["cod-subscribe-course"] : "";
+
+    if($codigo_curso_inscricao != "") {
+
+        $titulo_curso_inscricao = new GerenciarCurso();
+        $titulo_curso_inscricao = $titulo_curso_inscricao -> getTituloCursoPorCodigo($codigo_curso_inscricao);
+
+    }
 
     if($excluir_curso != "") {
 

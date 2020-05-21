@@ -809,6 +809,37 @@
 
         }
 
+        //Método getCodigoUsuarioPorEmail
+        //Retorna o código do usuário a partir do e-mail do mesmo
+        //@param $email - e-mail do usuário do qual o código será recuperado
+        public function getCodigoUsuarioPorEmail($email) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $cod_usuario = "";
+
+            $sql_cod_usuario = new SqlSelect();
+            $sql_cod_usuario -> adicionarColuna("cod_usuario, email");
+            $sql_cod_usuario -> setEntidade("Usuario");
+
+            $criterio_cod_usuario = new Criterio();
+            $criterio_cod_usuario -> adicionar(new Filtro("email", "=", "'{$email}'"));
+
+            $sql_cod_usuario -> setCriterio($criterio_cod_usuario);
+
+            $localizar_cod_usuario = $conexao_sql_station21 -> query($sql_cod_usuario -> getInstrucao());
+
+            while($linhas_cod_usuario = $localizar_cod_usuario -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_usuario = $linhas_cod_usuario["cod_usuario"];
+
+            }
+
+            return $cod_usuario;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

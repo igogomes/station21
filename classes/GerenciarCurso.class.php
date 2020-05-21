@@ -233,6 +233,37 @@
 
         }
 
+        //Método getCodigoInstrutorPorCodigoCurso
+        //Retorna código do instrutor do curso através do código deste
+        //@param $cod_curso - código do curso do qual o código do instrutor será recuperado
+        public function getCodigoInstrutorPorCodigoCurso($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $cod_instrutor = "";
+
+            $sql_cod_instrutor_curso = new SqlSelect();
+            $sql_cod_instrutor_curso -> adicionarColuna("cod_curso, cod_instrutor");
+            $sql_cod_instrutor_curso -> setEntidade("Curso");
+
+            $criterio_cod_instrutor_curso = new Criterio();
+            $criterio_cod_instrutor_curso -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $sql_cod_instrutor_curso -> setCriterio($criterio_cod_instrutor_curso);
+
+            $localizar_cod_instrutor_curso = $conexao_sql_station21 -> query($sql_cod_instrutor_curso -> getInstrucao());
+
+            while($linhas_cod_instrutor_curso = $localizar_cod_instrutor_curso -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_instrutor = utf8_encode($linhas_cod_instrutor_curso["cod_instrutor"]);
+
+            }
+
+            return $cod_instrutor;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
         //Método getInstrutorCursoPorCodigo
         //Retorna o instrutor do curso através do código do mesmo
         //@param $cod_curso - código do curso do qual o instrutor será recuperado
@@ -661,6 +692,73 @@
             }
 
             return $tabela_outros_cursos;
+
+            $conexao_sql_station21 = NULL; 
+
+        }
+
+        //Método gerarTabelaMeusCursos
+        //Retorna lista contendo os cinco primeiros cursos cadastrados na base de dados e
+        //nos quais o usuário é inscrito
+        //@param $cod_usuario - código do usuário para o qual as inscrições em cursos serão recuperadas
+        public function gerarTabelaMeusCursos($cod_usuario) {
+
+            $tabela_meus_cursos = "";
+            $cod_curso = "";
+            $titulo_curso = "";
+            $cod_instrutor = "";
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_gerar_tabela_meus_cursos = new SqlSelect();
+            $sql_gerar_tabela_meus_cursos -> adicionarColuna("*");
+            $sql_gerar_tabela_meus_cursos -> setEntidade("Inscricao");
+
+            $criterio_gerar_tabela_meus_cursos = new Criterio();
+            $criterio_gerar_tabela_meus_cursos -> setPropriedade("ORDER", "Inscricao.cod_curso ASC");
+            $criterio_gerar_tabela_meus_cursos -> setPropriedade("LIMIT", 5);
+            $criterio_gerar_tabela_meus_cursos -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
+    
+            $sql_gerar_tabela_meus_cursos -> setCriterio($criterio_gerar_tabela_meus_cursos);
+
+            $localizar_meus_cursos = $conexao_sql_station21 -> query($sql_gerar_tabela_meus_cursos -> getInstrucao());
+
+            while($linhas_meus_cursos = $localizar_meus_cursos -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_curso = $linhas_meus_cursos["cod_curso"];
+                
+                $titulo_curso = $this::getTituloCursoPorCodigo($cod_curso);
+                
+                $cod_instrutor = $this::getCodigoInstrutorPorCodigoCurso($cod_curso);
+
+                $nome_instrutor = new GerenciarUsuario();
+                $nome_instrutor = utf8_encode($nome_instrutor -> getNomePorCodigoUsuario($cod_instrutor));
+
+                $presenca = new GerenciarPresenca();
+                $presenca = $presenca -> getPresencaPorCodigoUsuarioECodigoCurso($cod_usuario, $cod_curso);
+
+                $tabela_meus_cursos .= 
+                    "<tr>   
+                        <td>" . $titulo_curso . "</td> 
+                        <td>" . $nome_instrutor . "</td> 
+                        <td>" . $presenca . "</td> 
+                        <td>  
+                            <a href=\"view-course?cod-course=$cod_curso\">
+                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Acessar Curso\">
+                                    <i class=\"fa fa-eye font-14\"></i>
+                                </button>
+                            </a>
+                            <a href=\"unsubscribe-course?cod-course=$cod_curso\">
+                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Remover Inscrição\">
+                                    <i class=\"fa fa-minus font-14\"></i>
+                                </button>
+                            </a>
+                        </td> 
+                    </tr>";
+ 
+            }
+
+            return $tabela_meus_cursos;
 
             $conexao_sql_station21 = NULL; 
 

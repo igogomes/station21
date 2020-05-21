@@ -13,6 +13,41 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-12">
+
+                    <?php 
+
+                        if($inscricao_curso == 1 && $resultado_inscricao_curso == 2) { 
+
+                    ?>
+
+                        <div class="alert alert-danger alert-dismissable fade show">
+                            <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                            Você já está inscrito(a) no curso <strong><?php echo $titulo_curso_inscricao; ?></strong>.
+                        </div>
+
+                    <?php 
+
+                        }
+
+                        if($inscricao_curso == 1 && $resultado_inscricao_curso == 1) {
+
+                    ?>
+
+                        <div class="alert alert-success alert-dismissable fade show">
+                            <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                            Sua inscrição no curso <strong><?php echo $titulo_curso_inscricao; ?></strong> foi realizada com <strong>sucesso</strong>.
+                        </div>
+
+                    <?php
+
+                        }
+
+                    ?>
+
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-12 col-md-12" style="text-align:right">
                     <a href="my-courses">
                         <button class="btn btn-success">Ver Mais</button> 
@@ -31,24 +66,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Empregabilidade</td>
-                                <td>Atividade de Revisão 01</td>
-                                <td>14/12/2019</td>
-                                <td>80%</td>
-                            </tr>
-                            <tr>
-                                <td>Atendimento ao Cliente</td>
-                                <td>Avaliação Final</td>
-                                <td>05/10/2019</td>
-                                <td>70%</td>
-                            </tr>
-                            <tr>
-                                <td>Técnicas de Negociação</td>
-                                <td>Atividade Avaliativa 01</td>
-                                <td>29/09/2019</td>
-                                <td>20%</td>
-                            </tr>
+                            
+                            <?php 
+                                
+                                $tabela_meus_cursos = new GerenciarCurso();
+                                $tabela_meus_cursos = $tabela_meus_cursos -> gerarTabelaMeusCursos($cod_usuario);
+
+                                echo $tabela_meus_cursos;
+
+                                if($tabela_meus_cursos == "") {
+                            
+                            ?>
+
+                                    <tr>
+                                        <td colspan="4"><div style="text-align: center;">Não foram encontradas inscrições em cursos</div></td>
+                                    </tr>
+
+                            <?php 
+                            
+                                }
+                            
+                            ?>
+
                         </tbody>
                     </table>
                 </div>
