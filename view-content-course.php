@@ -23,7 +23,7 @@
 
                     <div class="alert alert-success alert-dismissable fade show">
                         <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        Sua classificação para este curso foi atualizada com <strong>sucesso</strong>.
+                        Sua avaliação para este curso foi atualizada com <strong>sucesso</strong>.
                     </div>
 
             <?php 
@@ -36,7 +36,7 @@
 
                     <div class="alert alert-success alert-dismissable fade show">
                         <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        Sua classificação para este curso foi cadastrada com <strong>sucesso</strong>.
+                        Sua avaliação para este curso foi cadastrada com <strong>sucesso</strong>.
                     </div>
 
             <?php
