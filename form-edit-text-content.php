@@ -47,12 +47,6 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Título do Texto</label>
-                                <div class="col-sm-10">
-                                    <input name="titulo-texto" class="form-control" type="text" placeholder="Digite o título do texto" maxlength="100" value="<?php echo utf8_encode($titulo_conteudo); ?>" required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Módulo</label>
                                 <div class="col-sm-10">
                                     <?php 
@@ -64,6 +58,12 @@
 
                                     ?>
                                     <input type="hidden" name="modulo" value="<?php echo $cod_modulo; ?>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Título do Texto</label>
+                                <div class="col-sm-10">
+                                    <input name="titulo-texto" class="form-control" type="text" placeholder="Digite o título do texto" maxlength="100" value="<?php echo utf8_encode($titulo_conteudo); ?>" required>
                                 </div>
                             </div>
                             <div class="form-group row">
