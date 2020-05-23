@@ -598,34 +598,40 @@
 
             while($linhas_novos_cursos = $localizar_novos_cursos -> fetch(PDO::FETCH_ASSOC)) {
 
-                $cod_curso = $linhas_novos_cursos["cod_curso"];
-                $titulo_curso = utf8_encode($linhas_novos_cursos["titulo"]);
-                $cod_instrutor = $linhas_novos_cursos["cod_instrutor"];
+                $status = $linhas_novos_cursos["cod_status"];
 
-                $avaliacao = new GerenciarAvaliacao();
-                $avaliacao = $avaliacao -> getAvaliacaoPorCodigoCurso($cod_curso);
+                if($status == 1) {
 
-                $nome_instrutor = new GerenciarUsuario();
-                $nome_instrutor = utf8_encode($nome_instrutor -> getNomePorCodigoUsuario($cod_instrutor));
+                    $cod_curso = $linhas_novos_cursos["cod_curso"];
+                    $titulo_curso = utf8_encode($linhas_novos_cursos["titulo"]);
+                    $cod_instrutor = $linhas_novos_cursos["cod_instrutor"];
 
-                $tabela_novos_cursos .= 
-                    "<tr>   
-                        <td>" . $titulo_curso . "</td> 
-                        <td>" . $nome_instrutor . "</td> 
-                        <td>" . $avaliacao . "</td> 
-                        <td>  
-                            <a href=\"overview-course?cod-course=$cod_curso\">
-                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Conferir conteúdo\">
-                                    <i class=\"fa fa-eye font-14\"></i>
-                                </button>
-                            </a>
-                            <a href=\"subscribe-course?cod-course=$cod_curso\">
-                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Inscreva-se\">
-                                    <i class=\"fa fa-plus font-14\"></i>
-                                </button>
-                            </a>
-                        </td> 
-                    </tr>";
+                    $avaliacao = new GerenciarAvaliacao();
+                    $avaliacao = $avaliacao -> getAvaliacaoPorCodigoCurso($cod_curso);
+
+                    $nome_instrutor = new GerenciarUsuario();
+                    $nome_instrutor = utf8_encode($nome_instrutor -> getNomePorCodigoUsuario($cod_instrutor));
+
+                    $tabela_novos_cursos .= 
+                        "<tr>   
+                            <td>" . $titulo_curso . "</td> 
+                            <td>" . $nome_instrutor . "</td> 
+                            <td>" . $avaliacao . "</td> 
+                            <td>  
+                                <a href=\"overview-course?cod-course=$cod_curso\">
+                                    <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Conferir conteúdo\">
+                                        <i class=\"fa fa-eye font-14\"></i>
+                                    </button>
+                                </a>
+                                <a href=\"subscribe-course?cod-course=$cod_curso\">
+                                    <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Inscreva-se\">
+                                        <i class=\"fa fa-plus font-14\"></i>
+                                    </button>
+                                </a>
+                            </td> 
+                        </tr>";
+
+                }
  
             }
 
@@ -660,34 +666,40 @@
 
             while($linhas_outros_cursos = $localizar_outros_cursos -> fetch(PDO::FETCH_ASSOC)) {
 
-                $cod_curso = $linhas_outros_cursos["cod_curso"];
-                $titulo_curso = utf8_encode($linhas_outros_cursos["titulo"]);
-                $cod_instrutor = $linhas_outros_cursos["cod_instrutor"];
+                $status = $linhas_outros_cursos["cod_status"];
 
-                $avaliacao = new GerenciarAvaliacao();
-                $avaliacao = $avaliacao -> getAvaliacaoPorCodigoCurso($cod_curso);
+                if($status == 1) {
 
-                $nome_instrutor = new GerenciarUsuario();
-                $nome_instrutor = utf8_encode($nome_instrutor -> getNomePorCodigoUsuario($cod_instrutor));
+                    $cod_curso = $linhas_outros_cursos["cod_curso"];
+                    $titulo_curso = utf8_encode($linhas_outros_cursos["titulo"]);
+                    $cod_instrutor = $linhas_outros_cursos["cod_instrutor"];
 
-                $tabela_outros_cursos .= 
-                    "<tr>   
-                        <td>" . $titulo_curso . "</td> 
-                        <td>" . $nome_instrutor . "</td> 
-                        <td>" . $avaliacao . "</td> 
-                        <td>  
-                            <a href=\"overview-course?cod-course=$cod_curso\">
-                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Conferir conteúdo\">
-                                    <i class=\"fa fa-eye font-14\"></i>
-                                </button>
-                            </a>
-                            <a href=\"subscribe-course?cod-course=$cod_curso\">
-                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Inscreva-se\">
-                                    <i class=\"fa fa-plus font-14\"></i>
-                                </button>
-                            </a>
-                        </td> 
-                    </tr>";
+                    $avaliacao = new GerenciarAvaliacao();
+                    $avaliacao = $avaliacao -> getAvaliacaoPorCodigoCurso($cod_curso);
+
+                    $nome_instrutor = new GerenciarUsuario();
+                    $nome_instrutor = utf8_encode($nome_instrutor -> getNomePorCodigoUsuario($cod_instrutor));
+
+                    $tabela_outros_cursos .= 
+                        "<tr>   
+                            <td>" . $titulo_curso . "</td> 
+                            <td>" . $nome_instrutor . "</td> 
+                            <td>" . $avaliacao . "</td> 
+                            <td>  
+                                <a href=\"overview-course?cod-course=$cod_curso\">
+                                    <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Conferir conteúdo\">
+                                        <i class=\"fa fa-eye font-14\"></i>
+                                    </button>
+                                </a>
+                                <a href=\"subscribe-course?cod-course=$cod_curso\">
+                                    <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Inscreva-se\">
+                                        <i class=\"fa fa-plus font-14\"></i>
+                                    </button>
+                                </a>
+                            </td> 
+                        </tr>";
+
+                }
  
             }
 
@@ -789,34 +801,40 @@
 
             while($linhas_novos_cursos = $localizar_novos_cursos -> fetch(PDO::FETCH_ASSOC)) {
 
-                $cod_curso = $linhas_novos_cursos["cod_curso"];
-                $titulo_curso = utf8_encode($linhas_novos_cursos["titulo"]);
-                $cod_instrutor = $linhas_novos_cursos["cod_instrutor"];
+                $status = $linhas_novos_cursos["cod_status"];
 
-                $avaliacao = new GerenciarAvaliacao();
-                $avaliacao = $avaliacao -> getAvaliacaoPorCodigoCurso($cod_curso);
+                if($status == 1) {
 
-                $nome_instrutor = new GerenciarUsuario();
-                $nome_instrutor = utf8_encode($nome_instrutor -> getNomePorCodigoUsuario($cod_instrutor));
+                    $cod_curso = $linhas_novos_cursos["cod_curso"];
+                    $titulo_curso = utf8_encode($linhas_novos_cursos["titulo"]);
+                    $cod_instrutor = $linhas_novos_cursos["cod_instrutor"];
 
-                $tabela_novos_cursos .= 
-                    "<tr>   
-                        <td>" . $titulo_curso . "</td> 
-                        <td>" . $nome_instrutor . "</td> 
-                        <td>" . $avaliacao . "</td> 
-                        <td>  
-                            <a href=\"overview-course?cod-course=$cod_curso\">
-                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Conferir conteúdo\">
-                                    <i class=\"fa fa-eye font-14\"></i>
-                                </button>
-                            </a>
-                            <a href=\"subscribe-course?cod-course=$cod_curso\">
-                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Inscreva-se\">
-                                    <i class=\"fa fa-plus font-14\"></i>
-                                </button>
-                            </a>
-                        </td> 
-                    </tr>";
+                    $avaliacao = new GerenciarAvaliacao();
+                    $avaliacao = $avaliacao -> getAvaliacaoPorCodigoCurso($cod_curso);
+
+                    $nome_instrutor = new GerenciarUsuario();
+                    $nome_instrutor = utf8_encode($nome_instrutor -> getNomePorCodigoUsuario($cod_instrutor));
+
+                    $tabela_novos_cursos .= 
+                        "<tr>   
+                            <td>" . $titulo_curso . "</td> 
+                            <td>" . $nome_instrutor . "</td> 
+                            <td>" . $avaliacao . "</td> 
+                            <td>  
+                                <a href=\"overview-course?cod-course=$cod_curso\">
+                                    <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Conferir conteúdo\">
+                                        <i class=\"fa fa-eye font-14\"></i>
+                                    </button>
+                                </a>
+                                <a href=\"subscribe-course?cod-course=$cod_curso\">
+                                    <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Inscreva-se\">
+                                        <i class=\"fa fa-plus font-14\"></i>
+                                    </button>
+                                </a>
+                            </td> 
+                        </tr>";
+
+                }
  
             }
 
@@ -851,34 +869,40 @@
 
             while($linhas_outros_cursos = $localizar_outros_cursos -> fetch(PDO::FETCH_ASSOC)) {
 
-                $cod_curso = $linhas_outros_cursos["cod_curso"];
-                $titulo_curso = utf8_encode($linhas_outros_cursos["titulo"]);
-                $cod_instrutor = $linhas_outros_cursos["cod_instrutor"];
+                $status = $linhas_outros_cursos["cod_status"];
 
-                $avaliacao = new GerenciarAvaliacao();
-                $avaliacao = $avaliacao -> getAvaliacaoPorCodigoCurso($cod_curso);
+                if($status == 1) {
 
-                $nome_instrutor = new GerenciarUsuario();
-                $nome_instrutor = utf8_encode($nome_instrutor -> getNomePorCodigoUsuario($cod_instrutor));
+                    $cod_curso = $linhas_outros_cursos["cod_curso"];
+                    $titulo_curso = utf8_encode($linhas_outros_cursos["titulo"]);
+                    $cod_instrutor = $linhas_outros_cursos["cod_instrutor"];
 
-                $tabela_outros_cursos .= 
-                    "<tr>   
-                        <td>" . $titulo_curso . "</td> 
-                        <td>" . $nome_instrutor . "</td> 
-                        <td>" . $avaliacao . "</td> 
-                        <td>  
-                            <a href=\"overview-course?cod-course=$cod_curso\">
-                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Conferir conteúdo\">
-                                    <i class=\"fa fa-eye font-14\"></i>
-                                </button>
-                            </a>
-                            <a href=\"subscribe-course?cod-course=$cod_curso\">
-                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Inscreva-se\">
-                                    <i class=\"fa fa-plus font-14\"></i>
-                                </button>
-                            </a>
-                        </td> 
-                    </tr>";
+                    $avaliacao = new GerenciarAvaliacao();
+                    $avaliacao = $avaliacao -> getAvaliacaoPorCodigoCurso($cod_curso);
+
+                    $nome_instrutor = new GerenciarUsuario();
+                    $nome_instrutor = utf8_encode($nome_instrutor -> getNomePorCodigoUsuario($cod_instrutor));
+
+                    $tabela_outros_cursos .= 
+                        "<tr>   
+                            <td>" . $titulo_curso . "</td> 
+                            <td>" . $nome_instrutor . "</td> 
+                            <td>" . $avaliacao . "</td> 
+                            <td>  
+                                <a href=\"overview-course?cod-course=$cod_curso\">
+                                    <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Conferir conteúdo\">
+                                        <i class=\"fa fa-eye font-14\"></i>
+                                    </button>
+                                </a>
+                                <a href=\"subscribe-course?cod-course=$cod_curso\">
+                                    <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Inscreva-se\">
+                                        <i class=\"fa fa-plus font-14\"></i>
+                                    </button>
+                                </a>
+                            </td> 
+                        </tr>";
+
+                }
  
             }
 
