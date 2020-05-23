@@ -581,6 +581,7 @@
             $cod_curso = "";
             $titulo_curso = "";
             $cod_instrutor = "";
+            $contador = 0;
 
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
 
@@ -590,7 +591,6 @@
 
             $criterio_gerar_tabela_novos_cursos = new Criterio();
             $criterio_gerar_tabela_novos_cursos -> setPropriedade("ORDER", "Curso.cod_curso DESC");
-            $criterio_gerar_tabela_novos_cursos -> setPropriedade("LIMIT", 5);
     
             $sql_gerar_tabela_novos_cursos -> setCriterio($criterio_gerar_tabela_novos_cursos);
 
@@ -600,7 +600,7 @@
 
                 $status = $linhas_novos_cursos["cod_status"];
 
-                if($status == 1) {
+                if($status == 1 && $contador < 5) {
 
                     $cod_curso = $linhas_novos_cursos["cod_curso"];
                     $titulo_curso = utf8_encode($linhas_novos_cursos["titulo"]);
@@ -631,6 +631,8 @@
                             </td> 
                         </tr>";
 
+                    $contador++;
+
                 }
  
             }
@@ -649,6 +651,7 @@
             $cod_curso = "";
             $titulo_curso = "";
             $cod_instrutor = "";
+            $contador = 0;
 
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
 
@@ -658,7 +661,6 @@
 
             $criterio_gerar_tabela_outros_cursos = new Criterio();
             $criterio_gerar_tabela_outros_cursos -> setPropriedade("ORDER", "Curso.cod_curso ASC");
-            $criterio_gerar_tabela_outros_cursos -> setPropriedade("LIMIT", 5);
     
             $sql_gerar_tabela_outros_cursos -> setCriterio($criterio_gerar_tabela_outros_cursos);
 
@@ -668,7 +670,7 @@
 
                 $status = $linhas_outros_cursos["cod_status"];
 
-                if($status == 1) {
+                if($status == 1 && $contador < 5) {
 
                     $cod_curso = $linhas_outros_cursos["cod_curso"];
                     $titulo_curso = utf8_encode($linhas_outros_cursos["titulo"]);
@@ -699,6 +701,8 @@
                             </td> 
                         </tr>";
 
+                    $contador++;
+
                 }
  
             }
@@ -719,6 +723,7 @@
             $cod_curso = "";
             $titulo_curso = "";
             $cod_instrutor = "";
+            $contador = 0;
 
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
 
@@ -728,7 +733,6 @@
 
             $criterio_gerar_tabela_meus_cursos = new Criterio();
             $criterio_gerar_tabela_meus_cursos -> setPropriedade("ORDER", "Inscricao.cod_curso ASC");
-            $criterio_gerar_tabela_meus_cursos -> setPropriedade("LIMIT", 5);
             $criterio_gerar_tabela_meus_cursos -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
     
             $sql_gerar_tabela_meus_cursos -> setCriterio($criterio_gerar_tabela_meus_cursos);
@@ -737,36 +741,42 @@
 
             while($linhas_meus_cursos = $localizar_meus_cursos -> fetch(PDO::FETCH_ASSOC)) {
 
-                $cod_curso = $linhas_meus_cursos["cod_curso"];
-                
-                $titulo_curso = $this::getTituloCursoPorCodigo($cod_curso);
-                
-                $cod_instrutor = $this::getCodigoInstrutorPorCodigoCurso($cod_curso);
+                if($contador < 5) {
 
-                $nome_instrutor = new GerenciarUsuario();
-                $nome_instrutor = utf8_encode($nome_instrutor -> getNomePorCodigoUsuario($cod_instrutor));
+                    $cod_curso = $linhas_meus_cursos["cod_curso"];
+                    
+                    $titulo_curso = $this::getTituloCursoPorCodigo($cod_curso);
+                    
+                    $cod_instrutor = $this::getCodigoInstrutorPorCodigoCurso($cod_curso);
 
-                $presenca = new GerenciarPresenca();
-                $presenca = $presenca -> getPresencaPorCodigoUsuarioECodigoCurso($cod_usuario, $cod_curso);
+                    $nome_instrutor = new GerenciarUsuario();
+                    $nome_instrutor = utf8_encode($nome_instrutor -> getNomePorCodigoUsuario($cod_instrutor));
 
-                $tabela_meus_cursos .= 
-                    "<tr>   
-                        <td>" . $titulo_curso . "</td> 
-                        <td>" . $nome_instrutor . "</td> 
-                        <td>" . $presenca . "</td> 
-                        <td>  
-                            <a href=\"view-course?cod-course=$cod_curso\">
-                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Acessar Curso\">
-                                    <i class=\"fa fa-eye font-14\"></i>
-                                </button>
-                            </a>
-                            <a href=\"unsubscribe-course?cod-course=$cod_curso\">
-                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Remover Inscrição\">
-                                    <i class=\"fa fa-minus font-14\"></i>
-                                </button>
-                            </a>
-                        </td> 
-                    </tr>";
+                    $presenca = new GerenciarPresenca();
+                    $presenca = $presenca -> getPresencaPorCodigoUsuarioECodigoCurso($cod_usuario, $cod_curso);
+
+                    $tabela_meus_cursos .= 
+                        "<tr>   
+                            <td>" . $titulo_curso . "</td> 
+                            <td>" . $nome_instrutor . "</td> 
+                            <td>" . $presenca . "</td> 
+                            <td>  
+                                <a href=\"view-course?cod-course=$cod_curso\">
+                                    <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Acessar Curso\">
+                                        <i class=\"fa fa-eye font-14\"></i>
+                                    </button>
+                                </a>
+                                <a href=\"unsubscribe-course?cod-course=$cod_curso\">
+                                    <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Remover Inscrição\">
+                                        <i class=\"fa fa-minus font-14\"></i>
+                                    </button>
+                                </a>
+                            </td> 
+                        </tr>";
+
+                }
+
+                $contador++;
  
             }
 
