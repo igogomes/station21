@@ -65,6 +65,37 @@
 
         }
 
+        //Método verificarCursosAtivos
+        //Verifica a quantidade de cursos nos quais um usuário se encontra inscrito
+        //@param $cod_usuario - código do usuário para o qual a verificação será realizada
+        public function verificarCursosAtivos($cod_usuario) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $contador = 0;
+
+            $sql_verificar_cursos_ativos = new SqlSelect();
+            $sql_verificar_cursos_ativos -> adicionarColuna("cod_usuario");
+            $sql_verificar_cursos_ativos -> setEntidade("Inscricao");
+
+            $criterio_verificar_cursos_ativos = new Criterio();
+            $criterio_verificar_cursos_ativos -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
+
+            $sql_verificar_cursos_ativos -> setCriterio($criterio_verificar_cursos_ativos);
+
+            $localizar_verificar_cursos_ativos = $conexao_sql_station21 -> query($sql_verificar_cursos_ativos -> getInstrucao());
+
+            while($linhas_verificar_cursos_ativos = $localizar_verificar_cursos_ativos -> fetch(PDO::FETCH_ASSOC)) {
+
+                $contador++;
+
+            }
+
+            return $contador;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

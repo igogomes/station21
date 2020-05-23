@@ -10,6 +10,9 @@
     $nome = new AutenticarUsuario();
     $nome = utf8_encode($nome -> getNomeUsuario($email)); 
 
+    $cod_usuario = new GerenciarUsuario();
+    $cod_usuario = $cod_usuario -> getCodigoUsuarioPorEmail($email);
+
     $grafico_quantidade_cadastrados = new GerenciarUsuario();
     $grafico_quantidade_cadastrados = $grafico_quantidade_cadastrados -> gerarGraficoQuantidadeCadastrados();
 

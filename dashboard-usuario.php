@@ -3,12 +3,25 @@
     <div class="page-content fade-in-up">
         <div class="row">
             <div class="col-lg-6 col-md-6">
-                <div class="ibox bg-info color-white widget-stat">
-                    <div class="ibox-body">
-                        <h2 class="m-b-5 font-strong">3</h2>
-                        <div class="m-b-5">CURSOS ATIVOS</div><i class="fa fa-play-circle widget-stat-icon"></i>
+                <a href="courses">
+                    <div class="ibox bg-info color-white widget-stat">
+                        <div class="ibox-body">
+                            <h2 class="m-b-5 font-strong">
+
+                                <?php  
+                                
+                                    $quantidade_cursos_ativos = new GerenciarInscricao();
+                                    $quantidade_cursos_ativos = $quantidade_cursos_ativos -> verificarCursosAtivos($cod_usuario);
+
+                                    echo $quantidade_cursos_ativos;
+                                
+                                ?>
+
+                            </h2>
+                            <div class="m-b-5">CURSOS ATIVOS</div><i class="fa fa-play-circle widget-stat-icon"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="ibox bg-warning color-white widget-stat">
