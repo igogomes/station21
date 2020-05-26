@@ -105,6 +105,58 @@
 
         }
 
+        //Método gerarListaVideosUsuarioPorModulo
+        //Método para a geração de lista de vídeos associados a um módulo de um curso
+        //@param $cod_modulo - Código do módulo para o qual a lista será gerada
+        public function gerarListaVideosUsuarioPorModulo($cod_modulo) { 
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $cod_conteudo = "";
+            $cod_tipo = "";
+            $lista_videos = "<table style=\"width: 100%;\">";
+            $titulo_video = "";
+            $contador = 0;
+
+            $sql_lista_videos = new SqlSelect();
+            $sql_lista_videos -> adicionarColuna("cod_conteudo, cod_modulo, cod_tipo, arquivo, titulo");
+            $sql_lista_videos -> setEntidade("Conteudo");
+
+            $criterio_lista_videos = new Criterio();
+            $criterio_lista_videos -> adicionar(new Filtro("cod_modulo", "=", "'{$cod_modulo}'"));
+
+            $sql_lista_videos -> setCriterio($criterio_lista_videos);
+
+            $localizar_videos = $conexao_sql_station21 -> query($sql_lista_videos -> getInstrucao());
+
+            while($linhas_lista_videos = $localizar_videos -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_conteudo = $linhas_lista_videos["cod_conteudo"];
+                $cod_tipo = $linhas_lista_videos["cod_tipo"]; 
+                $titulo_video = utf8_encode($linhas_lista_videos["titulo"]);
+
+                if($cod_tipo == 1) {
+
+                    $contador++;
+
+                    $lista_videos .= "<tr style=\"width: 100%;\">";
+                    $lista_videos .= "<td style=\"width: 100%;\">
+                                        <div style=\"float: left; width: 100%;\"><a href=\"view-content?cod-content=$cod_conteudo\" class=\"link-list-content\">" . $contador . " - " . $titulo_video . "</a></div>
+                                    </td>";
+                    $lista_videos .= "</tr>";
+
+                }
+
+            }
+
+            $lista_videos .= "</table>";
+
+            return $lista_videos;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
         //Método gerarListaVideosPorModulo
         //Método para a geração de lista de vídeos associados a um módulo de um curso
         //@param $cod_modulo - Código do módulo para o qual a lista será gerada
@@ -208,6 +260,58 @@
                                             </a>
                                             </span>
                                         </div>
+                                    </td>";
+                    $lista_textos .= "</tr>";
+
+                }
+
+            }
+
+            $lista_textos .= "</table>";
+
+            return $lista_textos;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método gerarListaTextosUsuarioPorModulo
+        //Método para a geração de lista de textos associados a um módulo de um curso
+        //@param $cod_modulo - Código do módulo para o qual a lista será gerada
+        public function gerarListaTextosUsuarioPorModulo($cod_modulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $cod_conteudo = "";
+            $cod_tipo = "";
+            $lista_textos = "<table style=\"width: 100%;\">";
+            $titulo_texto = "";
+            $contador = 0;
+
+            $sql_lista_textos = new SqlSelect();
+            $sql_lista_textos -> adicionarColuna("cod_conteudo, cod_modulo, cod_tipo, texto, titulo");
+            $sql_lista_textos -> setEntidade("Conteudo");
+
+            $criterio_lista_textos = new Criterio();
+            $criterio_lista_textos -> adicionar(new Filtro("cod_modulo", "=", "'{$cod_modulo}'"));
+
+            $sql_lista_textos -> setCriterio($criterio_lista_textos);
+
+            $localizar_textos = $conexao_sql_station21 -> query($sql_lista_textos -> getInstrucao());
+
+            while($linhas_lista_textos = $localizar_textos -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_conteudo = $linhas_lista_textos["cod_conteudo"];
+                $cod_tipo = $linhas_lista_textos["cod_tipo"]; 
+                $titulo_texto = utf8_encode($linhas_lista_textos["titulo"]);
+
+                if($cod_tipo == 2) {
+
+                    $contador++;
+
+                    $lista_textos .= "<tr style=\"width: 100%;\">";
+                    $lista_textos .= "<td style=\"width: 100%;\">
+                                        <div style=\"float: left; width: 100%;\"><a href=\"view-content?cod-content=$cod_conteudo\" class=\"link-list-content\">" . $contador . " - " . $titulo_texto . "</a></div>
                                     </td>";
                     $lista_textos .= "</tr>";
 
@@ -341,6 +445,58 @@
 
         }
 
+        //Método gerarListaArquivosUsuarioPorModulo
+        //Método para a geração de lista de arquivos associados a um módulo de um curso
+        //@param $cod_modulo - Código do módulo para o qual a lista será gerada
+        public function gerarListaArquivosUsuarioPorModulo($cod_modulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $cod_conteudo = "";
+            $cod_tipo = "";
+            $lista_arquivos = "<table style=\"width: 100%;\">";
+            $titulo_arquivo = "";
+            $contador = 0;
+
+            $sql_lista_arquivos = new SqlSelect();
+            $sql_lista_arquivos -> adicionarColuna("cod_conteudo, cod_modulo, cod_tipo, arquivo, titulo");
+            $sql_lista_arquivos -> setEntidade("Conteudo");
+
+            $criterio_lista_arquivos = new Criterio();
+            $criterio_lista_arquivos -> adicionar(new Filtro("cod_modulo", "=", "'{$cod_modulo}'"));
+
+            $sql_lista_arquivos -> setCriterio($criterio_lista_arquivos);
+
+            $localizar_arquivos = $conexao_sql_station21 -> query($sql_lista_arquivos -> getInstrucao());
+
+            while($linhas_lista_arquivos = $localizar_arquivos -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_conteudo = $linhas_lista_arquivos["cod_conteudo"];
+                $cod_tipo = $linhas_lista_arquivos["cod_tipo"]; 
+                $titulo_arquivo = utf8_encode($linhas_lista_arquivos["titulo"]);
+
+                if($cod_tipo == 3) {
+
+                    $contador++;
+
+                    $lista_arquivos .= "<tr style=\"width: 100%;\">";
+                    $lista_arquivos .= "<td style=\"width: 100%;\">
+                                        <div style=\"float: left; width: 100%;\"><a href=\"view-content?cod-content=$cod_conteudo\" class=\"link-list-content\">" . $contador . " - " . $titulo_arquivo . "</a></div>
+                                    </td>";
+                    $lista_arquivos .= "</tr>";
+
+                }
+
+            }
+
+            $lista_arquivos .= "</table>";
+
+            return $lista_arquivos;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
         //Método gerarListaArquivosPorModulo
         //Método para a geração de lista de arquivos associados a um módulo de um curso
         //@param $cod_modulo - Código do módulo para o qual a lista será gerada
@@ -444,6 +600,58 @@
                                             </a>
                                             </span>
                                         </div>
+                                    </td>";
+                    $lista_links .= "</tr>";
+
+                }
+
+            }
+
+            $lista_links .= "</table>";
+
+            return $lista_links;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método gerarListaLinksUsuarioPorModulo
+        //Método para a geração de lista de links associados a um módulo de um curso
+        //@param $cod_modulo - Código do módulo para o qual a lista será gerada
+        public function gerarListaLinksUsuarioPorModulo($cod_modulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $cod_conteudo = "";
+            $cod_tipo = "";
+            $lista_links = "<table style=\"width: 100%;\">";
+            $titulo_link = "";
+            $contador = 0;
+
+            $sql_lista_links = new SqlSelect();
+            $sql_lista_links -> adicionarColuna("cod_conteudo, cod_modulo, cod_tipo, link, titulo");
+            $sql_lista_links -> setEntidade("Conteudo");
+
+            $criterio_lista_links = new Criterio();
+            $criterio_lista_links -> adicionar(new Filtro("cod_modulo", "=", "'{$cod_modulo}'"));
+
+            $sql_lista_links -> setCriterio($criterio_lista_links);
+
+            $localizar_links = $conexao_sql_station21 -> query($sql_lista_links -> getInstrucao());
+
+            while($linhas_lista_links = $localizar_links -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_conteudo = $linhas_lista_links["cod_conteudo"];
+                $cod_tipo = $linhas_lista_links["cod_tipo"]; 
+                $titulo_link = utf8_encode($linhas_lista_links["titulo"]);
+
+                if($cod_tipo == 4) {
+
+                    $contador++;
+
+                    $lista_links .= "<tr style=\"width: 100%;\">";
+                    $lista_links .= "<td style=\"width: 100%;\">
+                                        <div style=\"float: left; width: 100%;\"><a href=\"view-content?cod-content=$cod_conteudo\" class=\"link-list-content\">" . $contador . " - " . $titulo_link . "</a></div>
                                     </td>";
                     $lista_links .= "</tr>";
 

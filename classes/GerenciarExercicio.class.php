@@ -219,6 +219,53 @@
 
         }
 
+        //Método gerarListaExerciciosUsuarioPorModulo
+        //Método para a geração de lista de exercicios associados a um módulo de um curso
+        //@param $cod_modulo - Código do módulo para o qual a lista será gerada
+        public function gerarListaExerciciosUsuarioPorModulo($cod_modulo) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $lista_exercicios = "<table style=\"width: 100%;\">";
+            $contador = 0;
+            $cod_exercicio = "";
+
+            $sql_lista_exercicios = new SqlSelect();
+            $sql_lista_exercicios -> adicionarColuna("cod_exercicio, cod_modulo");
+            $sql_lista_exercicios -> setEntidade("Exercicio");
+
+            $criterio_lista_exercicios = new Criterio();
+            $criterio_lista_exercicios -> adicionar(new Filtro("cod_modulo", "=", "'{$cod_modulo}'"));
+
+            $sql_lista_exercicios -> setCriterio($criterio_lista_exercicios);
+
+            $localizar_exercicios = $conexao_sql_station21 -> query($sql_lista_exercicios -> getInstrucao());
+
+            while($linhas_lista_exercicios = $localizar_exercicios -> fetch(PDO::FETCH_ASSOC)) {
+
+                $contador++;
+                $cod_exercicio = $linhas_lista_exercicios["cod_exercicio"];
+
+            }
+
+            if($contador > 0) {
+
+                $lista_exercicios .= "<tr style=\"width: 100%;\">";
+                $lista_exercicios .= "<td style=\"width: 100%;\">
+                                        <div style=\"float: left; width: 100%;\"><a href=\"view-content?cod-exercise=$cod_exercicio\" class=\"link-list-content\">Exercício</a></div>
+                                      </td>";
+                $lista_exercicios .= "</tr>";
+
+            }
+
+            $lista_exercicios .= "</table>";
+
+            return $lista_exercicios;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
         //Método gerarListaExerciciosPorModulo
         //Método para a geração de lista de exercicios associados a um módulo de um curso
         //@param $cod_modulo - Código do módulo para o qual a lista será gerada

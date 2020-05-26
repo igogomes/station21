@@ -1,3 +1,13 @@
 .footer-text {
     text-align: center;
 }
+
+.link-list-content {
+    color: #333;
+}
+
+.link-list-content:hover,
+.link-list-content:focus {
+    text-decoration: underline;
+    color: #333;
+}

@@ -148,6 +148,53 @@
 
         }
 
+        //Método gerarListaProvaUsuarioPorCodigoCurso
+        //Método para a geração de lista de provas associadas a um curso através do código do mesmo
+        //@param $cod_curso - Código do curso para o qual a lista será gerada
+        public function gerarListaProvaUsuarioPorCodigoCurso($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $lista_prova = "<table style=\"width: 100%;\">";
+            $contador = 0;
+            $cod_prova = "";
+
+            $sql_lista_prova = new SqlSelect();
+            $sql_lista_prova -> adicionarColuna("cod_prova, cod_curso");
+            $sql_lista_prova -> setEntidade("Prova");
+
+            $criterio_lista_prova = new Criterio();
+            $criterio_lista_prova -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $sql_lista_prova -> setCriterio($criterio_lista_prova);
+
+            $localizar_prova = $conexao_sql_station21 -> query($sql_lista_prova -> getInstrucao());
+
+            while($linhas_lista_prova = $localizar_prova -> fetch(PDO::FETCH_ASSOC)) {
+
+                $contador++;
+                $cod_prova = $linhas_lista_prova["cod_prova"];
+
+            }
+
+            if($contador > 0) {
+
+                $lista_prova .= "<tr style=\"width: 100%;\">";
+                $lista_prova .= "<td style=\"width: 100%;\">
+                                        <div style=\"float: left; width: 100%;\"><a href=\"view-content?cod-test=$cod_prova\" class=\"link-list-content\">Prova</a></div>
+                                    </td>";
+                $lista_prova .= "</tr>";
+
+            }
+
+            $lista_prova .= "</table>";
+
+            return $lista_prova;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
         //Método gerarListaProvaPorCodigoCurso
         //Método para a geração de lista de provas associadas a um curso através do código do mesmo
         //@param $cod_curso - Código do curso para o qual a lista será gerada
