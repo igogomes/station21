@@ -967,6 +967,32 @@
 
         }
 
+        //Método gerarLinkVideoYouTube()
+        //Método para adequação de link do YouTube
+        public function gerarLinkVideoYouTube($url) {
+
+            $link_youtube = explode('=', $url);
+            $link_youtube = $link_youtube[1];
+
+            $link_youtube = "https://www.youtube.com/embed/" . $link_youtube;
+
+            return $link_youtube;
+
+        }
+
+        //Método gerarLinkVideoVimeo()
+        //Método para adequação de link do Vimeo
+        public function gerarLinkVideoVimeo($url) {
+
+            $link_vimeo = explode("com/", $url);
+            $link_vimeo = $link_vimeo[1];
+
+            $link_vimeo = "https://player.vimeo.com/video/" . $link_vimeo;
+
+            return $link_vimeo;
+
+        }
+
     }
 
 ?>
