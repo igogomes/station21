@@ -482,7 +482,7 @@
 
                     $lista_arquivos .= "<tr style=\"width: 100%;\">";
                     $lista_arquivos .= "<td style=\"width: 100%;\">
-                                        <div style=\"float: left; width: 100%;\"><a href=\"$arquivo\" class=\"link-list-content\" target=\"_blank\">" . $contador . " - " . $titulo_arquivo . "</a></div>
+                                        <div style=\"float: left; width: 100%;\"><a href=\"$arquivo\" class=\"link-list-content\" download>" . $contador . " - " . $titulo_arquivo . "</a></div>
                                     </td>";
                     $lista_arquivos .= "</tr>";
 
@@ -645,6 +645,7 @@
                 $cod_conteudo = $linhas_lista_links["cod_conteudo"];
                 $cod_tipo = $linhas_lista_links["cod_tipo"]; 
                 $titulo_link = utf8_encode($linhas_lista_links["titulo"]);
+                $link = $linhas_lista_links["link"]; 
 
                 if($cod_tipo == 4) {
 
@@ -652,7 +653,7 @@
 
                     $lista_links .= "<tr style=\"width: 100%;\">";
                     $lista_links .= "<td style=\"width: 100%;\">
-                                        <div style=\"float: left; width: 100%;\"><a href=\"view-content?cod-content=$cod_conteudo\" class=\"link-list-content\">" . $contador . " - " . $titulo_link . "</a></div>
+                                        <div style=\"float: left; width: 100%;\"><a href=\"$link\" class=\"link-list-content\" target=\"_blank\">" . $contador . " - " . $titulo_link . "</a></div>
                                     </td>";
                     $lista_links .= "</tr>";
 
