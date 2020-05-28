@@ -993,6 +993,53 @@
 
         }
 
+        //Método obterQuantidadeVideosCurso()
+        //Método para obtenção quantidade de vídeos relacionados ao curso
+        //@param $cod_curso - código do curso do qual se deseja obter a quantidade de vídeos
+        public function obterQuantidadeVideosCurso($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $quantidade_curso = 0;
+
+            $sql_quantidade_videos_curso = new SqlSelect();
+            $sql_quantidade_videos_curso -> adicionarColuna("Curso.cod_curso, Modulo.cod_curso, Modulo.cod_modulo, Conteudo.cod_modulo, Conteudo.cod_tipo");
+            $sql_quantidade_videos_curso -> setEntidade("Curso, Modulo, Conteudo"); 
+
+            $criterio_quantidade_videos_curso_1 = new Criterio();
+            $criterio_quantidade_videos_curso_1 -> adicionar(new Filtro("Curso.cod_curso", "=", "'{$cod_curso}'"));
+            
+            $criterio_quantidade_videos_curso_2 = new Criterio();
+            $criterio_quantidade_videos_curso_2 -> adicionar(new Filtro("Curso.cod_curso", "=", "Modulo.cod_curso"));
+            
+            $criterio_quantidade_videos_curso_3 = new Criterio();
+            $criterio_quantidade_videos_curso_3 -> adicionar(new Filtro("Modulo.cod_modulo", "=", "Conteudo.cod_modulo"));
+
+            $criterio_quantidade_videos_curso_4 = new Criterio();
+            $criterio_quantidade_videos_curso_4 -> adicionar(new Filtro("Conteudo.cod_tipo", "=", 1));
+            
+            $criterio_quantidade_videos_curso = new Criterio();
+            $criterio_quantidade_videos_curso -> adicionar($criterio_quantidade_videos_curso_1, Expressao::OPERADOR_AND);
+            $criterio_quantidade_videos_curso -> adicionar($criterio_quantidade_videos_curso_2, Expressao::OPERADOR_AND);
+            $criterio_quantidade_videos_curso -> adicionar($criterio_quantidade_videos_curso_3, Expressao::OPERADOR_AND);
+            $criterio_quantidade_videos_curso -> adicionar($criterio_quantidade_videos_curso_4, Expressao::OPERADOR_AND);
+
+            $sql_quantidade_videos_curso -> setCriterio($criterio_quantidade_videos_curso);
+
+            $localizar_quantidade_videos_curso = $conexao_sql_station21 -> query($sql_quantidade_videos_curso -> getInstrucao());
+
+            while($linhas_quantidade_videos_curso = $localizar_quantidade_videos_curso -> fetch(PDO::FETCH_ASSOC)) {
+
+                $quantidade_curso++;
+
+            }
+
+            return $quantidade_curso;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

@@ -74,7 +74,17 @@
                                 <?php 
                                 
                                     }
+
+                                    $verificar_presenca = new GerenciarPresenca();
+                                    $verificar_presenca = $verificar_presenca -> verificarPresenca($cod_usuario, $cod_curso, $cod_modulo, $cod_conteudo);
+
+                                    if($verificar_presenca == 0) {
+
+                                        $registrar_presenca = new GerenciarPresenca();
+                                        $registrar_presenca = $registrar_presenca -> setPresenca($cod_usuario, $cod_curso, $cod_modulo, $cod_conteudo);
                                 
+                                    }
+
                                 ?>
 
                             </div>

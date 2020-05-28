@@ -10,6 +10,9 @@
     $nome = new AutenticarUsuario();
     $nome = utf8_encode($nome -> getNomeUsuario($email));
 
+    $cod_usuario = new GerenciarUsuario();
+    $cod_usuario = $cod_usuario -> getCodigoUsuarioPorEmail($email);
+
     $cod_conteudo = (isset($_GET["cod-content"])) ? $_GET["cod-content"] : "";
     $cod_exercicio = (isset($_GET["cod-exercise"])) ? $_GET["cod-exercise"] : "";
     $cod_prova = (isset($_GET["cod-test"])) ? $_GET["cod-test"] : "";
@@ -377,7 +380,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
-    <title>Editar <?php echo $tipo_conteudo; ?> | Station21</title>
+    <title>
+        <?php 
+            
+            if($cod_conteudo != "" && $cod_exercicio == "" && $cod_prova == "") {
+
+                echo utf8_encode($titulo_curso). " - " . utf8_encode($titulo_conteudo);
+
+            }
+
+            else if($cod_conteudo == "" && $cod_exercicio != "" && $cod_prova == "") {
+            
+                echo utf8_encode($titulo_curso) . " - " . utf8_encode($tipo_conteudo);
+            
+            }
+
+            else if($cod_conteudo == "" && $cod_exercicio == "" && $cod_prova != "") {
+
+                echo utf8_encode($titulo_curso) . " - " . utf8_encode($tipo_conteudo);
+
+            }
+
+            else {
+
+                echo "Exibindo conteúdo do curso " . utf8_encode($titulo_curso);
+
+            }
+            
+        ?> 
+    | Station21</title>
     <!-- GLOBAL MAINLY STYLES-->
     <link href="./assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="./assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
