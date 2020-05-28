@@ -901,7 +901,7 @@
 
             while($linhas_texto_conteudo = $localizar_texto_conteudo -> fetch(PDO::FETCH_ASSOC)) {
 
-                $texto = $linhas_texto_conteudo["texto"];
+                $texto = utf8_encode($linhas_texto_conteudo["texto"]);
 
             }
 
