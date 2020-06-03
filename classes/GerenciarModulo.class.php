@@ -220,6 +220,8 @@
 
             return $cod_modulo;
 
+            $conexao_sql_station21 = NULL;
+
         }
 
         //Método getCodigoCursoPorCodigoModulo
@@ -249,6 +251,8 @@
 
             return $cod_curso;
 
+            $conexao_sql_station21 = NULL;
+
         }
 
         //Método verificarModulosPorCodigoCurso
@@ -277,6 +281,8 @@
             }
 
             return $quantidade;
+
+            $conexao_sql_station21 = NULL;
 
         }
 

@@ -17,6 +17,8 @@
     $cod_exercicio = (isset($_GET["cod-exercise"])) ? $_GET["cod-exercise"] : "";
     $cod_prova = (isset($_GET["cod-test"])) ? $_GET["cod-test"] : "";
 
+    $finalizar_exercicio = (isset($_GET["finish-exercise"])) ? $_GET["finish-exercise"] : ""; 
+
     $cod_modulo = new GerenciarConteudo();
     $cod_modulo = $cod_modulo -> getCodigoModuloPorCodigoConteudo($cod_conteudo);
 

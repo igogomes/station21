@@ -34,19 +34,19 @@
                                 <div class="col-sm-12 ml-sm-auto">
                                     <ul style="list-style: none; margin-left: 0; padding-left: 0;">
                                         <li style="padding-top: 10px; padding-bottom: 10px;">
-                                            <input type="radio" id="one" name="<?php echo $cod_questao_01; ?>" value="1" required>
+                                            <input type="radio" id="one" name="questao-01" value="1" required>
                                             <?php echo $primeira_alternativa_01; ?>
                                         </li>
                                         <li style="padding-top: 10px; padding-bottom: 10px;">
-                                            <input type="radio" id="two" name="<?php echo $cod_questao_01; ?>" value="2">
+                                            <input type="radio" id="two" name="questao-01" value="2">
                                             <?php echo $segunda_alternativa_01; ?>
                                         </li>
                                         <li style="padding-top: 10px; padding-bottom: 10px;">
-                                            <input type="radio" id="three" name="<?php echo $cod_questao_01; ?>" value="3">
+                                            <input type="radio" id="three" name="questao-01" value="3">
                                             <?php echo $terceira_alternativa_01; ?>
                                         </li>
                                         <li style="padding-top: 10px; padding-bottom: 20px;">
-                                            <input type="radio" id="four" name="<?php echo $cod_questao_01; ?>" value="4">
+                                            <input type="radio" id="four" name="questao-01" value="4">
                                             <?php echo $quarta_alternativa_01; ?>
                                         </li>
                                     </ul>
@@ -62,19 +62,19 @@
                                 <div class="col-sm-12 ml-sm-auto">
                                     <ul style="list-style: none; margin-left: 0; padding-left: 0;">
                                         <li style="padding-top: 10px; padding-bottom: 10px;">
-                                            <input type="radio" id="one" name="<?php echo $cod_questao_02; ?>" value="1" required>
+                                            <input type="radio" id="one" name="questao-02" value="1" required>
                                             <?php echo $primeira_alternativa_02; ?>
                                         </li>
                                         <li style="padding-top: 10px; padding-bottom: 10px;">
-                                            <input type="radio" id="two" name="<?php echo $cod_questao_02; ?>" value="2">
+                                            <input type="radio" id="two" name="questao-02" value="2">
                                             <?php echo $segunda_alternativa_02; ?>
                                         </li>
                                         <li style="padding-top: 10px; padding-bottom: 10px;">
-                                            <input type="radio" id="three" name="<?php echo $cod_questao_02; ?>" value="3">
+                                            <input type="radio" id="three" name="questao-02" value="3">
                                             <?php echo $terceira_alternativa_02; ?>
                                         </li>
                                         <li style="padding-top: 10px; padding-bottom: 20px;">
-                                            <input type="radio" id="four" name="<?php echo $cod_questao_02; ?>" value="4">
+                                            <input type="radio" id="four" name="questao-02" value="4">
                                             <?php echo $quarta_alternativa_02; ?>
                                         </li>
                                     </ul>
@@ -90,19 +90,19 @@
                                 <div class="col-sm-12 ml-sm-auto">
                                     <ul style="list-style: none; margin-left: 0; padding-left: 0;">
                                         <li style="padding-top: 10px; padding-bottom: 10px;">
-                                            <input type="radio" id="one" name="<?php echo $cod_questao_03; ?>" value="1" required>
+                                            <input type="radio" id="one" name="questao-03" value="1" required>
                                             <?php echo $primeira_alternativa_03; ?>
                                         </li>
                                         <li style="padding-top: 10px; padding-bottom: 10px;">
-                                            <input type="radio" id="two" name="<?php echo $cod_questao_03; ?>" value="2">
+                                            <input type="radio" id="two" name="questao-03" value="2">
                                             <?php echo $segunda_alternativa_03; ?>
                                         </li>
                                         <li style="padding-top: 10px; padding-bottom: 10px;">
-                                            <input type="radio" id="three" name="<?php echo $cod_questao_03; ?>" value="3">
+                                            <input type="radio" id="three" name="questao-03" value="3">
                                             <?php echo $terceira_alternativa_03; ?>
                                         </li>
                                         <li style="padding-top: 10px; padding-bottom: 20px;">
-                                            <input type="radio" id="four" name="<?php echo $cod_questao_03; ?>" value="4">
+                                            <input type="radio" id="four" name="questao-03" value="4">
                                             <?php echo $quarta_alternativa_03; ?>
                                         </li>
                                     </ul>
@@ -118,19 +118,19 @@
                                 <div class="col-sm-12 ml-sm-auto">
                                     <ul style="list-style: none; margin-left: 0; padding-left: 0;">
                                         <li style="padding-top: 10px; padding-bottom: 10px;">
-                                            <input type="radio" id="one" name="<?php echo $cod_questao_04; ?>" value="1" required>
+                                            <input type="radio" id="one" name="questao-04" value="1" required>
                                             <?php echo $primeira_alternativa_04; ?>
                                         </li>
                                         <li style="padding-top: 10px; padding-bottom: 10px;">
-                                            <input type="radio" id="two" name="<?php echo $cod_questao_04; ?>" value="2">
+                                            <input type="radio" id="two" name="questao-04" value="2">
                                             <?php echo $segunda_alternativa_04; ?>
                                         </li>
                                         <li style="padding-top: 10px; padding-bottom: 10px;">
-                                            <input type="radio" id="three" name="<?php echo $cod_questao_04; ?>" value="3">
+                                            <input type="radio" id="three" name="questao-04" value="3">
                                             <?php echo $terceira_alternativa_04; ?>
                                         </li>
                                         <li style="padding-top: 10px; padding-bottom: 20px;">
-                                            <input type="radio" id="four" name="<?php echo $cod_questao_04; ?>" value="4">
+                                            <input type="radio" id="four" name="questao-04" value="4">
                                             <?php echo $quarta_alternativa_04; ?>
                                         </li>
                                     </ul>
@@ -146,19 +146,19 @@
                                 <div class="col-sm-12 ml-sm-auto">
                                     <ul style="list-style: none; margin-left: 0; padding-left: 0;">
                                         <li style="padding-top: 10px; padding-bottom: 10px;">
-                                            <input type="radio" id="one" name="<?php echo $cod_questao_05; ?>" value="1" required>
+                                            <input type="radio" id="one" name="questao-05" value="1" required>
                                             <?php echo $primeira_alternativa_05; ?>
                                         </li>
                                         <li style="padding-top: 10px; padding-bottom: 10px;">
-                                            <input type="radio" id="two" name="<?php echo $cod_questao_05; ?>" value="2">
+                                            <input type="radio" id="two" name="questao-05" value="2">
                                             <?php echo $segunda_alternativa_05; ?>
                                         </li>
                                         <li style="padding-top: 10px; padding-bottom: 10px;">
-                                            <input type="radio" id="three" name="<?php echo $cod_questao_05; ?>" value="3">
+                                            <input type="radio" id="three" name="questao-05" value="3">
                                             <?php echo $terceira_alternativa_05; ?>
                                         </li>
                                         <li style="padding-top: 10px; padding-bottom: 20px;">
-                                            <input type="radio" id="four" name="<?php echo $cod_questao_05; ?>" value="4">
+                                            <input type="radio" id="four" name="questao-05" value="4">
                                             <?php echo $quarta_alternativa_05; ?>
                                         </li>
                                     </ul>
@@ -166,6 +166,14 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-12 ml-sm-auto"> 
+                                    <input type="hidden" name="cod-usuario" value="<?php echo $cod_usuario; ?>">
+                                    <input type="hidden" name="cod-curso" value="<?php echo $cod_curso; ?>">
+                                    <input type="hidden" name="cod-exercicio" value="<?php echo $cod_exercicio; ?>">
+                                    <input type="hidden" name="cod-questao-01" value="<?php echo $cod_questao_01; ?>">
+                                    <input type="hidden" name="cod-questao-02" value="<?php echo $cod_questao_02; ?>">
+                                    <input type="hidden" name="cod-questao-03" value="<?php echo $cod_questao_03; ?>">
+                                    <input type="hidden" name="cod-questao-04" value="<?php echo $cod_questao_04; ?>">
+                                    <input type="hidden" name="cod-questao-05" value="<?php echo $cod_questao_05; ?>">
                                     <button class="btn btn-info">Finalizar</button>
                                 </div> 
                             </div>
