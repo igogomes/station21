@@ -37,6 +37,14 @@
     $quarta_alternativa_questao_04 = $_POST["quarta-alternativa-questao-04"];
     $resposta_questao_04 = $_POST["resposta-questao-04"];
 
+    $cod_questao_05 = $_POST["cod-questao-05"];
+    $enunciado_questao_05 = $_POST["enunciado-questao-05"];
+    $primeira_alternativa_questao_05 = $_POST["primeira-alternativa-questao-05"];
+    $segunda_alternativa_questao_05 = $_POST["segunda-alternativa-questao-05"];
+    $terceira_alternativa_questao_05 = $_POST["terceira-alternativa-questao-05"];
+    $quarta_alternativa_questao_05 = $_POST["quarta-alternativa-questao-05"];
+    $resposta_questao_05 = $_POST["resposta-questao-05"];
+
     $atualizar_questao_01 = new GerenciarQuestao();
     $atualizar_questao_01 = $atualizar_questao_01 -> atualizarDadosQuestao($cod_questao_01, $enunciado_questao_01, $primeira_alternativa_questao_01, $segunda_alternativa_questao_01, $terceira_alternativa_questao_01, $quarta_alternativa_questao_01, $resposta_questao_01);
     
@@ -48,6 +56,9 @@
 
     $atualizar_questao_04 = new GerenciarQuestao();
     $atualizar_questao_04 = $atualizar_questao_04 -> atualizarDadosQuestao($cod_questao_04, $enunciado_questao_04, $primeira_alternativa_questao_04, $segunda_alternativa_questao_04, $terceira_alternativa_questao_04, $quarta_alternativa_questao_04, $resposta_questao_04);
+
+    $atualizar_questao_05 = new GerenciarQuestao();
+    $atualizar_questao_05 = $atualizar_questao_05 -> atualizarDadosQuestao($cod_questao_05, $enunciado_questao_05, $primeira_alternativa_questao_05, $segunda_alternativa_questao_05, $terceira_alternativa_questao_05, $quarta_alternativa_questao_05, $resposta_questao_05);
 
     header("Location: edit-content?cod-exercise=$cod_exercicio&edit-content=1");
 

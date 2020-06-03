@@ -436,6 +436,101 @@
                                     <input type="hidden" name="cod-exercicio" value="<?php echo $cod_exercicio; ?>">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-form-label"><strong>Quinta Questão</strong></label>
+                            </div>
+                            <div class="form-group row">
+                                <input type="hidden" name="cod-questao-05" value="<?php echo $cod_questao_05; ?>">
+                                <label class="col-sm-12 col-form-label">Enunciado</label>
+                                <div class="col-sm-12">
+                                    <textarea name="enunciado-questao-05" class="form-control" placeholder="Digite o enunciado" rows="5" required><?php echo $enunciado_questao_05; ?></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-form-label">Primeira alternativa</label>
+                                <div class="col-sm-12">
+                                    <input name="primeira-alternativa-questao-05" class="form-control" type="text" placeholder="Digite o texto da primeira alternativa" value="<?php echo $primeira_alternativa_05; ?>" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-form-label">Segunda alternativa</label>
+                                <div class="col-sm-12">
+                                    <input name="segunda-alternativa-questao-05" class="form-control" type="text" placeholder="Digite o texto da segunda alternativa" value="<?php echo $segunda_alternativa_05; ?>" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-form-label">Terceira alternativa</label>
+                                <div class="col-sm-12">
+                                    <input name="terceira-alternativa-questao-05" class="form-control" type="text" placeholder="Digite o texto da terceira alternativa" value="<?php echo $terceira_alternativa_05; ?>" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-form-label">Quarta alternativa</label>
+                                <div class="col-sm-12">
+                                    <input name="quarta-alternativa-questao-05" class="form-control" type="text" placeholder="Digite o texto da quarta alternativa" value="<?php echo $quarta_alternativa_05; ?>" required>
+                                </div>
+                            </div> 
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">É a resposta</label>
+                                <div class="col-sm-10">
+                                    <select name="resposta-questao-05" class="form-control" size="1" style="width: 25%;" required>
+                                        
+                                    <?php 
+
+                                        if($resposta_alternativa_05 == 1) { 
+
+                                            echo "<option selected value=\"1\">Primeira alternativa</option>";
+
+                                        }
+
+                                        else {
+
+                                            echo "<option value=\"1\">Primeira alternativa</option>";
+
+                                        }
+
+                                        if($resposta_alternativa_05 == 2) { 
+
+                                            echo "<option selected value=\"2\">Segunda alternativa</option>";
+
+                                        }
+
+                                        else {
+
+                                            echo "<option value=\"2\">Segunda alternativa</option>";
+
+                                        }
+
+                                        if($resposta_alternativa_05 == 3) { 
+
+                                            echo "<option selected value=\"3\">Terceira alternativa</option>";
+
+                                        }
+
+                                        else {
+
+                                            echo "<option value=\"3\">Terceira alternativa</option>";
+
+                                        }
+
+                                        if($resposta_alternativa_05 == 4) { 
+
+                                            echo "<option selected value=\"4\">Quarta alternativa</option>";
+
+                                        }
+
+                                        else {
+
+                                            echo "<option value=\"4\">Quarta alternativa</option>";
+
+                                        }
+
+                                    ?>
+
+                                    </select>
+                                    <input type="hidden" name="cod-exercicio" value="<?php echo $cod_exercicio; ?>">
+                                </div>
+                            </div>
                             <div class="col-sm-12 ml-sm-auto" style="text-align: right;">
                                 <button class="btn btn-info" type="submit">Finalizar</button>
                             </div> 

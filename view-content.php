@@ -35,7 +35,10 @@
         $cod_tipo_avaliacao = 1;
 
         $cod_modulo = new GerenciarExercicio();
-        $cod_modulo = $cod_modulo -> getCodigoModuloPorCodigoExercicio($cod_exercicio); 
+        $cod_modulo = $cod_modulo -> getCodigoModuloPorCodigoExercicio($cod_exercicio);
+
+        $titulo_modulo = new GerenciarModulo();
+        $titulo_modulo = $titulo_modulo -> getTituloModuloPorCodigo($cod_modulo); 
 
         $cod_curso = new GerenciarModulo();
         $cod_curso = $cod_curso -> getCodigoCursoPorCodigoModulo($cod_modulo);
@@ -126,6 +129,27 @@
 
         $resposta_alternativa_04 = new GerenciarQuestao();
         $resposta_alternativa_04 = $resposta_alternativa_04 -> getRespostaPorCodigoQuestao($cod_questao_04);
+
+        $cod_questao_05 = new GerenciarQuestao();
+        $cod_questao_05 = $cod_questao_05 -> getCodigoQuestaoPorCodigoExercicioEPosicao($cod_exercicio, 5);
+
+        $enunciado_questao_05 = new GerenciarQuestao();
+        $enunciado_questao_05 = utf8_encode($enunciado_questao_05 -> getEnunciadoPorCodigoQuestao($cod_questao_05));
+
+        $primeira_alternativa_05 = new GerenciarQuestao();
+        $primeira_alternativa_05 = utf8_encode($primeira_alternativa_05 -> getPrimeiraAlternativaPorCodigoQuestao($cod_questao_05));
+
+        $segunda_alternativa_05 = new GerenciarQuestao();
+        $segunda_alternativa_05 = utf8_encode($segunda_alternativa_05 -> getSegundaAlternativaPorCodigoQuestao($cod_questao_05));
+
+        $terceira_alternativa_05 = new GerenciarQuestao();
+        $terceira_alternativa_05 = utf8_encode($terceira_alternativa_05 -> getTerceiraAlternativaPorCodigoQuestao($cod_questao_05));
+
+        $quarta_alternativa_05 = new GerenciarQuestao();
+        $quarta_alternativa_05 = utf8_encode($quarta_alternativa_05 -> getQuartaAlternativaPorCodigoQuestao($cod_questao_05));
+
+        $resposta_alternativa_05 = new GerenciarQuestao();
+        $resposta_alternativa_05 = $resposta_alternativa_05 -> getRespostaPorCodigoQuestao($cod_questao_05);
 
     }
 
