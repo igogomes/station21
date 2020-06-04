@@ -8,6 +8,7 @@
     $permissao = $_SESSION['permissao'];
 
     $nota = 0;
+    $exercise = "";
 
     $cod_usuario = $_POST["cod-usuario"];
     $cod_curso = $_POST["cod-curso"];
@@ -81,6 +82,22 @@
 
     }
 
-    header("Location: view-content?cod-exercise=$cod_exercicio&finish-exercise=1");
+    else {
+
+        $obter_nota_exercicio = new GerenciarNota();
+        $obter_nota_exercicio = $obter_nota_exercicio -> getNotaExercicio($cod_usuario, $cod_curso, $cod_exercicio);
+
+        if($nota > $obter_nota_exercicio) {
+
+            $atualizar_nota = new GerenciarNota();
+            $atualizar_nota = $atualizar_nota -> atualizarNotaExercicio($cod_usuario, $cod_curso, $cod_exercicio, $nota);
+
+        }
+
+    }
+
+    $exercise = base64_encode($nota);
+
+    header("Location: result-evaluation?cod-course=$cod_curso&cod-exercise=$cod_exercicio&exercise=$exercise");
 
 ?>
