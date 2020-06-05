@@ -280,6 +280,45 @@
 
         }
 
+        //Método getNotaCurso
+        //Retorna a nota geral de um curso para um usuário
+        //@param $cod_usuario - código do usuário para o qual a nota será verificada
+        //@param $cod_curso - código do curso para o qual a nota será verificada
+        public function getNotaCurso($cod_usuario, $cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $nota = 0;
+
+            $sql_nota_curso_usuario = new SqlSelect();
+            $sql_nota_curso_usuario -> adicionarColuna("cod_usuario, cod_curso, nota");
+            $sql_nota_curso_usuario -> setEntidade("Nota");
+
+            $criterio_nota_curso_usuario_1 = new Criterio();
+            $criterio_nota_curso_usuario_1 -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
+
+            $criterio_nota_curso_usuario_2 = new Criterio();
+            $criterio_nota_curso_usuario_2 -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $criterio_nota_curso_usuario = new Criterio();
+            $criterio_nota_curso_usuario -> adicionar($criterio_nota_curso_usuario_1, Expressao::OPERADOR_AND);
+            $criterio_nota_curso_usuario -> adicionar($criterio_nota_curso_usuario_2, Expressao::OPERADOR_AND); 
+
+            $sql_nota_curso_usuario -> setCriterio($criterio_nota_curso_usuario);
+
+            $localizar_nota_curso_usuario = $conexao_sql_station21 -> query($sql_nota_curso_usuario -> getInstrucao());
+
+            while($linhas_nota_curso_usuario = $localizar_nota_curso_usuario -> fetch(PDO::FETCH_ASSOC)) {
+
+                $nota = $nota + $linhas_nota_curso_usuario["nota"];
+
+            }
+
+            return $nota;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

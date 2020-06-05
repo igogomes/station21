@@ -752,14 +752,14 @@
                     $nome_instrutor = new GerenciarUsuario();
                     $nome_instrutor = utf8_encode($nome_instrutor -> getNomePorCodigoUsuario($cod_instrutor));
 
-                    $presenca = new GerenciarPresenca();
-                    $presenca = $presenca -> getPresencaPorCodigoUsuarioECodigoCurso($cod_usuario, $cod_curso);
+                    $nota_geral_curso = new GerenciarNota();
+                    $nota_geral_curso = $nota_geral_curso -> getNotaCurso($cod_usuario, $cod_curso); 
 
                     $tabela_meus_cursos .= 
                         "<tr>   
                             <td>" . $titulo_curso . "</td> 
                             <td>" . $nome_instrutor . "</td> 
-                            <td>" . $presenca . "</td> 
+                            <td>" . $nota_geral_curso . "</td> 
                             <td>  
                                 <a href=\"view-course?cod-course=$cod_curso\">
                                     <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Acessar Curso\">
@@ -957,14 +957,14 @@
                 $nome_instrutor = new GerenciarUsuario();
                 $nome_instrutor = utf8_encode($nome_instrutor -> getNomePorCodigoUsuario($cod_instrutor));
 
-                $presenca = new GerenciarPresenca();
-                $presenca = $presenca -> getPresencaPorCodigoUsuarioECodigoCurso($cod_usuario, $cod_curso);
+                $nota_geral_curso = new GerenciarNota();
+                $nota_geral_curso = $nota_geral_curso -> getNotaCurso($cod_usuario, $cod_curso); 
 
                 $tabela_meus_cursos .= 
                     "<tr>   
                         <td>" . $titulo_curso . "</td> 
                         <td>" . $nome_instrutor . "</td> 
-                        <td>" . $presenca . "</td> 
+                        <td>" . $nota_geral_curso . "</td> 
                         <td>  
                             <a href=\"view-course?cod-course=$cod_curso\">
                                 <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Acessar Curso\">
