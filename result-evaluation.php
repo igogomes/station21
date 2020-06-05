@@ -17,6 +17,7 @@
     $cod_exercicio = (isset($_GET["cod-exercise"])) ? $_GET["cod-exercise"] : "";
     $cod_prova = (isset($_GET["cod-test"])) ? $_GET["cod-test"] : "";
     $ultima_nota_exercicio = (isset($_GET["exercise"])) ? $_GET["exercise"] : "";
+    $ultima_nota_prova = (isset($_GET["test"])) ? $_GET["test"] : "";
 
     $titulo_curso = new GerenciarCurso();
     $titulo_curso = $titulo_curso -> getTituloCursoPorCodigo($cod_curso);
@@ -35,6 +36,19 @@
         if($ultima_nota_exercicio != "") {
 
             $ultima_nota_exercicio = base64_decode($ultima_nota_exercicio);
+
+        }
+
+    }
+
+    if($cod_prova != "") {
+
+        $nota_prova = new GerenciarNota();
+        $nota_prova = $nota_prova -> getNotaProva($cod_usuario, $cod_curso, $cod_prova);
+
+        if($ultima_nota_prova != "") {
+
+            $ultima_nota_prova = base64_decode($ultima_nota_prova);
 
         }
 

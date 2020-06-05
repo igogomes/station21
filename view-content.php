@@ -48,6 +48,9 @@
         $titulo_curso = new GerenciarCurso();
         $titulo_curso = $titulo_curso -> getTituloCursoPorCodigo($cod_curso);
 
+        $verificar_nota_exercicio = new GerenciarNota();
+        $verificar_nota_exercicio = $verificar_nota_exercicio -> verificarNotaExercicio($cod_usuario, $cod_curso, $cod_exercicio);
+
         $cod_questao_01 = new GerenciarQuestao();
         $cod_questao_01 = $cod_questao_01 -> getCodigoQuestaoPorCodigoExercicioEPosicao($cod_exercicio, 1);
 
@@ -165,6 +168,9 @@
 
         $titulo_curso = new GerenciarCurso();
         $titulo_curso = $titulo_curso -> getTituloCursoPorCodigo($cod_curso);
+
+        $verificar_nota_prova = new GerenciarNota();
+        $verificar_nota_prova = $verificar_nota_prova -> verificarNotaProva($cod_usuario, $cod_curso, $cod_prova);
 
         $cod_questao_01 = new GerenciarQuestao();
         $cod_questao_01 = $cod_questao_01 -> getCodigoQuestaoPorCodigoProvaEPosicao($cod_prova, 1);

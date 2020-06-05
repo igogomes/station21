@@ -18,6 +18,28 @@
             <li class="breadcrumb-item">Exercício</li> 
         </ol>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <?php
+
+                if($verificar_nota_exercicio != 0) {
+                        
+            ?>
+
+                <div class="alert alert-warning alert-dismissable fade show" style="margin-bottom: -15px;">
+                    <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                    Você já realizou este exercício. Caso realize novamente, apenas a maior nota obtida será considerada. 
+                </div>
+
+            <?php
+
+                }
+
+            ?>
+
+        </div>
+    </div>
     <div class="page-content fade-in-up">
         <div class="row">
             <div class="col-md-12">
