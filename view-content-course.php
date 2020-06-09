@@ -43,6 +43,25 @@
 
                 }
 
+                $obter_presenca_curso = new GerenciarPresenca();
+                $obter_presenca_curso = $obter_presenca_curso -> getPresencaPorCodigoUsuarioECodigoCurso($cod_usuario, $cod_curso);
+
+                $obter_nota_curso = new GerenciarNota();
+                $obter_nota_curso = $obter_nota_curso -> getNotaCurso($cod_usuario, $cod_curso);
+
+                if($obter_presenca_curso == "100%" && $obter_nota_curso < 70) {
+
+            ?>
+
+                    <div class="alert alert-warning alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        Obtenha a nota mínima na prova deste curso para obter seu certificado.
+                    </div>
+
+            <?php 
+            
+                }
+            
             ?>
 
         </div>
@@ -101,11 +120,33 @@
                                 </form>
                             </div>
                             <div class="col-sm-12">
-                                Status 100% Concluído
+                                Status: <?php 
+                                
+                                    echo $obter_presenca_curso;
+
+                                ?> Concluído
                             </div>
-                            <div class="col-sm-12" style="margin-top: 30px;">
-                                <button class="btn btn-success">Emitir Certificado</button>
-                            </div>
+
+                            <?php 
+                            
+                                if($obter_presenca_curso == "100%" && $obter_nota_curso >= 70) {
+                            
+                            ?>
+
+                                <div class="col-sm-12" style="margin-top: 30px;">
+                                    <form action="generate-certification" method="post">
+                                        <input type="hidden" name="cod-course" value="<?php echo $cod_curso; ?>"/>
+                                        <input type="hidden" name="cod-user" value="<?php echo $cod_usuario; ?>"/> 
+                                        <button class="btn btn-success">Emitir Certificado</button>
+                                    </form>
+                                </div>
+
+                            <?php 
+                            
+                                }
+                            
+                            ?>
+
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12">
