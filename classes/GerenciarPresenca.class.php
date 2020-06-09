@@ -24,7 +24,13 @@
             $sql_cadastrar_presenca -> setValorLinha("cod_modulo", $cod_modulo);
             $sql_cadastrar_presenca -> setValorLinha("cod_conteudo", $cod_conteudo);
 
-            $cadastrar_presenca = $conexao_sql_station21 -> query($sql_cadastrar_presenca -> getInstrucao());
+            $verificar_presenca = $this::verificarPresenca($cod_usuario, $cod_curso, $cod_modulo, $cod_conteudo);
+
+            if($verificar_presenca == 0) {
+
+                $cadastrar_presenca = $conexao_sql_station21 -> query($sql_cadastrar_presenca -> getInstrucao());
+
+            } 
 
             $conexao_sql_station21 = NULL;
 
