@@ -319,6 +319,176 @@
 
         }
 
+        //Método verificarCursosConcluidos
+        //Verifica a quantidade de cursos nos quais um usuário se encontra aprovado
+        //@param $cod_usuario - código do usuário para o qual a verificação será realizada
+        public function verificarCursosConcluidos($cod_usuario) { 
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $contador = 0;
+            $cod_curso = "";
+            $cursos_concluidos = 0;
+
+            $sql_verificar_cursos_concluidos = new SqlSelect();
+            $sql_verificar_cursos_concluidos -> adicionarColuna("cod_usuario, cod_curso");
+            $sql_verificar_cursos_concluidos -> setEntidade("Inscricao");
+
+            $criterio_verificar_cursos_concluidos = new Criterio();
+            $criterio_verificar_cursos_concluidos -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
+
+            $sql_verificar_cursos_concluidos -> setCriterio($criterio_verificar_cursos_concluidos);
+
+            $localizar_verificar_cursos_concluidos = $conexao_sql_station21 -> query($sql_verificar_cursos_concluidos -> getInstrucao());
+
+            while($linhas_verificar_cursos_concluidos = $localizar_verificar_cursos_concluidos -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_curso = $linhas_verificar_cursos_concluidos["cod_curso"];
+
+                $nota_curso = $this::getNotaCurso($cod_usuario, $cod_curso);
+
+                if($nota_curso >= 70) {
+
+                    $cursos_concluidos++;
+
+                }
+
+            }
+
+            return $cursos_concluidos;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método gerarListaUltimasAtividades
+        //Gera a lista contendo as últimas atividades realizadas por um usuário
+        //@param $cod_usuario - código do usuário para o qual a lista será gerada
+        public function gerarListaUltimasAtividades($cod_usuario) { 
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $contador = 0;
+            $cod_curso = "";
+            $cod_exercicio = "";
+            $cod_prova = "";
+            $nota = "";
+            $lista_ultimas_atividades = "";
+            $titulo_atividade = "";
+
+            $sql_gerar_lista_ultimas_atividades = new SqlSelect();
+            $sql_gerar_lista_ultimas_atividades -> adicionarColuna("*");
+            $sql_gerar_lista_ultimas_atividades -> setEntidade("Nota");
+
+            $criterio_gerar_lista_ultimas_atividades = new Criterio();
+            $criterio_gerar_lista_ultimas_atividades -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
+            $criterio_gerar_lista_ultimas_atividades -> setPropriedade("ORDER", "cod_nota DESC");
+
+            $sql_gerar_lista_ultimas_atividades -> setCriterio($criterio_gerar_lista_ultimas_atividades);
+
+            $localizar_lista_ultimas_atividades = $conexao_sql_station21 -> query($sql_gerar_lista_ultimas_atividades -> getInstrucao());
+
+            while($linhas_lista_ultimas_atividades = $localizar_lista_ultimas_atividades -> fetch(PDO::FETCH_ASSOC)) {
+
+                if($contador < 5) {
+
+                    $cod_curso = $linhas_lista_ultimas_atividades["cod_curso"];
+                    $cod_exercicio = $linhas_lista_ultimas_atividades["cod_exercicio"];
+                    $cod_prova = $linhas_lista_ultimas_atividades["cod_prova"];
+                    $nota = $linhas_lista_ultimas_atividades["nota"];
+
+                    $titulo_curso = new GerenciarCurso();
+                    $titulo_curso = $titulo_curso -> getTituloCursoPorCodigo($cod_curso);
+
+                    if($cod_prova != "") {
+
+                        $titulo_atividade = "Avaliação Final";
+
+                    }
+
+                    if($cod_exercicio != "") {
+
+                        $cod_modulo = new GerenciarExercicio();
+                        $cod_modulo = $cod_modulo -> getCodigoModuloPorCodigoExercicio($cod_exercicio);
+
+                        $titulo_modulo = new GerenciarModulo();
+                        $titulo_modulo = $titulo_modulo -> getTituloModuloPorCodigo($cod_modulo);
+
+                        $titulo_atividade = "Exercício Avaliativo do " . $titulo_modulo;
+
+                    }
+
+                    $lista_ultimas_atividades .= "<tr>
+                                                    <td>$titulo_curso</td>
+                                                    <td>$titulo_atividade</td>
+                                                    <td>$nota</td>
+                                                 </tr>";
+
+                    $contador++; 
+
+                }
+
+            }
+
+            return $lista_ultimas_atividades;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método gerarListaAprovacoes
+        //Gera a lista contendo aprovações em cursos para um usuário
+        //@param $cod_usuario - código do usuário para o qual a lista será gerada
+        public function gerarListaAprovacoes($cod_usuario) { 
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $contador = 0;
+            $cod_curso = "";
+            $nota = "";
+            $lista_aprovacoes = "";
+
+            $sql_gerar_lista_aprovacoes = new SqlSelect();
+            $sql_gerar_lista_aprovacoes -> adicionarColuna("cod_curso, sum(nota)");
+            $sql_gerar_lista_aprovacoes -> setEntidade("Nota");
+
+            $criterio_gerar_lista_aprovacoes = new Criterio();
+            $criterio_gerar_lista_aprovacoes -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
+
+            $sql_gerar_lista_aprovacoes -> setCriterio($criterio_gerar_lista_aprovacoes);
+
+            $group_gerar_lista_aprovacoes = $sql_gerar_lista_aprovacoes -> getInstrucao() . " GROUP BY cod_curso";
+
+            $localizar_lista_aprovacoes = $conexao_sql_station21 -> query($group_gerar_lista_aprovacoes);
+
+            while($linhas_lista_aprovacoes = $localizar_lista_aprovacoes -> fetch(PDO::FETCH_ASSOC)) {
+
+                if($contador < 5) {
+
+                    $cod_curso = $linhas_lista_aprovacoes["cod_curso"];
+                    $nota = $linhas_lista_aprovacoes["sum(nota)"];
+
+                    $titulo_curso = new GerenciarCurso();
+                    $titulo_curso = $titulo_curso -> getTituloCursoPorCodigo($cod_curso);
+
+                    if($nota >= 70) {
+
+                        $lista_aprovacoes .= "<tr>
+                                                <td>$titulo_curso</td>
+                                                <td>$nota</td>
+                                              </tr>";
+
+                    }
+
+                    $contador++; 
+
+                }
+
+            } 
+
+            return $lista_aprovacoes; 
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

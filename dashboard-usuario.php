@@ -18,18 +18,79 @@
                                 ?>
 
                             </h2>
-                            <div class="m-b-5">CURSOS ATIVOS</div><i class="fa fa-play-circle widget-stat-icon"></i>
+                            <div class="m-b-5">
+                            
+                                <?php 
+                                
+                                    if($quantidade_cursos_ativos == 0) {
+
+                                        echo "CURSOS ATIVOS";
+
+                                    }
+
+                                    else if($quantidade_cursos_ativos == 1) {
+
+                                        echo "CURSO ATIVO";
+
+                                    }
+
+                                    else {
+
+                                        echo "CURSOS ATIVOS";
+
+                                    }
+                                
+                                ?>
+                            
+                            </div><i class="fa fa-play-circle widget-stat-icon"></i>
                         </div>
                     </div>
                 </a>
             </div>
             <div class="col-lg-6 col-md-6">
-                <div class="ibox bg-warning color-white widget-stat">
-                    <div class="ibox-body">
-                        <h2 class="m-b-5 font-strong">7</h2>
-                        <div class="m-b-5">CURSOS CONCLUÍDOS</div><i class="fa fa-trophy money widget-stat-icon"></i>
+                <a href="courses">
+                    <div class="ibox bg-warning color-white widget-stat">
+                        <div class="ibox-body">
+                            <h2 class="m-b-5 font-strong">
+                            
+                                <?php 
+                                
+                                    $quantidade_cursos_concluidos = new GerenciarNota();
+                                    $quantidade_cursos_concluidos = $quantidade_cursos_concluidos -> verificarCursosConcluidos($cod_usuario);
+                                
+                                    echo $quantidade_cursos_concluidos;
+
+                                ?>
+                            
+                            </h2>
+                            <div class="m-b-5">
+                            
+                                <?php 
+                                    
+                                    if($quantidade_cursos_concluidos == 0) {
+
+                                        echo "CURSOS CONCLUÍDOS";
+
+                                    }
+
+                                    else if($quantidade_cursos_concluidos == 1) {
+
+                                        echo "CURSO CONCLUÍDO";
+
+                                    }
+
+                                    else {
+
+                                        echo "CURSOS CONCLUÍDOS";
+
+                                    }
+                                
+                                ?>
+
+                            </div><i class="fa fa-trophy money widget-stat-icon"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
         <div class="row">
@@ -44,29 +105,20 @@
                                 <tr>
                                     <th>Curso</th>
                                     <th>Atividade</th>
-                                    <th>Data</th>
-                                    <th>Aproveitamento</th>
+                                    <th>Nota</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Empregabilidade</td>
-                                    <td>Atividade de Revisão 01</td>
-                                    <td>14/12/2019</td>
-                                    <td>80%</td>
-                                </tr>
-                                <tr>
-                                    <td>Atendimento ao Cliente</td>
-                                    <td>Avaliação Final</td>
-                                    <td>05/10/2019</td>
-                                    <td>70%</td>
-                                </tr>
-                                <tr>
-                                    <td>Técnicas de Negociação</td>
-                                    <td>Atividade Avaliativa 01</td>
-                                    <td>29/09/2019</td>
-                                    <td>20%</td>
-                                </tr>
+                                
+                                <?php 
+                                
+                                    $lista_ultimas_atividades = new GerenciarNota();
+                                    $lista_ultimas_atividades = $lista_ultimas_atividades -> gerarListaUltimasAtividades($cod_usuario);
+
+                                    echo $lista_ultimas_atividades;
+                                
+                                ?>
+
                             </tbody>
                         </table>
                     </div>
@@ -84,26 +136,20 @@
                             <thead>
                                 <tr>
                                     <th>Curso</th>
-                                    <th>Data</th>
                                     <th>Aproveitamento</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>HTML</td>
-                                    <td>08/12/2019</td>
-                                    <td>80%</td>
-                                </tr>
-                                <tr>
-                                    <td>Marketing Digital</td>
-                                    <td>07/11/2019</td>
-                                    <td>70%</td>
-                                </tr>
-                                <tr>
-                                    <td>Atendimento ao Cliente</td>
-                                    <td>05/10/2019</td>
-                                    <td>80%</td>
-                                </tr>
+                                
+                                <?php 
+                                
+                                    $lista_aprovacoes = new GerenciarNota();
+                                    $lista_aprovacoes = $lista_aprovacoes -> gerarListaAprovacoes($cod_usuario);
+
+                                    echo $lista_aprovacoes;
+                                
+                                ?>
+
                             </tbody>
                         </table>
                     </div>

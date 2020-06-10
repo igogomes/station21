@@ -84,7 +84,7 @@
                 <div class="ibox bg-warning color-white widget-stat">
                     <div class="ibox-body">
                         <h2 class="m-b-5 font-strong">52</h2>
-                        <div class="m-b-5">APROVADOS</div><i class="fa fa-trophy money widget-stat-icon"></i>
+                        <div class="m-b-5">APROVAÇÕES</div><i class="fa fa-trophy money widget-stat-icon"></i>
                     </div>
                 </div>
             </div>
