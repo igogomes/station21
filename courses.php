@@ -24,10 +24,23 @@
     $resultado_inscricao_curso = (isset($_GET["success-subscribe"])) ? $_GET["success-subscribe"] : "";
     $codigo_curso_inscricao = (isset($_GET["cod-subscribe-course"])) ? $_GET["cod-subscribe-course"] : "";
 
+    $remover_inscricao_curso = (isset($_GET["unsubscribe-course"])) ? $_GET["unsubscribe-course"] : "";
+    $cod_curso_remover_inscricao = (isset($_GET["cod-unsubscribe-course"])) ? $_GET["cod-unsubscribe-course"] : "";
+    $erro_remover_inscricao_curso = (isset($_GET["erro-unsubscribe"])) ? $_GET["erro-unsubscribe"] : "";
+    $confirmar_remover_inscricao_curso = (isset($_GET["confirm-unsubscribe"])) ? $_GET["confirm-unsubscribe"] : "";
+    $inscricao_curso_remocao_sucesso = (isset($_GET["success-unsubscribe"])) ? $_GET["success-unsubscribe"] : "";
+
     if($codigo_curso_inscricao != "") {
 
         $titulo_curso_inscricao = new GerenciarCurso();
         $titulo_curso_inscricao = $titulo_curso_inscricao -> getTituloCursoPorCodigo($codigo_curso_inscricao);
+
+    }
+
+    if($cod_curso_remover_inscricao != "") {
+
+        $titulo_curso_remover_inscricao = new GerenciarCurso();
+        $titulo_curso_remover_inscricao = $titulo_curso_remover_inscricao -> getTituloCursoPorCodigo($cod_curso_remover_inscricao);
 
     }
 

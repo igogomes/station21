@@ -489,6 +489,36 @@
 
         }
 
+        //Método excluirNota() 
+        //Método para excluir nota de usuário relacionada a um curso
+        //@param $cod_usuario - código do usuário para a nota será excluída
+        //@param $cod_curso - código do curso para o qual a nota será excluída
+        public function excluirNota($cod_usuario, $cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_nota = new SqlDelete();
+
+            $sql_excluir_nota -> setEntidade("Nota");
+
+            $criterio_excluir_nota_1 = new Criterio();
+            $criterio_excluir_nota_1 -> adicionar(new Filtro("cod_usuario", "=", "'$cod_usuario'"));
+
+            $criterio_excluir_nota_2 = new Criterio();
+            $criterio_excluir_nota_2 -> adicionar(new Filtro("cod_curso", "=", "'$cod_curso'"));
+
+            $criterio_excluir_nota = new Criterio();
+            $criterio_excluir_nota -> adicionar($criterio_excluir_nota_1, Expressao::OPERADOR_AND);
+            $criterio_excluir_nota -> adicionar($criterio_excluir_nota_2, Expressao::OPERADOR_AND);
+
+            $sql_excluir_nota -> setCriterio($criterio_excluir_nota);
+
+            $excluir_nota = $conexao_sql_station21 -> query($sql_excluir_nota -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

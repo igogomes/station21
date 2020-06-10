@@ -96,6 +96,36 @@
 
         }
 
+        //Método excluirInscricao() 
+        //Método para excluir inscrição de usuário em um curso
+        //@param $cod_usuario - código do usuário para o qual a inscrição será removida
+        //@param $cod_curso - código do curso para o qual a inscrição será removida
+        public function excluirInscricao($cod_usuario, $cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_inscricao = new SqlDelete();
+
+            $sql_excluir_inscricao -> setEntidade("Inscricao");
+
+            $criterio_excluir_inscricao_1 = new Criterio();
+            $criterio_excluir_inscricao_1 -> adicionar(new Filtro("cod_usuario", "=", "'$cod_usuario'"));
+
+            $criterio_excluir_inscricao_2 = new Criterio();
+            $criterio_excluir_inscricao_2 -> adicionar(new Filtro("cod_curso", "=", "'$cod_curso'"));
+
+            $criterio_excluir_inscricao = new Criterio();
+            $criterio_excluir_inscricao -> adicionar($criterio_excluir_inscricao_1, Expressao::OPERADOR_AND);
+            $criterio_excluir_inscricao -> adicionar($criterio_excluir_inscricao_2, Expressao::OPERADOR_AND);
+
+            $sql_excluir_inscricao -> setCriterio($criterio_excluir_inscricao);
+
+            $excluir_inscricao = $conexao_sql_station21 -> query($sql_excluir_inscricao -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

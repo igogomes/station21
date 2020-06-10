@@ -144,6 +144,36 @@
 
         }
 
+        //Método excluirPresenca() 
+        //Método para excluir presença de usuário no sistema relacionada a conteúdos de cursos
+        //@param $cod_usuario - código do usuário para o qual a presença será excluída
+        //@param $cod_curso - código do curso para o qual a presença será excluída
+        public function excluirPresenca($cod_usuario, $cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_presenca = new SqlDelete();
+
+            $sql_excluir_presenca -> setEntidade("Presenca");
+
+            $criterio_excluir_presenca_1 = new Criterio();
+            $criterio_excluir_presenca_1 -> adicionar(new Filtro("cod_usuario", "=", "'$cod_usuario'"));
+
+            $criterio_excluir_presenca_2 = new Criterio();
+            $criterio_excluir_presenca_2 -> adicionar(new Filtro("cod_curso", "=", "'$cod_curso'"));
+
+            $criterio_excluir_presenca = new Criterio();
+            $criterio_excluir_presenca -> adicionar($criterio_excluir_presenca_1, Expressao::OPERADOR_AND);
+            $criterio_excluir_presenca -> adicionar($criterio_excluir_presenca_2, Expressao::OPERADOR_AND);
+
+            $sql_excluir_presenca -> setCriterio($criterio_excluir_presenca);
+
+            $excluir_presenca = $conexao_sql_station21 -> query($sql_excluir_presenca -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

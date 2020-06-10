@@ -41,8 +41,67 @@
 
                     <?php
 
+                        } 
+
+                        if($remover_inscricao_curso == 1 && $erro_remover_inscricao_curso == 1) {
+
+                    ?>
+
+                            <div class="alert alert-danger alert-dismissable fade show">
+                                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                                Não é possível remover sua inscrição do curso <strong><?php echo $titulo_curso_remover_inscricao; ?></strong> porque você já concluiu o mesmo.
+                            </div>
+
+                    <?php
+
                         }
 
+                        if($remover_inscricao_curso == 1 && $erro_remover_inscricao_curso == 2) {
+
+                    ?>
+
+                            <div class="alert alert-danger alert-dismissable fade show">
+                                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                                Ocorreu um <strong>erro</strong> na tentativa de remover sua inscrição.
+                            </div>
+
+                    <?php 
+                    
+                        }
+
+                        if($remover_inscricao_curso == 1 && $confirmar_remover_inscricao_curso == 1) {
+                    
+                    ?>
+
+                            <div class="alert alert-danger alert-dismissable fade show">
+                                <a href="courses" class="close" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </a>
+                                <h4>Atenção!</h4>
+                                <p>Você realmente deseja remover sua inscrição do curso <strong><?php echo $titulo_curso_remover_inscricao; ?></strong>? Todo seu progresso será perdido.</p>
+                                <p>
+                                    <a href="unsubscribe-course?cod-course=<?php echo $cod_curso_remover_inscricao; ?>&unsubscribe-course=1" class="btn btn-danger" style="color:#fff;">Sim</a>
+                                    <a href="courses" class="btn btn-default" style="color:#000;">Não</a>
+                                </p>
+                            </div>
+
+                    <?php 
+                    
+                        }
+
+                        if($remover_inscricao_curso == 1 && $inscricao_curso_remocao_sucesso == 1) {
+
+                    ?>
+
+                        <div class="alert alert-success alert-dismissable fade show">
+                            <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                            Sua inscrição no curso <strong><?php echo $titulo_curso_remover_inscricao; ?></strong> foi removida com <strong>sucesso</strong>.
+                        </div>
+
+                    <?php 
+                    
+                        }
+                    
                     ?>
 
                 </div>

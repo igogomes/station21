@@ -351,6 +351,36 @@
 
         }
 
+        //Método excluirAvaliacao() 
+        //Método para excluir avaliação feita por um usuário a um curso na base de dados
+        //@param $cod_usuario - código do usuário responsável pela avaliação
+        //@param $cod_curso - código do curso para o qual a avaliação foi realizada
+        public function excluirAvaliacao($cod_usuario, $cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_avaliacao = new SqlDelete();
+
+            $sql_excluir_avaliacao -> setEntidade("Avaliacao");
+
+            $criterio_excluir_avaliacao_1 = new Criterio();
+            $criterio_excluir_avaliacao_1 -> adicionar(new Filtro("cod_usuario", "=", "'$cod_usuario'"));
+
+            $criterio_excluir_avaliacao_2 = new Criterio();
+            $criterio_excluir_avaliacao_2 -> adicionar(new Filtro("cod_curso", "=", "'$cod_curso'"));
+
+            $criterio_excluir_avaliacao = new Criterio();
+            $criterio_excluir_avaliacao -> adicionar($criterio_excluir_avaliacao_1, Expressao::OPERADOR_AND);
+            $criterio_excluir_avaliacao -> adicionar($criterio_excluir_avaliacao_2, Expressao::OPERADOR_AND);
+
+            $sql_excluir_avaliacao -> setCriterio($criterio_excluir_avaliacao);
+
+            $excluir_avaliacao = $conexao_sql_station21 -> query($sql_excluir_avaliacao -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>
