@@ -76,49 +76,63 @@
                             <div class="col-sm-4">
                                 <?php echo utf8_encode($instrutor_curso); ?>
                             </div>
-                            <div class="col-sm-6 col-form-label" style="text-align: right;">
-                                <form action="classify-course" method="POST">
-                                    <ul style="list-style: none; display: inline-flex;">
-                                        <li>
-                                            <span style="padding-right: 20px;">Avalie o curso</span>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="one" name="grade" value="1" required>
-                                        </li>
-                                        <li>
-                                            <label for="one" style="padding-left: 10px; padding-right: 10px;">1</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="two" name="grade" value="2">
-                                        </li>
-                                        <li>
-                                            <label for="two" style="padding-left: 10px; padding-right: 10px;">2</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="three" name="grade" value="3">
-                                        </li>
-                                        <li>
-                                            <label for="three" style="padding-left: 10px; padding-right: 10px;">3</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="four" name="grade" value="4">
-                                        </li>
-                                        <li>
-                                            <label for="four" style="padding-left: 10px; padding-right: 10px;">4</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="five" name="grade" value="5">
-                                        </li>
-                                        <li>
-                                            <label for="five" style="padding-left: 10px; padding-right: 10px;">5</label>
-                                        </li>
-                                        <input type="hidden" name="cod-course" value="<?php echo $cod_curso; ?>">
-                                        <li>
-                                            <button class="btn btn-success" style="margin-left: 20px; margin-top: -5px;">Avaliar</button> 
-                                        </li>
-                                    </ul>
-                                </form>
-                            </div>
+
+                            <?php 
+                            
+                                if($obter_presenca_curso == "100%" && $obter_nota_curso >= 70) {
+                            
+                            ?>
+
+                                <div class="col-sm-6 col-form-label" style="text-align: right;">
+                                    <form action="classify-course" method="POST">
+                                        <ul style="list-style: none; display: inline-flex;">
+                                            <li>
+                                                <span style="padding-right: 20px;">Avalie o curso</span>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="one" name="grade" value="1" required>
+                                            </li>
+                                            <li>
+                                                <label for="one" style="padding-left: 10px; padding-right: 10px;">1</label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="two" name="grade" value="2">
+                                            </li>
+                                            <li>
+                                                <label for="two" style="padding-left: 10px; padding-right: 10px;">2</label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="three" name="grade" value="3">
+                                            </li>
+                                            <li>
+                                                <label for="three" style="padding-left: 10px; padding-right: 10px;">3</label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="four" name="grade" value="4">
+                                            </li>
+                                            <li>
+                                                <label for="four" style="padding-left: 10px; padding-right: 10px;">4</label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="five" name="grade" value="5">
+                                            </li>
+                                            <li>
+                                                <label for="five" style="padding-left: 10px; padding-right: 10px;">5</label>
+                                            </li>
+                                            <input type="hidden" name="cod-course" value="<?php echo $cod_curso; ?>">
+                                            <li>
+                                                <button class="btn btn-success" style="margin-left: 20px; margin-top: -5px;">Avaliar</button> 
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+
+                            <?php 
+                            
+                                }
+                            
+                            ?>
+
                             <div class="col-sm-12">
                                 Status: <?php 
                                 
