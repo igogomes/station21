@@ -519,6 +519,33 @@
 
         }
 
+        //Método obterQuantidadeAprovacoes
+        //Obter quantidade de aprovações de usuários em cursos
+        public function obterQuantidadeAprovacoes() { 
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $contador = 0;
+
+            $sql_quantidade_aprovacoes = new SqlSelect();
+            $sql_quantidade_aprovacoes -> adicionarColuna("sum(nota)");
+            $sql_quantidade_aprovacoes -> setEntidade("Nota");
+
+            $group_quantidade_aprovacoes = $sql_quantidade_aprovacoes -> getInstrucao() . " GROUP BY cod_usuario HAVING sum(nota) >= 70";
+
+            $localizar_quantidade_aprovacoes = $conexao_sql_station21 -> query($group_quantidade_aprovacoes);
+
+            while($linhas_quantidade_aprovacoes = $localizar_quantidade_aprovacoes -> fetch(PDO::FETCH_ASSOC)) {
+
+                $contador++; 
+
+            } 
+
+            return $contador; 
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>
