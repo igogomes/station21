@@ -165,29 +165,20 @@
                                 <tr>
                                     <th>Usuários</th>
                                     <th>Cursos</th>
-                                    <th>Data de Aprovação</th>
                                     <th>Aproveitamento</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Rodrigo Pereira</td>
-                                    <td>Atendimento ao Cliente</td>
-                                    <td>10/07/2017</td>
-                                    <td>95%</td>
-                                </tr>
-                                <tr>
-                                    <td>Maria Carvalho</td>
-                                    <td>Inbound Marketing</td>
-                                    <td>10/07/2017</td>
-                                    <td>78%</td>
-                                </tr>
-                                <tr>
-                                    <td>Rose Rodrigues</td>
-                                    <td>Técnicas de Comunicação</td>
-                                    <td>10/07/2017</td>
-                                    <td>89%</td>
-                                </tr>
+                                
+                                <?php 
+                                
+                                    $lista_aprovacoes = new GerenciarNota();
+                                    $lista_aprovacoes = $lista_aprovacoes -> gerarListaAprovacoesAdmin();
+
+                                    echo $lista_aprovacoes;
+                                
+                                ?>
+
                             </tbody>
                         </table>
                     </div>

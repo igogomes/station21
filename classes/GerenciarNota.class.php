@@ -546,6 +546,57 @@
 
         }
 
+        //Método gerarListaAprovacoesAdmin
+        //Gera lista usuários aprovados em cursos
+        public function gerarListaAprovacoesAdmin() { 
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $contador = 0;
+            $cod_usuario = "";
+            $cod_curso = "";
+            $nota = "";
+            $lista_aprovacoes = "";
+
+            $sql_gerar_lista_aprovacoes = new SqlSelect();
+            $sql_gerar_lista_aprovacoes -> adicionarColuna("cod_usuario, cod_curso, sum(nota)");
+            $sql_gerar_lista_aprovacoes -> setEntidade("Nota");
+
+            $group_gerar_lista_aprovacoes = $sql_gerar_lista_aprovacoes -> getInstrucao() . " GROUP BY cod_usuario HAVING sum(nota) >= 70";
+
+            $localizar_lista_aprovacoes = $conexao_sql_station21 -> query($group_gerar_lista_aprovacoes);
+
+            while($linhas_lista_aprovacoes = $localizar_lista_aprovacoes -> fetch(PDO::FETCH_ASSOC)) {
+
+                if($contador < 5) { 
+
+                    $cod_usuario = $linhas_lista_aprovacoes["cod_usuario"];
+                    $cod_curso = $linhas_lista_aprovacoes["cod_curso"];
+                    $nota = $linhas_lista_aprovacoes["sum(nota)"];
+
+                    $nome_usuario = new GerenciarUsuario();
+                    $nome_usuario = $nome_usuario -> getNomePorCodigoUsuario($cod_usuario);
+
+                    $titulo_curso = new GerenciarCurso();
+                    $titulo_curso = $titulo_curso -> getTituloCursoPorCodigo($cod_curso);
+
+                    $lista_aprovacoes .= "<tr>
+                                            <td>$nome_usuario</td>
+                                            <td>$titulo_curso</td>
+                                            <td>$nota</td>
+                                          </tr>";
+
+                    $contador++; 
+
+                }
+
+            } 
+
+            return $lista_aprovacoes; 
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>
