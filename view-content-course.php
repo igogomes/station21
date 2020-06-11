@@ -55,7 +55,7 @@
 
                     <div class="alert alert-warning alert-dismissable fade show">
                         <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        Obtenha a nota mínima na prova deste curso para obter seu certificado.
+                        Obtenha a nota mínima para adquirir o certificado deste curso.
                     </div>
 
             <?php 
