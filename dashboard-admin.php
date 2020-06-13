@@ -22,7 +22,7 @@
                             
                                 <?php 
                                 
-                                    if($quantidade_usuarios == 1 || $quantidade_usuarios == 0) {
+                                    if($quantidade_usuarios == 1) {
 
                                         echo "USUÁRIO";
 
@@ -61,7 +61,7 @@
                             
                                 <?php 
                                     
-                                    if($quantidade_cursos == 1 || $quantidade_cursos == 0) {
+                                    if($quantidade_cursos == 1) {
 
                                         echo "CURSO";
 
@@ -99,7 +99,7 @@
                         
                             <?php 
                             
-                                if($quantidade_aprovados == 0 || $quantidade_aprovados == 1) {
+                                if($quantidade_aprovados == 1) {
 
                                     echo "APROVAÇÃO";
 
