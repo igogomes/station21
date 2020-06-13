@@ -403,6 +403,28 @@
 
         }
 
+        //Método excluirAvaliacaoPorCodigoUsuario() 
+        //Método para exclusão de avaliações de cursos realizadas por um usuário
+        //@param $cod_usuario - código do usuário responsável pelas avaliações
+        public function excluirAvaliacaoPorCodigoUsuario($cod_usuario) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_avaliacoes = new SqlDelete();
+
+            $sql_excluir_avaliacoes -> setEntidade("Avaliacao");
+
+            $criterio_excluir_avaliacoes = new Criterio();
+            $criterio_excluir_avaliacoes -> adicionar(new Filtro("cod_usuario", "=", "'$cod_usuario'"));
+
+            $sql_excluir_avaliacoes -> setCriterio($criterio_excluir_avaliacoes);
+
+            $excluir_avaliacoes = $conexao_sql_station21 -> query($sql_excluir_avaliacoes -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

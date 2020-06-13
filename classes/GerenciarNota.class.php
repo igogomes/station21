@@ -619,6 +619,28 @@
 
         }
 
+        //Método excluirNotaPorCodigoUsuario() 
+        //Método para exclusão de notas de cursos realizados por um usuário
+        //@param $cod_usuario - código do usuário responsável pelas notas
+        public function excluirNotaPorCodigoUsuario($cod_usuario) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_notas = new SqlDelete();
+
+            $sql_excluir_notas -> setEntidade("Nota");
+
+            $criterio_excluir_notas = new Criterio();
+            $criterio_excluir_notas -> adicionar(new Filtro("cod_usuario", "=", "'$cod_usuario'"));
+
+            $sql_excluir_notas -> setCriterio($criterio_excluir_notas);
+
+            $excluir_notas = $conexao_sql_station21 -> query($sql_excluir_notas -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

@@ -200,6 +200,7 @@
             $sql_cod_modulo -> setEntidade("Modulo");
 
             $criterio_cod_modulo = new Criterio();
+            $criterio_cod_modulo -> setPropriedade("ORDER", " cod_modulo ASC");
             $criterio_cod_modulo -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
 
             $sql_cod_modulo -> setCriterio($criterio_cod_modulo);
