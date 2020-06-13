@@ -176,7 +176,7 @@
         //Método para obtenção da quantidade de usuários cadastrados no sistema
         public function getQuantidadeUsuarios() {
 
-            $quantidade_usuarios = "";
+            $quantidade_usuarios = 0;
 
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
 

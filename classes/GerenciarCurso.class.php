@@ -508,7 +508,7 @@
         public function getQuantidadeCursos() {
 
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
-            $quantidade_cursos = "";
+            $quantidade_cursos = 0;
 
             $sql_quantidade_cursos = new SqlSelect();
             $sql_quantidade_cursos -> adicionarColuna("cod_curso");
