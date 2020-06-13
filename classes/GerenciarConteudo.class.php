@@ -1042,6 +1042,58 @@
 
         }
 
+        //Método excluirConteudoCodigoCurso()
+        //Método para exclusão de todos os conteúdos relacionados a um curso
+        //@param $cod_curso - código do curso para o qual os conteúdos serão excluídos
+        public function excluirConteudoCodigoCurso($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $cod_modulo = "";
+            $cod_conteudo = "";
+    
+            $sql_cod_modulo = new SqlSelect();
+            
+            $sql_cod_modulo -> adicionarColuna("cod_modulo, cod_curso");
+            $sql_cod_modulo -> setEntidade("Modulo");
+
+            $criterio_cod_modulo = new Criterio();
+            $criterio_cod_modulo -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $sql_cod_modulo -> setCriterio($criterio_cod_modulo);
+
+            $localizar_cod_modulo = $conexao_sql_station21 -> query($sql_cod_modulo -> getInstrucao());
+
+            while($linhas_cod_modulo = $localizar_cod_modulo -> fetch(PDO::FETCH_ASSOC)) { 
+
+                $cod_modulo = $linhas_cod_modulo["cod_modulo"];
+
+                $sql_cod_conteudo = new SqlSelect();
+
+                $sql_cod_conteudo -> adicionarColuna("cod_conteudo, cod_modulo");
+                $sql_cod_conteudo -> setEntidade("Conteudo");
+
+                $criterio_cod_conteudo = new Criterio();
+                $criterio_cod_conteudo -> adicionar(new Filtro("cod_modulo", "=", "'{$cod_modulo}'"));
+
+                $sql_cod_conteudo -> setCriterio($criterio_cod_conteudo);
+
+                $localizar_cod_conteudo = $conexao_sql_station21 -> query($sql_cod_conteudo -> getInstrucao());
+
+                while($linhas_cod_conteudo = $localizar_cod_conteudo -> fetch(PDO::FETCH_ASSOC)) { 
+
+                    $cod_conteudo = $linhas_cod_conteudo["cod_conteudo"];
+
+                    $excluir_conteudo = $this::excluirConteudo($cod_conteudo);
+
+                }
+
+            }
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

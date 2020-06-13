@@ -174,6 +174,28 @@
 
         }
 
+        //Método excluirPresencaCodigoCurso() 
+        //Método para exclusão de presenças de usuários na base de dados para um determinado curso
+        //@param $cod_curso - código do curso do qual as presenças serão excluídas
+        public function excluirPresencaCodigoCurso($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_presencas_curso = new SqlDelete();
+
+            $sql_excluir_presencas_curso -> setEntidade("Presenca");
+
+            $criterio_excluir_presencas_curso = new Criterio();
+            $criterio_excluir_presencas_curso -> adicionar(new Filtro("cod_curso", "=", "'$cod_curso'"));
+
+            $sql_excluir_presencas_curso -> setCriterio($criterio_excluir_presencas_curso);
+
+            $excluir_presencas_curso = $conexao_sql_station21 -> query($sql_excluir_presencas_curso -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

@@ -381,6 +381,28 @@
 
         }
 
+        //Método excluirAvaliacaoCodigoCurso() 
+        //Método para exclusão de avaliações de usuários na base de dados para um determinado curso
+        //@param $cod_curso - código do curso do qual as avaliações serão excluídas
+        public function excluirAvaliacaoCodigoCurso($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_avaliacoes_curso = new SqlDelete();
+
+            $sql_excluir_avaliacoes_curso -> setEntidade("Avaliacao");
+
+            $criterio_excluir_avaliacoes_curso = new Criterio();
+            $criterio_excluir_avaliacoes_curso -> adicionar(new Filtro("cod_curso", "=", "'$cod_curso'"));
+
+            $sql_excluir_avaliacoes_curso -> setCriterio($criterio_excluir_avaliacoes_curso);
+
+            $excluir_avaliacoes_curso = $conexao_sql_station21 -> query($sql_excluir_avaliacoes_curso -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

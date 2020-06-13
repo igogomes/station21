@@ -597,6 +597,28 @@
 
         }
 
+        //Método excluirNotaCodigoCurso() 
+        //Método para exclusão de notas de usuários na base de dados para atividades de um determinado curso
+        //@param $cod_curso - código do curso do qual as notas serão excluídas
+        public function excluirNotaCodigoCurso($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_notas_curso = new SqlDelete();
+
+            $sql_excluir_notas_curso -> setEntidade("Nota");
+
+            $criterio_excluir_notas_curso = new Criterio();
+            $criterio_excluir_notas_curso -> adicionar(new Filtro("cod_curso", "=", "'$cod_curso'"));
+
+            $sql_excluir_notas_curso -> setCriterio($criterio_excluir_notas_curso);
+
+            $excluir_notas_curso = $conexao_sql_station21 -> query($sql_excluir_notas_curso -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

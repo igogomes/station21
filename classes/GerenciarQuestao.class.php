@@ -385,6 +385,91 @@
 
         }
 
+        //Método excluirQuestoesExercicioCodigoCurso()
+        //Método para exclusão de todas as questões de exercícios relacionados a um curso
+        //@param $cod_curso - código do curso para o qual as questões serão excluídas
+        public function excluirQuestoesExercicioCodigoCurso($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $cod_modulo = "";
+            $cod_exercicio = "";
+
+            $sql_cod_modulo = new SqlSelect();
+
+            $sql_cod_modulo -> adicionarColuna("cod_modulo, cod_curso");
+            $sql_cod_modulo -> setEntidade("Modulo");
+
+            $criterio_cod_modulo = new Criterio();
+            $criterio_cod_modulo -> adicionar(new Filtro("cod_curso", "=", "$cod_curso"));
+
+            $sql_cod_modulo -> setCriterio($criterio_cod_modulo);
+
+            $localizar_cod_modulo = $conexao_sql_station21 -> query($sql_cod_modulo -> getInstrucao());
+
+            while($linhas_cod_modulo = $localizar_cod_modulo -> fetch(PDO::FETCH_ASSOC)) { 
+
+                $cod_modulo = $linhas_cod_modulo["cod_modulo"];
+
+                $sql_cod_exercicio = new SqlSelect();
+
+                $sql_cod_exercicio -> adicionarColuna("cod_modulo, cod_exercicio");
+                $sql_cod_exercicio -> setEntidade("Exercicio");
+
+                $criterio_cod_exercicio = new Criterio();
+                $criterio_cod_exercicio -> adicionar(new Filtro("cod_modulo", "=", "$cod_modulo"));
+
+                $sql_cod_exercicio -> setCriterio($criterio_cod_exercicio);
+
+                $localizar_cod_exercicio = $conexao_sql_station21 -> query($sql_cod_exercicio -> getInstrucao());
+
+                while($linhas_cod_exercicio = $localizar_cod_exercicio -> fetch(PDO::FETCH_ASSOC)) { 
+
+                    $cod_exercicio = $linhas_cod_exercicio["cod_exercicio"];
+
+                    $excluir_questao_exercicio = $this::excluirQuestaoCodigoExercicio($cod_exercicio);
+
+                }
+
+            }
+
+            $conexao_sql_station21 = NULL; 
+
+        }
+
+        //Método excluirQuestoesProvaCodigoCurso()
+        //Método para exclusão de todas as questões de prova relacionada a um curso
+        //@param $cod_curso - código do curso para o qual as questões serão excluídas
+        public function excluirQuestoesProvaCodigoCurso($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $cod_prova = "";
+
+            $sql_cod_prova = new SqlSelect();
+            
+            $sql_cod_prova -> adicionarColuna("cod_prova, cod_curso");
+            $sql_cod_prova -> setEntidade("Prova");
+
+            $criterio_cod_prova = new Criterio();
+            $criterio_cod_prova -> adicionar(new Filtro("cod_curso", "=", "$cod_curso"));
+
+            $sql_cod_prova -> setCriterio($criterio_cod_prova);
+
+            $localizar_cod_prova =  $conexao_sql_station21 -> query($sql_cod_prova -> getInstrucao());
+
+            while($linhas_cod_prova = $localizar_cod_prova -> fetch(PDO::FETCH_ASSOC)) { 
+
+                $cod_prova = $linhas_cod_prova["cod_prova"];
+
+                $excluir_questao_prova = $this::excluirQuestaoCodigoProva($cod_prova);
+
+            }
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

@@ -295,6 +295,28 @@
 
         }
 
+        //Método excluirProvaCodigoCurso() 
+        //Método para exclusão de prova na base de dados a partir do código do curso ao qual a mesma pertence
+        //@param $cod_curso - código do curso ao qual a prova se encontra associada
+        public function excluirProvaCodigoCurso($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_excluir_prova_curso = new SqlDelete();
+
+            $sql_excluir_prova_curso -> setEntidade("Prova");
+
+            $criterio_excluir_prova_curso = new Criterio();
+            $criterio_excluir_prova_curso -> adicionar(new Filtro("cod_curso", "=", "'$cod_curso'"));
+
+            $sql_excluir_prova_curso -> setCriterio($criterio_excluir_prova_curso);
+
+            $excluir_prova_curso = $conexao_sql_station21 -> query($sql_excluir_prova_curso -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>
