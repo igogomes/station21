@@ -1012,11 +1012,18 @@
                 $verificar_prova = new GerenciarProva();
                 $verificar_prova = $verificar_prova -> verificarProvaExistente($cod_curso);
         
-                if($verificar_exercicios < 4 && $verificar_prova == 0) {
+                if($verificar_exercicios < 4) {
         
                     $atualizar_status = new GerenciarCurso();
                     $atualizar_status = $atualizar_status -> atualizarStatusCurso($cod_curso, 2);
         
+                }
+
+                if($verificar_prova == 0) {
+
+                    $atualizar_status = new GerenciarCurso();
+                    $atualizar_status = $atualizar_status -> atualizarStatusCurso($cod_curso, 2);
+
                 }
 
             }
