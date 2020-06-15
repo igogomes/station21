@@ -106,16 +106,6 @@
 
     }
 
-    $verificar_exercicios = new GerenciarExercicio();
-    $verificar_exercicios = $verificar_exercicios -> verificarExerciciosCursos($cod_curso);
-
-    if($verificar_exercicios < 4) {
-
-        $atualizar_status = new GerenciarCurso();
-        $atualizar_status = $atualizar_status -> atualizarStatusCurso($cod_curso, 2);
-
-    }
-
 ?>
 
 <!DOCTYPE html>

@@ -987,6 +987,41 @@
 
         }
 
+        //Método atualizaStatusCursos
+        //Método para atualização de status de publicação de cursos que não contiverem requisitos mínimos
+        public function atualizaStatusCursos() {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $cod_curso = "";
+
+            $atualizar_status_cursos = new SqlSelect();
+
+            $atualizar_status_cursos -> adicionarColuna("cod_curso");
+            $atualizar_status_cursos -> setEntidade("Curso");
+
+            $localizar_cursos = $conexao_sql_station21 -> query($atualizar_status_cursos -> getInstrucao());
+
+            while($linhas_atualizar_status_cursos = $localizar_cursos -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_curso = $linhas_atualizar_status_cursos["cod_curso"];
+
+                $verificar_exercicios = new GerenciarExercicio();
+                $verificar_exercicios = $verificar_exercicios -> verificarExerciciosCursos($cod_curso);
+        
+                if($verificar_exercicios < 4) {
+        
+                    $atualizar_status = new GerenciarCurso();
+                    $atualizar_status = $atualizar_status -> atualizarStatusCurso($cod_curso, 2);
+        
+                }
+
+            }
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

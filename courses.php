@@ -75,6 +75,9 @@
 
     }
 
+    $verificar_status_cursos = new GerenciarCurso();
+    $verificar_status_cursos = $verificar_status_cursos ->  atualizaStatusCursos();
+
 ?>
 
 <!DOCTYPE html>
