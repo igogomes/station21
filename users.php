@@ -14,12 +14,21 @@
     $codigo_usuario_autenticado = $codigo_usuario_autenticado -> getCodigoUsuario($email);
 
     $cod_excluir_usuario = (isset($_GET["cod-delete-user"])) ? $_GET["cod-delete-user"] : "";
-    $excluir_usuario = (isset($_GET["delete-user"])) ? $_GET["delete-user"] : "";
+    $excluir_usuario = (isset($_GET["delete-user"])) ? $_GET["delete-user"] : ""; 
+    $cod_instrutor = (isset($_GET["cod-user-instructor"])) ? $_GET["cod-user-instructor"] : ""; 
+    $substituir_usuario = (isset($_GET["replace-user"])) ? $_GET["replace-user"] : ""; 
 
     if($excluir_usuario != "") {
 
         $nome_excluir_usuario = new GerenciarUsuario();
         $nome_excluir_usuario = $nome_excluir_usuario -> getNomePorCodigoUsuario($cod_excluir_usuario);
+
+    }
+
+    if($cod_instrutor != "") {
+
+        $nome_excluir_usuario = new GerenciarUsuario();
+        $nome_excluir_usuario = $nome_excluir_usuario -> getNomePorCodigoUsuario($cod_instrutor);
 
     }
 

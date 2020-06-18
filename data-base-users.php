@@ -26,17 +26,17 @@
 
                 ?>
 
-                <div class="alert alert-danger alert-dismissable fade show">
-                    <a href="users" class="close" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </a>
-                    <h4>Atenção!</h4>
-                    <p>Você realmente deseja excluir o usuário <strong><?php echo utf8_encode($nome_excluir_usuario); ?></strong>?</p>
-                    <p>
-                        <a href="delete-user?cod-user=<?php echo $cod_excluir_usuario; ?>" class="btn btn-danger" style="color:#fff;">Sim</a>
-                        <a href="users" class="btn btn-default" style="color:#000;">Não</a>
-                    </p>
-                </div>
+                        <div class="alert alert-danger alert-dismissable fade show">
+                            <a href="users" class="close" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </a>
+                            <h4>Atenção!</h4>
+                            <p>Você realmente deseja excluir o usuário <strong><?php echo utf8_encode($nome_excluir_usuario); ?></strong>?</p>
+                            <p>
+                                <a href="delete-user?cod-user=<?php echo $cod_excluir_usuario; ?>" class="btn btn-danger" style="color:#fff;">Sim</a>
+                                <a href="users" class="btn btn-default" style="color:#000;">Não</a>
+                            </p>
+                        </div>
 
                 <?php
 
@@ -46,15 +46,55 @@
                         
                 ?>
 
-                    <div class="alert alert-success alert-dismissable fade show">
-                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        Os dados do usuário foram excluídos com <strong>sucesso</strong>.
-                    </div>
+                        <div class="alert alert-success alert-dismissable fade show">
+                            <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                            Os dados do usuário foram excluídos com <strong>sucesso</strong>.
+                        </div>
 
                 <?php
 
                     }
 
+                    if($cod_instrutor != "" && $substituir_usuario = 1) {
+
+                ?>
+
+                        <div class="alert alert-danger alert-dismissable fade show">
+                            <a href="users" class="close" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </a>
+                            <h4>Atenção!</h4>
+                            <p>Para prosseguir com a exclusão do usuário <strong><?php echo utf8_encode($nome_excluir_usuario); ?></strong> é necessário selecionar outro usuário, ao qual os cursos associados a este usuário serão relacionados.</p>
+                            <p>
+
+                                <form action="delete-user" method="post">
+
+                                    <select name="cod-user-replace" class="form-control" size="1" style="width: 40%; margin-bottom: 15px;" required>
+                                        <option selected value="">Selecione o(a) novo(a) instrutor(a) responsável</option>
+                                            
+                                        <?php 
+                                            
+                                            $lista_instrutores = new GerenciarUsuario();
+                                            $lista_instrutores = $lista_instrutores -> gerarListaInstrutoresExcludente($cod_instrutor);
+
+                                            echo $lista_instrutores;
+                                            
+                                        ?>
+                                    </select>
+
+                                    <input type="hidden" name="cod-user" value="<?php echo $cod_instrutor; ?>"/>
+
+                                    <button class="btn btn-danger" style="color:#fff;">Finalizar Exclusão</button>
+
+                                </form>
+
+                            </p>
+                        </div>
+
+                <?php 
+                
+                    }
+                
                 ?>
 
             </div>

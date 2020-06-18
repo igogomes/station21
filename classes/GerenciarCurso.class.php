@@ -1032,6 +1032,29 @@
 
         }
 
+        //Método substituirInstrutorCursos
+        //Realiza a substituição de instrutores de cursos
+        //@param $cod_instrutor_vigente - código do instrutor associado aos cursos
+        //@param $cod_novo_instrutor - código do instrutor ao qual os cursos serão associados
+        public function substituirInstrutorCursos($cod_instrutor_vigente, $cod_novo_instrutor) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_substituir_instrutor_cursos = new SqlUpdate();
+            $sql_substituir_instrutor_cursos -> setEntidade("Curso");
+            $sql_substituir_instrutor_cursos -> setValorLinha("cod_instrutor", "$cod_novo_instrutor");
+
+            $criterio_substituir_instrutor_cursos = new Criterio();
+            $criterio_substituir_instrutor_cursos -> adicionar(new Filtro("cod_instrutor", "=", "'{$cod_instrutor_vigente}'"));
+
+            $sql_substituir_instrutor_cursos -> setCriterio($criterio_substituir_instrutor_cursos);
+
+            $substituir_instrutor_cursos = $conexao_sql_station21 -> query($sql_substituir_instrutor_cursos -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>
