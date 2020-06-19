@@ -3,6 +3,21 @@
     <div class="page-heading">
         <h1 class="page-title">Cursos</h1>
         <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="./">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item">Cursos</li>
+                </ol>
+            </div>
+            <div class="col-lg-6 col-md-6" style="text-align:right">
+                <a href="create-course">
+                    <button class="btn btn-success">Cadastrar</button>
+                </a>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-12">
 
                 <?php 
@@ -54,23 +69,21 @@
                 
                     }
 
+                    if($erro_cadastro_curso == 2) {
+
                 ?>
 
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="./">Dashboard</a>
-                    </li>
-                    <li class="breadcrumb-item">Cursos</li>
-                </ol>
-            </div>
-            <div class="col-lg-6 col-md-6" style="text-align:right">
-                <a href="create-course">
-                    <button class="btn btn-success">Cadastrar</button>
-                </a>
+                        <div class="alert alert-danger alert-dismissable fade show">
+                            <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                            Não existem instrutores cadastrados no sistema. Para cadastrar cursos é necessário que pelo menos um instrutor esteja cadastrado.
+                        </div>
+
+                <?php
+
+                    }
+
+                ?>
+
             </div>
         </div>
         <div class="page-content fade-in-up">

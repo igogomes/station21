@@ -10,6 +10,19 @@
     $nome = new AutenticarUsuario();
     $nome = utf8_encode($nome -> getNomeUsuario($email));
 
+    $erro_cadastro_curso = "";
+
+    $quantidade_instrutores = new GerenciarUsuario();
+    $quantidade_instrutores = $quantidade_instrutores -> getQuantidadeInstrutores();
+
+    if($quantidade_instrutores == 0) {
+
+        $erro_cadastro_curso = 2; 
+
+        header("Location: courses?erro-cadastro-curso=$erro_cadastro_curso"); 
+
+    }
+
 ?>
 
 <!DOCTYPE html>
