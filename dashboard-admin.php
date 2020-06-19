@@ -175,7 +175,21 @@
                                     $lista_aprovacoes = new GerenciarNota();
                                     $lista_aprovacoes = $lista_aprovacoes -> gerarListaAprovacoesAdmin();
 
-                                    echo $lista_aprovacoes;
+                                    if($lista_aprovacoes == "") {
+
+                                        echo "<tr>";
+                                            echo "<td colspan=\"3\">";
+                                                echo "Não foram encontrados registros.<br>";
+                                            echo "</td>";
+                                        echo "</tr>";
+
+                                    }
+
+                                    else {
+
+                                        echo $lista_aprovacoes;
+
+                                    }
                                 
                                 ?>
 

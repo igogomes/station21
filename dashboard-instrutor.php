@@ -138,7 +138,11 @@
 
                                     if($tabela_ultimos_cursos_cadastrados == "") {
 
-                                        echo "Não existem cursos cadastrados.<br>";
+                                        echo "<tr>";
+                                            echo "<td colspan=\"3\">";
+                                                echo "Não foram encontrados registros.<br>";
+                                            echo "</td>";
+                                        echo "</tr>";
 
                                     }
 
