@@ -888,6 +888,37 @@
 
         }
 
+        //Método getQuantidadeInstrutores()
+        //Método para obtenção da quantidade de instrutores cadastrados no sistema
+        public function getQuantidadeInstrutores() {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $quantidade_instrutores = 0;
+
+            $sql_quantidade_instrutores = new SqlSelect();
+            $sql_quantidade_instrutores -> adicionarColuna("cod_usuario");
+            $sql_quantidade_instrutores -> setEntidade("Usuario");
+
+            $criterio_quantidade_instrutores = new Criterio();
+            $criterio_quantidade_instrutores -> adicionar(new Filtro("cod_permissao", "=", 2));
+
+            $sql_quantidade_instrutores -> setCriterio($criterio_quantidade_instrutores);
+
+            $localizar_instrutores = $conexao_sql_station21 -> query($sql_quantidade_instrutores -> getInstrucao());
+
+            while($linhas_instrutores = $localizar_instrutores -> fetch(PDO::FETCH_ASSOC)) {
+
+                $quantidade_instrutores++;
+
+            }
+
+            return $quantidade_instrutores;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
 
     }
 

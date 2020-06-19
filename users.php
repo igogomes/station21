@@ -17,6 +17,7 @@
     $excluir_usuario = (isset($_GET["delete-user"])) ? $_GET["delete-user"] : ""; 
     $cod_instrutor = (isset($_GET["cod-user-instructor"])) ? $_GET["cod-user-instructor"] : ""; 
     $substituir_usuario = (isset($_GET["replace-user"])) ? $_GET["replace-user"] : ""; 
+    $erro_substituir_instrutor = (isset($_GET["erro-replace-user"])) ? $_GET["erro-replace-user"] : ""; 
 
     if($excluir_usuario != "") {
 

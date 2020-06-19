@@ -55,7 +55,7 @@
 
                     }
 
-                    if($cod_instrutor != "" && $substituir_usuario = 1) {
+                    if($cod_instrutor != "" && $substituir_usuario == 1) {
 
                 ?>
 
@@ -90,6 +90,19 @@
 
                             </p>
                         </div>
+
+                <?php 
+                
+                    }
+
+                    if($erro_substituir_instrutor == 1) {
+                
+                ?>
+
+                        <div class="alert alert-danger alert-dismissable fade show">
+                            <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                            Existe apenas um instrutor cadastrado no sistema. É necessário que os cursos relacionados ao mesmo sejam associados a outro instrutor.
+                        </div> 
 
                 <?php 
                 

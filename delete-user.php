@@ -24,13 +24,20 @@
 
     }
 
-    if($permissao == 2 && $cod_instrutor_substituicao == "") {
+    if($permissao == 2) {
+
+        $quantidade_instrutores = new GerenciarUsuario();
+        $quantidade_instrutores = $quantidade_instrutores -> getQuantidadeInstrutores();
+
+    }
+
+    if($permissao == 2 && $cod_instrutor_substituicao == "" && $quantidade_instrutores > 1) {
 
         header("Location: users?cod-user-instructor=$cod_usuario&replace-user=1");
 
     }
 
-    if($permissao == 2 && $cod_instrutor_substituicao != "") {
+    if($permissao == 2 && $cod_instrutor_substituicao != "" && $quantidade_instrutores > 1) {
 
         $substituir_instrutor = new GerenciarCurso();
         $substituir_instrutor = $substituir_instrutor -> substituirInstrutorCursos($cod_usuario, $cod_instrutor_substituicao);
@@ -39,6 +46,12 @@
         $excluir_usuario = $excluir_usuario -> excluirUsuario($cod_usuario);
 
         header("Location: users?delete-user=2");
+
+    }
+
+    if($permissao == 2 && $quantidade_instrutores <= 1) {
+
+        header("Location: users?erro-replace-user=1");
 
     }
 
