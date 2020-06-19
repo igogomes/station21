@@ -29,18 +29,12 @@
         $quantidade_instrutores = new GerenciarUsuario();
         $quantidade_instrutores = $quantidade_instrutores -> getQuantidadeInstrutores();
 
-    }
-
-    if($permissao == 2 && $cod_instrutor_substituicao == "" && $quantidade_instrutores > 1) {
-
-        header("Location: users?cod-user-instructor=$cod_usuario&replace-user=1");
+        $cursos_associados_instrutor = new GerenciarCurso();
+        $cursos_associados_instrutor = $cursos_associados_instrutor -> verificarCursosAssociadosInstrutor($cod_usuario);
 
     }
 
-    if($permissao == 2 && $cod_instrutor_substituicao != "" && $quantidade_instrutores > 1) {
-
-        $substituir_instrutor = new GerenciarCurso();
-        $substituir_instrutor = $substituir_instrutor -> substituirInstrutorCursos($cod_usuario, $cod_instrutor_substituicao);
+    if($permissao == 2 && $cursos_associados_instrutor == 0) {
 
         $excluir_usuario = new GerenciarUsuario();
         $excluir_usuario = $excluir_usuario -> excluirUsuario($cod_usuario);
@@ -49,9 +43,27 @@
 
     }
 
-    if($permissao == 2 && $quantidade_instrutores <= 1) {
+    if($permissao == 2 && $quantidade_instrutores == 1 && $cod_instrutor_substituicao == "" && $cursos_associados_instrutor != 0) {
 
-        header("Location: users?erro-replace-user=1");
+        header("Location: users?erro-delete-user=1");
+
+    } 
+
+    if($permissao == 2 && $cursos_associados_instrutor != 0 && $cod_instrutor_substituicao == "" && $quantidade_instrutores > 1) {
+
+        header("Location: users?cod-user-instructor=$cod_usuario&replace-user=1");
+
+    }
+
+    if($permissao == 2 && $cursos_associados_instrutor != 0 && $cod_instrutor_substituicao != "" && $quantidade_instrutores > 1) {
+
+        $substituir_instrutor = new GerenciarCurso();
+        $substituir_instrutor = $substituir_instrutor -> substituirInstrutorCursos($cod_usuario, $cod_instrutor_substituicao);
+
+        $excluir_usuario = new GerenciarUsuario();
+        $excluir_usuario = $excluir_usuario -> excluirUsuario($cod_usuario);
+
+        header("Location: users?delete-user=2");
 
     }
 

@@ -1055,6 +1055,38 @@
 
         }
 
+        //Método verificarCursosAssociadosInstrutor
+        //Verifica se existe(m) curso(s) associado(s) a um instrutor
+        //@param $cod_instrutor - código do instrutor para o qual a verificação será realizada
+        public function verificarCursosAssociadosInstrutor($cod_instrutor) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            
+            $quantidade_cursos = 0;
+
+            $sql_verificar_cursos_associados = new SqlSelect();
+            $sql_verificar_cursos_associados -> adicionarColuna("cod_instrutor");
+            $sql_verificar_cursos_associados -> setEntidade("Curso");
+
+            $criterio_verificar_cursos_associados = new Criterio();
+            $criterio_verificar_cursos_associados -> adicionar(new Filtro("cod_instrutor", "=", "'{$cod_instrutor}'"));
+
+            $sql_verificar_cursos_associados -> setCriterio($criterio_verificar_cursos_associados);
+
+            $localizar_cursos_associados = $conexao_sql_station21 -> query($sql_verificar_cursos_associados -> getInstrucao());
+
+            while($linhas_verificar_cursos_associados = $localizar_cursos_associados -> fetch(PDO::FETCH_ASSOC)) {
+
+                $quantidade_cursos++;
+
+            }
+
+            return $quantidade_cursos;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

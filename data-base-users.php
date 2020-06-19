@@ -95,14 +95,15 @@
                 
                     }
 
-                    if($erro_substituir_instrutor == 1) {
+                    if($erro_excluir_instrutor == 1) {
                 
                 ?>
 
                         <div class="alert alert-danger alert-dismissable fade show">
                             <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                            Existe apenas um instrutor cadastrado no sistema. É necessário que os cursos relacionados ao mesmo sejam associados a outro instrutor.
-                        </div> 
+                            O instrutor cadastrado é o único registrado no sistema e possui um curso associado. É necessário o cadastro de outro instrutor para que sua exclusão seja finalizada ou, o curso associado ao mesmo também precisa ser excluído.
+                        </div>
+
 
                 <?php 
                 
