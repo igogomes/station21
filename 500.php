@@ -12,12 +12,12 @@
 <!DOCTYPE html>
 
 <html> 
-
+	
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width initial-scale=1.0">
-        <title>Perdeu-se no espaço? | Station21</title>
+        <title>Houston, we have a problem... | Station21</title>
         <!-- GLOBAL MAINLY STYLES-->
         <link href="./assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link href="./assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -37,8 +37,8 @@
     <body class="permission_denied">
         <div id="particles-js"></div>
         <div class="denied__wrapper">
-            <h1>404</h1>
-            <h3>Perdido(a) no <span>espaço</span> Station21? Hmm, então que tal tentarmos de novo? <a href="./" style="color:#fff; text-decoration: underline;">Clique aqui</a> e volte uma casa.</h3>
+            <h1>500</h1>
+            <h3>Aparentemente houve um problema de comunicação com <span>servidor</span> a base. Hmm, então que tal tentarmos de novo? <a href="./" style="color:#fff; text-decoration: underline;">Clique aqui</a> e volte uma casa.</h3>
             <svg id="astronaut" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <style>
                     .st0{fill:none;} .st1{fill:#504E55;} .st2{fill:#F39E72;} .st3{fill:#FFFFFF;} .st4{opacity:0.24;} .st5{fill:#77574E;} .st6{fill:#FBD68D;} .st7{fill:#ECECEC;} .st8{fill:#F4A89C;} .st9{fill:#CFC9E5;} .st10{opacity:0.28;} .st11{opacity:0.25;} .st12{fill:#6F635C;} .st13{fill:#DAE7BE;} .st14{fill:#FFE0A6;} .st15{fill:#5F5E60;} .st16{fill:#CFE1AF;} .st17{fill:#EBE9F5;} .st18{fill:#53515A;} .st19{opacity:0.42;} .st20{fill:#53515B;}
