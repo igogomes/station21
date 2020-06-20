@@ -322,6 +322,62 @@
 
         }
 
+        //Método gerarTabelaRelatorioUsuarios()
+        //Método para geração de tabela contendo todos os usuários simples do sistema cadastrados no sistema e
+        //inscritos em cursos
+        public function gerarTabelaRelatorioUsuarios() {
+
+            $tabela_usuarios = "";
+            $cod_usuario = "";
+            $nome = "";
+            $permissao = "";
+            $contador = 0;
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_gerar_tabela_relatorio_usuarios = new SqlSelect();
+            $sql_gerar_tabela_relatorio_usuarios -> adicionarColuna("cod_usuario, nome, cod_permissao");
+            $sql_gerar_tabela_relatorio_usuarios -> setEntidade("Usuario");
+
+            $criterio_gerar_tabela_relatorio_usuarios = new Criterio();
+            $criterio_gerar_tabela_relatorio_usuarios -> setPropriedade("ORDER", "Usuario.nome ASC");
+    
+            $sql_gerar_tabela_relatorio_usuarios -> setCriterio($criterio_gerar_tabela_relatorio_usuarios);
+
+            $localizar_usuarios = $conexao_sql_station21 -> query($sql_gerar_tabela_relatorio_usuarios -> getInstrucao());
+
+            while($linhas_usuarios = $localizar_usuarios -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_usuario = $linhas_usuarios["cod_usuario"];
+                $nome = utf8_encode($linhas_usuarios["nome"]);
+                $permissao = $linhas_usuarios["cod_permissao"];
+
+                $verificar_cursos_ativos = new GerenciarInscricao();
+                $verificar_cursos_ativos = $verificar_cursos_ativos -> verificarCursosAtivos($cod_usuario);
+
+                if($permissao == 3 & $verificar_cursos_ativos > 0) {
+
+                    $tabela_usuarios .= "<tr> 
+                                            <td>" . $nome . "</td> 
+                                            <td> 
+                                                <a href=\"view-report-user?cod-user=$cod_usuario\">
+                                                    <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Visualizar Relatórios\">
+                                                        <i class=\"fa fa-eye font-14\"></i>
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>";
+
+                }
+
+            }
+
+            return $tabela_usuarios;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
         //Método getPermissao()
         //Método para obtenção da descrição do tipo de permissão concedida ao usuário de acordo com o código
         //da mesma

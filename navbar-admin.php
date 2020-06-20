@@ -26,7 +26,7 @@
                 </ul>
             </li>
             <li>
-                <a class="active" href="./"><i class="sidebar-item-icon fa fa-file-text"></i>
+                <a class="active" href="reports"><i class="sidebar-item-icon fa fa-file-text"></i>
                     <span class="nav-label">Relatórios</span>
                 </a>
             </li>
