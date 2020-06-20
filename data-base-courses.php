@@ -111,11 +111,24 @@
                         <tbody>
                                 
                             <?php 
-                                        
-                                $tabela_cursos = new GerenciarCurso();
-                                $tabela_cursos = $tabela_cursos -> gerarTabelaCursos();
 
-                                echo $tabela_cursos; 
+                                if($permissao == 2) {
+                                    
+                                    $tabela_cursos = new GerenciarCurso();
+                                    $tabela_cursos = $tabela_cursos -> gerarTabelaCursosInstrutor($cod_usuario);
+
+                                    echo $tabela_cursos;
+
+                                }
+
+                                else {
+
+                                    $tabela_cursos = new GerenciarCurso();
+                                    $tabela_cursos = $tabela_cursos -> gerarTabelaCursos();
+
+                                    echo $tabela_cursos; 
+
+                                }
                                         
                             ?>
 
