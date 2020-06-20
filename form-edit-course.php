@@ -29,19 +29,45 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Instrutor</label>
                                 <div class="col-sm-10">
-                                    <select name="instrutor" class="form-control" size="1" required>
-                                        <option selected value="0">Selecione o instrutor responsável</option>
-                                        
-                                        <?php 
-                                        
-                                            $lista_instrutores = new GerenciarUsuario();
-                                            $lista_instrutores = $lista_instrutores -> gerarListaInstrutoresPorCodigo($cod_instrutor_curso); 
 
-                                            echo $lista_instrutores;
-                                        
-                                        ?>
+                                    <?php 
+                                    
+                                        if($permissao == 2) {
 
-                                    </select>
+                                            echo $nome;
+                                    
+                                    ?>
+
+                                            <input type="hidden" name="instrutor" value="<?php echo $cod_usuario; ?>"/>
+
+                                    <?php 
+                                    
+                                        }
+
+                                        else {
+                                    
+                                    ?>
+
+                                            <select name="instrutor" class="form-control" size="1" required>
+                                                <option selected value="0">Selecione o instrutor responsável</option>
+                                                
+                                                <?php 
+                                                
+                                                    $lista_instrutores = new GerenciarUsuario();
+                                                    $lista_instrutores = $lista_instrutores -> gerarListaInstrutoresPorCodigo($cod_instrutor_curso); 
+
+                                                    echo $lista_instrutores;
+                                                
+                                                ?>
+
+                                            </select>
+
+                                    <?php 
+                                    
+                                        }
+                                    
+                                    ?>
+
                                 </div>
                             </div>
                             <div class="form-group row">

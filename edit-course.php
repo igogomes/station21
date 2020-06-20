@@ -10,6 +10,9 @@
     $nome = new AutenticarUsuario();
     $nome = utf8_encode($nome -> getNomeUsuario($email));
 
+    $cod_usuario = new GerenciarUsuario();
+    $cod_usuario = $cod_usuario -> getCodigoUsuarioPorEmail($email);
+
     $cod_curso = (isset($_GET["cod-course"])) ? $_GET["cod-course"] : ""; 
 
     if($cod_curso == "") {
