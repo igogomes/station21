@@ -1189,6 +1189,76 @@
 
         }
 
+        //Método gerarTabelaCursosPorUsuario
+        //Retorna uma lista de cursos nos quais um usuário é inscrito e seus progressos com relação
+        //aos mesmos
+        //@param $cod_usuario - código do usuário para o qual a lista será gerada
+        public function gerarTabelaCursosPorUsuario($cod_usuario) {
+
+            $tabela_cursos_usuario = "";
+            $cod_curso = "";
+            $titulo_curso = "";
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $sql_gerar_tabela_cursos_usuario = new SqlSelect();
+            $sql_gerar_tabela_cursos_usuario -> adicionarColuna("*");
+            $sql_gerar_tabela_cursos_usuario -> setEntidade("Inscricao");
+
+            $criterio_gerar_tabela_cursos_usuario = new Criterio();
+            $criterio_gerar_tabela_cursos_usuario -> setPropriedade("ORDER", "Inscricao.cod_curso ASC");
+            $criterio_gerar_tabela_cursos_usuario -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
+    
+            $sql_gerar_tabela_cursos_usuario -> setCriterio($criterio_gerar_tabela_cursos_usuario);
+
+            $localizar_cursos_usuario = $conexao_sql_station21 -> query($sql_gerar_tabela_cursos_usuario -> getInstrucao());
+
+            while($linhas_cursos_usuario = $localizar_cursos_usuario -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_curso = $linhas_cursos_usuario["cod_curso"];
+                
+                $titulo_curso = $this::getTituloCursoPorCodigo($cod_curso);
+
+                $obter_presenca_curso = new GerenciarPresenca();
+                $obter_presenca_curso = $obter_presenca_curso -> getPresencaPorCodigoUsuarioECodigoCurso($cod_usuario, $cod_curso);
+
+                $aprovacao = new GerenciarNota();
+                $aprovacao = $aprovacao -> getNotaCurso($cod_usuario, $cod_curso);
+
+                if($aprovacao >= 70) {
+
+                    $aprovacao = "Sim";
+
+                }
+
+                else {
+
+                    $aprovacao = "-";
+
+                }
+
+                $tabela_cursos_usuario .= 
+                    "<tr>   
+                        <td>" . $titulo_curso . "</td> 
+                        <td>" . $obter_presenca_curso . "</td> 
+                        <td>" . $aprovacao . "</td>
+                        <td>  
+                            <a href=\"view-report-course-user?cod-user=$cod_usuario&cod-course=$cod_curso\">
+                                <button class=\"btn btn-default btn-xs m-r-5\" data-toggle=\"tooltip\" data-original-title=\"Visualizar Relatório Individual\">
+                                    <i class=\"fa fa-eye font-14\"></i>
+                                </button>
+                            </a>
+                        </td> 
+                    </tr>";
+ 
+            }
+
+            return $tabela_cursos_usuario;
+
+            $conexao_sql_station21 = NULL; 
+
+        }
+
     }
 
 ?>
