@@ -641,6 +641,89 @@
 
         }
 
+        //Método gerarRelatorioNotasUsuarioPorCurso
+        //Gera o relatório de notas relacionadas a um determinado curso para um usuário específico
+        public function gerarRelatorioNotasExerciciosUsuarioPorCurso($cod_usuario, $cod_curso) { 
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $cod_exercicio = "";
+            $cod_prova = "";
+            $nota_exercicio = "";
+            $nota_prova = "";
+            $nota_total = "";
+            $relatorio = "";
+
+            $sql_gerar_relatorio_notas = new SqlSelect();
+            $sql_gerar_relatorio_notas -> adicionarColuna("cod_usuario, cod_curso, cod_exercicio, nota");
+            $sql_gerar_relatorio_notas -> setEntidade("Nota");
+
+            $criterio_gerar_relatorio_notas_1 = new Criterio();
+            $criterio_gerar_relatorio_notas_1 -> adicionar(new Filtro("cod_usuario", "=", "'{$cod_usuario}'"));
+
+            $criterio_gerar_relatorio_notas_2 = new Criterio();
+            $criterio_gerar_relatorio_notas_2 -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $criterio_gerar_relatorio_notas = new Criterio();
+            $criterio_gerar_relatorio_notas -> adicionar($criterio_gerar_relatorio_notas_1, Expressao::OPERADOR_AND);
+            $criterio_gerar_relatorio_notas -> adicionar($criterio_gerar_relatorio_notas_2, Expressao::OPERADOR_AND);
+            $criterio_gerar_relatorio_notas -> setPropriedade("ORDER", "cod_exercicio ASC");
+
+            $sql_gerar_relatorio_notas -> setCriterio($criterio_gerar_relatorio_notas);
+
+            $localizar_notas =  $conexao_sql_station21 -> query($sql_gerar_relatorio_notas -> getInstrucao());
+
+            while($linhas_gerar_relatorio_notas = $localizar_notas -> fetch(PDO::FETCH_ASSOC)) { 
+
+                $cod_exercicio = $linhas_gerar_relatorio_notas["cod_exercicio"];
+
+                $cod_modulo = new GerenciarExercicio();
+                $cod_modulo = $cod_modulo -> getCodigoModuloPorCodigoExercicio($cod_exercicio);
+
+                $titulo_modulo = new GerenciarModulo();
+                $titulo_modulo = $titulo_modulo -> getTituloModuloPorCodigo($cod_modulo);
+
+                $nota_exercicio = $this::getNotaExercicio($cod_usuario, $cod_curso, $cod_exercicio);
+
+                if($cod_exercicio != "") {
+
+                    $relatorio .= "<tr>
+                                        <td>$titulo_modulo - Exercício</td>
+                                        <td>10</td>
+                                        <td>$nota_exercicio</td>
+                                    </tr>";
+
+                }
+
+            }
+
+            $cod_prova = new GerenciarProva();
+            $cod_prova = $cod_prova -> getCodigoProvaPorCurso($cod_curso);
+
+            $nota_prova = $this::getNotaProva($cod_usuario, $cod_curso, $cod_prova);
+
+            if($nota_prova != "") {
+
+                $relatorio .= "<tr>
+                                    <td>Prova</td>
+                                    <td>60</td>
+                                    <td>$nota_prova</td>
+                            </tr>";
+
+            }
+
+            $nota_total_curso = $this::getNotaCurso($cod_usuario, $cod_curso);
+
+            $relatorio .= "<tr>
+                                <td colspan=\"2\"><strong>Total</strong></td>
+                                <td><strong>$nota_total_curso</strong></td>
+                           </tr>";
+
+            return $relatorio; 
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>

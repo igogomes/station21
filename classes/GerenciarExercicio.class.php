@@ -140,7 +140,7 @@
             $sql_cod_modulo -> setEntidade("Exercicio");
 
             $criterio_cod_modulo = new Criterio();
-            $criterio_cod_modulo -> adicionar(new Filtro("cod_exercicio", "=", "$cod_exercicio"));
+            $criterio_cod_modulo -> adicionar(new Filtro("cod_exercicio", "=", "'{$cod_exercicio}'"));
 
             $sql_cod_modulo -> setCriterio($criterio_cod_modulo);
 

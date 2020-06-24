@@ -10,7 +10,7 @@
                 <a href="courses">Cursos</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="view-course?cod-course=<?php echo $cod_curso; ?>"><?php echo utf8_encode($titulo_curso); ?></a>
+                <a href="view-course?cod-course=<?php echo $cod_curso; ?>"><?php echo $titulo_curso; ?></a>
             </li>
             <li class="breadcrumb-item">Nota da Prova</li> 
         </ol>

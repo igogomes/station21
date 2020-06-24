@@ -68,13 +68,13 @@
             
             if($cod_exercicio != "") {
 
-                echo utf8_encode($titulo_curso). " - Nota do exercício do " . $titulo_modulo;
+                echo $titulo_curso . " - Nota do exercício do " . $titulo_modulo;
 
             }
 
             if($cod_prova != "") {
 
-                echo "Nota da prova do curso de " . utf8_encode($titulo_curso);
+                echo "Nota da prova do curso de " . $titulo_curso;
 
             }
             

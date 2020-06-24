@@ -417,25 +417,25 @@
             
             if($cod_conteudo != "" && $cod_exercicio == "" && $cod_prova == "") {
 
-                echo utf8_encode($titulo_curso). " - " . utf8_encode($titulo_conteudo);
+                echo $titulo_curso. " - " . utf8_encode($titulo_conteudo);
 
             }
 
             else if($cod_conteudo == "" && $cod_exercicio != "" && $cod_prova == "") {
             
-                echo utf8_encode($titulo_curso) . " - " . utf8_encode($tipo_conteudo);
+                echo $titulo_curso . " - " . $tipo_conteudo;
             
             }
 
             else if($cod_conteudo == "" && $cod_exercicio == "" && $cod_prova != "") {
 
-                echo utf8_encode($titulo_curso) . " - " . utf8_encode($tipo_conteudo);
+                echo $titulo_curso . " - " . $tipo_conteudo;
 
             }
 
             else {
 
-                echo "Exibindo conteúdo do curso " . utf8_encode($titulo_curso);
+                echo "Exibindo conteúdo do curso " . $titulo_curso;
 
             }
             
