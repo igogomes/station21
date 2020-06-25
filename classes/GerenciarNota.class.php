@@ -696,27 +696,39 @@
 
             }
 
-            $cod_prova = new GerenciarProva();
-            $cod_prova = $cod_prova -> getCodigoProvaPorCurso($cod_curso);
-
-            $nota_prova = $this::getNotaProva($cod_usuario, $cod_curso, $cod_prova);
-
-            if($nota_prova != "") {
+            if($relatorio == "") {
 
                 $relatorio .= "<tr>
-                                    <td>Prova</td>
-                                    <td>60</td>
-                                    <td>$nota_prova</td>
-                            </tr>";
+                                    <td colspan=\"3\" style=\"text-align: center;\">O usuário ainda não realizou atividades para este curso.</td>
+                              </tr>";
 
             }
 
-            $nota_total_curso = $this::getNotaCurso($cod_usuario, $cod_curso);
+            else {
 
-            $relatorio .= "<tr>
-                                <td colspan=\"2\"><strong>Total</strong></td>
-                                <td><strong>$nota_total_curso</strong></td>
-                           </tr>";
+                $cod_prova = new GerenciarProva();
+                $cod_prova = $cod_prova -> getCodigoProvaPorCurso($cod_curso);
+
+                $nota_prova = $this::getNotaProva($cod_usuario, $cod_curso, $cod_prova);
+
+                if($nota_prova != "") {
+
+                    $relatorio .= "<tr>
+                                        <td>Prova</td>
+                                        <td>60</td>
+                                        <td>$nota_prova</td>
+                                </tr>";
+
+                }
+
+                $nota_total_curso = $this::getNotaCurso($cod_usuario, $cod_curso);
+
+                $relatorio .= "<tr>
+                                    <td colspan=\"2\"><strong>Total</strong></td>
+                                    <td><strong>$nota_total_curso</strong></td>
+                            </tr>";
+
+            }
 
             return $relatorio; 
 

@@ -61,7 +61,7 @@
                                     $tabela_relatorio_notas = new GerenciarNota();
                                     $tabela_relatorio_notas = $tabela_relatorio_notas -> gerarRelatorioNotasExerciciosUsuarioPorCurso($cod_usuario, $cod_curso);
 
-                                    echo $tabela_relatorio_notas;
+                                    echo $tabela_relatorio_notas; 
                                             
                                 ?>
 
