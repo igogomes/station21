@@ -1,3 +1,9 @@
+<?php
+
+    session_start();
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -23,11 +29,11 @@
                 <img class="main-top-logo" src="./assets/img/logos/logo-station-21-horizontal.png"/>
             </a>
         </div>
-        <form id="forgot-form" action="javascript:;" method="post">
+        <form id="forgot-form" action="recovery-password" method="post">
             <h3 class="m-t-10 m-b-10 forgot-password-title">Esqueci minha senha</h3>
             <p class="m-b-20 forgot-password-description">Digite abaixo no campo abaixo para solicitar a recuperação de sua senha:</p>
             <div class="form-group">
-                <input class="form-control" type="email" name="email" placeholder="Email" maxlength="100" autocomplete="off">
+                <input class="form-control" type="email" name="email" placeholder="Email" maxlength="100" autocomplete="off" required>
             </div>
             <div class="form-group">
                 <button class="btn btn-info btn-block" type="submit">Enviar</button>
@@ -35,12 +41,43 @@
             <div class="form-group forgot-password-login-box">
                 <a href="login">Voltar</a>
             </div>
+
+            <?php 
+
+                if(isset($_SESSION["aviso"])) {
+
+                    echo "<br><br>";
+                    echo "<center>";
+                    echo "<span class = \"alert alert-success\">";
+                    echo $_SESSION["aviso"];
+                    echo "</span>";
+                    echo "</center>";
+                    echo "<br><br>";
+                    unset($_SESSION["aviso"]);
+                    
+                }
+
+                if(isset($_SESSION["erro"])) {
+
+                    echo "<br><br>";
+                    echo "<center>";
+                    echo "<span class = \"alert alert-danger\">";
+                    echo $_SESSION["erro"];
+                    echo "</span>";
+                    echo "</center>";
+                    echo "<br><br>";
+                    unset($_SESSION["erro"]);
+                    
+                }
+
+            ?>
+
         </form>
     </div>
     <!-- BEGIN PAGA BACKDROPS-->
     <div class="sidenav-backdrop backdrop"></div>
     <div class="preloader-backdrop">
-        <div class="page-preloader">Loading</div>
+        <div class="page-preloader">Carregando...</div>
     </div>
     <!-- END PAGA BACKDROPS-->
     <!-- CORE PLUGINS -->
