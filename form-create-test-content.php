@@ -62,7 +62,8 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-4">
                                     <select name="resposta" class="form-control" size="1" required>
-                                        <option selected value="1">Primeira alternativa</option>
+                                        <option selected value="">Selecione uma alternativa...</option>
+                                        <option value="1">Primeira alternativa</option>
                                         <option value="2">Segunda alternativa</option>
                                         <option value="3">Terceira alternativa</option>
                                         <option value="4">Quarta alternativa</option>

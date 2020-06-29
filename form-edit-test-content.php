@@ -84,7 +84,7 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-4">
                                     <select name="resposta-questao-01" class="form-control" size="1" required>
-                                        
+                                        <option value="">Selecione uma alternativa...</option> 
                                         <?php 
 
                                             if($resposta_alternativa_01 == 1) { 
@@ -178,7 +178,7 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-4">
                                     <select name="resposta-questao-02" class="form-control" size="1" required>
-                                        
+                                        <option value="">Selecione uma alternativa...</option> 
                                         <?php 
 
                                             if($resposta_alternativa_02 == 1) { 
@@ -272,7 +272,7 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-4">
                                     <select name="resposta-questao-03" class="form-control" size="1" required>
-                                        
+                                        <option value="">Selecione uma alternativa...</option> 
                                         <?php 
 
                                             if($resposta_alternativa_03 == 1) { 
@@ -366,7 +366,7 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-4">
                                     <select name="resposta-questao-04" class="form-control" size="1" required>
-                                        
+                                        <option value="">Selecione uma alternativa...</option> 
                                         <?php 
 
                                             if($resposta_alternativa_04 == 1) { 
@@ -460,7 +460,7 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-4">
                                     <select name="resposta-questao-05" class="form-control" size="1" required>
-                                        
+                                        <option value="">Selecione uma alternativa...</option>     
                                         <?php 
 
                                             if($resposta_alternativa_05 == 1) { 
@@ -554,7 +554,7 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-4">
                                     <select name="resposta-questao-06" class="form-control" size="1" required>
-                                        
+                                        <option value="">Selecione uma alternativa...</option> 
                                         <?php 
 
                                             if($resposta_alternativa_06 == 1) { 
@@ -648,7 +648,7 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-4">
                                     <select name="resposta-questao-07" class="form-control" size="1" required>
-                                        
+                                        <option value="">Selecione uma alternativa...</option> 
                                         <?php 
 
                                             if($resposta_alternativa_07 == 1) { 
@@ -742,7 +742,7 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-4">
                                     <select name="resposta-questao-08" class="form-control" size="1" required>
-                                        
+                                        <option value="">Selecione uma alternativa...</option> 
                                         <?php 
 
                                             if($resposta_alternativa_08 == 1) { 
@@ -836,7 +836,7 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-4">
                                     <select name="resposta-questao-09" class="form-control" size="1" required>
-                                        
+                                        <option value="">Selecione uma alternativa...</option> 
                                         <?php 
 
                                             if($resposta_alternativa_09 == 1) { 
@@ -930,7 +930,7 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-4">
                                     <select name="resposta-questao-10" class="form-control" size="1" required>
-                                        
+                                        <option value="">Selecione uma alternativa...</option> 
                                         <?php 
 
                                             if($resposta_alternativa_10 == 1) { 

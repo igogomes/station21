@@ -69,7 +69,7 @@
                                 <label class="col-sm-2 col-form-label">Permissão</label>
                                 <div class="col-sm-10">
                                     <select name="permissao" class="form-control" size="1" required>
-                                        <option selected value="0">Selecione uma permissão</option>
+                                        <option selected value="">Selecione uma permissão</option>
                                         
                                         <?php 
                                         

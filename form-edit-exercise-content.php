@@ -97,7 +97,7 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-10">
                                     <select name="resposta-questao-01" class="form-control" size="1" style="width: 25%;" required>
-
+                                        <option value="">Selecione uma alternativa...</option>
                                         <?php 
 
                                             if($resposta_alternativa_01 == 1) { 
@@ -191,7 +191,7 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-10">
                                     <select name="resposta-questao-02" class="form-control" size="1" style="width: 25%;" required>
-                                        
+                                        <option value="">Selecione uma alternativa...</option>
                                         <?php 
 
                                             if($resposta_alternativa_02 == 1) { 
@@ -285,7 +285,7 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-10">
                                     <select name="resposta-questao-03" class="form-control" size="1" style="width: 25%;" required>
-                                        
+                                        <option value="">Selecione uma alternativa...</option>
                                         <?php 
 
                                             if($resposta_alternativa_03 == 1) { 
@@ -379,58 +379,58 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-10">
                                     <select name="resposta-questao-04" class="form-control" size="1" style="width: 25%;" required>
-                                        
-                                    <?php 
+                                        <option value="">Selecione uma alternativa...</option>    
+                                        <?php 
 
-                                        if($resposta_alternativa_04 == 1) { 
+                                            if($resposta_alternativa_04 == 1) { 
 
-                                            echo "<option selected value=\"1\">Primeira alternativa</option>";
+                                                echo "<option selected value=\"1\">Primeira alternativa</option>";
 
-                                        }
+                                            }
 
-                                        else {
+                                            else {
 
-                                            echo "<option value=\"1\">Primeira alternativa</option>";
+                                                echo "<option value=\"1\">Primeira alternativa</option>";
 
-                                        }
+                                            }
 
-                                        if($resposta_alternativa_04 == 2) { 
+                                            if($resposta_alternativa_04 == 2) { 
 
-                                            echo "<option selected value=\"2\">Segunda alternativa</option>";
+                                                echo "<option selected value=\"2\">Segunda alternativa</option>";
 
-                                        }
+                                            }
 
-                                        else {
+                                            else {
 
-                                            echo "<option value=\"2\">Segunda alternativa</option>";
+                                                echo "<option value=\"2\">Segunda alternativa</option>";
 
-                                        }
+                                            }
 
-                                        if($resposta_alternativa_04 == 3) { 
+                                            if($resposta_alternativa_04 == 3) { 
 
-                                            echo "<option selected value=\"3\">Terceira alternativa</option>";
+                                                echo "<option selected value=\"3\">Terceira alternativa</option>";
 
-                                        }
+                                            }
 
-                                        else {
+                                            else {
 
-                                            echo "<option value=\"3\">Terceira alternativa</option>";
+                                                echo "<option value=\"3\">Terceira alternativa</option>";
 
-                                        }
+                                            }
 
-                                        if($resposta_alternativa_04 == 4) { 
+                                            if($resposta_alternativa_04 == 4) { 
 
-                                            echo "<option selected value=\"4\">Quarta alternativa</option>";
+                                                echo "<option selected value=\"4\">Quarta alternativa</option>";
 
-                                        }
+                                            }
 
-                                        else {
+                                            else {
 
-                                            echo "<option value=\"4\">Quarta alternativa</option>";
+                                                echo "<option value=\"4\">Quarta alternativa</option>";
 
-                                        }
+                                            }
 
-                                    ?>
+                                        ?>
 
                                     </select>
                                     <input type="hidden" name="cod-exercicio" value="<?php echo $cod_exercicio; ?>">
@@ -474,58 +474,58 @@
                                 <label class="col-sm-2 col-form-label">É a resposta</label>
                                 <div class="col-sm-10">
                                     <select name="resposta-questao-05" class="form-control" size="1" style="width: 25%;" required>
-                                        
-                                    <?php 
+                                        <option value="">Selecione uma alternativa...</option>    
+                                        <?php 
 
-                                        if($resposta_alternativa_05 == 1) { 
+                                            if($resposta_alternativa_05 == 1) { 
 
-                                            echo "<option selected value=\"1\">Primeira alternativa</option>";
+                                                echo "<option selected value=\"1\">Primeira alternativa</option>";
 
-                                        }
+                                            }
 
-                                        else {
+                                            else {
 
-                                            echo "<option value=\"1\">Primeira alternativa</option>";
+                                                echo "<option value=\"1\">Primeira alternativa</option>";
 
-                                        }
+                                            }
 
-                                        if($resposta_alternativa_05 == 2) { 
+                                            if($resposta_alternativa_05 == 2) { 
 
-                                            echo "<option selected value=\"2\">Segunda alternativa</option>";
+                                                echo "<option selected value=\"2\">Segunda alternativa</option>";
 
-                                        }
+                                            }
 
-                                        else {
+                                            else {
 
-                                            echo "<option value=\"2\">Segunda alternativa</option>";
+                                                echo "<option value=\"2\">Segunda alternativa</option>";
 
-                                        }
+                                            }
 
-                                        if($resposta_alternativa_05 == 3) { 
+                                            if($resposta_alternativa_05 == 3) { 
 
-                                            echo "<option selected value=\"3\">Terceira alternativa</option>";
+                                                echo "<option selected value=\"3\">Terceira alternativa</option>";
 
-                                        }
+                                            }
 
-                                        else {
+                                            else {
 
-                                            echo "<option value=\"3\">Terceira alternativa</option>";
+                                                echo "<option value=\"3\">Terceira alternativa</option>";
 
-                                        }
+                                            }
 
-                                        if($resposta_alternativa_05 == 4) { 
+                                            if($resposta_alternativa_05 == 4) { 
 
-                                            echo "<option selected value=\"4\">Quarta alternativa</option>";
+                                                echo "<option selected value=\"4\">Quarta alternativa</option>";
 
-                                        }
+                                            }
 
-                                        else {
+                                            else {
 
-                                            echo "<option value=\"4\">Quarta alternativa</option>";
+                                                echo "<option value=\"4\">Quarta alternativa</option>";
 
-                                        }
+                                            }
 
-                                    ?>
+                                        ?>
 
                                     </select>
                                     <input type="hidden" name="cod-exercicio" value="<?php echo $cod_exercicio; ?>">

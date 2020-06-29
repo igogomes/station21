@@ -46,7 +46,7 @@
                                     ?>
 
                                             <select name="instrutor" class="form-control" size="1" required>
-                                                <option selected value="0">Selecione o instrutor responsável</option>
+                                                <option selected value="">Selecione o instrutor responsável</option>
                                                 
                                                 <?php 
                                                 
@@ -70,6 +70,7 @@
                                 <label class="col-sm-2 col-form-label">Status</label>
                                 <div class="col-sm-4">
                                     <select name="status" class="form-control" size="1" required>
+                                        <option value="">Selecione um status...</option>
                                         <option value="1">Publicado</option>
                                         <option selected value="2">Não Publicado</option>
                                     </select>
@@ -77,7 +78,7 @@
                                 <label class="col-sm-1 col-form-label">Categoria</label>
                                 <div class="col-sm-5">
                                     <select name="categoria" class="form-control" size="1" required>
-                                        <option selected value="0">Selecione uma categoria</option>
+                                        <option selected value="" selected>Selecione uma categoria</option>
 
                                         <?php 
                                         

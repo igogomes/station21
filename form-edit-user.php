@@ -71,7 +71,7 @@
                                         
                                     <select name="permissao-edicao-usuario" class="form-control" size=1 required>
 
-                                        
+                                        <option value="">Selecione uma permissão...</option>
 
                                         <?php
 

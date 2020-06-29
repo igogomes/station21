@@ -62,8 +62,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Módulo</label>
                                 <div class="col-sm-10">
-                                    <select name="modulo" class="form-control" size="1" required>
-                                        <option value="0" selected>Selecione um módulo</option>
+                                    <select name="modulo" class="form-control" size="1">
+                                        <option value="" selected>Selecione um módulo</option>
 
                                         <?php 
                                         
