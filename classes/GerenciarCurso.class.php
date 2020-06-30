@@ -181,13 +181,13 @@
 
                 }
 
-                else {
+            }
 
-                    $tabela_cursos .= "<tr> 
-                                            <td colspan=\"5\" style=\"text-align: center;\">Não foram encontrados cursos associados a seu usuário.</td>
-                                       </tr>";
+            if($tabela_cursos == "") {
 
-                }
+                $tabela_cursos .= "<tr> 
+                                        <td colspan=\"5\" style=\"text-align: center;\">Não foram encontrados cursos associados a seu usuário.</td>
+                                   </tr>";
 
             }
 
