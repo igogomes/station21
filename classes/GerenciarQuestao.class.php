@@ -49,11 +49,12 @@
             $cod_questao = "";
 
             $sql_cod_questao = new SqlSelect();
-            $sql_cod_questao -> adicionarColuna("cod_exercicio, cod_questao");
+            $sql_cod_questao -> adicionarColuna("cod_exercicio, cod_questao"); 
             $sql_cod_questao -> setEntidade("Questao");
 
             $criterio_cod_questao = new Criterio();
             $criterio_cod_questao -> adicionar(new Filtro("cod_exercicio", "=", "$cod_exercicio"));
+            $criterio_cod_questao -> setPropriedade("ORDER", "Questao.cod_questao ASC");
 
             $sql_cod_questao -> setCriterio($criterio_cod_questao);
 
@@ -318,6 +319,7 @@
 
             $criterio_cod_questao = new Criterio();
             $criterio_cod_questao -> adicionar(new Filtro("cod_prova", "=", "$cod_prova"));
+            $criterio_cod_questao -> setPropriedade("ORDER", "Questao.cod_questao ASC");
 
             $sql_cod_questao -> setCriterio($criterio_cod_questao);
 
