@@ -7,7 +7,7 @@
                 <a href="./">Dashboard</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="categories">Categoria</a>
+                <a href="categories">Categorias</a>
             </li>
             <li class="breadcrumb-item">Cadastrar Categoria</li>
         </ol>
