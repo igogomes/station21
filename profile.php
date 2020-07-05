@@ -23,10 +23,10 @@
     $erro_nova_senha = 0;
     $atualizar_perfil = 0;
 
-    if($email_usuario_perfil != "") {
+    if($email_usuario_perfil != "") { 
 
         $verificar_email_existente = new GerenciarUsuario();
-        $verificar_email_existente = $verificar_email_existente -> verificarEmailExistente($email_usuario_perfil);
+        $verificar_email_existente = $verificar_email_existente -> verificarEmailExistente($cod_usuario, $email_usuario_perfil);
 
         if($verificar_email_existente != 0) {
 

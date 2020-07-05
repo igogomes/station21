@@ -829,8 +829,53 @@
 
         //Método verificarEmailExistente
         //Avalia se e-mail já se encontra cadastrado no sistema
+        //@param $cod_usuario - código do usuário a ser desconsiderado na verificação
         //@param $email - e-mail para o qual a verificação será realizada
-        public function verificarEmailExistente($email) {
+        public function verificarEmailExistente($cod_usuario, $email) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $cod_usuario_base = "";
+            $email_base_dados = "";
+            $quantidade = 0;
+
+            $sql_verificar_email = new SqlSelect();
+            $sql_verificar_email -> adicionarColuna("cod_usuario, email");
+            $sql_verificar_email -> setEntidade("Usuario");
+
+            $criterio_verificar_email = new Criterio();
+            $criterio_verificar_email -> adicionar(new Filtro("email", "=", "'{$email}'"));
+
+            $sql_verificar_email -> setCriterio($criterio_verificar_email);
+
+            $localizar_email = $conexao_sql_station21 -> query($sql_verificar_email -> getInstrucao());
+
+            while($linhas_verificar_email = $localizar_email -> fetch(PDO::FETCH_ASSOC)) {
+
+                $email_base_dados = $linhas_verificar_email["email"];
+                $cod_usuario_base = $linhas_verificar_email["cod_usuario"];
+
+                if($cod_usuario != $cod_usuario_base) {
+
+                    if($email == $email_base_dados) {
+
+                        $quantidade++;
+
+                    }
+
+                }
+
+            }
+
+            return $quantidade;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método verificarEmailExistenteGeral
+        //Avalia se e-mail já se encontra cadastrado no sistema
+        //@param $email - e-mail para o qual a verificação será realizada
+        public function verificarEmailExistenteGeral($email) {
 
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
             $email_base_dados = "";

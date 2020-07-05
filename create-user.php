@@ -19,7 +19,7 @@
     if($email_usuario != "") {
 
         $verificar_email_existente = new GerenciarUsuario();
-        $verificar_email_existente = $verificar_email_existente -> verificarEmailExistente($email_usuario);
+        $verificar_email_existente = $verificar_email_existente -> verificarEmailExistenteGeral($email_usuario);
 
         if($verificar_email_existente != 0) {
 

@@ -8,7 +8,7 @@
     $email = $_POST["email"];
 
     $verificar_email = new GerenciarUsuario();
-    $verificar_email = $verificar_email -> verificarEmailExistente($email);
+    $verificar_email = $verificar_email -> verificarEmailExistenteGeral($email);
 
     if($verificar_email != 0) {
 
