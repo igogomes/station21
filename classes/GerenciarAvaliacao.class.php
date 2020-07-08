@@ -12,15 +12,19 @@
         //@param $cod_curso - código do curso a ser avaliado
         //@param $cod_usuario - código do usuário responsável pela avaliação
         //@param $avaliacao - avaliacao do usuário atribuída ao curso
-        public function setAvaliacao($cod_curso, $cod_usuario, $avaliacao) {
+        //@param $descricao_avaliacao_curso - descrição da avaliação do usuário atribuída ao curso
+        public function setAvaliacao($cod_curso, $cod_usuario, $avaliacao, $descricao_avaliacao_curso) {
 
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $descricao_avaliacao_curso = utf8_decode($descricao_avaliacao_curso);
 
             $sql_cadastrar_avaliacao_curso = new SqlInsert();
             $sql_cadastrar_avaliacao_curso -> setEntidade("Avaliacao");
             $sql_cadastrar_avaliacao_curso -> setValorLinha("cod_curso", $cod_curso);
             $sql_cadastrar_avaliacao_curso -> setValorLinha("cod_usuario", $cod_usuario);
             $sql_cadastrar_avaliacao_curso -> setValorLinha("avaliacao", $avaliacao);
+            $sql_cadastrar_avaliacao_curso -> setValorLinha("descricao_avaliacao", "{$descricao_avaliacao_curso}");
 
             $cadastrar_avaliacao_curso = $conexao_sql_station21 -> query($sql_cadastrar_avaliacao_curso -> getInstrucao());
 
@@ -306,9 +310,41 @@
 
             $sql_verificar_avaliacao -> setCriterio($criterio_verificar_avaliacao);
 
-            $localizar_verificar_nota = $conexao_sql_station21 -> query($sql_verificar_avaliacao -> getInstrucao());
+            $localizar_verificar_avaliacao = $conexao_sql_station21 -> query($sql_verificar_avaliacao -> getInstrucao());
 
-            while($linhas_verificar_nota = $localizar_verificar_nota -> fetch(PDO::FETCH_ASSOC)) {
+            while($linhas_verificar_avaliacao = $localizar_verificar_avaliacao -> fetch(PDO::FETCH_ASSOC)) {
+
+                $avaliacao++;
+
+            }
+
+            return $avaliacao;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método verificarAvaliacaoExistenteCurso
+        //Verifica se já existe avaliação para um determinado curso
+        //@param $cod_curso - código do curso para o qual a verificação será realizada
+        public function verificarAvaliacaoExistenteCurso($cod_curso) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+
+            $avaliacao = 0;
+
+            $sql_verificar_avaliacao = new SqlSelect();
+            $sql_verificar_avaliacao -> adicionarColuna("cod_curso");
+            $sql_verificar_avaliacao -> setEntidade("Avaliacao");
+
+            $criterio_verificar_avaliacao = new Criterio();
+            $criterio_verificar_avaliacao -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $sql_verificar_avaliacao -> setCriterio($criterio_verificar_avaliacao);
+
+            $localizar_verificar_avaliacao = $conexao_sql_station21 -> query($sql_verificar_avaliacao -> getInstrucao());
+
+            while($linhas_verificar_avaliacao = $localizar_verificar_avaliacao -> fetch(PDO::FETCH_ASSOC)) {
 
                 $avaliacao++;
 
@@ -325,13 +361,15 @@
         //@param $cod_curso - código do curso para o qual a avaliação será atualizada
         //@param $cod_usuario - código do usuário responsável pela avaliação
         //@param $avaliacao - avaliação do curso a ser atualizado
-        public function atualizarAvaliacao($cod_curso, $cod_usuario, $avaliacao) {
+        //@param $descricao_avaliacao_curso - descrição da avaliação do usuário atribuída ao curso
+        public function atualizarAvaliacao($cod_curso, $cod_usuario, $avaliacao, $descricao_avaliacao_curso) {
 
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
 
             $sql_atualizar_avaliacao = new SqlUpdate();
             $sql_atualizar_avaliacao -> setEntidade("Avaliacao");
             $sql_atualizar_avaliacao -> setValorLinha("avaliacao", "{$avaliacao}");
+            $sql_atualizar_avaliacao -> setValorLinha("descricao_avaliacao", "{$descricao_avaliacao_curso}");
 
             $criterio_atualizar_avaliacao_1 = new Criterio();
             $criterio_atualizar_avaliacao_1 -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));

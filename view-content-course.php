@@ -73,7 +73,7 @@
                     <div class="ibox-body">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Instrutor</label>
-                            <div class="col-sm-4">
+                            <div class="col-sm-2">
                                 <?php echo utf8_encode($instrutor_curso); ?>
                             </div>
 
@@ -83,11 +83,16 @@
                             
                             ?>
 
-                                <div class="col-sm-6 col-form-label" style="text-align: right;">
+                                <div class="col-sm-8 col-form-label" style="text-align: right;">
                                     <form action="classify-course" method="POST">
-                                        <ul style="list-style: none; display: inline-flex;">
+                                        <ul style="list-style: none; display: inline-flex; padding-left: 0;">
                                             <li>
                                                 <span style="padding-right: 20px;">Avalie o curso</span>
+                                            </li>
+                                            <li>
+                                                <span style="margin-right: 15px">
+                                                    <input type="text" name="description-grade" placeholder="Insira seu depoimento..." required>
+                                                </span>
                                             </li>
                                             <li>
                                                 <input type="radio" id="one" name="grade" value="1" required>

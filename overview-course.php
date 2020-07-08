@@ -19,6 +19,9 @@
     $tipo_avaliacao_excluir = (isset($_GET["type-evaluation"])) ? $_GET["type-evaluation"] : "";
     $sucesso_excluir_conteudo = (isset($_GET["success-delete-content"])) ? $_GET["success-delete-content"] : "";
 
+    $verificar_avaliacao_curso = new GerenciarAvaliacao();
+    $verificar_avaliacao_curso = $verificar_avaliacao_curso -> verificarAvaliacaoExistenteCurso($cod_curso);
+
     if($cod_conteudo_excluir != "") {
 
         $titulo_conteudo_excluir = new GerenciarConteudo();

@@ -22,9 +22,9 @@
                             <div class="col-sm-4">
                                 <?php echo utf8_encode($instrutor_curso); ?>
                             </div>
-                            <label class="col-sm-2 col-form-label">Avaliação</label>
+                            <label class="col-sm-2 col-form-label"><?php if($verificar_avaliacao_curso !=0) { echo "Avaliação"; } ?></label>
                             <div class="col-sm-2">
-                                <?php echo $avaliacao_curso; ?>
+                                <?php if($verificar_avaliacao_curso !=0) { echo $avaliacao_curso; } ?>
                             </div>
                             <div class="col-sm-2" style="text-align: right !important;">
                                 <a href="subscribe-course?cod-course=<?php echo $cod_curso; ?>">
