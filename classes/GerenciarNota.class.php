@@ -574,7 +574,7 @@
                     $nota = $linhas_lista_aprovacoes["sum(nota)"];
 
                     $nome_usuario = new GerenciarUsuario();
-                    $nome_usuario = $nome_usuario -> getNomePorCodigoUsuario($cod_usuario);
+                    $nome_usuario = utf8_encode($nome_usuario -> getNomePorCodigoUsuario($cod_usuario));
 
                     $titulo_curso = new GerenciarCurso();
                     $titulo_curso = $titulo_curso -> getTituloCursoPorCodigo($cod_curso);

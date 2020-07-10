@@ -17,7 +17,7 @@
 
             $conexao_sql_station21 = Conexao::abrir("conexao-station21");
 
-            $descricao_avaliacao_curso = utf8_decode($descricao_avaliacao_curso);
+            $descricao_avaliacao_curso = utf8_encode($descricao_avaliacao_curso);
 
             $sql_cadastrar_avaliacao_curso = new SqlInsert();
             $sql_cadastrar_avaliacao_curso -> setEntidade("Avaliacao");
@@ -458,6 +458,62 @@
             $sql_excluir_avaliacoes -> setCriterio($criterio_excluir_avaliacoes);
 
             $excluir_avaliacoes = $conexao_sql_station21 -> query($sql_excluir_avaliacoes -> getInstrucao());
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
+        //Método gerarListaAvaliacoesCurso
+        //Gera a lista contendo avaliações de usuários para um curso
+        //@param $cod_curso - código do curso do qual as avaliações serão obtidas
+        public function gerarListaAvaliacoesCurso($cod_curso) { 
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $cod_usuario = 0;
+            $cod_curso_base = 0;
+            $nome_usuario = "";
+            $avaliacao = 0;
+            $descricao_avaliacao = "";
+            $lista_avaliacoes = "";
+
+            $sql_gerar_lista_avaliacoes = new SqlSelect();
+            $sql_gerar_lista_avaliacoes -> adicionarColuna("cod_curso, cod_usuario, avaliacao, descricao_avaliacao");
+            $sql_gerar_lista_avaliacoes -> setEntidade("Avaliacao");
+
+            $criterio_gerar_lista_avaliacoes = new Criterio();
+            $criterio_gerar_lista_avaliacoes -> adicionar(new Filtro("cod_curso", "=", "'{$cod_curso}'"));
+
+            $sql_gerar_lista_avaliacoes -> setCriterio($criterio_gerar_lista_avaliacoes);
+
+            $gerar_lista_avaliacoes = $sql_gerar_lista_avaliacoes -> getInstrucao() . " GROUP BY cod_curso";
+
+            $localizar_lista_avaliacoes = $conexao_sql_station21 -> query($gerar_lista_avaliacoes);
+
+            while($linhas_lista_avaliacoes = $localizar_lista_avaliacoes -> fetch(PDO::FETCH_ASSOC)) {
+
+                $cod_curso_base = $linhas_lista_avaliacoes["cod_curso"];
+
+                if($cod_curso_base == $cod_curso) {
+
+                    $cod_usuario = $linhas_lista_avaliacoes["cod_usuario"];
+
+                    $nome_usuario = new GerenciarUsuario();
+                    $nome_usuario = utf8_encode($nome_usuario -> getNomePorCodigoUsuario($cod_usuario));
+                    
+                    $avaliacao =  $linhas_lista_avaliacoes["avaliacao"];
+                    $descricao_avaliacao = utf8_encode($linhas_lista_avaliacoes["descricao_avaliacao"]);
+
+                    $lista_avaliacoes .= "<tr>
+                                            <td>$nome_usuario</td>
+                                            <td>$avaliacao</td>
+                                            <td>$descricao_avaliacao</td>
+                                          </tr>";
+
+                }
+
+            } 
+
+            return $lista_avaliacoes; 
 
             $conexao_sql_station21 = NULL;
 

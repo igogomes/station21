@@ -237,6 +237,55 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="ibox" style="border: 1px solid #eee; -webkit-box-shadow: none; box-shadow: none;">
+                                        <div class="ibox-head">
+                                            <div class="ibox-title">Avaliações de Usuários</div>
+                                            <div class="ibox-tools">
+                                                <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                                            </div> 
+                                        </div>
+                                        <div class="ibox-body">
+                                           
+                                        <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Usuário</th>
+                                                <th>Nota</th>
+                                                <th>Avaliação</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            <?php 
+                                            
+                                                $lista_avaliacoes = new GerenciarAvaliacao();
+                                                $lista_avaliacoes = $lista_avaliacoes -> gerarListaAvaliacoesCurso($cod_curso);
+
+                                                if($lista_avaliacoes == "") {
+
+                                                    echo "<tr>
+                                                            <td colspan=\"3\" style=\"text-align: center;\">Este curso ainda não possui avaliações de usuários.</td>
+                                                          </tr>";
+
+                                                }
+
+                                                else {
+
+                                                    echo $lista_avaliacoes;
+
+                                                }
+                                            
+                                            ?>
+
+                                        </tbody>
+                                    </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
