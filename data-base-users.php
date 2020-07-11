@@ -101,7 +101,7 @@
 
                         <div class="alert alert-danger alert-dismissable fade show">
                             <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                            O instrutor cadastrado é o único registrado no sistema e possui um curso associado. É necessário o cadastro de outro instrutor para que sua exclusão seja finalizada ou, o curso associado ao mesmo também precisa ser excluído.
+                            O instrutor cadastrado é o único registrado no sistema e possui curso(s) associado(s). É necessário o cadastro de outro instrutor para que sua exclusão seja finalizada ou, o curso associado ao mesmo também precisa ser excluído.
                         </div>
 
 
