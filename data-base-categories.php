@@ -40,6 +40,19 @@
 
                     }
 
+                    if($excluir_categoria == 3) {
+
+                ?>
+
+                    <div class="alert alert-warning alert-dismissable fade show">
+                        <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                        Esta categoria está associada a cursos cadastrados no sistema. Para realizar sua exclusão é necessário desfazer esta(s) associação(ões).
+                    </div> 
+
+                <?php 
+                
+                    }
+                
                 ?>
 
             </div>

@@ -1259,6 +1259,38 @@
 
         }
 
+        //Método verificarCategoriaAssociada
+        //Verifica se existe(m) curso(s) associado(s) a uma categoria
+        //@param $cod_categoria - código da categoria para a qual a verificação será realizada
+        public function verificarCategoriaAssociada($cod_categoria) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            
+            $quantidade_cursos = 0;
+
+            $sql_verificar_categorias_associadas = new SqlSelect();
+            $sql_verificar_categorias_associadas -> adicionarColuna("cod_categoria");
+            $sql_verificar_categorias_associadas -> setEntidade("Curso");
+
+            $criterio_verificar_categorias_associadas = new Criterio();
+            $criterio_verificar_categorias_associadas -> adicionar(new Filtro("cod_categoria", "=", "'{$cod_categoria}'"));
+
+            $sql_verificar_categorias_associadas -> setCriterio($criterio_verificar_categorias_associadas);
+
+            $localizar_categorias_associadas = $conexao_sql_station21 -> query($sql_verificar_categorias_associadas -> getInstrucao());
+
+            while($linhas_verificar_categorias_associadas = $localizar_categorias_associadas -> fetch(PDO::FETCH_ASSOC)) {
+
+                $quantidade_cursos++;
+
+            }
+
+            return $quantidade_cursos;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
     }
 
 ?>
