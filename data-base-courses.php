@@ -31,7 +31,7 @@
                         <span aria-hidden="true">×</span>
                     </a>
                     <h4>Atenção!</h4>
-                    <p>Você realmente deseja excluir o curso <?php echo $titulo_curso_excluir; ?>? Todas as informações relacionadas ao mesmo serão 
+                    <p>Você realmente deseja excluir o curso <strong><?php echo $titulo_curso_excluir; ?></strong>? Todas as informações relacionadas ao mesmo serão 
                     excluídas, usuários inscritos serão desvinculados e seus progressos serão perdidos.</p>
                     <p>
                         <a href="delete-course?cod-delete-course=<?php echo $cod_excluir_curso; ?>" class="btn btn-danger" style="color:#fff;">Sim</a>
