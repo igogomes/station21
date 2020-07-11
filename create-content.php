@@ -87,7 +87,7 @@
         $verificar_curso_existente = new GerenciarCurso();
         $verificar_curso_existente = $verificar_curso_existente -> verificarCursoExistente($titulo);
 
-        if($verificar_curso_existente == 0 && $titulo != $titulo_original_curso) {
+        if($verificar_curso_existente == 0) {
 
             $verificar_modulos = new GerenciarModulo();
             $verificar_modulos = $verificar_modulos -> verificarModulosPorCodigoCurso($cod_curso_edicao);
