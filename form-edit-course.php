@@ -22,6 +22,7 @@
                                 <label class="col-sm-2 col-form-label">Título</label>
                                 <div class="col-sm-10">
                                     <input name ="cod-edit-course" type="hidden" value="<?php echo $cod_curso; ?>">
+                                    <input name="titulo-curso-original" type="hidden" value="<?php echo  $titulo_curso; ?>">
                                     <input name="edit-course" type="hidden" value="1">
                                     <input name="titulo" class="form-control" type="text" placeholder="Digite o título do curso" maxlength="100" value="<?php echo $titulo_curso; ?>" autofocus required>
                                 </div>
