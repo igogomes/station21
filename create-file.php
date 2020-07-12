@@ -34,7 +34,7 @@ else if(($verificar_arquivo != 0) && ($cod_modulo != "") && ($cod_modulo != 0)) 
 
     $tipo_arquivo = mime_content_type($nome_extensao_arquivo);
 
-    if(strstr($tipo_arquivo, "application")) {
+    if(strstr($tipo_arquivo, "application") || strstr($tipo_arquivo, "image") || strstr($tipo_arquivo, "text")) {
 
         $titulo_arquivo = strtolower( preg_replace("/[^a-zA-Z0-9-]/", "-", strtr(utf8_decode(trim($titulo_arquivo_original)), utf8_decode("áàãâéêíóôõúüñçÁÀÃÂÉÊÍÓÔÕÚÜÑÇ"),"aaaaeeiooouuncAAAAEEIOOOUUNC-")) );
 
