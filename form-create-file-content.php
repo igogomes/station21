@@ -50,7 +50,7 @@
 
                     <div class="alert alert-danger alert-dismissable fade show">
                         <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-                        Para cadastrar vídeos, <a href="create-video-content?cod-course=<?php echo $cod_curso; ?>">clique aqui</a>.
+                        Para cadastrar vídeos, <a href="create-video-content?cod-course=<?php echo $cod_curso; ?>" class="alert-link">clique aqui</a>.
                     </div>   
 
                 <?php 
