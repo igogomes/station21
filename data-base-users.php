@@ -116,7 +116,7 @@
         <div class="page-content fade-in-up">
             <div class="ibox">
                 <div class="ibox-body">
-                    <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+                    <table class="table table-striped table-bordered table-hover table-striped-users-admin-mobile" id="example-table" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th>Nome</th>

@@ -138,7 +138,7 @@
                     <div class="ibox-head">
                         <div class="ibox-title">Últimos Acessos</div>
                     </div>
-                    <div class="ibox-body" style="height: 350px;">
+                    <div class="ibox-body ibox-body-mobile" style="height: 350px;">
                         
                         <?php 
                         

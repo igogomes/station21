@@ -11,3 +11,38 @@
     text-decoration: underline;
     color: #333;
 }
+
+@media screen and (max-width: 992px) {
+  
+    .ibox-body.ibox-body-mobile {
+      min-height: 500px !important;
+    }
+
+    .ibox-body.ibox-body-mobile {
+        min-height: 500px !important;
+    }
+    
+    .ibox-body {
+        overflow-x: auto !important;
+    }
+    
+    .page-heading .breadcrumb {
+        display: block !important;
+    }
+
+    .create-content-buttons .content-button {
+        width: 100% !important;
+        text-align: center !important;
+        margin-bottom: 20px !important;
+    }
+
+    .create-content-buttons {
+        display: block !important;
+    }
+
+    .view-video-content {
+        height: 180px !important;
+        width: 100% !important;
+    }
+
+}

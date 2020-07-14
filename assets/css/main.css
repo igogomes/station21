@@ -3513,6 +3513,14 @@ table.dataTable {
   right: 0;
   bottom: 0; }
 
+@media screen and (max-width: 992px) {
+  .alert-danger, .alert-warning, .alert-success { 
+    line-height: 2;
+    background: transparent;
+    border: 0;
+  }
+}
+
 @media (max-width: 1230px) {
   .adminca-banner {
     display: inline-block; }

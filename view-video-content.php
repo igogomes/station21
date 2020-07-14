@@ -32,7 +32,7 @@
 
                                 ?>
 
-                                    <iframe width="640px" height="360px" src="<?php echo $link_embed_youtube; ?>" style="border: none;">
+                                    <iframe class="view-video-content" width="640px" height="360px" src="<?php echo $link_embed_youtube; ?>" style="border: none;">
                                     </iframe>
 
                                 <?php 
@@ -46,7 +46,7 @@
 
                                 ?>
 
-                                    <iframe width="840px" height="560px" src="<?php echo $link_embed_vimeo; ?>" style="border: none;">
+                                    <iframe class="view-video-content" width="840px" height="560px" src="<?php echo $link_embed_vimeo; ?>" style="border: none;">
                                     </iframe>
 
                                 <?php
