@@ -3,10 +3,14 @@
     //Função spl_autoload_register()
     //Carregamento de uma classe quando a mesma é necessário, ou seja, instanciada
     
-    spl_autoload_register(function ($class) {
+    function MyAutoload($className) {
     
-        require_once(str_replace('\\', '/', 'classes/' .$class . '.class.php'));
+        $extension =  spl_autoload_extensions();
+        require_once(str_replace('\\', '/', 'classes/' . $className . $extension));
+    
+    }
 
-    });
+    spl_autoload_extensions('.class.php');
+    spl_autoload_register('MyAutoload');
 
 ?>
