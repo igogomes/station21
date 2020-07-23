@@ -16,7 +16,7 @@
 
             $senha = "";
             $nome = "";
-            $email_remetente = "contato@igogomes.com.br";
+            $email_remetente = "contato@station21.com.br";
 
             $sql_recuperar_senha_usuario = new SqlSelect();
             $sql_recuperar_senha_usuario -> adicionarColuna("email, senha");

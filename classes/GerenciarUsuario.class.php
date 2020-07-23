@@ -133,7 +133,7 @@
             $sql_gerar_tabela_ultimos_acessos -> setEntidade("Usuario");
 
             $criterio_gerar_tabela_ultimos_acessos = new Criterio();
-            $criterio_gerar_tabela_ultimos_acessos -> setPropriedade("ORDER", "usuario.ultimo_acesso DESC");
+            $criterio_gerar_tabela_ultimos_acessos -> setPropriedade("ORDER", "Usuario.ultimo_acesso DESC");
             $criterio_gerar_tabela_ultimos_acessos -> setPropriedade("LIMIT", 5);
     
             $sql_gerar_tabela_ultimos_acessos -> setCriterio($criterio_gerar_tabela_ultimos_acessos);
@@ -213,7 +213,7 @@
             $sql_gerar_tabela_ultimos_cadastros -> setEntidade("Usuario");
 
             $criterio_gerar_tabela_ultimos_cadastros = new Criterio();
-            $criterio_gerar_tabela_ultimos_cadastros -> setPropriedade("ORDER", "usuario.data_cadastro DESC");
+            $criterio_gerar_tabela_ultimos_cadastros -> setPropriedade("ORDER", "Usuario.data_cadastro DESC");
             $criterio_gerar_tabela_ultimos_cadastros -> setPropriedade("LIMIT", 5);
     
             $sql_gerar_tabela_ultimos_cadastros -> setCriterio($criterio_gerar_tabela_ultimos_cadastros);
@@ -272,7 +272,7 @@
             $sql_gerar_tabela_usuarios -> setEntidade("Usuario");
 
             $criterio_gerar_tabela_usuarios = new Criterio();
-            $criterio_gerar_tabela_usuarios -> setPropriedade("ORDER", "usuario.nome ASC");
+            $criterio_gerar_tabela_usuarios -> setPropriedade("ORDER", "Usuario.nome ASC");
     
             $sql_gerar_tabela_usuarios -> setCriterio($criterio_gerar_tabela_usuarios);
 
@@ -426,7 +426,7 @@
             $sql_lista_permissao -> setEntidade("Permissao");
 
             $criterio_lista_permissao = new Criterio();
-            $criterio_lista_permissao -> setPropriedade("ORDER", "permissao.cod_permissao ASC");
+            $criterio_lista_permissao -> setPropriedade("ORDER", "Permissao.cod_permissao ASC");
 
             $sql_lista_permissao -> setCriterio($criterio_lista_permissao);
 
@@ -462,7 +462,7 @@
             $sql_lista_permissao -> setEntidade("Permissao");
 
             $criterio_lista_permissao = new Criterio();
-            $criterio_lista_permissao -> setPropriedade("ORDER", "permissao.cod_permissao ASC");
+            $criterio_lista_permissao -> setPropriedade("ORDER", "Permissao.cod_permissao ASC");
 
             $sql_lista_permissao -> setCriterio($criterio_lista_permissao);
 

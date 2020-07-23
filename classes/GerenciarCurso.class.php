@@ -28,7 +28,7 @@
             $sql_gerar_tabela_cursos -> setEntidade("Curso");
 
             $criterio_gerar_tabela_cursos = new Criterio();
-            $criterio_gerar_tabela_cursos -> setPropriedade("ORDER", "curso.titulo ASC");
+            $criterio_gerar_tabela_cursos -> setPropriedade("ORDER", "Curso.titulo ASC");
         
             $sql_gerar_tabela_cursos -> setCriterio($criterio_gerar_tabela_cursos);
 
@@ -117,7 +117,7 @@
             $sql_gerar_tabela_cursos -> setEntidade("Curso");
 
             $criterio_gerar_tabela_cursos = new Criterio();
-            $criterio_gerar_tabela_cursos -> setPropriedade("ORDER", "curso.titulo ASC");
+            $criterio_gerar_tabela_cursos -> setPropriedade("ORDER", "Curso.titulo ASC");
         
             $sql_gerar_tabela_cursos -> setCriterio($criterio_gerar_tabela_cursos);
 
