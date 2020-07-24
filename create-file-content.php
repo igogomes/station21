@@ -1,21 +1,21 @@
 <?php 
 
-include "validate-session.inc";
-include_once "Autoload.inc";
+    include "validate-session.inc";
+    include_once "Autoload.inc";
 
-$email = $_SESSION['email'];
-$senha = $_SESSION['senha'];
-$permissao = $_SESSION['permissao'];
+    $email = $_SESSION['email'];
+    $senha = $_SESSION['senha'];
+    $permissao = $_SESSION['permissao'];
 
-$nome = new AutenticarUsuario();
-$nome = utf8_encode($nome -> getNomeUsuario($email));
+    $nome = new AutenticarUsuario();
+    $nome = utf8_encode($nome -> getNomeUsuario($email));
 
-$cod_curso = (isset($_GET["cod-course"])) ? $_GET["cod-course"] : "";
+    $cod_curso = (isset($_GET["cod-course"])) ? $_GET["cod-course"] : "";
 
-$titulo = new GerenciarCurso();
-$titulo = $titulo -> getTituloCursoPorCodigo($cod_curso);
+    $titulo = new GerenciarCurso();
+    $titulo = $titulo -> getTituloCursoPorCodigo($cod_curso);
 
-$erro_cadastro_arquivo = (isset($_GET["erro-file"])) ? $_GET["erro-file"] : "";
+    $erro_cadastro_arquivo = (isset($_GET["erro-file"])) ? $_GET["erro-file"] : "";
 
 ?>
 
