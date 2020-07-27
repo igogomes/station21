@@ -64,34 +64,82 @@
                                             </div>
                                         </div>
                                         <div class="ibox-body">
-                                            <strong>Vídeos</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_videos_modulo_curso_01 == "<table style=\"width: 100%;\"></table>") { echo "Não existem vídeos cadastrados para este módulo.<br>"; } else { echo $lista_videos_modulo_curso_01; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Textos</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_textos_modulo_curso_01 == "<table style=\"width: 100%;\"></table>") { echo "Não existem textos cadastrados para este módulo.<br>"; } else { echo $lista_textos_modulo_curso_01; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Arquivos</strong>
-                                            <br>
-                                            <br> 
-                                            <?php if($lista_arquivos_modulo_curso_01 == "<table style=\"width: 100%;\"></table>") { echo "Não existem textos cadastrados para este módulo.<br>"; } else { echo $lista_arquivos_modulo_curso_01; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Links</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_links_modulo_curso_01 == "<table style=\"width: 100%;\"></table>") { echo "Não existem links cadastrados para este módulo.<br>"; } else { echo $lista_links_modulo_curso_01; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Exercício Avaliativo</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_exercicios_modulo_curso_01 == "<table style=\"width: 100%;\"></table>") { echo "Não existem exercícios cadastrados para este módulo.<br>"; } else { echo $lista_exercicios_modulo_curso_01; }; ?>
+                                            <?php 
+                                                
+                                                if($lista_videos_modulo_curso_01 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Vídeos</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_videos_modulo_curso_01; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_textos_modulo_curso_01 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+                                            
+                                                    <strong>Textos</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_textos_modulo_curso_01; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_arquivos_modulo_curso_01 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Arquivos</strong>
+                                                    <br>
+                                                    <br> 
+                                                    <?php echo $lista_arquivos_modulo_curso_01; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_links_modulo_curso_01 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Links</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_links_modulo_curso_01; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_exercicios_modulo_curso_01 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Exercício Avaliativo</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_exercicios_modulo_curso_01; ?>
+
+                                            <?php 
+                                        
+                                                } 
+                                                
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
@@ -106,34 +154,82 @@
                                             </div>
                                         </div>
                                         <div class="ibox-body">
-                                            <strong>Vídeos</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_videos_modulo_curso_02 == "<table style=\"width: 100%;\"></table>") { echo "Não existem vídeos cadastrados para este módulo.<br>"; } else { echo $lista_videos_modulo_curso_02; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Textos</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_textos_modulo_curso_02 == "<table style=\"width: 100%;\"></table>") { echo "Não existem textos cadastrados para este módulo.<br>"; } else { echo $lista_textos_modulo_curso_02; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Arquivos</strong>
-                                            <br>
-                                            <br> 
-                                            <?php if($lista_arquivos_modulo_curso_02 == "<table style=\"width: 100%;\"></table>") { echo "Não existem textos cadastrados para este módulo.<br>"; } else { echo $lista_arquivos_modulo_curso_02; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Links</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_links_modulo_curso_02 == "<table style=\"width: 100%;\"></table>") { echo "Não existem links cadastrados para este módulo.<br>"; } else { echo $lista_links_modulo_curso_02; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Exercício Avaliativo</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_exercicios_modulo_curso_02 == "<table style=\"width: 100%;\"></table>") { echo "Não existem exercícios cadastrados para este módulo.<br>"; } else { echo $lista_exercicios_modulo_curso_02; }; ?>
+                                            <?php 
+                                                
+                                                if($lista_videos_modulo_curso_02 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Vídeos</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_videos_modulo_curso_02; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_textos_modulo_curso_02 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Textos</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_textos_modulo_curso_02; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_arquivos_modulo_curso_02 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+                                            
+                                                    <strong>Arquivos</strong>
+                                                    <br>
+                                                    <br> 
+                                                    <?php echo $lista_arquivos_modulo_curso_02; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_links_modulo_curso_02 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Links</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_links_modulo_curso_02; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_exercicios_modulo_curso_02 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+                                            
+                                                    <strong>Exercício Avaliativo</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_exercicios_modulo_curso_02; ?>
+
+                                            <?php 
+                                            
+                                                }
+                                            
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
@@ -148,34 +244,82 @@
                                             </div>
                                         </div>
                                         <div class="ibox-body">
-                                            <strong>Vídeos</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_videos_modulo_curso_03 == "<table style=\"width: 100%;\"></table>") { echo "Não existem vídeos cadastrados para este módulo.<br>"; } else { echo $lista_videos_modulo_curso_03; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Textos</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_textos_modulo_curso_03 == "<table style=\"width: 100%;\"></table>") { echo "Não existem textos cadastrados para este módulo.<br>"; } else { echo $lista_textos_modulo_curso_03; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Arquivos</strong>
-                                            <br>
-                                            <br> 
-                                            <?php if($lista_arquivos_modulo_curso_03 == "<table style=\"width: 100%;\"></table>") { echo "Não existem textos cadastrados para este módulo.<br>"; } else { echo $lista_arquivos_modulo_curso_03; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Links</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_links_modulo_curso_03 == "<table style=\"width: 100%;\"></table>") { echo "Não existem links cadastrados para este módulo.<br>"; } else { echo $lista_links_modulo_curso_03; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Exercício Avaliativo</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_exercicios_modulo_curso_03 == "<table style=\"width: 100%;\"></table>") { echo "Não existem exercícios cadastrados para este módulo.<br>"; } else { echo $lista_exercicios_modulo_curso_03; }; ?>
+                                            <?php 
+                                                
+                                                if($lista_videos_modulo_curso_03 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Vídeos</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_videos_modulo_curso_03; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_textos_modulo_curso_03 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Textos</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_textos_modulo_curso_03; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_arquivos_modulo_curso_03 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Arquivos</strong>
+                                                    <br>
+                                                    <br> 
+                                                    <?php echo $lista_arquivos_modulo_curso_03; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_links_modulo_curso_03 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Links</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_links_modulo_curso_03; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_exercicios_modulo_curso_03 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Exercício Avaliativo</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_exercicios_modulo_curso_03; ?>
+
+                                            <?php 
+                                            
+                                                }
+                                            
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
@@ -190,34 +334,82 @@
                                             </div>
                                         </div>
                                         <div class="ibox-body">
-                                            <strong>Vídeos</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_videos_modulo_curso_04 == "<table style=\"width: 100%;\"></table>") { echo "Não existem vídeos cadastrados para este módulo.<br>"; } else { echo $lista_videos_modulo_curso_04; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Textos</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_textos_modulo_curso_04 == "<table style=\"width: 100%;\"></table>") { echo "Não existem textos cadastrados para este módulo.<br>"; } else { echo $lista_textos_modulo_curso_04; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Arquivos</strong>
-                                            <br>
-                                            <br> 
-                                            <?php if($lista_arquivos_modulo_curso_04 == "<table style=\"width: 100%;\"></table>") { echo "Não existem textos cadastrados para este módulo.<br>"; } else { echo $lista_arquivos_modulo_curso_04; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Links</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_links_modulo_curso_04 == "<table style=\"width: 100%;\"></table>") { echo "Não existem links cadastrados para este módulo.<br>"; } else { echo $lista_links_modulo_curso_04; }; ?>
-                                            <br>
-                                            <br>
-                                            <strong>Exercício Avaliativo</strong>
-                                            <br>
-                                            <br>
-                                            <?php if($lista_exercicios_modulo_curso_04 == "<table style=\"width: 100%;\"></table>") { echo "Não existem exercícios cadastrados para este módulo.<br>"; } else { echo $lista_exercicios_modulo_curso_04; }; ?>
+                                            <?php 
+                                                
+                                                if($lista_videos_modulo_curso_04 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Vídeos</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_videos_modulo_curso_04; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_textos_modulo_curso_04 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Textos</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_textos_modulo_curso_04; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_arquivos_modulo_curso_04 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Arquivos</strong>
+                                                    <br>
+                                                    <br> 
+                                                    <?php echo $lista_arquivos_modulo_curso_04; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_links_modulo_curso_04 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Links</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_links_modulo_curso_04; ?>
+                                                    <br>
+                                                    <br>
+
+                                            <?php 
+                                            
+                                                }
+
+                                                if($lista_exercicios_modulo_curso_04 != "<table style=\"width: 100%;\"></table>") {
+                                            
+                                            ?>
+
+                                                    <strong>Exercício Avaliativo</strong>
+                                                    <br>
+                                                    <br>
+                                                    <?php echo $lista_exercicios_modulo_curso_04; ?>
+
+                                            <?php 
+                                            
+                                                }
+                                            
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
