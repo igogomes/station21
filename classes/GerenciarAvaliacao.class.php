@@ -485,7 +485,7 @@
 
             $sql_gerar_lista_avaliacoes -> setCriterio($criterio_gerar_lista_avaliacoes);
 
-            $gerar_lista_avaliacoes = $sql_gerar_lista_avaliacoes -> getInstrucao() . " GROUP BY cod_curso";
+            $gerar_lista_avaliacoes = $sql_gerar_lista_avaliacoes -> getInstrucao();
 
             $localizar_lista_avaliacoes = $conexao_sql_station21 -> query($gerar_lista_avaliacoes);
 
@@ -501,12 +501,12 @@
                     $nome_usuario = utf8_encode($nome_usuario -> getNomePorCodigoUsuario($cod_usuario));
                     
                     $avaliacao =  $linhas_lista_avaliacoes["avaliacao"];
-                    $descricao_avaliacao = utf8_encode($linhas_lista_avaliacoes["descricao_avaliacao"]);
+                    $descricao_avaliacao = $linhas_lista_avaliacoes["descricao_avaliacao"];
 
                     $lista_avaliacoes .= "<tr>
                                             <td>$nome_usuario</td>
                                             <td>$avaliacao</td>
-                                            <td>$descricao_avaliacao</td>
+                                            <td>" . utf8_encode($descricao_avaliacao) . "</td>
                                           </tr>";
 
                 }
