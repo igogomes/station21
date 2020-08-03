@@ -530,7 +530,7 @@
             $sql_quantidade_aprovacoes -> adicionarColuna("sum(nota)");
             $sql_quantidade_aprovacoes -> setEntidade("Nota");
 
-            $group_quantidade_aprovacoes = $sql_quantidade_aprovacoes -> getInstrucao() . " GROUP BY cod_usuario HAVING sum(nota) >= 70";
+            $group_quantidade_aprovacoes = $sql_quantidade_aprovacoes -> getInstrucao() . " GROUP BY cod_usuario, cod_curso HAVING sum(nota) >= 70";
 
             $localizar_quantidade_aprovacoes = $conexao_sql_station21 -> query($group_quantidade_aprovacoes);
 
