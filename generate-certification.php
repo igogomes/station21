@@ -11,11 +11,11 @@
     $senha = $_SESSION['senha'];
     $permissao = $_SESSION['permissao'];
 
-    $nome = new AutenticarUsuario();
-    $nome = utf8_encode($nome -> getNomeUsuario($email));
-
     $cod_usuario = (isset($_POST["cod-user"])) ? $_POST["cod-user"] : "";
     $cod_curso = (isset($_POST["cod-course"])) ? $_POST["cod-course"] : "";
+
+    $nome = new GerenciarUsuario();
+    $nome = utf8_encode($nome -> getNomePorCodigoUsuario($cod_usuario));
 
     $titulo_curso = new GerenciarCurso();
     $titulo_curso = $titulo_curso -> getTituloCursoPorCodigo($cod_curso);
