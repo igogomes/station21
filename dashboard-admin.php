@@ -81,41 +81,43 @@
                 </a>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="ibox bg-warning color-white widget-stat">
-                    <div class="ibox-body">
-                        <h2 class="m-b-5 font-strong">
-                        
-                            <?php 
+                <a href="reports"> 
+                    <div class="ibox bg-warning color-white widget-stat">
+                        <div class="ibox-body">
+                            <h2 class="m-b-5 font-strong">
                             
-                                $quantidade_aprovados = new GerenciarNota();
-                                $quantidade_aprovados = $quantidade_aprovados -> obterQuantidadeAprovacoes();
+                                <?php 
+                                
+                                    $quantidade_aprovados = new GerenciarNota();
+                                    $quantidade_aprovados = $quantidade_aprovados -> obterQuantidadeAprovacoes();
 
-                                echo $quantidade_aprovados;
+                                    echo $quantidade_aprovados;
+                                
+                                ?>
+
+                            </h2>
+                            <div class="m-b-5">
                             
-                            ?>
+                                <?php 
+                                
+                                    if($quantidade_aprovados == 1) {
 
-                        </h2>
-                        <div class="m-b-5">
-                        
-                            <?php 
+                                        echo "APROVAÇÃO";
+
+                                    }
+
+                                    else {
+
+                                        echo "APROVAÇÕES";
+
+                                    }
+                                
+                                ?>
                             
-                                if($quantidade_aprovados == 1) {
-
-                                    echo "APROVAÇÃO";
-
-                                }
-
-                                else {
-
-                                    echo "APROVAÇÕES";
-
-                                }
-                            
-                            ?>
-                        
-                        </div><i class="fa fa-trophy money widget-stat-icon"></i>
+                            </div><i class="fa fa-trophy money widget-stat-icon"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
         <div class="row">
