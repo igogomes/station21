@@ -561,7 +561,7 @@
             $sql_gerar_lista_aprovacoes -> adicionarColuna("cod_usuario, cod_curso, sum(nota)");
             $sql_gerar_lista_aprovacoes -> setEntidade("Nota");
 
-            $group_gerar_lista_aprovacoes = $sql_gerar_lista_aprovacoes -> getInstrucao() . " GROUP BY cod_usuario HAVING sum(nota) >= 70";
+            $group_gerar_lista_aprovacoes = $sql_gerar_lista_aprovacoes -> getInstrucao() . " GROUP BY cod_usuario, cod_curso HAVING sum(nota) >= 70";
 
             $localizar_lista_aprovacoes = $conexao_sql_station21 -> query($group_gerar_lista_aprovacoes);
 
