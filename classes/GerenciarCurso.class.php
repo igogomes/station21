@@ -630,6 +630,39 @@
 
         }
 
+        //Método getQuantidadeCursosPorInstrutor
+        //Retorna a quantidade de cursos cadastrados na base de dados e associados
+        //a um determinado instrutor
+        //@param $cod_instrutor - código do instrutor do qual se deseja recuperar a quantidade de
+        //cursos associados
+        public function getQuantidadeCursosPorInstrutor($cod_instrutor) {
+
+            $conexao_sql_station21 = Conexao::abrir("conexao-station21");
+            $quantidade_cursos = 0;
+
+            $sql_quantidade_cursos = new SqlSelect();
+            $sql_quantidade_cursos -> adicionarColuna("cod_curso, cod_instrutor");
+            $sql_quantidade_cursos -> setEntidade("Curso");
+
+            $criterio_quantidade_cursos = new Criterio();
+            $criterio_quantidade_cursos -> adicionar(new Filtro("cod_instrutor", "=", "'{$cod_instrutor}'"));
+
+            $sql_quantidade_cursos -> setCriterio($criterio_quantidade_cursos);
+
+            $localizar_cursos = $conexao_sql_station21 -> query($sql_quantidade_cursos -> getInstrucao());
+
+            while($linhas_quantidade_cursos = $localizar_cursos -> fetch(PDO::FETCH_ASSOC)) {
+
+                $quantidade_cursos++;
+
+            }
+
+            return $quantidade_cursos;
+
+            $conexao_sql_station21 = NULL;
+
+        }
+
         //Método gerarTabelaUltimosCursosCadastrados
         //Retorna lista contendo os cinco últimos cursos cadastrados na base de dados
         public function gerarTabelaUltimosCursosCadastrados() {

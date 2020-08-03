@@ -9,9 +9,9 @@
                             <h2 class="m-b-5 font-strong">
                             
                                 <?php 
-                                    
+
                                     $quantidade_cursos = new GerenciarCurso();
-                                    $quantidade_cursos = $quantidade_cursos -> getQuantidadeCursos();
+                                    $quantidade_cursos = $quantidade_cursos -> getQuantidadeCursosPorInstrutor($cod_usuario); 
 
                                     echo $quantidade_cursos;
                                 
