@@ -79,7 +79,7 @@
 
                             <?php 
                             
-                                if($obter_presenca_curso == "100%" && $obter_nota_curso >= 70) {
+                                if($obter_presenca_curso == "100%") {
                             
                             ?>
 
@@ -139,7 +139,7 @@
                             ?>
 
                             <div class="col-sm-12">
-                                Status: <?php 
+                                Status de Vídeos Assistidos: <?php 
                                 
                                     echo $obter_presenca_curso;
 
@@ -574,7 +574,7 @@
 
                                                 else {
 
-                                                    echo "Finalize as atividades do curso para realizar a prova.";
+                                                    echo "Assista os vídeos e finalize os exercícios do curso para realizar a prova.";
 
                                                 }
 
