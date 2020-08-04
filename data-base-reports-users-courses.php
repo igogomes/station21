@@ -35,15 +35,15 @@
                             <thead>
                                 <tr>
                                     <th>Cursos</th>
-                                    <th>Status</th>
-                                    <th>Aprovação</th>
+                                    <th>Status Vídeos</th>
+                                    <th>Aprovação</th> 
                                     <th>Ações</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Cursos</th>
-                                    <th>Status</th>
+                                    <th>Status Vídeos</th>
                                     <th>Aprovação</th>
                                     <th>Ações</th>
                                 </tr>

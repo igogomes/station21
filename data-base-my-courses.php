@@ -120,7 +120,7 @@
                             <tr>
                                 <th>Cursos</th>
                                 <th>Instrutor</th>
-                                <th>Status</th>
+                                <th>Status Vídeos</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
