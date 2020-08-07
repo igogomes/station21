@@ -36,19 +36,19 @@
 
             }
 
-            $headers  = "From: $email_remetente\r\n";
-            $headers .= "Reply-To: $email_remetente\r\n";
+            $headers  = "From: Station21 <$email_remetente>\n";
+            $headers .= "Reply-To: $email_remetente\n";
 
             $assunto = "Recuperação de senha - Station 21 - $nome";
 
-            $mensagem = "Olá!<br>O Station21 recebeu sua solicitação de recuperação de senha e, seus dados 
-            estão descritos a seguir:<br><br>
-            E-mail: $email<br>
-            Senha: $senha<br><br>
-            Em caso de dúvidas, entre em contato com o administrador.<br><br>
-            Station21";
+            $mensagem = "Olá!\n\rO Station21 recebeu sua solicitação de recuperação de senha e, seus dados estão descritos a seguir:\n\rE-mail: $email\nSenha: $senha\n\rEm caso de dúvidas, entre em contato com o administrador.\n\rAtenciosamente,\nStation21";
 
             mail($email, $assunto, $mensagem, $headers);
+
+            if(!mail($email, $assunto, $mensagem, $headers ,"-r".$email_remetente)) {
+                $headers .= "Return-Path: Station21 <$email_remetente>\n";
+                mail($email, $assunto, $mensagem, $headers);
+            }
 
             $conexao_sql_station21 = NULL;
 
